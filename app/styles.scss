@@ -536,6 +536,10 @@ label {
   position: relative;
 }
 
+.hidden {
+  display: none;
+}
+
 .mask-editor {
   position: absolute;
   width: 100vw;
@@ -563,79 +567,6 @@ label {
     stroke: var(--color-blue-light);
     stroke-width: 1px;
   }
-}
-
-.wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  &--not-started {
-    background: var(--color-black-light);
-  }
-}
-
-.hidden {
-  display: none;
-}
-
-.splash {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: var(--color-skin-mid-dark);
-  flex-direction: column;
-  justify-content: space-evenly;
-  h1 {
-    margin: 0;
-    letter-spacing: 0.1rem;
-    font-size: 3.8rem;
-    text-shadow: 0 0.1rem 0.1rem var(--color-skin-dark),
-      0 -0.1rem 0.1rem var(--color-skin-mid-light);
-    color: var(--color-skin-mid-dark);
-  }
-  h2 {
-    margin: 0.5rem 0 0.7rem;
-  }
-}
-
-.logo {
-  max-width: 6rem;
-  height: auto;
-  display: block;
-  margin: var(--gap) 0;
-  path {
-    transition: transform 0.3s ease-in-out;
-    transform-origin: center calc(100% - var(--gap) * 4);
-  }
-
-  button:not(:hover) & {
-    .eye-left,
-    .eyebrow-left {
-      transform: translate(var(--gap-double), calc(-1 * var(--gap)))
-        rotate(-30deg);
-    }
-
-    .eye-right,
-    .eyebrow-right {
-      transform: translate(calc(-1 * var(--gap-double)), calc(-1 * var(--gap)))
-        rotate(30deg);
-    }
-
-    .nose {
-      transform: translateY(calc(-1 * var(--gap-half))) scale(0.5);
-    }
-    .mouth {
-      transform: translateY(calc(-1 * var(--gap)));
-    }
-  }
-}
-
-.drawing {
-  position: relative;
 }
 
 .mask-path {
@@ -719,15 +650,6 @@ label {
   }
   ul {
     list-style-type: none;
-    padding-left: 0;
-  }
-}
-
-.update {
-  font-size: var(--font-size-m);
-  color: var(--color-skin-mid-light);
-  ul {
-    list-style-position: inside;
     padding-left: 0;
   }
 }
