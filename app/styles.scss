@@ -86,16 +86,6 @@
   }
 }
 
-@keyframes laser {
-  75% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0, -1rem);
-    opacity: 0;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -232,18 +222,6 @@ input[type="checkbox"] {
   }
 }
 
-pre {
-  width: 17rem;
-  height: 100vh;
-  overflow: auto;
-  position: absolute;
-  left: var(--menu-width);
-  margin: 0;
-  top: 0;
-  z-index: 1;
-  background: #fff8;
-}
-
 fieldset {
   display: contents;
 }
@@ -287,30 +265,6 @@ legend {
 
   p {
     grid-column: span 12;
-  }
-
-  &--masks {
-    legend {
-      margin-top: var(--gap);
-    }
-    path {
-      stroke: var(--color-skin-dark);
-      stroke-width: 1rem;
-      fill: none;
-    }
-    button {
-      grid-column: span 2;
-      padding: 0;
-      min-height: 2rem;
-      border-radius: var(--radius);
-      &.more {
-        background: transparent;
-        color: var(--color-skin-mid-light);
-        &:hover {
-          color: var(--color-skin-mid);
-        }
-      }
-    }
   }
 
   &--scenarios {
@@ -498,88 +452,12 @@ label {
   }
 }
 
-.logo {
-  max-width: 6rem;
-  height: auto;
-  display: block;
-  margin: var(--gap) 0;
-  path {
-    transition: transform 0.3s ease-in-out;
-    transform-origin: center calc(100% - var(--gap) * 4);
-  }
-
-  button:not(:hover) & {
-    .eye-left,
-    .eyebrow-left {
-      transform: translate(var(--gap-double), calc(-1 * var(--gap)))
-        rotate(-30deg);
-    }
-
-    .eye-right,
-    .eyebrow-right {
-      transform: translate(calc(-1 * var(--gap-double)), calc(-1 * var(--gap)))
-        rotate(30deg);
-    }
-
-    .nose {
-      transform: translateY(calc(-1 * var(--gap-half))) scale(0.5);
-    }
-    .mouth {
-      transform: translateY(calc(-1 * var(--gap)));
-    }
-  }
-}
-
 .drawing {
   position: relative;
 }
 
 .hidden {
   display: none;
-}
-
-.mask-editor {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  background: var(--bg);
-  z-index: 1;
-  &__dot {
-    fill: var(--color-yellow-semi);
-    stroke: none;
-    &:hover {
-      fill: var(--color-skin-light);
-    }
-    &--first {
-      stroke: var(--color-yellow);
-    }
-  }
-  &__area {
-    fill: var(--color-yellow-semi);
-    stroke: var(--color-yellow);
-  }
-  &__new-area {
-    fill: none;
-    stroke: var(--color-blue-light);
-    stroke-width: 1px;
-  }
-}
-
-.mask-path {
-  &--default {
-    stroke: none;
-  }
-  &--custom-face-area {
-    fill: var(--color-yellow-semi);
-    stroke: none;
-    &--active {
-      fill: none;
-      stroke-width: 3px;
-      stroke: var(--color-yellow);
-    }
-  }
 }
 
 .cursor {
@@ -604,24 +482,10 @@ label {
   }
 }
 
-.number-mask {
-  font-weight: bold;
-}
-
-.laser {
-  stroke-width: 0.2rem;
-  stroke: #ffbb00;
-  animation: laser 0.2s ease-out forwards;
-}
-
 .bg {
   position: absolute;
   left: 0;
   top: 0;
-}
-
-.ball {
-  fill: var(--color-yellow);
 }
 
 .hand-selection {

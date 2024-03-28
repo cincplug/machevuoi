@@ -9,9 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mediapipe/face_mesh": "^0.4.1633559619",
     "@mediapipe/hands": "^0.4.1675469240",
-    "@tensorflow-models/face-landmarks-detection": "^1.0.5",
     "@tensorflow-models/hand-pose-detection": "^2.0.1",
     "@tensorflow/tfjs": "^4.17.0",
     "@tensorflow/tfjs-backend-webgl": "3.12.0",

@@ -1,9 +1,4 @@
-import {
-  findClosestFacePointIndex,
-  getDistance,
-  checkElementPinch,
-  squeezePoints
-} from "./index";
+import { getDistance, checkElementPinch, squeezePoints } from "./index";
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 
@@ -14,8 +9,6 @@ export const processHands = ({
   hands,
   points,
   setCursor,
-  setCustomMaskNewArea,
-  setCustomMask,
   setScribbleNewArea,
   ctx
 }) => {
@@ -28,7 +21,6 @@ export const processHands = ({
     minimum,
     pinchThreshold,
     usesButtonPinch,
-    showsFaces,
     isScratchCanvas,
     scratchPattern,
     scratchPoints,
@@ -74,95 +66,69 @@ export const processHands = ({
     return nextCursor;
   });
 
-  if (showsFaces && isPinched) {
-    const closestPoint = findClosestFacePointIndex({
-      facePoints: points,
-      indexTip,
-      pinchThreshold
-    });
-
-    if (closestPoint) {
-      setCustomMaskNewArea((prevCustomMaskNewArea) => {
-        const isNewArea =
-          prevCustomMaskNewArea.length === 0 ||
-          prevCustomMaskNewArea[0] !== closestPoint;
-        if (isNewArea) {
-          return [...prevCustomMaskNewArea, closestPoint];
-        } else {
-          setCustomMask((prevCustomMask) => [
-            ...prevCustomMask,
-            prevCustomMaskNewArea
-          ]);
-          return [];
-        }
-      });
+  if (pattern === "canvas" && ctx) {
+    ctx.setLineDash(dash ? [dash, dash] : []);
+    ctx.lineJoin = "round";
+    ctx.globalCompositeOperation = composite;
+    if (isWagging) {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      lastX = undefined;
+      lastY = undefined;
+      lastTips = undefined;
     }
-  }
-  if (!showsFaces) {
-    if (pattern === "canvas" && ctx) {
-      ctx.setLineDash(dash ? [dash, dash] : []);
-      ctx.lineJoin = "round";
-      ctx.globalCompositeOperation = composite;
-      if (isWagging) {
-        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        lastX = undefined;
-        lastY = undefined;
-        lastTips = undefined;
-      }
-      if (isScratchCanvas) {
-        lastTips = scratchCanvas({
-          radius,
-          growth,
-          minimum,
-          ctx,
-          color,
-          opacity,
-          tips,
-          scratchPattern,
-          lastTips,
-          pinchThreshold,
-          isSpacePressed,
-          dispersion
-        });
-      } else {
-        lastTips = undefined;
-      }
-      if (isPinched && !isScratchCanvas) {
-        let result = pinchCanvas({
-          radius,
-          thumbIndexDistance,
-          growth,
-          minimum,
-          ctx,
-          color,
-          opacity,
-          pinchThreshold,
+    if (isScratchCanvas) {
+      lastTips = scratchCanvas({
+        radius,
+        growth,
+        minimum,
+        ctx,
+        color,
+        opacity,
+        tips,
+        scratchPattern,
+        lastTips,
+        pinchThreshold,
+        isSpacePressed,
+        dispersion
+      });
+    } else {
+      lastTips = undefined;
+    }
+    if (isPinched && !isScratchCanvas) {
+      let result = pinchCanvas({
+        radius,
+        thumbIndexDistance,
+        growth,
+        minimum,
+        ctx,
+        color,
+        opacity,
+        pinchThreshold,
+        x,
+        y,
+        lastX,
+        lastY,
+        dispersion
+      });
+      lastX = result.lastX;
+      lastY = result.lastY;
+    } else {
+      lastX = undefined;
+      lastY = undefined;
+    }
+  } else if (isPinched) {
+    setScribbleNewArea((prevScribbleNewArea) => {
+      const isNewArea =
+        prevScribbleNewArea.length === 0 ||
+        getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
           x,
-          y,
-          lastX,
-          lastY,
-          dispersion
-        });
-        lastX = result.lastX;
-        lastY = result.lastY;
-      } else {
-        lastX = undefined;
-        lastY = undefined;
+          y
+        }) > minimum;
+      if (isNewArea) {
+        return [...prevScribbleNewArea, { x, y }];
       }
-    } else if (isPinched) {
-      setScribbleNewArea((prevScribbleNewArea) => {
-        const isNewArea =
-          prevScribbleNewArea.length === 0 ||
-          getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
-            x,
-            y
-          }) > minimum;
-        if (isNewArea) {
-          return [...prevScribbleNewArea, { x, y }];
-        }
-        return prevScribbleNewArea;
-      });
-    }
+      return prevScribbleNewArea;
+    });
   }
   return [...points, ...newPoints];
 };

@@ -85,7 +85,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
             ></path>
             {text && (
               <text
-                className={`number-mask`}
                 fill={processColor(color, opacity)}
                 fontSize={radius * minimum + scribbleAreaIndex}
                 dominantBaseline="text-after-edge"

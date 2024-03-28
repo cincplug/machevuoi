@@ -28,7 +28,6 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
         const endOffset = (index / textArray.length) * 100;
         return (
           <text
-            className={`number-mask`}
             fill={processColor(color, opacity)}
             key={`sent-${index}`}
             fontSize={radius + textArray.length - index ** growth}

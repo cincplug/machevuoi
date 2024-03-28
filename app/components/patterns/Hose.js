@@ -33,7 +33,6 @@ const Hose = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
     const letter = shiftedTextArray[index];
     return (
       <text
-        className={`number-mask`}
         fill={processColor(color, opacity)}
         key={`sent-${index}`}
         x={point.x}

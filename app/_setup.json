@@ -13,7 +13,7 @@
     "description": "What sort of graphics is used",
     "value": "numbers",
     "type": "select",
-    "options": ["numbers", "images", "paths", "hose", "kite", "canvas"]
+    "options": ["paths", "hose", "kite", "canvas"]
   },
   {
     "id": "radius",
@@ -164,15 +164,6 @@
     "step": 1
   },
   {
-    "id": "imageUrl",
-    "title": "Image URL",
-    "description": "URL of the particle image",
-    "parentPattern": "images",
-    "isFaceRelated": true,
-    "value": "",
-    "type": "url"
-  },
-  {
     "id": "pathStroke",
     "title": "Path stroke",
     "description": "What kind of paths is being used",
@@ -201,22 +192,6 @@
     "options": ["lines", "rectangles", "quadratics", "charts", "joints"]
   },
   {
-    "id": "showsFaces",
-    "title": "Faces",
-    "description": "Turns face recognition on / off",
-    "value": true,
-    "isHidden": true,
-    "type": "checkbox"
-  },
-  {
-    "id": "showsHands",
-    "title": "Hands",
-    "description": "",
-    "value": false,
-    "isHidden": true,
-    "type": "checkbox"
-  },
-  {
     "id": "hasCursor",
     "title": "Cursor",
     "description": "Shows or hides cursor",
@@ -240,17 +215,6 @@
     "parentPattern": "paths",
     "value": false,
     "type": "checkbox"
-  },
-  {
-    "id": "activeMaskIndex",
-    "title": "Active mask index",
-    "description": "Index of the active mask",
-    "value": 0,
-    "isHidden": true,
-    "type": "range",
-    "min": 0,
-    "max": 255,
-    "step": 1
   },
   {
     "id": "activeScenarioIndex",

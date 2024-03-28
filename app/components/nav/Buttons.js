@@ -1,6 +1,6 @@
 import { saveImage } from "../../utils";
 
-const Buttons = ({ activeMask, clearPaths, setActiveMask, setIsEditing }) => {
+const Buttons = ({ clearPaths }) => {
   return (
     <>
       <button
@@ -12,18 +12,6 @@ const Buttons = ({ activeMask, clearPaths, setActiveMask, setIsEditing }) => {
       >
         Save image
       </button>
-      {activeMask && (
-        <button
-          className="control control--button"
-          onClick={() => {
-            setActiveMask(activeMask);
-            setIsEditing(true);
-          }}
-          title="Edit the mask you just drawn on your face"
-        >
-          Edit mask
-        </button>
-      )}
 
       <button
         className="control control--button"
