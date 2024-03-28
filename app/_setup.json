@@ -1,0 +1,363 @@
+[
+  {
+    "id": "theme",
+    "title": "Theme",
+    "description": "Colors and font",
+    "value": "default",
+    "type": "select",
+    "options": ["default", "cognizant"]
+  },
+  {
+    "id": "pattern",
+    "title": "Pattern",
+    "description": "What sort of graphics is used",
+    "value": "numbers",
+    "type": "select",
+    "options": ["numbers", "images", "paths", "hose", "kite", "canvas"]
+  },
+  {
+    "id": "radius",
+    "title": "Radius",
+    "description": "Size of things",
+    "value": 10,
+    "type": "range",
+    "min": 0.5,
+    "max": 500,
+    "step": 0.5
+  },
+  {
+    "id": "growth",
+    "title": "Growth",
+    "description": "Growth factor of radius",
+    "value": 0.2,
+    "type": "range",
+    "min": 0.01,
+    "max": 2,
+    "step": 0.01
+  },
+  {
+    "id": "minimum",
+    "title": "Minimum",
+    "description": "Minimal line width",
+    "value": 5,
+    "type": "range",
+    "min": 0,
+    "max": 20,
+    "step": 1
+  },
+  {
+    "id": "latency",
+    "title": "Latency",
+    "description": "Similar to frame rate. The bigger the latency, the smaller the frame rate",
+    "value": 2,
+    "type": "range",
+    "min": 1,
+    "max": 20,
+    "step": 1
+  },
+  {
+    "id": "pinchThreshold",
+    "title": "Pinch",
+    "description": "How tight you need to squeeze your thumb and index finger to draw",
+    "value": 40,
+    "isHandRelated": true,
+    "type": "range",
+    "min": 1,
+    "max": 200,
+    "step": 1
+  },
+  {
+    "id": "opacity",
+    "title": "Opacity",
+    "description": "Opacity of foreground",
+    "value": 128,
+    "type": "range",
+    "min": 0,
+    "max": 255,
+    "step": 1
+  },
+  {
+    "id": "videoOpacity",
+    "title": "Video",
+    "description": "Opacity of source video",
+    "value": 255,
+    "type": "range",
+    "min": 0,
+    "max": 255,
+    "step": 1
+  },
+  {
+    "id": "bg",
+    "title": "Bg",
+    "description": "Background color",
+    "value": "#ffffff",
+    "type": "color"
+  },
+  {
+    "id": "color",
+    "title": "Fg",
+    "description": "Foreground color",
+    "value": "#000000",
+    "type": "color"
+  },
+  {
+    "id": "blendMode",
+    "title": "Blend mode",
+    "description": "Blending mode of foreground with the video",
+    "value": "normal",
+    "type": "select",
+    "options": [
+      "normal",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "color-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+    ]
+  },
+  {
+    "id": "hasSvgAnim",
+    "title": "SVG animation",
+    "description": "Achieve animation with SVG <animate> element",
+    "parentPattern": ["images", "paths", "hose", "kite"],
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "id": "hasCssAnim",
+    "title": "CSS animation",
+    "description": "Achieve animation with CSS animation property",
+    "parentPattern": ["images", "paths", "hose", "kite"],
+    "value": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "transDur",
+    "title": "Duration",
+    "description": "Duration of transitions",
+    "parentPattern": ["images", "paths", "hose", "kite"],
+    "value": 2,
+    "type": "range",
+    "min": 0.1,
+    "max": 5,
+    "step": 0.1
+  },
+  {
+    "id": "arrangement",
+    "title": "Arrangement",
+    "description": "Arrangement of elements in transition",
+    "parentPattern": ["images", "paths", "hose", "kite"],
+    "value": 0,
+    "type": "range",
+    "min": 0,
+    "max": 10,
+    "step": 1
+  },
+  {
+    "id": "imageUrl",
+    "title": "Image URL",
+    "description": "URL of the particle image",
+    "parentPattern": "images",
+    "isFaceRelated": true,
+    "value": "",
+    "type": "url"
+  },
+  {
+    "id": "pathStroke",
+    "title": "Path stroke",
+    "description": "What kind of paths is being used",
+    "value": "lines",
+    "type": "select",
+    "isHandRelated": true,
+    "parentPattern": "paths",
+    "options": [
+      "lines",
+      "arcs",
+      "quadratics",
+      "beziers",
+      "bezinerves",
+      "watermelons"
+    ]
+  },
+  {
+    "id": "scratchPattern",
+    "title": "Scratch pattern",
+    "description": "Sub-pattern of scratch canvas",
+    "isHandRelated": true,
+    "isScratchCanvasRelated": true,
+    "value": "lines",
+    "type": "select",
+    "parentPattern": "canvas",
+    "options": ["lines", "rectangles", "quadratics", "charts", "joints"]
+  },
+  {
+    "id": "showsFaces",
+    "title": "Faces",
+    "description": "Turns face recognition on / off",
+    "value": true,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "showsHands",
+    "title": "Hands",
+    "description": "",
+    "value": false,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "hasCursor",
+    "title": "Cursor",
+    "description": "Shows or hides cursor",
+    "value": true,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "isScratchCanvas",
+    "title": "Scratch canvas",
+    "description": "Selected hand points (scratch points) are used for drawing",
+    "value": false,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "isAutoClosed",
+    "title": "Auto-close",
+    "description": "Whether to automatically close the path",
+    "isHandRelated": true,
+    "parentPattern": "paths",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "id": "activeMaskIndex",
+    "title": "Active mask index",
+    "description": "Index of the active mask",
+    "value": 0,
+    "isHidden": true,
+    "type": "range",
+    "min": 0,
+    "max": 255,
+    "step": 1
+  },
+  {
+    "id": "activeScenarioIndex",
+    "title": "Active scenario index",
+    "description": "Index of the active scenario",
+    "value": 0,
+    "isHidden": true,
+    "type": "range",
+    "min": 0,
+    "max": 255,
+    "step": 1
+  },
+  {
+    "id": "text",
+    "title": "Text",
+    "description": "Text for hose, kite, and paths patterns",
+    "isHandRelated": true,
+    "parentPattern": ["paths", "hose", "kite"],
+    "value": "The fixed point that the element rotates around is also known as the transform origin.",
+    "type": "text"
+  },
+  {
+    "id": "usesButtonPinch",
+    "title": "Button pinch",
+    "description": "Simulates click / hover by pinch on buttons",
+    "isHidden": true,
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "id": "isSpacePressed",
+    "title": "Is space pressed",
+    "description": "Tells if space is pressed",
+    "isStoringPrevented": true,
+    "isHidden": true,
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "id": "scratchPoints",
+    "title": "Scratch points",
+    "description": "Defines which hand points are used to draw on scratch canvas",
+    "isHandRelated": true,
+    "parentPattern": "canvas",
+    "isHidden": true,
+    "value": [4, 8, 12, 16, 20],
+    "type": "text"
+  },
+  {
+    "id": "dash",
+    "title": "Dash",
+    "description": "Length of dashes in a line",
+    "value": 0,
+    "isHandRelated": true,
+    "parentPattern": "canvas",
+    "type": "range",
+    "min": 0,
+    "max": 100,
+    "step": 0.5
+  },
+  {
+    "id": "dispersion",
+    "title": "Dispersion",
+    "description": "How much the line disperses as you draw",
+    "value": 1,
+    "isHandRelated": true,
+    "parentPattern": "canvas",
+    "isScratchCanvasRelated": false,
+    "type": "range",
+    "min": 0,
+    "max": 50,
+    "step": 1
+  },
+  {
+    "id": "composite",
+    "title": "Composite",
+    "description": "Composite operation (blending mode within the canvas)",
+    "isHandRelated": true,
+    "parentPattern": "canvas",
+    "value": "source-over",
+    "type": "select",
+    "options": [
+      "source-over",
+      "source-in",
+      "source-out",
+      "source-atop",
+      "destination-over",
+      "destination-in",
+      "destination-out",
+      "destination-atop",
+      "lighter",
+      "copy",
+      "xor",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "color-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "hue",
+      "saturation",
+      "color"
+    ]
+  }
+]
