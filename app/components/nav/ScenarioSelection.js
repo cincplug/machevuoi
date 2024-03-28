@@ -1,14 +1,10 @@
 // Scenarios.js
 
-import React, { useEffect, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useCallback } from "react";
 import scenarios from "../../data/scenarios.json";
 import DEFAULT_SETUP from "../../_setup.json";
 
 const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
-  const navigate = useNavigate();
-  const params = useParams();
-
   const handleScenarioButtonClick = useCallback(
     (_event, scenarioKey, index) => {
       setSetup((prevSetup) => {
@@ -29,20 +25,9 @@ const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
           type: "range"
         }
       });
-      const newUrl = `/${scenarioKey.replace("/", "")}`;
-      navigate(newUrl);
     },
-    [setSetup, handleInputChange, navigate]
+    [setSetup, handleInputChange]
   );
-
-  useEffect(() => {
-    if (params.scenario) {
-      const scenarioIndex = Object.keys(scenarios).indexOf(params.scenario);
-      if (scenarioIndex !== -1 && scenarioIndex !== setup.activeScenarioIndex) {
-        handleScenarioButtonClick(null, params.scenario, scenarioIndex);
-      }
-    }
-  }, [params, setup.activeScenarioIndex, handleScenarioButtonClick]);
 
   return (
     <fieldset className="menu--scenarios">

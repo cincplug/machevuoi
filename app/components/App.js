@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "@tensorflow/tfjs-backend-webgl";
 import { runDetector } from "../utils/runDetector";
 import { getStoredSetup, storeSetup } from "../utils/storeSetup";
@@ -108,7 +107,7 @@ const App = () => {
     if (isLoaded) return;
     if (shouldRunDetector) {
       const { videoWidth, videoHeight } = video;
-      if(inputResolution.width >= 768) {
+      if (inputResolution.width >= 768) {
         setInputResolution({ width: videoWidth, height: videoHeight });
       }
       const ctx = canvasRef.current?.getContext("2d");
@@ -192,21 +191,6 @@ const App = () => {
     }
   }, [cursor.isPinched, customMaskNewArea.length, scribbleNewArea.length]);
 
-  const menu = (
-    <Menu
-      {...{
-        setup,
-        handleInputChange,
-        setSetup,
-        setActiveMask,
-        setPoints,
-        clearPaths,
-        activeMask: activeMask.concat(customMask),
-        setIsEditing
-      }}
-    />
-  );
-
   return (
     <div
       className={`wrap wrap--main wrap--${
@@ -279,12 +263,18 @@ const App = () => {
       ) : (
         <Splash {...{ setIsEditing, handlePlayButtonClick }} />
       )}
-      <Router>
-        <Routes>
-          <Route path="/:scenario" element={menu} />
-          <Route path="/*" element={menu} />
-        </Routes>
-      </Router>
+      <Menu
+        {...{
+          setup,
+          handleInputChange,
+          setSetup,
+          setActiveMask,
+          setPoints,
+          clearPaths,
+          activeMask: activeMask.concat(customMask),
+          setIsEditing
+        }}
+      />
       {isEditing ? (
         <MaskEditor {...{ inputResolution, setIsEditing, activeMask }} />
       ) : null}
