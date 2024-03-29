@@ -126,26 +126,10 @@
     ]
   },
   {
-    "id": "hasSvgAnim",
-    "title": "SVG animation",
-    "description": "Achieve animation with SVG <animate> element",
-    "parentPattern": ["images", "paths", "hose", "kite"],
-    "value": false,
-    "type": "checkbox"
-  },
-  {
-    "id": "hasCssAnim",
-    "title": "CSS animation",
-    "description": "Achieve animation with CSS animation property",
-    "parentPattern": ["images", "paths", "hose", "kite"],
-    "value": true,
-    "type": "checkbox"
-  },
-  {
     "id": "transDur",
     "title": "Duration",
     "description": "Duration of transitions",
-    "parentPattern": ["images", "paths", "hose", "kite"],
+    "parentPattern": ["paths", "hose", "kite"],
     "value": 2,
     "type": "range",
     "min": 0.1,
@@ -156,7 +140,7 @@
     "id": "arrangement",
     "title": "Arrangement",
     "description": "Arrangement of elements in transition",
-    "parentPattern": ["images", "paths", "hose", "kite"],
+    "parentPattern": ["paths", "hose", "kite"],
     "value": 0,
     "type": "range",
     "min": 0,

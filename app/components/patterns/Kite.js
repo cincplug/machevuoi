@@ -2,8 +2,7 @@ import React from "react";
 import { processColor } from "../../utils";
 
 const Kite = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
-  const { text, color, opacity, hasCssAnim, transDur, arrangement } =
-    setup;
+  const { text, color, opacity, transDur, arrangement } = setup;
 
   const textArray = Array.from(text);
   const area = [...scribble, scribbleNewArea].flat();
@@ -20,11 +19,9 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
     <svg>
       <path id="text-path" d={pathData} fill="none" />
       {textArray.map((letter, index) => {
-        const style = hasCssAnim
-          ? {
-              animation: `move-to ${transDur}s linear infinite`
-            }
-          : null;
+        const style = {
+          animation: `move-to ${transDur}s linear infinite`
+        };
         const endOffset = (index / textArray.length) * 100;
         return (
           <text
