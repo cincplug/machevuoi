@@ -46,16 +46,6 @@
     "step": 1
   },
   {
-    "id": "latency",
-    "title": "Latency",
-    "description": "Similar to frame rate. The bigger the latency, the smaller the frame rate",
-    "value": 2,
-    "type": "range",
-    "min": 1,
-    "max": 20,
-    "step": 1
-  },
-  {
     "id": "pinchThreshold",
     "title": "Pinch",
     "description": "How tight you need to squeeze your thumb and index finger to draw",

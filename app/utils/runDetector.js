@@ -8,10 +8,7 @@ export const runDetector = async ({
   setScribbleNewArea,
   ctx
 }) => {
-  let frame = 0;
   let shouldContinue = true;
-  let animationFrameId;
-
   let handsDetector = null;
 
   const handPoseDetectionModule = await import(
@@ -27,44 +24,52 @@ export const runDetector = async ({
     handsDetectorConfig
   );
 
-  const detect = async () => {
-    const { latency } = setupRef.current;
-    if (frame % latency === 0) {
-      const estimationConfig = { flipHorizontal: true, staticImageMode: false };
-      let hands = null;
-      try {
-        if (handsDetector) {
-          hands = await handsDetector.estimateHands(video, estimationConfig);
-        }
-      } catch (error) {
-        console.error("Error estimating hands", error);
-        return;
-      }
+  let lastTime = 0;
+  const frameRate = 30;
+  const targetFrameTime = 1000 / frameRate;
+  let animationFrameId;
 
-      let points = [];
-
-      if (hands?.length) {
-        const handPoints = processHands({
-          setupRef,
-          hands,
-          points,
-          setCursor,
-          setScribbleNewArea,
-          ctx
-        });
-        points = [...points, ...handPoints];
-      }
-      if (points.length) {
-        setPoints(points);
-      }
+  const detect = async (timeStamp = 0) => {
+    if (timeStamp - lastTime < targetFrameTime) {
+      animationFrameId = requestAnimationFrame(detect);
+      return;
     }
-    frame++;
+    lastTime = timeStamp;
+
+    const estimationConfig = { flipHorizontal: true, staticImageMode: false };
+    let hands = null;
+    try {
+      if (handsDetector) {
+        hands = await handsDetector.estimateHands(video, estimationConfig);
+      }
+    } catch (error) {
+      console.error("Error estimating hands", error);
+      return;
+    }
+
+    let points = [];
+
+    if (hands?.length) {
+      const handPoints = processHands({
+        setupRef,
+        hands,
+        points,
+        setCursor,
+        setScribbleNewArea,
+        ctx
+      });
+      points = [...points, ...handPoints];
+    }
+    if (points.length) {
+      setPoints(points);
+    }
+
     if (shouldContinue) {
       animationFrameId = requestAnimationFrame(detect);
     }
   };
 
-  detect();
+  animationFrameId = requestAnimationFrame(detect);
 
   return () => {
     shouldContinue = false;
