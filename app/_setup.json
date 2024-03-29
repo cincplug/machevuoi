@@ -122,20 +122,9 @@
     "parentPattern": ["paths", "hose", "kite"],
     "value": 2,
     "type": "range",
-    "min": 0.1,
+    "min": 0,
     "max": 5,
     "step": 0.1
-  },
-  {
-    "id": "arrangement",
-    "title": "Arrangement",
-    "description": "Arrangement of elements in transition",
-    "parentPattern": ["paths", "hose", "kite"],
-    "value": 0,
-    "type": "range",
-    "min": 0,
-    "max": 10,
-    "step": 1
   },
   {
     "id": "pathStroke",
