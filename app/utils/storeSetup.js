@@ -1,4 +1,5 @@
 import DEFAULT_SETUP from "../_setup.json";
+import scenarios from "../data/scenarios.json";
 
 const storageSetupItem = "pecelSetup";
 const storedSetupRaw = sessionStorage.getItem(storageSetupItem);
@@ -7,7 +8,9 @@ const initialSetup = {};
 
 export const getStoredSetup = () => {
   DEFAULT_SETUP.forEach((item) => {
-    initialSetup[item.id] = storedSetup ? storedSetup[item.id] : item.value;
+    initialSetup[item.id] = storedSetup
+      ? storedSetup[item.id]
+      : Object.values(scenarios)[0][item.id] || item.value;
   });
   return initialSetup;
 };

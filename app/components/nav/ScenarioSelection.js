@@ -1,5 +1,3 @@
-// Scenarios.js
-
 import React, { useCallback } from "react";
 import scenarios from "../../data/scenarios.json";
 import DEFAULT_SETUP from "../../_setup.json";

@@ -25,7 +25,7 @@ const Buttons = ({ clearPaths }) => {
         title="Reset all settings to defaults"
         onClick={() => {
           sessionStorage.clear();
-          window.location = "/";
+          window.location.reload();
         }}
       >
         Reset all

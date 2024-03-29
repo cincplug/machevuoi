@@ -70,7 +70,7 @@
     "id": "videoOpacity",
     "title": "Video",
     "description": "Opacity of source video",
-    "value": 255,
+    "value": 48,
     "type": "range",
     "min": 0,
     "max": 255,
@@ -196,7 +196,7 @@
     "description": "Text for hose, kite, and paths patterns",
     "isHandRelated": true,
     "parentPattern": ["paths", "hose", "kite"],
-    "value": "The fixed point that the element rotates around is also known as the transform origin.",
+    "value": "",
     "type": "text"
   },
   {
