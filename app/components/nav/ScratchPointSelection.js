@@ -1,11 +1,20 @@
-import DEFAULT_HAND_POINTS from "../../data/defaultScratchPoints.json";
+import React, { useState } from "react";
+import HAND_POINTS from "../../data/defaultScratchPoints.json";
+import ScratchPointLines from "./ScratchPointLines";
+import ScratchPointCurves from "./ScratchPointCurves";
+import { arraysAreEqual } from "../../utils";
 
 function ScratchPointSelection({ setup, handleInputChange }) {
+  const [activeLayer, setActiveLayer] = useState("dots");
   const { scratchPoints } = setup;
+
   const handlePointClick = (index) => {
-    const newScratchPoints = scratchPoints.includes(index)
-      ? scratchPoints.filter((point) => point !== index)
-      : [...scratchPoints, index];
+    const newScratchPoints = { ...scratchPoints };
+    newScratchPoints[activeLayer] = newScratchPoints[activeLayer].includes(
+      index
+    )
+      ? newScratchPoints[activeLayer].filter((point) => point !== index)
+      : [...newScratchPoints[activeLayer], index];
 
     handleInputChange({
       target: {
@@ -16,27 +25,122 @@ function ScratchPointSelection({ setup, handleInputChange }) {
     });
   };
 
+  const handleLineClick = (start, end) => {
+    const newScratchPoints = { ...scratchPoints };
+    const existingLineIndex = newScratchPoints.lines.findIndex((line) =>
+      arraysAreEqual(line, [start, end])
+    );
+    if (existingLineIndex !== -1) {
+      newScratchPoints.lines = [
+        ...newScratchPoints.lines.slice(0, existingLineIndex),
+        ...newScratchPoints.lines.slice(existingLineIndex + 1)
+      ];
+    } else {
+      newScratchPoints.lines = [
+        ...newScratchPoints.lines,
+        [start, end].sort((a, b) => a - b)
+      ];
+    }
+
+    handleInputChange({
+      target: {
+        id: "scratchPoints",
+        value: newScratchPoints,
+        type: "hidden"
+      }
+    });
+  };
+
+  const handleCurveClick = (start, control, end) => {
+    const newScratchPoints = { ...scratchPoints };
+    const curve = [start, control, end];
+    const existingCurveIndex = newScratchPoints.curves.findIndex(
+      (existingCurve) => arraysAreEqual(existingCurve, curve)
+    );
+    if (existingCurveIndex !== -1) {
+      newScratchPoints.curves = [
+        ...newScratchPoints.curves.slice(0, existingCurveIndex),
+        ...newScratchPoints.curves.slice(existingCurveIndex + 1)
+      ];
+    } else {
+      newScratchPoints.curves = [...newScratchPoints.curves, curve];
+    }
+
+    handleInputChange({
+      target: {
+        id: "scratchPoints",
+        value: newScratchPoints,
+        type: "hidden"
+      }
+    });
+  };
+
+  const selectAllDots = () => {
+    const newScratchPoints = {
+      ...scratchPoints,
+      dots: HAND_POINTS.map((_, index) => index)
+    };
+    handleInputChange({
+      target: {
+        id: "scratchPoints",
+        value: newScratchPoints,
+        type: "hidden"
+      }
+    });
+  };
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="hand-selection"
-      viewBox="-20 0 480 500"
-    >
-      {DEFAULT_HAND_POINTS.map((point, index) => (
-        <circle
+    <div className={`scratch-points-wrap active-${activeLayer}`}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="-20 0 480 500"
+        className="scratch-points-svg"
+      >
+        {activeLayer === "dots" && (
+          <g className="scratch-points-layer">
+            {HAND_POINTS.map((point, index) => (
+              <circle
+                key={index}
+                cx={point.x}
+                cy={point.y}
+                r={15}
+                onClick={() => handlePointClick(index)}
+                className={`scratch-points-dot ${
+                  scratchPoints.dots.includes(index)
+                    ? "selected"
+                    : "not-selected"
+                }`}
+              >
+                {index}
+              </circle>
+            ))}
+          </g>
+        )}
+        {activeLayer === "lines" && (
+          <ScratchPointLines
+            points={scratchPoints.dots}
+            selectedLines={scratchPoints.lines}
+            onLineClick={handleLineClick}
+          />
+        )}
+        {activeLayer === "curves" && (
+          <ScratchPointCurves
+            points={scratchPoints.dots}
+            selectedCurves={scratchPoints.curves}
+            onCurveClick={handleCurveClick}
+          />
+        )}
+      </svg>
+      {["dots", "lines", "curves"].map((layer, index) => (
+        <button
+          className={`layer-button ${layer === activeLayer ? "active" : ""}`}
           key={index}
-          cx={point.x}
-          cy={point.y}
-          r={20}
-          onClick={() => handlePointClick(index)}
-          className={`hand-point ${
-            scratchPoints.includes(index) ? "selected" : "not-selected"
-          }`}
+          onClick={() => setActiveLayer(layer)}
         >
-          {index}
-        </circle>
+          {layer}
+        </button>
       ))}
-    </svg>
+    </div>
   );
 }
 

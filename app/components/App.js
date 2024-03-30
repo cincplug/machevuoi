@@ -9,6 +9,7 @@ import Splash from "./nav/Splash";
 import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
+import { scratchCanvas } from "../utils/scratchCanvas";
 
 const targetResolution = {
   width: window.innerWidth,
@@ -226,6 +227,7 @@ const App = () => {
           clearPaths
         }}
       />
+      {/* <pre>{JSON.stringify(setup.scratchPoints, null, 4)}</pre> */}
     </div>
   );
 };

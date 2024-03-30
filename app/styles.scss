@@ -488,17 +488,55 @@ label {
   top: 0;
 }
 
-.hand-selection {
-  grid-column: span 6;
+.scratch-points-wrap {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: inherit;
+  grid-gap: inherit;
+}
+.scratch-points-svg {
+  grid-column: span 12;
+  transition: all 0.2s ease-in-out;
+  .active-lines &,
+  .active-curves & {
+    transform: scale(2);
+    background: var(--color-skin-dark);
+    transform-origin: right bottom;
+    box-shadow: 0 0 0.1rem var(--color-skin-mid);
+  }
+}
+.scratch-points-layer {
+  grid-column: span 12;
 }
 
-.hand-point {
+.layer-button {
+  grid-column: span 3;
+  padding: 0.5rem 0;
+}
+
+.scratch-points-dot {
   fill: var(--color-skin-mid-dark);
   &:hover {
     fill: var(--color-skin-mid);
   }
   &.selected {
     fill: var(--color-skin-light);
+  }
+}
+
+.scratch-points-line,
+.scratch-points-curve {
+  fill: none;
+  stroke-width: 0.2rem;
+  &.not-selected {
+    stroke: var(--color-skin-mid-dark);
+    opacity: 0.5;
+  }
+  &.selected {
+    stroke: var(--color-skin-light);
+  }
+  &:hover {
+    stroke: var(--color-skin-mid);
   }
 }
 
@@ -514,4 +552,15 @@ label {
     list-style-type: none;
     padding-left: 0;
   }
+}
+
+pre {
+  position: absolute;
+  left: var(--menu-width);
+  top: 0;
+  width: var(--menu-width);
+  height: 100vh;
+  background: var(--color-skin-mid);
+  overflow-y: auto;
+  font-size: 0.7rem;
 }
