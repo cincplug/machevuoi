@@ -493,12 +493,12 @@ label {
   display: grid;
   grid-template-columns: inherit;
   grid-gap: inherit;
+  position: relative;
 }
 .scratch-points-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
-  .active-lines &,
-  .active-curves & {
+  &.zoomed {
     transform: scale(2);
     background: var(--color-skin-dark);
     transform-origin: right bottom;
@@ -507,6 +507,10 @@ label {
 }
 .scratch-points-layer {
   grid-column: span 12;
+  &.dots.not-active {
+    opacity: 0.3;
+    pointer-events: none;
+  }
 }
 
 .layer-button {
@@ -530,7 +534,6 @@ label {
   stroke-width: 0.2rem;
   &.not-selected {
     stroke: var(--color-skin-mid-dark);
-    opacity: 0.5;
   }
   &.selected {
     stroke: var(--color-skin-light);
@@ -538,6 +541,10 @@ label {
   &:hover {
     stroke: var(--color-skin-mid);
   }
+}
+
+.scratch-points-zoom {
+  font-size: 1rem;
 }
 
 .info {

@@ -6,6 +6,7 @@ import { arraysAreEqual } from "../../utils";
 
 function ScratchPointSelection({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
+  const [isZoomed, setIsZoomed] = useState(false);
   const { scratchPoints } = setup;
 
   const handlePointClick = (index) => {
@@ -89,33 +90,37 @@ function ScratchPointSelection({ setup, handleInputChange }) {
     });
   };
 
+  const handleMagnifyClick = () => {
+    setIsZoomed(!isZoomed);
+  };
+
   return (
     <div className={`scratch-points-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 0 480 500"
-        className="scratch-points-svg"
+        className={`scratch-points-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
       >
-        {activeLayer === "dots" && (
-          <g className="scratch-points-layer">
-            {HAND_POINTS.map((point, index) => (
-              <circle
-                key={index}
-                cx={point.x}
-                cy={point.y}
-                r={15}
-                onClick={() => handlePointClick(index)}
-                className={`scratch-points-dot ${
-                  scratchPoints.dots.includes(index)
-                    ? "selected"
-                    : "not-selected"
-                }`}
-              >
-                {index}
-              </circle>
-            ))}
-          </g>
-        )}
+        <g
+          className={`scratch-points-layer dots ${
+            activeLayer === "dots" ? "active" : "not-active"
+          }`}
+        >
+          {HAND_POINTS.map((point, index) => (
+            <circle
+              key={index}
+              cx={point.x}
+              cy={point.y}
+              r={15}
+              onClick={() => handlePointClick(index)}
+              className={`scratch-points-dot ${
+                scratchPoints.dots.includes(index) ? "selected" : "not-selected"
+              }`}
+            >
+              {index}
+            </circle>
+          ))}
+        </g>
         {activeLayer === "lines" && (
           <ScratchPointLines
             points={scratchPoints.dots}
@@ -140,6 +145,12 @@ function ScratchPointSelection({ setup, handleInputChange }) {
           {layer}
         </button>
       ))}
+      <button
+        onClick={handleMagnifyClick}
+        className="scratch-points-zoom layer-button"
+      >
+        +
+      </button>
     </div>
   );
 }
