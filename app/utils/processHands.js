@@ -42,34 +42,33 @@ export const processHands = ({
   const thumbTip = handPoints[4];
   const indexTip = handPoints[8];
   const middleTip = handPoints[12];
+  const dots = scratchPoints.dots.map((point) => handPoints[point]);
   const tips = squeezePoints({
-    points: scratchPoints.dots.map((point) => handPoints[point]),
-    squeezeRatio: pinchThreshold
+    points: dots,
+    squeezeRatio: pinchThreshold,
+    centeringContext: dots
   });
-  const lines = scratchPoints.lines.map((line) => ({
-    start: squeezePoints({
-      points: [handPoints[line[0]]],
-      squeezeRatio: pinchThreshold
-    })[0],
-    end: squeezePoints({
-      points: [handPoints[line[1]]],
-      squeezeRatio: pinchThreshold
-    })[0]
-  }));
-  const curves = scratchPoints.curves.map((curve) => ({
-    start: squeezePoints({
-      points: [handPoints[curve[0]]],
-      squeezeRatio: pinchThreshold
-    })[0],
-    control: squeezePoints({
-      points: [handPoints[curve[1]]],
-      squeezeRatio: pinchThreshold
-    })[0],
-    end: squeezePoints({
-      points: [handPoints[curve[2]]],
-      squeezeRatio: pinchThreshold
-    })[0]
-  }));
+  const lines = scratchPoints.lines.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+
+  const curves = scratchPoints.curves.map((curve) => {
+    const squeezedPoints = squeezePoints({
+      points: curve.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return {
+      start: squeezedPoints[0],
+      control: squeezedPoints[1],
+      end: squeezedPoints[2]
+    };
+  });
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched = isSpacePressed || thumbIndexDistance < pinchThreshold;
   const isWagging =

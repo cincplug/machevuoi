@@ -5,7 +5,7 @@ const getLineWidth = ({
   radius,
   growth,
   tipDistance,
-  tipIndex = 1,
+  tipIndex = 5,
   dispersion
 }) => {
   return Math.max(
@@ -49,7 +49,6 @@ export const scratchCanvas = ({
         ctx.lineTo(end.x, end.y);
       });
       ctx.stroke();
-      return;
     }
     if (curves.length > 0) {
       ctx.beginPath();
@@ -58,7 +57,6 @@ export const scratchCanvas = ({
         ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
       });
       ctx.stroke();
-      return;
     }
     if (["quadratics", "charts", "joints"].includes(scratchPattern)) {
       tipValues.forEach((_tip, tipIndex) => {

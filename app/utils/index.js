@@ -13,11 +13,11 @@ export const getAverageDistance = (points) => {
   return totalDistance / distances.length;
 };
 
-export const squeezePoints = ({ points, squeezeRatio }) => {
-  if (!points || points.length === 0) { // change here
+export const squeezePoints = ({ points, squeezeRatio, centeringContext }) => {
+  if (!points || points.length === 0) {
     return null;
   }
-  const center = points.reduce(
+  const center = centeringContext.reduce(
     (total, point, index, array) => {
       return {
         x: total.x + point.x / array.length,
@@ -26,7 +26,7 @@ export const squeezePoints = ({ points, squeezeRatio }) => {
     },
     { x: 0, y: 0 }
   );
-  return points.map((point) => { // change here
+  return points.map((point) => {
     return {
       x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
       y: center.y + ((point.y - center.y) * squeezeRatio) / 100
@@ -83,7 +83,9 @@ export const saveImage = () => {
   const canvasElement = document.querySelector(".canvas");
   if (svgElement) {
     link.download = "lukonica-scribble.svg";
-    const base64doc = Buffer.from(unescape(encodeURIComponent(svgElement.outerHTML))).toString('base64');
+    const base64doc = Buffer.from(
+      unescape(encodeURIComponent(svgElement.outerHTML))
+    ).toString("base64");
     const e = new MouseEvent("click");
     link.href = "data:image/svg+xml;base64," + base64doc;
     link.dispatchEvent(e);
