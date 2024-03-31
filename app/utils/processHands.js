@@ -43,7 +43,7 @@ export const processHands = ({
   const indexTip = handPoints[8];
   const middleTip = handPoints[12];
   const tips = squeezePoints({
-    points: scratchPoints.map((point) => handPoints[point]),
+    points: scratchPoints.dots.map((point) => handPoints[point]), 
     squeezeRatio: pinchThreshold
   });
   const thumbIndexDistance = getDistance(thumbTip, indexTip);

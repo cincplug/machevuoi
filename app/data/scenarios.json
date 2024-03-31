@@ -183,7 +183,11 @@
     "isScratchCanvas": true,
     "pinchThreshold": 100,
     "scratchPattern": "quadratics",
-    "scratchPoints": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
+    "scratchPoints": {
+      "dots": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
+      "lines": [],
+      "curves": []
+    },
     "dispersion": 1,
     "dash": 0
   },
@@ -202,7 +206,11 @@
     "isScratchCanvas": true,
     "pinchThreshold": 150,
     "scratchPattern": "joints",
-    "scratchPoints": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
+    "scratchPoints": {
+      "dots": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
+      "lines": [],
+      "curves": []
+    },
     "dispersion": 20,
     "dash": 0
   },
@@ -221,7 +229,11 @@
     "pinchThreshold": 127,
     "scratchPattern": "charts",
     "isScratchCanvas": true,
-    "scratchPoints": [5, 17, 9, 13, 8, 12, 16, 20],
+    "scratchPoints": {
+      "dots": [5, 17, 9, 13, 8, 12, 16, 20],
+      "lines": [],
+      "curves": []
+    },
     "dispersion": 10,
     "dash": 6
   }

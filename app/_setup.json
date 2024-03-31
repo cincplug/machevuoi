@@ -225,15 +225,8 @@
     "isHidden": true,
     "value": {
       "dots": [4, 8, 12, 16, 20],
-      "lines": [
-        [0, 1],
-        [1, 2],
-        [2, 3]
-      ],
-      "curves": [
-        [2, 4, 3],
-        [3, 9, 2]
-      ]
+      "lines": [],
+      "curves": []
     },
     "type": "text"
   },

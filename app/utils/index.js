@@ -14,7 +14,7 @@ export const getAverageDistance = (points) => {
 };
 
 export const squeezePoints = ({ points, squeezeRatio }) => {
-  if (points.length === 0) {
+  if (!points || points.length === 0) { // change here
     return null;
   }
   const center = points.reduce(
@@ -26,7 +26,7 @@ export const squeezePoints = ({ points, squeezeRatio }) => {
     },
     { x: 0, y: 0 }
   );
-  return points.map((point) => {
+  return points.map((point) => { // change here
     return {
       x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
       y: center.y + ((point.y - center.y) * squeezeRatio) / 100
