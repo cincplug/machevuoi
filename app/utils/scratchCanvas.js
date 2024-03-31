@@ -5,7 +5,7 @@ const getLineWidth = ({
   radius,
   growth,
   tipDistance,
-  tipIndex,
+  tipIndex = 1,
   dispersion
 }) => {
   return Math.max(
@@ -26,13 +26,30 @@ export const scratchCanvas = ({
   lastTips,
   pinchThreshold,
   isSpacePressed,
-  dispersion
+  dispersion,
+  lines
 }) => {
   ctx.strokeStyle = processColor(color, opacity);
   const tipValues = Object.values(tips);
   const tipDistance = getAverageDistance(tipValues);
+  ctx.lineWidth = getLineWidth({
+    minimum,
+    radius,
+    growth,
+    tipDistance,
+    dispersion
+  });
   if (lastTips && (isSpacePressed || tipDistance < pinchThreshold)) {
     ctx.beginPath();
+    if (lines.length > 0) {
+      ctx.beginPath();
+      lines.forEach(({ start, end }) => {
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+      });
+      ctx.stroke();
+      return;
+    }
     if (["quadratics", "charts", "joints"].includes(scratchPattern)) {
       tipValues.forEach((_tip, tipIndex) => {
         ctx.lineWidth = getLineWidth({

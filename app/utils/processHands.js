@@ -46,6 +46,16 @@ export const processHands = ({
     points: scratchPoints.dots.map((point) => handPoints[point]), 
     squeezeRatio: pinchThreshold
   });
+  const lines = scratchPoints.lines.map((line) => ({
+    start: squeezePoints({
+      points: [handPoints[line[0]]],
+      squeezeRatio: pinchThreshold
+    })[0],
+    end: squeezePoints({
+      points: [handPoints[line[1]]],
+      squeezeRatio: pinchThreshold
+    })[0]
+  }));
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched = isSpacePressed || thumbIndexDistance < pinchThreshold;
   const isWagging =
@@ -89,7 +99,8 @@ export const processHands = ({
         lastTips,
         pinchThreshold,
         isSpacePressed,
-        dispersion
+        dispersion,
+        lines,
       });
     } else {
       lastTips = undefined;
