@@ -27,7 +27,8 @@ export const scratchCanvas = ({
   pinchThreshold,
   isSpacePressed,
   dispersion,
-  lines
+  lines,
+  curves,
 }) => {
   ctx.strokeStyle = processColor(color, opacity);
   const tipValues = Object.values(tips);
@@ -46,6 +47,15 @@ export const scratchCanvas = ({
       lines.forEach(({ start, end }) => {
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
+      });
+      ctx.stroke();
+      return;
+    }
+    if (curves.length > 0) {
+      ctx.beginPath();
+      curves.forEach(({ start, control, end }) => {
+        ctx.moveTo(start.x, start.y);
+        ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
       });
       ctx.stroke();
       return;

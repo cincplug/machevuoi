@@ -43,7 +43,7 @@ export const processHands = ({
   const indexTip = handPoints[8];
   const middleTip = handPoints[12];
   const tips = squeezePoints({
-    points: scratchPoints.dots.map((point) => handPoints[point]), 
+    points: scratchPoints.dots.map((point) => handPoints[point]),
     squeezeRatio: pinchThreshold
   });
   const lines = scratchPoints.lines.map((line) => ({
@@ -53,6 +53,20 @@ export const processHands = ({
     })[0],
     end: squeezePoints({
       points: [handPoints[line[1]]],
+      squeezeRatio: pinchThreshold
+    })[0]
+  }));
+  const curves = scratchPoints.curves.map((curve) => ({
+    start: squeezePoints({
+      points: [handPoints[curve[0]]],
+      squeezeRatio: pinchThreshold
+    })[0],
+    control: squeezePoints({
+      points: [handPoints[curve[1]]],
+      squeezeRatio: pinchThreshold
+    })[0],
+    end: squeezePoints({
+      points: [handPoints[curve[2]]],
       squeezeRatio: pinchThreshold
     })[0]
   }));
@@ -101,6 +115,7 @@ export const processHands = ({
         isSpacePressed,
         dispersion,
         lines,
+        curves
       });
     } else {
       lastTips = undefined;
