@@ -1,5 +1,5 @@
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
-import { arraysAreEqual } from "../../utils";
+import { processColor } from "../../utils";
 
 const ScratchPointCurves = ({ points, selectedCurves, onCurveClick }) => {
   return (

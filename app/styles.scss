@@ -34,6 +34,7 @@
   --color-blue: #068;
   --color-skin-dark: #2d1f14;
   --color-skin-mid-dark: #6d4931;
+  --color-skin-mid-dark-semi: #6d493140;
   --color-skin-mid: #c49a68;
   --color-skin-mid-light: #e6bc98;
   --color-skin-light: #ffe7d1;
@@ -498,19 +499,17 @@ label {
 .scratch-points-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
+  background: url(../app/assets/img/hand-model.svg) no-repeat 7px 0;
+  background-size: contain;
   &.zoomed {
     transform: scale(2);
-    background: var(--color-skin-dark);
+    background-color: var(--color-skin-dark);
     transform-origin: right bottom;
     box-shadow: 0 0 0.1rem var(--color-skin-mid);
   }
 }
 .scratch-points-layer {
   grid-column: span 12;
-  &.dots.not-active {
-    opacity: 0.3;
-    pointer-events: none;
-  }
 }
 
 .layer-button {
@@ -533,7 +532,7 @@ label {
   fill: none;
   stroke-width: 0.2rem;
   &.not-selected {
-    stroke: var(--color-skin-mid-dark);
+    stroke: var(--color-skin-mid-dark-semi);
   }
   &.selected {
     stroke: var(--color-skin-light);

@@ -129,3 +129,13 @@ export const arraysAreEqual = (a, b) => {
   if (a.length !== b.length) return false;
   return a.every((val, index) => val === b[index]);
 };
+
+export const arraysHaveSameElements = (a, b) => {
+  if (a.length !== b.length) return false;
+  const sortedA = [...a].sort();
+  const sortedB = [...b].sort();
+  for (let i = 0; i < sortedA.length; i++) {
+    if (sortedA[i] !== sortedB[i]) return false;
+  }
+  return true;
+}

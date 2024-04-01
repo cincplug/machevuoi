@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 import ScratchPointLines from "./ScratchPointLines";
 import ScratchPointCurves from "./ScratchPointCurves";
-import { arraysAreEqual } from "../../utils";
+import { arraysHaveSameElements } from "../../utils";
 
 function ScratchPointSelection({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
@@ -29,7 +29,7 @@ function ScratchPointSelection({ setup, handleInputChange }) {
   const handleLineClick = (start, end) => {
     const newScratchPoints = { ...scratchPoints };
     const existingLineIndex = newScratchPoints.lines.findIndex((line) =>
-      arraysAreEqual(line, [start, end])
+      arraysHaveSameElements(line, [start, end])
     );
     if (existingLineIndex !== -1) {
       newScratchPoints.lines = [
@@ -56,7 +56,7 @@ function ScratchPointSelection({ setup, handleInputChange }) {
     const newScratchPoints = { ...scratchPoints };
     const curve = [start, control, end];
     const existingCurveIndex = newScratchPoints.curves.findIndex(
-      (existingCurve) => arraysAreEqual(existingCurve, curve)
+      (existingCurve) => arraysHaveSameElements(existingCurve, curve)
     );
     if (existingCurveIndex !== -1) {
       newScratchPoints.curves = [
@@ -101,26 +101,30 @@ function ScratchPointSelection({ setup, handleInputChange }) {
         viewBox="-20 0 480 500"
         className={`scratch-points-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
       >
-        <g
-          className={`scratch-points-layer dots ${
-            activeLayer === "dots" ? "active" : "not-active"
-          }`}
-        >
-          {HAND_POINTS.map((point, index) => (
-            <circle
-              key={index}
-              cx={point.x}
-              cy={point.y}
-              r={15}
-              onClick={() => handlePointClick(index)}
-              className={`scratch-points-dot ${
-                scratchPoints.dots.includes(index) ? "selected" : "not-selected"
-              }`}
-            >
-              {index}
-            </circle>
-          ))}
-        </g>
+        {activeLayer === "dots" && (
+          <g
+            className={`scratch-points-layer dots ${
+              activeLayer === "dots" ? "active" : "not-active"
+            }`}
+          >
+            {HAND_POINTS.map((point, index) => (
+              <circle
+                key={index}
+                cx={point.x}
+                cy={point.y}
+                r={15}
+                onClick={() => handlePointClick(index)}
+                className={`scratch-points-dot ${
+                  scratchPoints.dots.includes(index)
+                    ? "selected"
+                    : "not-selected"
+                }`}
+              >
+                {index}
+              </circle>
+            ))}
+          </g>
+        )}
         {activeLayer === "lines" && (
           <ScratchPointLines
             points={scratchPoints.dots}
