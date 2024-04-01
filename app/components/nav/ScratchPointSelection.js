@@ -98,7 +98,7 @@ function ScratchPointSelection({ setup, handleInputChange }) {
     <div className={`scratch-points-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="-20 0 480 500"
+        viewBox="-20 -20 500 540"
         className={`scratch-points-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
       >
         {activeLayer === "dots" && (

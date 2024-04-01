@@ -34,7 +34,7 @@
   --color-blue: #068;
   --color-skin-dark: #2d1f14;
   --color-skin-mid-dark: #6d4931;
-  --color-skin-mid-dark-semi: #6d493140;
+  --color-skin-mid-dark-semi: #6d493180;
   --color-skin-mid: #c49a68;
   --color-skin-mid-light: #e6bc98;
   --color-skin-light: #ffe7d1;
@@ -505,7 +505,7 @@ label {
     transform: scale(2);
     background-color: var(--color-skin-dark);
     transform-origin: right bottom;
-    box-shadow: 0 0 0.1rem var(--color-skin-mid);
+    border: 0.5px solid var(--color-skin-mid-dark);
   }
 }
 .scratch-points-layer {
