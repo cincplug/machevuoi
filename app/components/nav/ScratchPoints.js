@@ -26,21 +26,29 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const handleLineClick = (start, end) => {
+  const handleLineClick = (start, end, command) => {
     const newScratchPoints = { ...scratchPoints };
-    const existingLineIndex = newScratchPoints.lines.findIndex((line) =>
-      arraysHaveSameElements(line, [start, end])
+    const line = [start, end].sort((a, b) => a - b);
+    const existingLineIndex = newScratchPoints.lines.findIndex((existingLine) =>
+      arraysHaveSameElements(existingLine, line)
     );
-    if (existingLineIndex !== -1) {
+
+    if (command === "add" && existingLineIndex === -1) {
+      newScratchPoints.lines = [...newScratchPoints.lines, line];
+    } else if (command === "remove" && existingLineIndex !== -1) {
       newScratchPoints.lines = [
         ...newScratchPoints.lines.slice(0, existingLineIndex),
         ...newScratchPoints.lines.slice(existingLineIndex + 1)
       ];
-    } else {
-      newScratchPoints.lines = [
-        ...newScratchPoints.lines,
-        [start, end].sort((a, b) => a - b)
-      ];
+    } else if (command === "toggle") {
+      if (existingLineIndex !== -1) {
+        newScratchPoints.lines = [
+          ...newScratchPoints.lines.slice(0, existingLineIndex),
+          ...newScratchPoints.lines.slice(existingLineIndex + 1)
+        ];
+      } else {
+        newScratchPoints.lines = [...newScratchPoints.lines, line];
+      }
     }
 
     handleInputChange({
@@ -58,14 +66,14 @@ function ScratchPoints({ setup, handleInputChange }) {
     const existingCurveIndex = newScratchPoints.curves.findIndex(
       (existingCurve) => arraysHaveSameElements(existingCurve, curve)
     );
-    if (command === 'add' && existingCurveIndex === -1) {
+    if (command === "add" && existingCurveIndex === -1) {
       newScratchPoints.curves = [...newScratchPoints.curves, curve];
-    } else if (command === 'remove' && existingCurveIndex !== -1) {
+    } else if (command === "remove" && existingCurveIndex !== -1) {
       newScratchPoints.curves = [
         ...newScratchPoints.curves.slice(0, existingCurveIndex),
         ...newScratchPoints.curves.slice(existingCurveIndex + 1)
       ];
-    } else if (command === 'toggle') {
+    } else if (command === "toggle") {
       if (existingCurveIndex !== -1) {
         newScratchPoints.curves = [
           ...newScratchPoints.curves.slice(0, existingCurveIndex),
@@ -75,7 +83,7 @@ function ScratchPoints({ setup, handleInputChange }) {
         newScratchPoints.curves = [...newScratchPoints.curves, curve];
       }
     }
-  
+
     handleInputChange({
       target: {
         id: "scratchPoints",
@@ -83,7 +91,7 @@ function ScratchPoints({ setup, handleInputChange }) {
         type: "hidden"
       }
     });
-  };  
+  };
 
   const selectAllDots = () => {
     const newScratchPoints = {
