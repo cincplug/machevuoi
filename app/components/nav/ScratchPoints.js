@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
-import ScratchPointLines from "./ScratchPointLines";
-import ScratchPointCurves from "./ScratchPointCurves";
+import ScratchLines from "./ScratchLines";
+import ScratchCurves from "./ScratchCurves";
 import { arraysHaveSameElements } from "../../utils";
 
 function ScratchPoints({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
-  const { scratchPoints } = setup;
+  const { scratchPoints, minimum } = setup;
 
   const handlePointClick = (index) => {
     const newScratchPoints = { ...scratchPoints };
@@ -52,21 +52,30 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const handleCurveClick = (start, control, end) => {
+  const handleCurveClick = (start, control, end, command) => {
     const newScratchPoints = { ...scratchPoints };
     const curve = [start, control, end];
     const existingCurveIndex = newScratchPoints.curves.findIndex(
       (existingCurve) => arraysHaveSameElements(existingCurve, curve)
     );
-    if (existingCurveIndex !== -1) {
+    if (command === 'add' && existingCurveIndex === -1) {
+      newScratchPoints.curves = [...newScratchPoints.curves, curve];
+    } else if (command === 'remove' && existingCurveIndex !== -1) {
       newScratchPoints.curves = [
         ...newScratchPoints.curves.slice(0, existingCurveIndex),
         ...newScratchPoints.curves.slice(existingCurveIndex + 1)
       ];
-    } else {
-      newScratchPoints.curves = [...newScratchPoints.curves, curve];
+    } else if (command === 'toggle') {
+      if (existingCurveIndex !== -1) {
+        newScratchPoints.curves = [
+          ...newScratchPoints.curves.slice(0, existingCurveIndex),
+          ...newScratchPoints.curves.slice(existingCurveIndex + 1)
+        ];
+      } else {
+        newScratchPoints.curves = [...newScratchPoints.curves, curve];
+      }
     }
-
+  
     handleInputChange({
       target: {
         id: "scratchPoints",
@@ -74,7 +83,7 @@ function ScratchPoints({ setup, handleInputChange }) {
         type: "hidden"
       }
     });
-  };
+  };  
 
   const selectAllDots = () => {
     const newScratchPoints = {
@@ -126,17 +135,18 @@ function ScratchPoints({ setup, handleInputChange }) {
           </g>
         )}
         {activeLayer === "lines" && (
-          <ScratchPointLines
+          <ScratchLines
             points={scratchPoints.dots}
             selectedLines={scratchPoints.lines}
             onLineClick={handleLineClick}
           />
         )}
         {activeLayer === "curves" && (
-          <ScratchPointCurves
+          <ScratchCurves
             points={scratchPoints.dots}
             selectedCurves={scratchPoints.curves}
             onCurveClick={handleCurveClick}
+            minimum={minimum}
           />
         )}
       </svg>

@@ -530,9 +530,9 @@ label {
 .scratch-points-line,
 .scratch-points-curve {
   fill: none;
-  stroke-width: 0.2rem;
+  stroke-width: 0.3rem;
   &.not-selected {
-    stroke: var(--color-skin-mid-dark-semi);
+    stroke: transparent;
   }
   &.selected {
     stroke: var(--color-skin-light);

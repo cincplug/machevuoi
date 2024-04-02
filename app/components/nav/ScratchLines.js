@@ -1,7 +1,7 @@
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 import { arraysHaveSameElements } from "../../utils";
 
-const ScratchPointLines = ({ points, selectedLines, onLineClick }) => {
+const ScratchLines = ({ points, selectedLines, onLineClick }) => {
   return (
     <g className="scratch-points-layer">
       {points.flatMap((start, startIndex, arr) =>
@@ -45,4 +45,4 @@ const ScratchPointLines = ({ points, selectedLines, onLineClick }) => {
     </g>
   );
 };
-export default ScratchPointLines;
+export default ScratchLines;
