@@ -4,7 +4,7 @@ import ScratchPointLines from "./ScratchPointLines";
 import ScratchPointCurves from "./ScratchPointCurves";
 import { arraysHaveSameElements } from "../../utils";
 
-function ScratchPointSelection({ setup, handleInputChange }) {
+function ScratchPoints({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
   const { scratchPoints } = setup;
@@ -159,4 +159,4 @@ function ScratchPointSelection({ setup, handleInputChange }) {
   );
 }
 
-export default ScratchPointSelection;
+export default ScratchPoints;

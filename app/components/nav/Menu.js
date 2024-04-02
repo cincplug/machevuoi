@@ -3,7 +3,7 @@ import ControlGroup from "./Controls";
 import Buttons from "./Buttons";
 import Info from "./Info";
 import ScenarioSelection from "./ScenarioSelection";
-import ScratchPointSelection from "./ScratchPointSelection";
+import ScratchPoints from "./ScratchPoints";
 
 const Menu = (props) => {
   const {
@@ -43,7 +43,7 @@ const Menu = (props) => {
           )}
         />
         {isScratchCanvas && pattern === "canvas" && (
-          <ScratchPointSelection {...{ setup, handleInputChange }} />
+          <ScratchPoints {...{ setup, handleInputChange }} />
         )}
       </nav>
     </>

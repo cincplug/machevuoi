@@ -30,9 +30,9 @@ export const scratchCanvas = ({
   lines,
   curves,
 }) => {
-  ctx.strokeStyle = processColor(color, opacity);
   const tipValues = Object.values(tips);
   const tipDistance = getAverageDistance(tipValues);
+  ctx.strokeStyle = processColor(color, opacity / tipValues.length);
   ctx.lineWidth = getLineWidth({
     minimum,
     radius,
