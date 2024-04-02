@@ -144,17 +144,14 @@ function ScratchPoints({ setup, handleInputChange }) {
         )}
         {activeLayer === "lines" && (
           <ScratchLines
-            points={scratchPoints.dots}
             selectedLines={scratchPoints.lines}
             onLineClick={handleLineClick}
           />
         )}
         {activeLayer === "curves" && (
           <ScratchCurves
-            points={scratchPoints.dots}
             selectedCurves={scratchPoints.curves}
             onCurveClick={handleCurveClick}
-            minimum={minimum}
           />
         )}
       </svg>

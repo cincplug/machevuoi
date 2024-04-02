@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 import { arraysHaveSameElements } from "../../utils";
 
-const ScratchLines = ({ points, selectedLines, onLineClick }) => {
+const points = HAND_POINTS.map((_, index) => index);
+
+const ScratchLines = ({ selectedLines, onLineClick }) => {
   const [isShiftDown, setIsShiftDown] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 

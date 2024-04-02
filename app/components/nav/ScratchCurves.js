@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 
-const ScratchCurves = ({ points, selectedCurves, onCurveClick }) => {
+const points = HAND_POINTS.map((_, index) => index);
+
+const ScratchCurves = ({ selectedCurves, onCurveClick }) => {
   const [isShiftDown, setIsShiftDown] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 
