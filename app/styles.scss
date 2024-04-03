@@ -489,14 +489,14 @@ label {
   top: 0;
 }
 
-.scratch-points-wrap {
+.scratch-wrap {
   grid-column: span 12;
   display: grid;
   grid-template-columns: inherit;
   grid-gap: inherit;
   position: relative;
 }
-.scratch-points-svg {
+.scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
   background: url(../app/assets/img/hand-model.svg) no-repeat 7px 0;
@@ -508,16 +508,19 @@ label {
     border: 0.5px solid var(--color-skin-mid-dark);
   }
 }
-.scratch-points-layer {
+.scratch-layer {
   grid-column: span 12;
 }
 
-.layer-button {
+.scratch-layer-button {
   grid-column: span 3;
-  padding: 0.5rem 0;
+  border-radius: var(--radius);
+  &.zoom {
+    font-size: 1.2rem;
+  }
 }
 
-.scratch-points-dot {
+.scratch-dot {
   fill: var(--color-skin-mid-dark);
   &:hover {
     fill: var(--color-skin-mid);
@@ -533,8 +536,8 @@ label {
   fill: none;
 }
 
-.scratch-points-line,
-.scratch-points-curve {
+.scratch-line,
+.scratch-curve {
   fill: none;
   stroke-width: 0.3rem;
   &.not-selected {
@@ -546,10 +549,6 @@ label {
   .no-start-point &:hover {
     stroke: var(--color-skin-mid);
   }
-}
-
-.scratch-points-zoom {
-  font-size: 1rem;
 }
 
 .info {

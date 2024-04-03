@@ -84,16 +84,16 @@ function ScratchPoints({ setup, handleInputChange }) {
   };
 
   return (
-    <div className={`scratch-points-wrap active-${activeLayer}`}>
+    <div className={`scratch-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 -20 500 540"
-        className={`scratch-points-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
+        className={`scratch-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
         onMouseMove={handleMouseMove}
       >
         {activeLayer === "dots" && (
           <g
-            className={`scratch-points-layer dots ${
+            className={`scratch-layer dots ${
               activeLayer === "dots" ? "active" : "not-active"
             }`}
           >
@@ -104,7 +104,7 @@ function ScratchPoints({ setup, handleInputChange }) {
                 cy={point.y}
                 r={15}
                 onClick={() => handlePointClick(index)}
-                className={`scratch-points-dot ${
+                className={`scratch-dot ${
                   scratchPoints.dots.includes(index)
                     ? "selected"
                     : "not-selected"
@@ -130,7 +130,7 @@ function ScratchPoints({ setup, handleInputChange }) {
       </svg>
       {["dots", "lines", "curves"].map((layer, index) => (
         <button
-          className={`layer-button ${layer === activeLayer ? "active" : ""}`}
+          className={`scratch-layer-button ${layer === activeLayer ? "active" : ""}`}
           key={index}
           onClick={() => setActiveLayer(layer)}
         >
@@ -139,9 +139,9 @@ function ScratchPoints({ setup, handleInputChange }) {
       ))}
       <button
         onClick={handleMagnifyClick}
-        className="scratch-points-zoom layer-button"
+        className="scratch-layer-button zoom"
       >
-        +
+        ◲
       </button>
     </div>
   );

@@ -23,7 +23,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
 
   return (
     <g
-      className={`scratch-points-layer lines ${
+      className={`scratch-layer lines ${
         startPoint ? "has-start-point" : "no-start-point"
       }`}
     >
@@ -39,7 +39,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
               y1={HAND_POINTS[start].y}
               x2={HAND_POINTS[end].x}
               y2={HAND_POINTS[end].y}
-              className={`scratch-points-line ${
+              className={`scratch-line ${
                 isSelected ? "selected" : "not-selected"
               }`}
               onMouseOver={() =>
@@ -68,7 +68,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
           cy={point.y}
           r={10}
           onClick={() => handleDotClick(index)}
-          className="scratch-points-dot"
+          className="scratch-dot"
         >
           <title>{index}</title>
         </circle>

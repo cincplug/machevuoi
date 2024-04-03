@@ -25,7 +25,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
   };
 
   return (
-    <g className={`scratch-points-layer curves ${startPoint ? "has-start-point" : "no-start-point"}`}>
+    <g className={`scratch-layer curves ${startPoint ? "has-start-point" : "no-start-point"}`}>
       {points.flatMap((start, _startIndex, arr) =>
         arr.flatMap((control, _controlIndex) =>
           arr.map((end, _endIndex) => {
@@ -40,7 +40,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
               <path
                 key={`${start}-${control}-${end}`}
                 d={`M ${HAND_POINTS[start].x} ${HAND_POINTS[start].y} Q ${HAND_POINTS[control].x} ${HAND_POINTS[control].y} ${HAND_POINTS[end].x} ${HAND_POINTS[end].y}`}
-                className={`scratch-points-curve ${
+                className={`scratch-curve ${
                   isSelected ? "selected" : "not-selected"
                 }`}
                 onMouseOver={() =>
@@ -67,7 +67,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
           cy={point.y}
           r={10}
           onClick={() => handleDotClick(index)}
-          className="scratch-points-dot"
+          className="scratch-dot"
         >
           <title>{index}</title>
         </circle>
