@@ -8,6 +8,7 @@ function ScratchPoints({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
   const [endPoint, setEndPoint] = useState(null);
+  const [controlPoint, setControlPoint] = useState(null);
   const { scratchPoints, pressedKey } = setup;
 
   const handlePointClick = (index) => {
@@ -72,7 +73,7 @@ function ScratchPoints({ setup, handleInputChange }) {
     setIsZoomed(!isZoomed);
   };
 
-  const handleMouseMove = (event) => {
+ const handleMouseMove = (event) => {
     const svgRect = event.currentTarget.getBoundingClientRect();
     const viewBoxWidth = event.currentTarget.viewBox.animVal.width;
     const scaleFactor = svgRect.width / viewBoxWidth;
@@ -81,7 +82,7 @@ function ScratchPoints({ setup, handleInputChange }) {
       y: (event.clientY - svgRect.top - 10) / scaleFactor
     });
   };
-  
+
   return (
     <div className={`scratch-points-wrap active-${activeLayer}`}>
       <svg
@@ -116,15 +117,14 @@ function ScratchPoints({ setup, handleInputChange }) {
         )}
         {activeLayer === "lines" && (
           <ScratchLines
-            {...{ setup, handleConnector, handleInputChange }}
+            {...{ handleConnector, endPoint }}
             selectedLines={scratchPoints.lines}
-            endPoint={endPoint}
           />
         )}
         {activeLayer === "curves" && (
           <ScratchCurves
+            {...{ handleConnector, endPoint, controlPoint, setControlPoint }}
             selectedCurves={scratchPoints.curves}
-            handleConnector={handleConnector}
           />
         )}
       </svg>
