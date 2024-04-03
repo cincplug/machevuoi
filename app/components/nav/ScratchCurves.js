@@ -17,7 +17,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
         control: controlPoint,
         end: index,
         type: "curves",
-        action: "toggle"
+        isToggling: true
       });
       setStartPoint(null);
       setControlPoint(null);
@@ -52,7 +52,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
                     control,
                     end,
                     type: "curves",
-                    action: "toggle"
+                    isToggling: true
                   })
                 }
               />

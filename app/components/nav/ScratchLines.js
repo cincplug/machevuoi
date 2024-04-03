@@ -15,7 +15,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
         start: startPoint,
         end: index,
         type: "lines",
-        action: "toggle"
+        isToggling: true
       });
       setStartPoint(null);
     }
@@ -54,7 +54,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
                   start,
                   end,
                   type: "lines",
-                  action: "toggle"
+                  isToggling: true
                 })
               }
             />

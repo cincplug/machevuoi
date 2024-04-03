@@ -10,6 +10,8 @@ function ScratchPoints({ setup, handleInputChange }) {
   const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const { scratchPoints, pressedKey } = setup;
+  const isAdding = pressedKey === "Shift";
+  const isRemoving = pressedKey === "Alt";
 
   const handlePointClick = (index) => {
     const newScratchPoints = { ...scratchPoints };
@@ -28,7 +30,7 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const handleConnector = ({ start, control, end, type, action }) => {
+  const handleConnector = ({ start, control, end, type, isToggling }) => {
     const newScratchPoints = { ...scratchPoints };
     const connector =
       type === "lines"
@@ -52,11 +54,11 @@ function ScratchPoints({ setup, handleInputChange }) {
 
     const isNewConnector = existingConnectorIndex === -1;
 
-    if (pressedKey === "Shift" && isNewConnector) {
+    if (isAdding && isNewConnector) {
       addNewConnector();
-    } else if (pressedKey === "Alt" && !isNewConnector) {
+    } else if (isRemoving && !isNewConnector) {
       removeConnector();
-    } else if (action === "toggle") {
+    } else if (isToggling) {
       isNewConnector ? addNewConnector() : removeConnector();
     }
 
@@ -73,7 +75,7 @@ function ScratchPoints({ setup, handleInputChange }) {
     setIsZoomed(!isZoomed);
   };
 
- const handleMouseMove = (event) => {
+  const handleMouseMove = (event) => {
     const svgRect = event.currentTarget.getBoundingClientRect();
     const viewBoxWidth = event.currentTarget.viewBox.animVal.width;
     const scaleFactor = svgRect.width / viewBoxWidth;
@@ -84,7 +86,7 @@ function ScratchPoints({ setup, handleInputChange }) {
   };
 
   return (
-    <div className={`scratch-wrap active-${activeLayer}`}>
+    <div className={`scratch-wrap active-${activeLayer} ${isRemoving ? "is-removing" : "not-removing"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 -20 500 540"
@@ -92,11 +94,7 @@ function ScratchPoints({ setup, handleInputChange }) {
         onMouseMove={handleMouseMove}
       >
         {activeLayer === "dots" && (
-          <g
-            className={`scratch-layer dots ${
-              activeLayer === "dots" ? "active" : "not-active"
-            }`}
-          >
+          <g className={`scratch-layer dots`}>
             {HAND_POINTS.map((point, index) => (
               <circle
                 key={index}
@@ -130,7 +128,9 @@ function ScratchPoints({ setup, handleInputChange }) {
       </svg>
       {["dots", "lines", "curves"].map((layer, index) => (
         <button
-          className={`scratch-layer-button ${layer === activeLayer ? "active" : ""}`}
+          className={`scratch-layer-button ${
+            layer === activeLayer ? "active" : ""
+          }`}
           key={index}
           onClick={() => setActiveLayer(layer)}
         >

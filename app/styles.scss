@@ -546,7 +546,7 @@ label {
   &.selected {
     stroke: var(--color-skin-light);
   }
-  .no-start-point &:hover {
+  .not-removing .no-start-point &:hover {
     stroke: var(--color-skin-mid);
   }
 }
