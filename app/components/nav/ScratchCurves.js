@@ -1,43 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 
 const points = HAND_POINTS.map((_, index) => index);
 
-const ScratchCurves = ({ selectedCurves, onCurveClick }) => {
+const ScratchCurves = ({ selectedCurves, handleConnector }) => {
   const [isShiftDown, setIsShiftDown] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Shift') {
+      if (event.key === "Shift") {
         setIsShiftDown(true);
-      } else if (event.key === 'Alt' || event.key === 'Option') {
+      } else if (event.key === "Alt" || event.key === "Option") {
         setIsAltDown(true);
       }
     };
 
     const handleKeyUp = (event) => {
-      if (event.key === 'Shift') {
+      if (event.key === "Shift") {
         setIsShiftDown(false);
-      } else if (event.key === 'Alt' || event.key === 'Option') {
+      } else if (event.key === "Alt" || event.key === "Option") {
         setIsAltDown(false);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
   }, []);
 
   const handleMouseOver = (start, control, end) => {
     if (isShiftDown) {
-      onCurveClick(start, control, end, 'add');
+      handleConnector({ start, control, end, command: "add", type: "curves" });
     } else if (isAltDown) {
-      onCurveClick(start, control, end, 'remove');
+      handleConnector({
+        start,
+        control,
+        end,
+        command: "remove",
+        type: "curves"
+      });
     }
   };
 
@@ -50,9 +56,8 @@ const ScratchCurves = ({ selectedCurves, onCurveClick }) => {
               return null;
             }
             const curve = [start, control, end];
-            const isSelected = selectedCurves.some(
-              (existingCurve) =>
-                existingCurve.every((point, index) => point === curve[index])
+            const isSelected = selectedCurves.some((existingCurve) =>
+              existingCurve.every((point, index) => point === curve[index])
             );
             return (
               <path
@@ -62,7 +67,15 @@ const ScratchCurves = ({ selectedCurves, onCurveClick }) => {
                   isSelected ? "selected" : "not-selected"
                 }`}
                 onMouseOver={() => handleMouseOver(start, control, end)}
-                onClick={() => onCurveClick(start, control, end, 'toggle')}
+                onClick={() =>
+                  handleConnector({
+                    start,
+                    control,
+                    end,
+                    command: "toggle",
+                    type: "curves"
+                  })
+                }
               />
             );
           })
@@ -76,7 +89,15 @@ const ScratchCurves = ({ selectedCurves, onCurveClick }) => {
             d={`M ${HAND_POINTS[start].x} ${HAND_POINTS[start].y} Q ${HAND_POINTS[control].x} ${HAND_POINTS[control].y} ${HAND_POINTS[end].x} ${HAND_POINTS[end].y}`}
             className="scratch-points-curve selected"
             onMouseOver={() => handleMouseOver(start, control, end)}
-            onClick={() => onCurveClick(start, control, end, 'toggle')}
+            onClick={() =>
+              handleConnector({
+                start,
+                control,
+                end,
+                command: "toggle",
+                type: "curves"
+              })
+            }
           />
         );
       })}

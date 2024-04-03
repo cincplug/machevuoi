@@ -26,61 +26,32 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const handleLineClick = (start, end, command) => {
+  const handleConnector = ({ start, control, end, command, type }) => {
     const newScratchPoints = { ...scratchPoints };
-    const line = [start, end].sort((a, b) => a - b);
-    const existingLineIndex = newScratchPoints.lines.findIndex((existingLine) =>
-      arraysHaveSameElements(existingLine, line)
+    const connector =
+      type === "lines"
+        ? [start, end].sort((a, b) => a - b)
+        : [start, control, end];
+    const existingConnectorIndex = newScratchPoints[type].findIndex(
+      (existingConnector) =>
+        arraysHaveSameElements(existingConnector, connector)
     );
 
-    if (command === "add" && existingLineIndex === -1) {
-      newScratchPoints.lines = [...newScratchPoints.lines, line];
-    } else if (command === "remove" && existingLineIndex !== -1) {
-      newScratchPoints.lines = [
-        ...newScratchPoints.lines.slice(0, existingLineIndex),
-        ...newScratchPoints.lines.slice(existingLineIndex + 1)
+    if (command === "add" && existingConnectorIndex === -1) {
+      newScratchPoints[type] = [...newScratchPoints[type], connector];
+    } else if (command === "remove" && existingConnectorIndex !== -1) {
+      newScratchPoints[type] = [
+        ...newScratchPoints[type].slice(0, existingConnectorIndex),
+        ...newScratchPoints[type].slice(existingConnectorIndex + 1)
       ];
     } else if (command === "toggle") {
-      if (existingLineIndex !== -1) {
-        newScratchPoints.lines = [
-          ...newScratchPoints.lines.slice(0, existingLineIndex),
-          ...newScratchPoints.lines.slice(existingLineIndex + 1)
+      if (existingConnectorIndex !== -1) {
+        newScratchPoints[type] = [
+          ...newScratchPoints[type].slice(0, existingConnectorIndex),
+          ...newScratchPoints[type].slice(existingConnectorIndex + 1)
         ];
       } else {
-        newScratchPoints.lines = [...newScratchPoints.lines, line];
-      }
-    }
-
-    handleInputChange({
-      target: {
-        id: "scratchPoints",
-        value: newScratchPoints,
-        type: "hidden"
-      }
-    });
-  };
-
-  const handleCurveClick = (start, control, end, command) => {
-    const newScratchPoints = { ...scratchPoints };
-    const curve = [start, control, end];
-    const existingCurveIndex = newScratchPoints.curves.findIndex(
-      (existingCurve) => arraysHaveSameElements(existingCurve, curve)
-    );
-    if (command === "add" && existingCurveIndex === -1) {
-      newScratchPoints.curves = [...newScratchPoints.curves, curve];
-    } else if (command === "remove" && existingCurveIndex !== -1) {
-      newScratchPoints.curves = [
-        ...newScratchPoints.curves.slice(0, existingCurveIndex),
-        ...newScratchPoints.curves.slice(existingCurveIndex + 1)
-      ];
-    } else if (command === "toggle") {
-      if (existingCurveIndex !== -1) {
-        newScratchPoints.curves = [
-          ...newScratchPoints.curves.slice(0, existingCurveIndex),
-          ...newScratchPoints.curves.slice(existingCurveIndex + 1)
-        ];
-      } else {
-        newScratchPoints.curves = [...newScratchPoints.curves, curve];
+        newScratchPoints[type] = [...newScratchPoints[type], connector];
       }
     }
 
@@ -145,13 +116,13 @@ function ScratchPoints({ setup, handleInputChange }) {
         {activeLayer === "lines" && (
           <ScratchLines
             selectedLines={scratchPoints.lines}
-            onLineClick={handleLineClick}
+            handleConnector={handleConnector}
           />
         )}
         {activeLayer === "curves" && (
           <ScratchCurves
             selectedCurves={scratchPoints.curves}
-            onCurveClick={handleCurveClick}
+            handleConnector={handleConnector}
           />
         )}
       </svg>

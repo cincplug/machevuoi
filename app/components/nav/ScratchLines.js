@@ -4,7 +4,7 @@ import { arraysHaveSameElements } from "../../utils";
 
 const points = HAND_POINTS.map((_, index) => index);
 
-const ScratchLines = ({ selectedLines, onLineClick }) => {
+const ScratchLines = ({ selectedLines, handleConnector }) => {
   const [isShiftDown, setIsShiftDown] = useState(false);
   const [isAltDown, setIsAltDown] = useState(false);
 
@@ -36,9 +36,9 @@ const ScratchLines = ({ selectedLines, onLineClick }) => {
 
   const handleMouseOver = (start, end) => {
     if (isShiftDown) {
-      onLineClick(start, end, "add");
+      handleConnector({ start, end, command: "add", type: "lines" });
     } else if (isAltDown) {
-      onLineClick(start, end, "remove");
+      handleConnector({ start, end, command: "remove", type: "lines" });
     }
   };
 
@@ -60,7 +60,14 @@ const ScratchLines = ({ selectedLines, onLineClick }) => {
                 isSelected ? "selected" : "not-selected"
               }`}
               onMouseOver={() => handleMouseOver(start, end)}
-              onClick={() => onLineClick(start, end, "toggle")}
+              onClick={() =>
+                handleConnector({
+                  start,
+                  end,
+                  command: "toggle",
+                  type: "lines"
+                })
+              }
             />
           );
         })
@@ -76,7 +83,9 @@ const ScratchLines = ({ selectedLines, onLineClick }) => {
             y2={HAND_POINTS[end].y}
             className="scratch-points-line selected"
             onMouseOver={() => handleMouseOver(start, end)}
-            onClick={() => onLineClick(start, end, "toggle")}
+            onClick={() =>
+              handleConnector({ start, end, command: "toggle", type: "lines" })
+            }
           />
         );
       })}
