@@ -7,7 +7,8 @@ import { arraysHaveSameElements } from "../../utils";
 function ScratchPoints({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
-  const { scratchPoints, minimum, pressedKey } = setup;
+  const [endPoint, setEndPoint] = useState(null);
+  const { scratchPoints, pressedKey } = setup;
 
   const handlePointClick = (index) => {
     const newScratchPoints = { ...scratchPoints };
@@ -49,7 +50,7 @@ function ScratchPoints({ setup, handleInputChange }) {
     };
 
     const isNewConnector = existingConnectorIndex === -1;
-    
+
     if (pressedKey === "Shift" && isNewConnector) {
       addNewConnector();
     } else if (pressedKey === "Alt" && !isNewConnector) {
@@ -67,30 +68,27 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const selectAllDots = () => {
-    const newScratchPoints = {
-      ...scratchPoints,
-      dots: HAND_POINTS.map((_, index) => index)
-    };
-    handleInputChange({
-      target: {
-        id: "scratchPoints",
-        value: newScratchPoints,
-        type: "hidden"
-      }
-    });
-  };
-
   const handleMagnifyClick = () => {
     setIsZoomed(!isZoomed);
   };
 
+  const handleMouseMove = (event) => {
+    const svgRect = event.currentTarget.getBoundingClientRect();
+    const viewBoxWidth = event.currentTarget.viewBox.animVal.width;
+    const scaleFactor = svgRect.width / viewBoxWidth;
+    setEndPoint({
+      x: (event.clientX - svgRect.left - 10) / scaleFactor,
+      y: (event.clientY - svgRect.top - 10) / scaleFactor
+    });
+  };
+  
   return (
     <div className={`scratch-points-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 -20 500 540"
         className={`scratch-points-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
+        onMouseMove={handleMouseMove}
       >
         {activeLayer === "dots" && (
           <g
@@ -118,8 +116,9 @@ function ScratchPoints({ setup, handleInputChange }) {
         )}
         {activeLayer === "lines" && (
           <ScratchLines
+            {...{ setup, handleConnector, handleInputChange }}
             selectedLines={scratchPoints.lines}
-            handleConnector={handleConnector}
+            endPoint={endPoint}
           />
         )}
         {activeLayer === "curves" && (

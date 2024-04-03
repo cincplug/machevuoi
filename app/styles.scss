@@ -527,6 +527,11 @@ label {
   }
 }
 
+.scratch-preview-connector {
+  stroke: var(--color-blue-light);
+  stroke-width: 2px;
+}
+
 .scratch-points-line,
 .scratch-points-curve {
   fill: none;
@@ -537,7 +542,7 @@ label {
   &.selected {
     stroke: var(--color-skin-light);
   }
-  &:hover {
+  .no-start-point &:hover {
     stroke: var(--color-skin-mid);
   }
 }
