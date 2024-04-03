@@ -1,47 +1,9 @@
-import React, { useState, useEffect } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
 import { arraysHaveSameElements } from "../../utils";
-
 const points = HAND_POINTS.map((_, index) => index);
 
 const ScratchLines = ({ selectedLines, handleConnector }) => {
-  const [isShiftDown, setIsShiftDown] = useState(false);
-  const [isAltDown, setIsAltDown] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Shift") {
-        setIsShiftDown(true);
-      } else if (event.key === "Alt" || event.key === "Option") {
-        setIsAltDown(true);
-      }
-    };
-
-    const handleKeyUp = (event) => {
-      if (event.key === "Shift") {
-        setIsShiftDown(false);
-      } else if (event.key === "Alt" || event.key === "Option") {
-        setIsAltDown(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, []);
-
-  const handleMouseOver = (start, end) => {
-    if (isShiftDown) {
-      handleConnector({ start, end, command: "add", type: "lines" });
-    } else if (isAltDown) {
-      handleConnector({ start, end, command: "remove", type: "lines" });
-    }
-  };
-
+  const type = "lines";
   return (
     <g className="scratch-points-layer">
       {points.flatMap((start, startIndex, arr) =>
@@ -59,13 +21,19 @@ const ScratchLines = ({ selectedLines, handleConnector }) => {
               className={`scratch-points-line ${
                 isSelected ? "selected" : "not-selected"
               }`}
-              onMouseOver={() => handleMouseOver(start, end)}
+              onMouseOver={() =>
+                handleConnector({
+                  start,
+                  end,
+                  type
+                })
+              }
               onClick={() =>
                 handleConnector({
                   start,
                   end,
-                  command: "toggle",
-                  type: "lines"
+                  type,
+                  action: "toggle"
                 })
               }
             />
@@ -82,9 +50,20 @@ const ScratchLines = ({ selectedLines, handleConnector }) => {
             x2={HAND_POINTS[end].x}
             y2={HAND_POINTS[end].y}
             className="scratch-points-line selected"
-            onMouseOver={() => handleMouseOver(start, end)}
+            onMouseOver={() =>
+              handleConnector({
+                start,
+                end,
+                type
+              })
+            }
             onClick={() =>
-              handleConnector({ start, end, command: "toggle", type: "lines" })
+              handleConnector({
+                start,
+                end,
+                type,
+                action: "toggle"
+              })
             }
           />
         );

@@ -33,18 +33,16 @@ const App = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === " ") {
+      if (event.key) {
         setSetup((prevSetup) => {
-          return { ...prevSetup, isSpacePressed: true };
+          return { ...prevSetup, pressedKey: event.key };
         });
       }
     };
     const handleKeyUp = (event) => {
-      if (event.key === " ") {
-        setSetup((prevSetup) => {
-          return { ...prevSetup, isSpacePressed: false };
-        });
-      }
+      setSetup((prevSetup) => {
+        return { ...prevSetup, pressedKey: "" };
+      });
       if (event.key === "Backspace") {
         clearPaths();
       }

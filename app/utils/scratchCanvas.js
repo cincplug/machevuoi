@@ -25,7 +25,7 @@ export const scratchCanvas = ({
   scratchPattern,
   lastTips,
   pinchThreshold,
-  isSpacePressed,
+  pressedKey,
   dispersion,
   lines,
   curves,
@@ -40,7 +40,7 @@ export const scratchCanvas = ({
     tipDistance,
     dispersion
   });
-  if (lastTips && (isSpacePressed || tipDistance < pinchThreshold)) {
+  if (lastTips && (pressedKey === "Shift" || tipDistance < pinchThreshold)) {
     ctx.beginPath();
     if (lines.length > 0) {
       ctx.beginPath();

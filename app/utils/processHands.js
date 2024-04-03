@@ -25,7 +25,7 @@ export const processHands = ({
     scratchPattern,
     scratchPoints,
     dash,
-    isSpacePressed,
+    pressedKey,
     composite,
     dispersion
   } = setupRef.current;
@@ -70,7 +70,7 @@ export const processHands = ({
     };
   });
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
-  const isPinched = isSpacePressed || thumbIndexDistance < pinchThreshold;
+  const isPinched = pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
   const isWagging =
     (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
     (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
@@ -111,7 +111,7 @@ export const processHands = ({
         scratchPattern,
         lastTips,
         pinchThreshold,
-        isSpacePressed,
+        pressedKey,
         dispersion,
         lines,
         curves

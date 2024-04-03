@@ -208,13 +208,13 @@
     "type": "checkbox"
   },
   {
-    "id": "isSpacePressed",
-    "title": "Is space pressed",
-    "description": "Tells if space is pressed",
+    "id": "pressedKey",
+    "title": "Pressed key",
+    "description": "Which key on the keyboard is currently pressed, if any",
     "isStoringPrevented": true,
     "isHidden": true,
-    "value": false,
-    "type": "checkbox"
+    "value": "",
+    "type": "text"
   },
   {
     "id": "scratchPoints",

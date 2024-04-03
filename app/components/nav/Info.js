@@ -17,7 +17,7 @@ const Info = (props) => {
           )}
         {isScratchCanvas && (
           <>
-            <p>Hold space bar to draw</p>
+            <p>Hold <strong>Shift</strong> to draw</p>
             <p>Choose finger points that draw</p>
             <p>Use pinch to scale the brush</p>
             <p>Wag forefinger 👆 to delete</p>

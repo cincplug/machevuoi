@@ -7,7 +7,7 @@ import { arraysHaveSameElements } from "../../utils";
 function ScratchPoints({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
-  const { scratchPoints, minimum } = setup;
+  const { scratchPoints, minimum, pressedKey } = setup;
 
   const handlePointClick = (index) => {
     const newScratchPoints = { ...scratchPoints };
@@ -26,7 +26,7 @@ function ScratchPoints({ setup, handleInputChange }) {
     });
   };
 
-  const handleConnector = ({ start, control, end, command, type }) => {
+  const handleConnector = ({ start, control, end, type, action }) => {
     const newScratchPoints = { ...scratchPoints };
     const connector =
       type === "lines"
@@ -37,22 +37,25 @@ function ScratchPoints({ setup, handleInputChange }) {
         arraysHaveSameElements(existingConnector, connector)
     );
 
-    if (command === "add" && existingConnectorIndex === -1) {
+    const addNewConnector = () => {
       newScratchPoints[type] = [...newScratchPoints[type], connector];
-    } else if (command === "remove" && existingConnectorIndex !== -1) {
+    };
+
+    const removeConnector = () => {
       newScratchPoints[type] = [
         ...newScratchPoints[type].slice(0, existingConnectorIndex),
         ...newScratchPoints[type].slice(existingConnectorIndex + 1)
       ];
-    } else if (command === "toggle") {
-      if (existingConnectorIndex !== -1) {
-        newScratchPoints[type] = [
-          ...newScratchPoints[type].slice(0, existingConnectorIndex),
-          ...newScratchPoints[type].slice(existingConnectorIndex + 1)
-        ];
-      } else {
-        newScratchPoints[type] = [...newScratchPoints[type], connector];
-      }
+    };
+
+    const isNewConnector = existingConnectorIndex === -1;
+    
+    if (pressedKey === "Shift" && isNewConnector) {
+      addNewConnector();
+    } else if (pressedKey === "Alt" && !isNewConnector) {
+      removeConnector();
+    } else if (action === "toggle") {
+      isNewConnector ? addNewConnector() : removeConnector();
     }
 
     handleInputChange({
