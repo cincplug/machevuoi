@@ -62,6 +62,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
                   nextPoint,
                   controlPoint,
                   radius,
+                  minimum
                 });
               } else {
                 return `${index === 0 ? "M" : "L"} ${point.x},${point.y}`;
@@ -81,7 +82,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
             {text && (
               <text
                 fill={processColor(color, opacity)}
-                fontSize={radius * minimum + scribbleAreaIndex}
+                fontSize={radius * 10}
                 dominantBaseline="text-after-edge"
               >
                 <textPath href={`#text-path-${scribbleAreaIndex}`}>

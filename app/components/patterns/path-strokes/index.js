@@ -1,9 +1,9 @@
 const pathStrokes = (props) => {
-  const { pathStroke, thisPoint, controlPoint, prevPoint, nextPoint, radius } =
+  const { pathStroke, thisPoint, controlPoint, prevPoint, nextPoint, radius, minimum } =
     props;
   const strokeDefinitions = {
     lines: `L${thisPoint.x} ${thisPoint.y} `,
-    arcs: `A${radius} ${radius} 0 0 1 ${thisPoint.x} ${
+    arcs: `A${radius * minimum} ${radius * minimum} 0 0 1 ${thisPoint.x} ${
       thisPoint.y
     }`,
     quadratics: `Q${controlPoint.x} ${controlPoint.y} ${thisPoint.x} ${thisPoint.y}`,
