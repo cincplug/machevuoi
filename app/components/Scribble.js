@@ -13,7 +13,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
     transDur,
     text,
     radius,
-    growth,
     minimum
   } = setup;
 
@@ -24,7 +23,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
         scribbleNewArea={scribbleNewArea}
         setup={setup}
         radius={radius}
-        growth={growth}
       />
     );
   }
@@ -35,7 +33,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
         scribbleNewArea={scribbleNewArea}
         setup={setup}
         radius={radius}
-        growth={growth}
       />
     );
   }
@@ -65,7 +62,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
                   nextPoint,
                   controlPoint,
                   radius,
-                  growth
                 });
               } else {
                 return `${index === 0 ? "M" : "L"} ${point.x},${point.y}`;
@@ -79,7 +75,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
               className="scribble"
               fill="none"
               stroke={processColor(color, opacity)}
-              strokeWidth={radius * growth}
+              strokeWidth={radius}
               d={pathData}
             ></path>
             {text && (

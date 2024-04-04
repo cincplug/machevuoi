@@ -1,7 +1,7 @@
 import React from "react";
 import { processColor } from "../../utils";
 
-const Hose = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
+const Hose = ({ scribble, scribbleNewArea, setup, radius }) => {
   const { text, color, opacity, transDur } = setup;
 
   const textArray = Array.from(text);
@@ -29,7 +29,7 @@ const Hose = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
         x={point.x}
         y={point.y}
         style={style}
-        fontSize={radius + index * growth}
+        fontSize={radius + index}
       >
         {letter}
       </text>

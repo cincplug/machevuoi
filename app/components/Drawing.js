@@ -4,7 +4,7 @@ import Scribble from "./Scribble";
 const Drawing = (props) => {
   const { inputResolution, setup, scribble, scribbleNewArea } = props;
   const { width, height } = inputResolution;
-  const { radius, growth } = setup;
+  const { radius } = setup;
   return (
     <svg
       className="drawing"
@@ -17,7 +17,6 @@ const Drawing = (props) => {
         scribbleNewArea={scribbleNewArea}
         setup={setup}
         radius={radius}
-        growth={growth}
       />
     </svg>
   );

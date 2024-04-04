@@ -1,7 +1,7 @@
 import React from "react";
 import { processColor } from "../../utils";
 
-const Kite = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
+const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
   const { text, color, opacity, transDur } = setup;
 
   const textArray = Array.from(text);
@@ -27,7 +27,7 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius, growth }) => {
           <text
             fill={processColor(color, opacity)}
             key={`sent-${index}`}
-            fontSize={radius + textArray.length - index ** growth}
+            fontSize={radius + textArray.length - index}
             style={style}
           >
             <textPath href="#text-path" startOffset={`${endOffset}%`}>

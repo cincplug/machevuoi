@@ -14,7 +14,6 @@ const getLineWidth = ({
 
 export const scratchCanvas = ({
   radius,
-  growth,
   minimum,
   ctx,
   color,
@@ -39,7 +38,6 @@ export const scratchCanvas = ({
           ctx.lineWidth = getLineWidth({
             minimum,
             radius,
-            growth,
             tipDistance,
             index,
             dispersion
@@ -61,7 +59,6 @@ export const scratchCanvas = ({
           tipIndex,
           minimum,
           radius,
-          growth,
           tipDistance,
           dispersion
         });
@@ -99,7 +96,6 @@ export const scratchCanvas = ({
           index,
           minimum,
           radius,
-          growth,
           tipDistance,
           dispersion
         });

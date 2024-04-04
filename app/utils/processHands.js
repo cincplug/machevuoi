@@ -17,7 +17,6 @@ export const processHands = ({
     radius,
     color,
     opacity,
-    growth,
     minimum,
     pinchThreshold,
     usesButtonPinch,
@@ -102,7 +101,6 @@ export const processHands = ({
     if (isScratchCanvas) {
       lastTips = scratchCanvas({
         radius,
-        growth,
         minimum,
         ctx,
         color,
@@ -123,7 +121,6 @@ export const processHands = ({
       let result = pinchCanvas({
         radius,
         thumbIndexDistance,
-        growth,
         minimum,
         ctx,
         color,

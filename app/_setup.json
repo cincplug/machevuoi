@@ -26,16 +26,6 @@
     "step": 0.5
   },
   {
-    "id": "growth",
-    "title": "Growth",
-    "description": "Growth factor of radius",
-    "value": 0.2,
-    "type": "range",
-    "min": 0.01,
-    "max": 2,
-    "step": 0.01
-  },
-  {
     "id": "minimum",
     "title": "Minimum",
     "description": "Minimal line width",
