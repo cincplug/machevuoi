@@ -3,14 +3,12 @@ import { processColor, getAverageDistance } from "./index";
 const getLineWidth = ({
   minimum,
   radius,
-  growth,
   tipDistance,
-  tipIndex = 5,
-  dispersion
+  index = 5,
 }) => {
   return Math.max(
     minimum,
-    ((radius * growth) / tipDistance) * tipIndex * dispersion
+    (radius / tipDistance) * index
   );
 };
 
@@ -28,37 +26,36 @@ export const scratchCanvas = ({
   pressedKey,
   dispersion,
   lines,
-  curves,
+  curves
 }) => {
   const tipValues = Object.values(tips);
   const tipDistance = getAverageDistance(tipValues);
-  ctx.strokeStyle = processColor(color, opacity / tipValues.length);
-  ctx.lineWidth = getLineWidth({
-    minimum,
-    radius,
-    growth,
-    tipDistance,
-    dispersion
-  });
+  ctx.strokeStyle = processColor(color, opacity);
   if (lastTips && (pressedKey === "Shift" || tipDistance < pinchThreshold)) {
     ctx.beginPath();
-    if (lines.length > 0) {
-      ctx.beginPath();
-      lines.forEach(({ start, end }) => {
-        ctx.moveTo(start.x, start.y);
-        ctx.lineTo(end.x, end.y);
-      });
+    if (scratchPattern === "custom") {
+      if (lines.length > 0) {
+        lines.forEach(({ start, end }, index) => {
+          ctx.lineWidth = getLineWidth({
+            minimum,
+            radius,
+            growth,
+            tipDistance,
+            index,
+            dispersion
+          });
+          ctx.moveTo(start.x, start.y);
+          ctx.lineTo(end.x, end.y);
+        });
+      }
+      if (curves.length > 0) {
+        curves.forEach(({ start, control, end }) => {
+          ctx.moveTo(start.x, start.y);
+          ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
+        });
+      }
       ctx.stroke();
-    }
-    if (curves.length > 0) {
-      ctx.beginPath();
-      curves.forEach(({ start, control, end }) => {
-        ctx.moveTo(start.x, start.y);
-        ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
-      });
-      ctx.stroke();
-    }
-    if (["quadratics", "charts", "joints"].includes(scratchPattern)) {
+    } else if (["quadratics", "charts", "joints"].includes(scratchPattern)) {
       tipValues.forEach((_tip, tipIndex) => {
         ctx.lineWidth = getLineWidth({
           tipIndex,
@@ -94,12 +91,12 @@ export const scratchCanvas = ({
         }
         ctx.stroke();
       });
-    } else {
-      Object.keys(tips).forEach((tip, tipIndex) => {
+    } else if (["lines", "rectangles"].includes(scratchPattern)) {
+      Object.keys(tips).forEach((tip, index) => {
         if (!lastTips[tip]) return;
         ctx.moveTo(lastTips[tip].x, lastTips[tip].y);
         ctx.lineWidth = getLineWidth({
-          tipIndex,
+          index,
           minimum,
           radius,
           growth,

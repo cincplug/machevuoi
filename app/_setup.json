@@ -152,7 +152,7 @@
     "value": "lines",
     "type": "select",
     "parentPattern": "canvas",
-    "options": ["", "lines", "rectangles", "quadratics", "charts", "joints"]
+    "options": ["custom", "lines", "rectangles", "quadratics", "charts", "joints"]
   },
   {
     "id": "hasCursor",
