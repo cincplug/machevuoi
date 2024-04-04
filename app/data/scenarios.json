@@ -150,7 +150,6 @@
     "pattern": "canvas",
     "isScratchCanvas": true,
     "pinchThreshold": 10,
-    "scratchPattern": "lines",
     "scratchPoints": {
       "dots": [4, 8, 12, 16, 20],
       "lines": [],
@@ -172,7 +171,6 @@
     "pattern": "canvas",
     "isScratchCanvas": true,
     "pinchThreshold": 100,
-    "scratchPattern": "quadratics",
     "scratchPoints": {
       "dots": [12, 8, 4, 20, 16, 14, 18, 10, 6, 3, 0],
       "lines": [],
@@ -194,7 +192,6 @@
     "pattern": "canvas",
     "isScratchCanvas": true,
     "pinchThreshold": 150,
-    "scratchPattern": "joints",
     "scratchPoints": {
       "dots": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
       "lines": [],
@@ -215,7 +212,6 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "pinchThreshold": 127,
-    "scratchPattern": "charts",
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [5, 17, 9, 13, 8, 12, 16, 20],

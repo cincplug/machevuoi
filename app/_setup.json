@@ -134,17 +134,6 @@
     ]
   },
   {
-    "id": "scratchPattern",
-    "title": "Scratch pattern",
-    "description": "Sub-pattern of scratch canvas",
-    "isHandRelated": true,
-    "isScratchCanvasRelated": true,
-    "value": "lines",
-    "type": "select",
-    "parentPattern": "canvas",
-    "options": ["custom", "lines", "rectangles", "quadratics", "charts", "joints"]
-  },
-  {
     "id": "hasCursor",
     "title": "Cursor",
     "description": "Shows or hides cursor",
