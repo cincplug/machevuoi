@@ -55,10 +55,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (cursor.isWagging && setup.pattern !== "canvas") {
+    if (setup.doesWagDelete && cursor.isWagging && setup.pattern !== "canvas") {
       clearPaths();
     }
-  }, [cursor.isWagging, setup.pattern]);
+  }, [cursor.isWagging, setup.pattern, setup.doesWagDelete]);
 
   const clearPaths = () => {
     setScribble([]);

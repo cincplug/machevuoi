@@ -269,5 +269,13 @@
       "saturation",
       "color"
     ]
+  },
+  {
+    "id": "doesWagDelete",
+    "title": "Wag delete 👆",
+    "description": "Whether to delete everything by wagging",
+    "isHandRelated": true,
+    "value": false,
+    "type": "checkbox"
   }
 ]

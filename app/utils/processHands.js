@@ -25,7 +25,8 @@ export const processHands = ({
     dash,
     pressedKey,
     composite,
-    dispersion
+    dispersion,
+    doesWagDelete,
   } = setupRef.current;
   let newPoints = [];
   if (!["paths"].includes(pattern)) {
@@ -69,7 +70,7 @@ export const processHands = ({
   });
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched = pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
-  const isWagging =
+  const isWagging = doesWagDelete &&
     (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
     (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
   const x = (thumbTip.x + indexTip.x) / 2;
