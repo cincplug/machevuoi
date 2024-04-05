@@ -65,7 +65,7 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
           key={index}
           cx={point.x}
           cy={point.y}
-          r={10}
+          r={12}
           onClick={() => handleDotClick(index)}
           className="scratch-dot"
         >

@@ -100,7 +100,7 @@ function ScratchPoints({ setup, handleInputChange }) {
                 key={index}
                 cx={point.x}
                 cy={point.y}
-                r={15}
+                r={12}
                 onClick={() => handlePointClick(index)}
                 className={`scratch-dot ${
                   scratchPoints.dots.includes(index)
