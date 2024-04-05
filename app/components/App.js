@@ -10,10 +10,6 @@ import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
 
-const targetResolution = {
-  width: window.innerWidth,
-  height: window.innerHeight
-};
 const initialSetup = getStoredSetup();
 
 const App = () => {
@@ -88,7 +84,16 @@ const App = () => {
 
   const [stopDetector, setStopDetector] = useState(null);
   const [shouldRunDetector, setShouldRunDetector] = useState(false);
-  const [inputResolution, setInputResolution] = useState(targetResolution);
+  const [inputResolution, setInputResolution] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setInputResolution({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+  }, []);
   const { width, height } = inputResolution;
 
   const handleVideoLoad = (videoNode) => {
