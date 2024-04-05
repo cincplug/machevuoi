@@ -10,11 +10,15 @@ const storedSetup = storedSetupRaw ? JSON.parse(storedSetupRaw) : null;
 const initialSetup = {};
 
 export const getStoredSetup = () => {
-  DEFAULT_SETUP.forEach((item) => {
-    initialSetup[item.id] = storedSetup
-      ? storedSetup[item.id]
-      : Object.values(scenarios)[0][item.id] || item.value;
-  });
+  if (typeof window !== "undefined") {
+    const storedSetupRaw = sessionStorage.getItem(storageSetupItem);
+    const storedSetup = storedSetupRaw ? JSON.parse(storedSetupRaw) : null;
+    DEFAULT_SETUP.forEach((item) => {
+      initialSetup[item.id] = storedSetup
+        ? storedSetup[item.id]
+        : Object.values(scenarios)[0][item.id] || item.value;
+    });
+  }
   return initialSetup;
 };
 
