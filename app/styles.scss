@@ -534,6 +534,9 @@ label {
   stroke: var(--color-blue-light);
   stroke-width: 2px;
   fill: none;
+  &.control-line {
+    stroke-dasharray: 5;
+  }
 }
 
 .scratch-line,
