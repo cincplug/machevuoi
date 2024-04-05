@@ -36,16 +36,16 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
             const isSelected = selectedCurves.some((existingCurve) =>
               existingCurve.every((point, index) => point === curve[index])
             );
-            return (
+            return isSelected && (
               <path
                 key={`${start}-${control}-${end}`}
                 d={`M ${HAND_POINTS[start].x} ${HAND_POINTS[start].y} Q ${HAND_POINTS[control].x} ${HAND_POINTS[control].y} ${HAND_POINTS[end].x} ${HAND_POINTS[end].y}`}
                 className={`scratch-curve ${
                   isSelected ? "selected" : "not-selected"
                 }`}
-                onMouseOver={() =>
-                  handleConnector({ start, control, end, type: "curves" })
-                }
+                // onMouseOver={() =>
+                //   handleConnector({ start, control, end, type: "curves" })
+                // }
                 onClick={() =>
                   handleConnector({
                     start,
@@ -72,13 +72,13 @@ function ScratchCurves({ selectedCurves, handleConnector, endPoint, controlPoint
           <title>{index}</title>
         </circle>
       ))}
-      {startPoint != null && controlPoint != null && endPoint && (
+      {startPoint !== null && controlPoint !== null && endPoint && (
         <path
           d={`M ${HAND_POINTS[startPoint].x} ${HAND_POINTS[startPoint].y} Q ${HAND_POINTS[controlPoint].x} ${HAND_POINTS[controlPoint].y} ${endPoint.x} ${endPoint.y}`}
           className="scratch-preview-connector"
         />
       )}
-      {startPoint != null && controlPoint == null && endPoint && (
+      {startPoint !== null && controlPoint === null && endPoint && (
         <line
           x1={HAND_POINTS[startPoint].x}
           y1={HAND_POINTS[startPoint].y}

@@ -32,7 +32,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
           const isSelected = selectedLines.some((line) =>
             arraysHaveSameElements(line, [start, end])
           );
-          return (
+          return isSelected && (
             <line
               key={`${startIndex}-${endIndex}`}
               x1={HAND_POINTS[start].x}
@@ -42,13 +42,13 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
               className={`scratch-line ${
                 isSelected ? "selected" : "not-selected"
               }`}
-              onMouseOver={() =>
-                handleConnector({
-                  start,
-                  end,
-                  type: "lines"
-                })
-              }
+              // onMouseOver={() =>
+              //   handleConnector({
+              //     start,
+              //     end,
+              //     type: "lines"
+              //   })
+              // }
               onClick={() =>
                 handleConnector({
                   start,
@@ -73,7 +73,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
           <title>{index}</title>
         </circle>
       ))}
-      {startPoint != null && endPoint && (
+      {startPoint !== null && endPoint && (
         <line
           x1={HAND_POINTS[startPoint].x}
           y1={HAND_POINTS[startPoint].y}
