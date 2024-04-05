@@ -18,11 +18,27 @@ const App = () => {
   const [scribbleNewArea, setScribbleNewArea] = useState([]);
   const [cursor, setCursor] = useState({ x: 0, y: 0, isPinched: false });
   const [setup, setSetup] = useState({});
+  const [stopDetector, setStopDetector] = useState(null);
+  const [shouldRunDetector, setShouldRunDetector] = useState(false);
+  const [inputResolution, setInputResolution] = useState({ width: 0, height: 0 });
 
   const setupRef = useRef(setup);
+  const webcamRef = useRef(null);
+  const canvasRef = useRef(null);
+
   useEffect(() => {
     setupRef.current = setup;
   }, [setup]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSetup(getStoredSetup());
+      setInputResolution({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -53,15 +69,18 @@ const App = () => {
     }
   }, [cursor.isWagging, setup.pattern, setup.doesWagDelete]);
 
-  const clearPaths = () => {
-    setScribble([]);
-    setScribbleNewArea([]);
-    setPoints([]);
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  useEffect(() => {
+    if (!cursor.isPinched && scribbleNewArea.length > 0) {
+      if (scribbleNewArea.length > 0) {
+        setScribbleNewArea((prevScribbleNewArea) => {
+          setScribble((prevScribble) => {
+            return [...prevScribble, prevScribbleNewArea];
+          });
+          return [];
+        });
+      }
     }
-  };
+  }, [cursor.isPinched, scribbleNewArea.length]);
 
   const handleInputChange = (event) => {
     setSetup((prevSetup) => {
@@ -76,24 +95,6 @@ const App = () => {
       return nextSetup;
     });
   };
-
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
-
-  const [stopDetector, setStopDetector] = useState(null);
-  const [shouldRunDetector, setShouldRunDetector] = useState(false);
-  const [inputResolution, setInputResolution] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setSetup(getStoredSetup());
-      setInputResolution({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
-  }, []);
-  const { width, height } = inputResolution;
 
   const handleVideoLoad = (videoNode) => {
     const video = videoNode.target;
@@ -138,18 +139,17 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
-    if (!cursor.isPinched && scribbleNewArea.length > 0) {
-      if (scribbleNewArea.length > 0) {
-        setScribbleNewArea((prevScribbleNewArea) => {
-          setScribble((prevScribble) => {
-            return [...prevScribble, prevScribbleNewArea];
-          });
-          return [];
-        });
-      }
+  const clearPaths = () => {
+    setScribble([]);
+    setScribbleNewArea([]);
+    setPoints([]);
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext("2d");
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     }
-  }, [cursor.isPinched, scribbleNewArea.length]);
+  };
+
+  const { width, height } = inputResolution;
 
   return (
     <div
