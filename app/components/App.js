@@ -10,8 +10,6 @@ import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
 
-const initialSetup = getStoredSetup();
-
 const App = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,7 +17,7 @@ const App = () => {
   const [scribble, setScribble] = useState([]);
   const [scribbleNewArea, setScribbleNewArea] = useState([]);
   const [cursor, setCursor] = useState({ x: 0, y: 0, isPinched: false });
-  const [setup, setSetup] = useState(initialSetup);
+  const [setup, setSetup] = useState({});
 
   const setupRef = useRef(setup);
   useEffect(() => {
@@ -88,6 +86,7 @@ const App = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      setSetup(getStoredSetup());
       setInputResolution({
         width: window.innerWidth,
         height: window.innerHeight
