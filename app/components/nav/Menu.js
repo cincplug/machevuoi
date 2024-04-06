@@ -1,8 +1,8 @@
 import DEFAULT_SETUP from "../../_setup.json";
 import ControlGroup from "./Controls";
 import Buttons from "./Buttons";
-import ScenarioSelection from "./ScenarioSelection";
-import ScratchPoints from "./ScratchPoints";
+import Scenarios from "./Scenarios";
+import Scratch from "../scratch/Scratch";
 
 const Menu = (props) => {
   const { setup, setSetup, handleInputChange, clearPaths } = props;
@@ -21,7 +21,7 @@ const Menu = (props) => {
           )}
         />
         <Buttons {...{ clearPaths }} />
-        <ScenarioSelection {...{ setup, setSetup, handleInputChange }} />
+        <Scenarios {...{ setup, setSetup, handleInputChange }} />
       </nav>
       <nav className={`menu menu--secondary`}>
         <ControlGroup
@@ -36,7 +36,7 @@ const Menu = (props) => {
           )}
         />
         {isScratchCanvas && pattern === "canvas" && (
-          <ScratchPoints {...{ setup, handleInputChange }} />
+          <Scratch {...{ setup, handleInputChange }} />
         )}
       </nav>
     </>

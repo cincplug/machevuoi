@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import HAND_POINTS from "../../data/defaultScratchPoints.json";
-import ScratchLines from "./ScratchLines";
-import ScratchCurves from "./ScratchCurves";
+import Lines from "./Lines";
+import Curves from "./Curves";
 import { arraysHaveSameElements } from "../../utils";
 
-function ScratchPoints({ setup, handleInputChange }) {
+function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
   const [endPoint, setEndPoint] = useState(null);
@@ -114,13 +114,13 @@ function ScratchPoints({ setup, handleInputChange }) {
           </g>
         )}
         {activeLayer === "lines" && (
-          <ScratchLines
+          <Lines
             {...{ handleConnector, endPoint }}
             selectedLines={scratchPoints.lines}
           />
         )}
         {activeLayer === "curves" && (
-          <ScratchCurves
+          <Curves
             {...{ handleConnector, endPoint, controlPoint, setControlPoint }}
             selectedCurves={scratchPoints.curves}
           />
@@ -147,4 +147,4 @@ function ScratchPoints({ setup, handleInputChange }) {
   );
 }
 
-export default ScratchPoints;
+export default Scratch;
