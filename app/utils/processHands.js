@@ -1,4 +1,10 @@
-import { getDistance, checkElementPinch, squeezePoints } from "./index";
+import {
+  getDistance,
+  checkElementPinch,
+  squeezePoints,
+  processColor,
+  clearCanvases
+} from "./index";
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 
@@ -10,7 +16,8 @@ export const processHands = ({
   points,
   setCursor,
   setScribbleNewArea,
-  ctx
+  dctx,
+  pctx
 }) => {
   const {
     pattern,
@@ -24,10 +31,11 @@ export const processHands = ({
     scratchPoints,
     dash,
     pressedKey,
-    composite,
     dispersion,
-    doesWagDelete,
+    doesWagDelete
   } = setupRef.current;
+  const ctx = pressedKey === "Shift" ? dctx : pctx;
+  ctx.strokeStyle = processColor(color, opacity);
   let newPoints = [];
   if (!["paths"].includes(pattern)) {
     hands.forEach((hand) => {
@@ -69,8 +77,10 @@ export const processHands = ({
     };
   });
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
-  const isPinched = pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
-  const isWagging = doesWagDelete &&
+  const isPinched =
+    pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
+  const isWagging =
+    doesWagDelete &&
     (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
     (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
   const x = (thumbTip.x + indexTip.x) / 2;
@@ -91,9 +101,8 @@ export const processHands = ({
   if (pattern === "canvas" && ctx) {
     ctx.setLineDash(dash ? [dash, dash] : []);
     ctx.lineJoin = "round";
-    ctx.globalCompositeOperation = composite;
     if (isWagging) {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      clearCanvases();
       lastX = undefined;
       lastY = undefined;
       lastTips = undefined;

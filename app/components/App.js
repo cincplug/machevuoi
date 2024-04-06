@@ -7,8 +7,9 @@ import Webcam from "react-webcam";
 import Menu from "./nav/Menu";
 import Splash from "./nav/Splash";
 import Drawing from "./Drawing";
-import Cursor from "./Cursor";
+// import Cursor from "./Cursor";
 import "../styles.scss";
+import { clearCanvases } from "../utils";
 
 const App = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -20,11 +21,15 @@ const App = () => {
   const [setup, setSetup] = useState({});
   const [stopDetector, setStopDetector] = useState(null);
   const [shouldRunDetector, setShouldRunDetector] = useState(false);
-  const [inputResolution, setInputResolution] = useState({ width: 0, height: 0 });
+  const [inputResolution, setInputResolution] = useState({
+    width: 0,
+    height: 0
+  });
 
   const setupRef = useRef(setup);
   const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+  const drawingCanvasRef = useRef(null);
+  const previewCanvasRef = useRef(null);
 
   useEffect(() => {
     setupRef.current = setup;
@@ -105,7 +110,10 @@ const App = () => {
       if (inputResolution.width >= 768) {
         setInputResolution({ width: videoWidth, height: videoHeight });
       }
-      const ctx = canvasRef.current?.getContext("2d");
+      const dctx = drawingCanvasRef.current?.getContext("2d") || null;
+      const pctx = previewCanvasRef.current?.getContext("2d") || null;
+      dctx.globalCompositeOperation = setup.composite;
+      pctx.globalCompositeOperation = "destination-atop";
       runDetector({
         setupRef,
         video,
@@ -113,7 +121,8 @@ const App = () => {
         setCursor,
         setScribble,
         setScribbleNewArea,
-        ctx: ctx || null
+        dctx,
+        pctx
       }).then((stopDetectorCallback) => {
         setStopDetector(() => stopDetectorCallback);
       });
@@ -143,10 +152,7 @@ const App = () => {
     setScribble([]);
     setScribbleNewArea([]);
     setPoints([]);
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    }
+    clearCanvases();
   };
 
   const { width, height } = inputResolution;
@@ -184,13 +190,16 @@ const App = () => {
             imageSmoothing={false}
           />
           <canvas
-            className={`wrap canvas ${
-              setup.pattern !== "canvas" ? "hidden" : ""
-            }`}
-            ref={canvasRef}
+            className={`canvas ${setup.pattern !== "canvas" ? "hidden" : ""}`}
+            ref={previewCanvasRef}
             width={width}
             height={height}
-            style={{ mixBlendMode: setup.blendMode }}
+          ></canvas>
+          <canvas
+            className={`canvas ${setup.pattern !== "canvas" ? "hidden" : ""}`}
+            ref={drawingCanvasRef}
+            width={width}
+            height={height}
           ></canvas>
           {setup.pattern !== "canvas" && (
             <Drawing
@@ -210,11 +219,11 @@ const App = () => {
           >
             Stop camera
           </button>
-          <Cursor
+          {/* <Cursor
             cursor={cursor}
             hasCursor={setup.hasCursor}
             isScratchCanvas={setup.isScratchCanvas}
-          />
+          /> */}
         </>
       ) : (
         <Splash {...{ handlePlayButtonClick }} />

@@ -138,4 +138,12 @@ export const arraysHaveSameElements = (a, b) => {
     if (sortedA[i] !== sortedB[i]) return false;
   }
   return true;
-}
+};
+
+export const clearCanvases = () => {
+  const canvasElements = document.querySelectorAll("canvas");
+  canvasElements.forEach((canvas) => {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+};

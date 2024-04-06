@@ -1,12 +1,10 @@
-import { processColor, getDistance } from "./index";
+import { getDistance } from "./index";
 
 export const pinchCanvas = ({
   radius,
   thumbIndexDistance,
   minimum,
   ctx,
-  color,
-  opacity,
   dispersion,
   x,
   y,
@@ -15,7 +13,6 @@ export const pinchCanvas = ({
 }) => {
   let targetLineWidth = (radius - thumbIndexDistance) + minimum;
   ctx.lineWidth = (targetLineWidth * 2 - ctx.lineWidth) / 3;
-  ctx.strokeStyle = processColor(color, opacity);
   if (!lastX) {
     ctx.beginPath();
     ctx.moveTo(x, y);

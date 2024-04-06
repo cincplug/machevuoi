@@ -6,7 +6,8 @@ export const runDetector = async ({
   setPoints,
   setCursor,
   setScribbleNewArea,
-  ctx
+  dctx,
+  pctx
 }) => {
   let shouldContinue = true;
   let handsDetector = null;
@@ -56,7 +57,8 @@ export const runDetector = async ({
         points,
         setCursor,
         setScribbleNewArea,
-        ctx
+        dctx,
+        pctx,
       });
       points = [...points, ...handPoints];
     }
