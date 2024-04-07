@@ -3,20 +3,15 @@ import DEFAULT_SCENARIOS from "../../data/scenarios.json";
 import DEFAULT_SETUP from "../../_setup.json";
 
 const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
-  const scenarioEntries = useMemo(() => {
-    const customScenarioKeys = Object.keys(setup.customScenarios);
-    const defaultScenarioKeys = Object.keys(DEFAULT_SCENARIOS);
-    const allScenarioKeys = [...defaultScenarioKeys, ...customScenarioKeys];
-    return allScenarioKeys.map((scenarioKey) => ({
-      key: scenarioKey,
-      data: setup.customScenarios[scenarioKey] || DEFAULT_SCENARIOS[scenarioKey],
-    }));
-  }, [setup.customScenarios]);
+  const scenarios = useMemo(
+    () => ({ ...DEFAULT_SCENARIOS, ...setup.customScenarios }),
+    [setup.customScenarios]
+  );
 
   const handleScenarioButtonClick = useCallback(
     (_event, scenarioKey, index) => {
       setSetup((prevSetup) => {
-        const newScenario = scenarioEntries.find((entry) => entry.key === scenarioKey)?.data;
+        const newScenario = scenarios[scenarioKey];
         if (!newScenario) {
           const initialSetup = {};
           DEFAULT_SETUP.forEach((item) => {
@@ -34,26 +29,29 @@ const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
         }
       });
     },
-    [scenarioEntries, setSetup, handleInputChange]
+    [scenarios, setSetup, handleInputChange]
   );
 
   return (
     <fieldset className="menu--scenarios">
       <legend>Scenarios</legend>
-      {scenarioEntries.map(({ key, data }, index) => (
-        <button
-          className={`menu--scenarios__button ${
-            index === setup.activeScenarioIndex ? "active" : "inactive"
-          }`}
-          title={data?.description}
-          key={`scn-${index}`}
-          onClick={(event) =>
-            handleScenarioButtonClick(event, key, index)
-          }
-        >
-          {data?.icon || key}
-        </button>
-      ))}
+      {Object.keys(scenarios).map((scenarioKey, index) => {
+        const scenario = scenarios[scenarioKey];
+        return (
+          <button
+            className={`menu--scenarios__button ${
+              index === setup.activeScenarioIndex ? "active" : "inactive"
+            }`}
+            title={scenario?.description}
+            key={`scn-${index}`}
+            onClick={(event) =>
+              handleScenarioButtonClick(event, scenarioKey, index)
+            }
+          >
+            {scenario?.icon || scenarioKey}
+          </button>
+        );
+      })}
     </fieldset>
   );
 };
