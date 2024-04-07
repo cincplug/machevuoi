@@ -7,6 +7,7 @@ import Scratch from "../scratch/Scratch";
 const Menu = (props) => {
   const { setup, setSetup, handleInputChange, clearPaths } = props;
   const { pattern, isScratchCanvas } = setup;
+  const defaultScenariosLength = 1;
   return (
     <>
       <nav className={`menu menu--controls`}>
@@ -20,7 +21,7 @@ const Menu = (props) => {
               !control.isHandRelated
           )}
         />
-        <Buttons {...{ clearPaths }} />
+        <Buttons {...{ setup, handleInputChange, clearPaths }} />
         <Scenarios {...{ setup, setSetup, handleInputChange }} />
       </nav>
       <nav className={`menu menu--secondary`}>

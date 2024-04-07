@@ -1,3 +1,5 @@
+import { getStoredSetup, storeSetup } from "./storeSetup";
+
 export const getDistance = (point1, point2) => {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
@@ -61,20 +63,9 @@ export const renderPath = ({ area, points, radius }) =>
     })
     .join(" ");
 
-export const saveJson = (areas) => {
-  navigator.clipboard.writeText(areas);
-  console.info(areas);
-  const data = JSON.stringify(areas);
-  fetch("/api/save", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ data })
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error("Error:", error));
+export const saveSetup = (setup) => {
+  navigator.clipboard.writeText(setup);
+  console.info(setup);
 };
 
 export const saveImage = () => {
@@ -84,7 +75,7 @@ export const saveImage = () => {
   if (svgElement) {
     link.download = "lukonica-scribble.svg";
     const base64doc = Buffer.from(
-      unescape(encodeURIComponent(svgElement.outerHTML))
+      decodeURIComponent(encodeURIComponent(svgElement.outerHTML))
     ).toString("base64");
     const e = new MouseEvent("click");
     link.href = "data:image/svg+xml;base64," + base64doc;

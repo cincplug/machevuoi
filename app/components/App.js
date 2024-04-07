@@ -237,7 +237,7 @@ const App = () => {
           clearPaths
         }}
       />
-      {/* <pre>{JSON.stringify(setup.scratchPoints, null, 4)}</pre> */}
+      {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
     </div>
   );
 };

@@ -2,11 +2,6 @@ import DEFAULT_SETUP from "../_setup.json";
 import scenarios from "../data/scenarios.json";
 
 const storageSetupItem = "pecelSetup";
-const storedSetupRaw =
-  typeof window !== "undefined"
-    ? sessionStorage.getItem(storageSetupItem)
-    : null;
-const storedSetup = storedSetupRaw ? JSON.parse(storedSetupRaw) : null;
 const initialSetup = {};
 
 export const getStoredSetup = () => {

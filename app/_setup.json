@@ -3,6 +3,7 @@
     "id": "theme",
     "title": "Theme",
     "description": "Colors and font",
+    "isOmittedInScenario": true,
     "value": "default",
     "type": "select",
     "options": ["default", "cognizant"]
@@ -164,6 +165,7 @@
     "description": "Index of the active scenario",
     "value": 0,
     "isHidden": true,
+    "isOmittedInScenario": true,
     "type": "range",
     "min": 0,
     "max": 255,
@@ -183,6 +185,7 @@
     "title": "Button pinch",
     "description": "Simulates click / hover by pinch on buttons",
     "isHidden": true,
+    "isStoringPrevented": true,
     "value": false,
     "type": "checkbox"
   },
@@ -275,7 +278,17 @@
     "title": "Wag delete 👆",
     "description": "Whether to delete everything by wagging",
     "isHandRelated": true,
+    "isOmittedInScenario": true,
     "value": false,
     "type": "checkbox"
+  },
+  {
+    "id": "customScenarios",
+    "title": "Custom scenarios",
+    "description": "Defines custom scenarios to be kept in storage",
+    "isHidden": true,
+    "isOmittedInScenario": true,
+    "value": {},
+    "type": "text"
   }
 ]

@@ -16,7 +16,6 @@
     "pathStroke": "beziers",
     "isAutoClosed": false,
     "isScratchCanvas": false,
-    "usesButtonPinch": false,
     "text": ""
   },
   "railway": {
@@ -34,8 +33,7 @@
     "pattern": "paths",
     "pathStroke": "lines",
     "isScratchCanvas": false,
-    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
-    "usesButtonPinch": false
+    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿"
   },
   "pinch-paint-svg-cloud": {
     "description": "Draw clouds with your pinched fingers",
@@ -54,8 +52,7 @@
     "pathStroke": "arcs",
     "text": "",
     "isAutoClosed": true,
-    "isScratchCanvas": false,
-    "usesButtonPinch": false
+    "isScratchCanvas": false
   },
 
   "zipper": {

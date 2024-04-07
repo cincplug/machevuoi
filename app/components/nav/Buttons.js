@@ -1,6 +1,29 @@
+import DEFAULT_SETUP from "../../_setup.json";
 import { saveImage } from "../../utils";
 
-const Buttons = ({ clearPaths }) => {
+const Buttons = ({ setup, handleInputChange, clearPaths }) => {
+  const saveSetup = () => {
+    const filteredSetup = Object.fromEntries(
+      Object.entries(setup).filter(([key]) => {
+        const entry = DEFAULT_SETUP.find((item) => item.id === key);
+        return entry && !entry.isOmittedInScenario && !entry.isStoringPrevented;
+      })
+    );
+    const customScenariosLength = Object.keys(setup.customScenarios).length;
+    const newCustomScenarioKey = customScenariosLength + 1;
+    const newCustomScenarios = {
+      ...setup.customScenarios,
+      [newCustomScenarioKey]: filteredSetup
+    };
+    handleInputChange({
+      target: {
+        id: "customScenarios",
+        value: newCustomScenarios,
+        type: "hidden"
+      }
+    });
+  };
+
   return (
     <>
       <button
@@ -11,6 +34,16 @@ const Buttons = ({ clearPaths }) => {
         title="Save image to your machine"
       >
         Save image
+      </button>
+
+      <button
+        className="control control--button"
+        onClick={() => {
+          saveSetup(setup);
+        }}
+        title="Save setup"
+      >
+        Save setup
       </button>
 
       <button
