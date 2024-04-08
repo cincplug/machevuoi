@@ -7,7 +7,6 @@ import { arraysHaveSameElements } from "../../utils";
 
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
-  const [isZoomed, setIsZoomed] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
   const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
@@ -85,26 +84,21 @@ function Scratch({ setup, handleInputChange }) {
     });
   };
 
-  const handleMagnifyClick = () => {
-    setIsZoomed(!isZoomed);
-  };
-
   const handleMouseMove = (event) => {
-    const svgRect = event.currentTarget.getBoundingClientRect();
-    const viewBoxWidth = event.currentTarget.viewBox.animVal.width;
-    const scaleFactor = svgRect.width / viewBoxWidth;
-    setEndPoint({
-      x: (event.clientX - svgRect.left - 10) / scaleFactor,
-      y: (event.clientY - svgRect.top - 10) / scaleFactor
-    });
+    const svg = event.currentTarget;
+    const point = svg.createSVGPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+    const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
+    setEndPoint({ x, y });
   };
 
   return (
     <div className={`scratch-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="-20 -20 500 540"
-        className={`scratch-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
+        viewBox="0 0 460 500"
+        className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
         <Curves
@@ -141,12 +135,6 @@ function Scratch({ setup, handleInputChange }) {
           {layer}
         </button>
       ))}
-      <button
-        onClick={handleMagnifyClick}
-        className="scratch-layer-button zoom"
-      >
-        ◲
-      </button>
     </div>
   );
 }

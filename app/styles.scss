@@ -507,14 +507,8 @@ label {
 .scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
-  background: url(../app/assets/img/hand-model.svg) no-repeat 7px 0;
-  background-size: contain;
-  &.zoomed {
-    transform: scale(2);
-    background-color: var(--color-skin-dark);
-    transform-origin: right bottom;
-    border: 0.5px solid var(--color-skin-mid-dark);
-  }
+  background: url(../app/assets/img/hand-model.svg) no-repeat -4px -10px;
+  background-size: 107%;
 }
 .scratch-layer {
   grid-column: span 12;
@@ -523,9 +517,6 @@ label {
 .scratch-layer-button {
   grid-column: span 3;
   border-radius: var(--radius);
-  &.zoom {
-    font-size: 1.2rem;
-  }
 }
 
 .scratch-dot {
