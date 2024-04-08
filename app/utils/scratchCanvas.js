@@ -1,7 +1,7 @@
 import { getAverageDistance } from "./index";
 
 const getLineWidth = ({ minimum, radius, tipDistance, index = 5 }) => {
-  return Math.max(minimum, (radius / tipDistance) * index);
+  return Math.max(minimum, (radius / tipDistance));
 };
 
 export const scratchCanvas = ({

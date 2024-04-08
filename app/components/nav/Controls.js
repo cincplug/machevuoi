@@ -3,6 +3,24 @@ const Controls = ({ controls, setup, handleInputChange }) =>
     const { id, type, min, max, step, title, description, options } = item;
     let value = setup[id];
     const checked = value === true;
+
+    const inputValue = type === "color" && !value ? "#000000" : value || "";
+
+    const inputProps = {
+      className: "control__input",
+      type,
+      id,
+      min,
+      max,
+      step,
+      value: inputValue,
+      onChange: handleInputChange,
+    };
+
+    if (type === "checkbox") {
+      inputProps.checked = checked;
+    }
+
     return (
       <div
         className={`control control--${type} control--${id}`}
@@ -24,13 +42,7 @@ const Controls = ({ controls, setup, handleInputChange }) =>
             ))}
           </select>
         ) : (
-          <input
-            className="control__input"
-            {...{ type, id, value, min, max, step, checked }}
-            onChange={(event) => {
-              handleInputChange(event);
-            }}
-          />
+          <input {...inputProps} />
         )}
         <label className="control__label" htmlFor={id}>
           <span className="text">{title}</span>
