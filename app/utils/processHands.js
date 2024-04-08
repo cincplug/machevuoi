@@ -76,6 +76,20 @@ export const processHands = ({
       end: squeezedPoints[2]
     };
   });
+
+  const arcs = scratchPoints.arcs.map((arc) => {
+    const squeezedPoints = squeezePoints({
+      points: arc.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return {
+      start: squeezedPoints[0],
+      control: squeezedPoints[1],
+      end: squeezedPoints[2]
+    };
+  });
+
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched =
     pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
@@ -120,7 +134,8 @@ export const processHands = ({
         pressedKey,
         dispersion,
         lines,
-        curves
+        curves,
+        arcs
       });
     } else {
       lastTips = undefined;

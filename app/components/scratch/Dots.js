@@ -1,8 +1,8 @@
 import React from "react";
-import HAND_POINTS from "../../data/defaultScratchPoints.json";
+import HP from "../../data/handPoints.json";
 
 function Dots({ selectedDots, handleDotClick }) {
-  return HAND_POINTS.map((point, index) => (
+  return HP.map((point, index) => (
     <circle
       key={index}
       cx={point.x}

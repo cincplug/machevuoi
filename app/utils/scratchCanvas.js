@@ -12,7 +12,8 @@ export const scratchCanvas = ({
   lastTips,
   dispersion,
   lines,
-  curves
+  curves,
+  arcs
 }) => {
   ctx.beginPath();
   if (lines.length > 0) {
@@ -34,6 +35,18 @@ export const scratchCanvas = ({
       ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
     });
   }
+  if (arcs.length > 0) {
+    arcs.forEach(({ start, control, end }) => {
+      const centerX = control.x;
+      const centerY = control.y;
+      const radius = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2)) / 2;
+      const startAngle = Math.atan2(start.y - centerY, start.x - centerX);
+      const endAngle = Math.atan2(end.y - centerY, end.x - centerX);
+  
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    });
+  }  
   ctx.stroke();
   if (tips) {
     const tipValues = Object.values(tips);

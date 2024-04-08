@@ -208,7 +208,8 @@
     "value": {
       "dots": [4, 8, 12, 16, 20],
       "lines": [],
-      "curves": []
+      "curves": [],
+      "arcs": []
     },
     "type": "text"
   },

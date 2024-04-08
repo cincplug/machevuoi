@@ -1,31 +1,31 @@
-import HAND_POINTS from "../../data/defaultScratchPoints.json";
+import HP from "../../data/handPoints.json";
 import { arraysHaveSameElements } from "../../utils";
 
-const points = HAND_POINTS.map((_, index) => index);
+const points = HP.map((_, index) => index);
 
-const Lines = ({ selectedLines, handleConnector }) => {
+const Lines = ({ selectedLines, handlePathClick }) => {
   return (
-    <g className={`scratch-layer lines`}>
-      {points.flatMap((start, startIndex, arr) =>
-        arr.slice(startIndex + 1).map((end, endIndex) => {
+    <g className={`scratch-layer paths`}>
+      {points.flatMap((startPoint, startIndex, arr) =>
+        arr.slice(startIndex + 1).map((endPoint, endIndex) => {
           const isSelected = selectedLines.some((line) =>
-            arraysHaveSameElements(line, [start, end])
+            arraysHaveSameElements(line, [startPoint, endPoint])
           );
           return (
             isSelected && (
               <line
                 key={`${startIndex}-${endIndex}`}
-                x1={HAND_POINTS[start].x}
-                y1={HAND_POINTS[start].y}
-                x2={HAND_POINTS[end].x}
-                y2={HAND_POINTS[end].y}
-                className={`scratch-line ${
+                x1={HP[startPoint].x}
+                y1={HP[startPoint].y}
+                x2={HP[endPoint].x}
+                y2={HP[endPoint].y}
+                className={`scratch-path ${
                   isSelected ? "selected" : "not-selected"
                 }`}
                 onClick={() =>
-                  handleConnector({
-                    start,
-                    end,
+                  handlePathClick({
+                    start: startPoint,
+                    end: endPoint,
                     type: "lines"
                   })
                 }

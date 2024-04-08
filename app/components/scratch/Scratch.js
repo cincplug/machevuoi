@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dots from "./Dots";
 import Lines from "./Lines";
+import Arcs from "./Arcs";
 import Curves from "./Curves";
 import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
@@ -18,10 +19,13 @@ function Scratch({ setup, handleInputChange }) {
     } else {
       if (!startPoint) {
         setStartPoint(index);
-      } else if (activeLayer === "curves" && controlPoint === null) {
+      } else if (
+        (activeLayer === "curves" || activeLayer === "arcs") &&
+        controlPoint === null
+      ) {
         setControlPoint(index);
       } else {
-        handleConnector({
+        handlePathClick({
           start: startPoint,
           control: controlPoint,
           end: index,
@@ -50,30 +54,30 @@ function Scratch({ setup, handleInputChange }) {
     });
   };
 
-  const handleConnector = ({ start, control, end, type }) => {
+  const handlePathClick = ({ start, control, end, type }) => {
     const newScratchPoints = { ...scratchPoints };
-    const connector =
+    const path =
       type === "lines"
         ? [start, end].sort((a, b) => a - b)
         : [start, control, end];
-    const existingConnectorIndex = newScratchPoints[type].findIndex(
-      (existingConnector) =>
-        arraysHaveSameElements(existingConnector, connector)
+    const existingPathIndex = newScratchPoints[type].findIndex(
+      (existingPath) =>
+        arraysHaveSameElements(existingPath, path)
     );
 
-    const addNewConnector = () => {
-      newScratchPoints[type] = [...newScratchPoints[type], connector];
+    const addNewPath = () => {
+      newScratchPoints[type] = [...newScratchPoints[type], path];
     };
 
-    const removeConnector = () => {
+    const removePath = () => {
       newScratchPoints[type] = [
-        ...newScratchPoints[type].slice(0, existingConnectorIndex),
-        ...newScratchPoints[type].slice(existingConnectorIndex + 1)
+        ...newScratchPoints[type].slice(0, existingPathIndex),
+        ...newScratchPoints[type].slice(existingPathIndex + 1)
       ];
     };
 
-    const isNewConnector = existingConnectorIndex === -1;
-    isNewConnector ? addNewConnector() : removeConnector();
+    const isNewPath = existingPathIndex === -1;
+    isNewPath ? addNewPath() : removePath();
 
     handleInputChange({
       target: {
@@ -94,16 +98,30 @@ function Scratch({ setup, handleInputChange }) {
   };
 
   return (
-    <div className={`scratch-wrap active-${activeLayer}`}>
+    <div
+      className={`scratch-wrap active-${
+        activeLayer === "dots" ? "dots" : "paths"
+      }`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 460 500"
         className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
+        <Arcs
+          {...{
+            handlePathClick,
+            startPoint,
+            endPoint,
+            controlPoint,
+            setControlPoint
+          }}
+          selectedArcs={scratchPoints.arcs}
+        />
         <Curves
           {...{
-            handleConnector,
+            handlePathClick,
             startPoint,
             endPoint,
             controlPoint,
@@ -112,19 +130,20 @@ function Scratch({ setup, handleInputChange }) {
           selectedCurves={scratchPoints.curves}
         />
         <Lines
-          {...{ handleConnector, startPoint, endPoint }}
+          {...{ handlePathClick, startPoint, endPoint }}
           selectedLines={scratchPoints.lines}
         />
-
+        {startPoint && (
+          <Preview {...{ startPoint, endPoint, controlPoint, activeLayer }} />
+        )}
         <g className={`scratch-layer dots`}>
           <Dots
             selectedDots={scratchPoints.dots}
             handleDotClick={handleDotClick}
           />
         </g>
-        {startPoint && <Preview {...{ startPoint, endPoint, controlPoint }} />}
       </svg>
-      {["dots", "lines", "curves"].map((layer, index) => (
+      {["dots", "lines", "curves", "arcs"].map((layer, index) => (
         <button
           className={`scratch-layer-button ${
             layer === activeLayer ? "active" : ""

@@ -528,7 +528,7 @@ label {
   &.selected {
     fill: var(--color-skin-light);
   }
-  .active-lines &, .active-curves & {
+  .active-paths & {
     fill: var(--color-skin-dark);
     stroke-width: 2px;
     stroke: var(--color-skin-mid);
@@ -538,17 +538,16 @@ label {
   }
 }
 
-.scratch-preview-connector {
+.scratch-preview-path {
   stroke: var(--color-blue-light);
   stroke-width: 2px;
   fill: none;
-  &.control-line {
+  &.control-path {
     stroke-dasharray: 5;
   }
 }
 
-.scratch-line,
-.scratch-curve {
+.scratch-path {
   fill: none;
   stroke-width: 0.3rem;
   &.not-selected {
@@ -557,7 +556,7 @@ label {
   &.selected {
     stroke: var(--color-skin-light);
   }
-  .no-start-point &:hover {
+  &:hover {
     stroke: var(--color-skin-mid);
   }
 }

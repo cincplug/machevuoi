@@ -2,7 +2,7 @@ import HP from "../../data/handPoints.json";
 
 const points = HP.map((_, index) => index);
 
-const Curves = ({ selectedCurves, handlePathClick }) => {
+const Arcs = ({ selectedArcs, handlePathClick }) => {
   return (
     <g className={`scratch-layer paths`}>
       {points.flatMap((startPoint, _startIndex, arr) =>
@@ -15,15 +15,19 @@ const Curves = ({ selectedCurves, handlePathClick }) => {
             ) {
               return null;
             }
-            const curve = [startPoint, controlPoint, endPoint];
-            const isSelected = selectedCurves.some((existingCurve) =>
-              existingCurve.every((point, index) => point === curve[index])
+            const arc = [startPoint, controlPoint, endPoint];
+            const isSelected = selectedArcs.some((existingArc) =>
+              existingArc.every((point, index) => point === arc[index])
             );
             return (
               isSelected && (
                 <path
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} Q ${HP[controlPoint].x} ${HP[controlPoint].y} ${HP[endPoint].x} ${HP[endPoint].y}`}
+                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} A ${Math.abs(
+                    HP[controlPoint].x - HP[startPoint].x
+                  )} ${Math.abs(HP[controlPoint].y - HP[startPoint].y)} 0 0 0 ${
+                    HP[endPoint].x
+                  } ${HP[endPoint].y}`}
                   className={`scratch-path ${
                     isSelected ? "selected" : "not-selected"
                   }`}
@@ -32,7 +36,7 @@ const Curves = ({ selectedCurves, handlePathClick }) => {
                       start: startPoint,
                       control: controlPoint,
                       end: endPoint,
-                      type: "curves"
+                      type: "arcs"
                     })
                   }
                 />
@@ -45,4 +49,4 @@ const Curves = ({ selectedCurves, handlePathClick }) => {
   );
 };
 
-export default Curves;
+export default Arcs;
