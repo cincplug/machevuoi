@@ -173,9 +173,18 @@
     "isScratchCanvas": true,
     "pinchThreshold": 100,
     "scratchPoints": {
-      "dots": [12, 8, 4, 20, 16, 14, 18, 10, 6, 3, 0],
-      "lines": [],
-      "curves": []
+      "dots": [],
+      "lines": [
+        [5, 5],
+        [5, 6],
+        [6, 10],
+        [9, 10],
+        [5, 9],
+        [10, 14],
+        [13, 14],
+        [9, 13]
+      ],
+      "curves": [[7, 12, 15]]
     },
     "dispersion": 1,
     "dash": 0

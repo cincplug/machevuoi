@@ -54,9 +54,6 @@ function ScratchCurves({
                   className={`scratch-curve ${
                     isSelected ? "selected" : "not-selected"
                   }`}
-                  // onMouseOver={() =>
-                  //   handleConnector({ start, control, end, type: "curves" })
-                  // }
                   onClick={() =>
                     handleConnector({
                       start,
@@ -90,7 +87,6 @@ function ScratchCurves({
             d={`M ${HAND_POINTS[startPoint].x} ${HAND_POINTS[startPoint].y} L ${HAND_POINTS[controlPoint].x} ${HAND_POINTS[controlPoint].y} L ${endPoint.x} ${endPoint.y}`}
             className="scratch-preview-connector control-line"
           />
-
           <path
             d={`M ${HAND_POINTS[startPoint].x} ${HAND_POINTS[startPoint].y} Q ${HAND_POINTS[controlPoint].x} ${HAND_POINTS[controlPoint].y} ${endPoint.x} ${endPoint.y}`}
             className="scratch-preview-connector"

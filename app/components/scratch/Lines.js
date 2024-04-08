@@ -42,13 +42,6 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
               className={`scratch-line ${
                 isSelected ? "selected" : "not-selected"
               }`}
-              // onMouseOver={() =>
-              //   handleConnector({
-              //     start,
-              //     end,
-              //     type: "lines"
-              //   })
-              // }
               onClick={() =>
                 handleConnector({
                   start,
@@ -66,7 +59,7 @@ function ScratchLines({ selectedLines, handleConnector, endPoint }) {
           key={index}
           cx={point.x}
           cy={point.y}
-          r={10}
+          r={12}
           onClick={() => handleDotClick(index)}
           className="scratch-dot"
         >
