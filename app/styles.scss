@@ -536,6 +536,14 @@ label {
   &.selected {
     fill: var(--color-skin-light);
   }
+  .active-lines &, .active-curves & {
+    fill: var(--color-skin-dark);
+    stroke-width: 2px;
+    stroke: var(--color-skin-mid);
+    &:hover {
+      stroke: var(--color-skin-mid-light);
+    }
+  }
 }
 
 .scratch-preview-connector {

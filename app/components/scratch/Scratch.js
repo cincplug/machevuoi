@@ -2,18 +2,39 @@ import React, { useState } from "react";
 import Dots from "./Dots";
 import Lines from "./Lines";
 import Curves from "./Curves";
+import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
 
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [isZoomed, setIsZoomed] = useState(false);
+  const [startPoint, setStartPoint] = useState(null);
   const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
-  const { scratchPoints, pressedKey } = setup;
-  const isAdding = pressedKey === "Shift";
-  const isRemoving = pressedKey === "Alt";
+  const { scratchPoints } = setup;
 
-  const handlePointClick = (index) => {
+  const handleDotClick = (index) => {
+    if (activeLayer === "dots") {
+      toggleDot(index);
+    } else {
+      if (!startPoint) {
+        setStartPoint(index);
+      } else if (activeLayer === "curves" && controlPoint === null) {
+        setControlPoint(index);
+      } else {
+        handleConnector({
+          start: startPoint,
+          control: controlPoint,
+          end: index,
+          type: activeLayer
+        });
+        setStartPoint(null);
+        setControlPoint(null);
+      }
+    }
+  };
+
+  const toggleDot = (index) => {
     const newScratchPoints = { ...scratchPoints };
     newScratchPoints[activeLayer] = newScratchPoints[activeLayer].includes(
       index
@@ -30,7 +51,7 @@ function Scratch({ setup, handleInputChange }) {
     });
   };
 
-  const handleConnector = ({ start, control, end, type, isToggling }) => {
+  const handleConnector = ({ start, control, end, type }) => {
     const newScratchPoints = { ...scratchPoints };
     const connector =
       type === "lines"
@@ -53,14 +74,7 @@ function Scratch({ setup, handleInputChange }) {
     };
 
     const isNewConnector = existingConnectorIndex === -1;
-
-    if (isAdding && isNewConnector) {
-      addNewConnector();
-    } else if (isRemoving && !isNewConnector) {
-      removeConnector();
-    } else if (isToggling) {
-      isNewConnector ? addNewConnector() : removeConnector();
-    }
+    isNewConnector ? addNewConnector() : removeConnector();
 
     handleInputChange({
       target: {
@@ -86,31 +100,35 @@ function Scratch({ setup, handleInputChange }) {
   };
 
   return (
-    <div className={`scratch-wrap active-${activeLayer} ${isRemoving ? "is-removing" : "not-removing"}`}>
+    <div className={`scratch-wrap active-${activeLayer}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 -20 500 540"
         className={`scratch-svg ${isZoomed ? "zoomed" : "not-zoomed"}`}
         onMouseMove={handleMouseMove}
       >
-        {activeLayer === "dots" && (
-          <Dots
-          selectedDots={scratchPoints.dots}
-          handleDotClick={handlePointClick}
+        <Curves
+          {...{
+            handleConnector,
+            startPoint,
+            endPoint,
+            controlPoint,
+            setControlPoint
+          }}
+          selectedCurves={scratchPoints.curves}
         />
-        )}
-        {activeLayer === "lines" && (
-          <Lines
-            {...{ handleConnector, endPoint }}
-            selectedLines={scratchPoints.lines}
+        <Lines
+          {...{ handleConnector, startPoint, endPoint }}
+          selectedLines={scratchPoints.lines}
+        />
+
+        <g className={`scratch-layer dots`}>
+          <Dots
+            selectedDots={scratchPoints.dots}
+            handleDotClick={handleDotClick}
           />
-        )}
-        {activeLayer === "curves" && (
-          <Curves
-            {...{ handleConnector, endPoint, controlPoint, setControlPoint }}
-            selectedCurves={scratchPoints.curves}
-          />
-        )}
+        </g>
+        {startPoint && <Preview {...{ startPoint, endPoint, controlPoint }} />}
       </svg>
       {["dots", "lines", "curves"].map((layer, index) => (
         <button
