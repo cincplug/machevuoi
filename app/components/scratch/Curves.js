@@ -2,13 +2,7 @@ import HAND_POINTS from "../../data/defaultScratchPoints.json";
 
 const points = HAND_POINTS.map((_, index) => index);
 
-const Curves = ({
-  selectedCurves,
-  handleConnector,
-  startPoint,
-  endPoint,
-  controlPoint
-}) => {
+const Curves = ({ selectedCurves, handleConnector }) => {
   return (
     <g className={`scratch-layer curves`}>
       {points.flatMap((start, _startIndex, arr) =>

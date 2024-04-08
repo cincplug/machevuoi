@@ -3,7 +3,7 @@ import { arraysHaveSameElements } from "../../utils";
 
 const points = HAND_POINTS.map((_, index) => index);
 
-const Lines = ({ selectedLines, handleConnector, startPoint, endPoint }) => {
+const Lines = ({ selectedLines, handleConnector }) => {
   return (
     <g className={`scratch-layer lines`}>
       {points.flatMap((start, startIndex, arr) =>
