@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HAND_POINTS from "../../data/defaultScratchPoints.json";
+import Dots from "./Dots";
 import Lines from "./Lines";
 import Curves from "./Curves";
 import { arraysHaveSameElements } from "../../utils";
@@ -94,24 +94,10 @@ function Scratch({ setup, handleInputChange }) {
         onMouseMove={handleMouseMove}
       >
         {activeLayer === "dots" && (
-          <g className={`scratch-layer dots`}>
-            {HAND_POINTS.map((point, index) => (
-              <circle
-                key={index}
-                cx={point.x}
-                cy={point.y}
-                r={12}
-                onClick={() => handlePointClick(index)}
-                className={`scratch-dot ${
-                  scratchPoints.dots.includes(index)
-                    ? "selected"
-                    : "not-selected"
-                }`}
-              >
-                {index}
-              </circle>
-            ))}
-          </g>
+          <Dots
+          selectedDots={scratchPoints.dots}
+          handleDotClick={handlePointClick}
+        />
         )}
         {activeLayer === "lines" && (
           <Lines
