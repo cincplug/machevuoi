@@ -1,3 +1,5 @@
+import { processHands } from "./processHands";
+
 export const runDetector = async ({
   video,
   setupRef,
@@ -15,9 +17,15 @@ export const runDetector = async ({
     "@tensorflow-models/hand-pose-detection"
   );
   const handsModel = handPoseDetectionModule.SupportedModels.MediaPipeHands;
+  
+  // const handsDetectorConfig = {
+  //   runtime: "tfjs",
+  //   modelType: "lite",
+  // };
+
   const handsDetectorConfig = {
-    runtime: "tfjs",
-    modelType: "lite",
+    runtime: 'mediapipe',
+    solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands'
   };
 
   try {
