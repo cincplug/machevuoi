@@ -1,7 +1,7 @@
 import { getAverageDistance } from "./index";
 
 const getLineWidth = ({ minimum, radius, tipDistance, index = 5 }) => {
-  return Math.max(minimum, (radius / tipDistance));
+  return Math.max(minimum, radius / tipDistance);
 };
 
 export const scratchCanvas = ({
@@ -37,16 +37,14 @@ export const scratchCanvas = ({
   }
   if (arcs.length > 0) {
     arcs.forEach(({ start, control, end }) => {
-      const centerX = control.x;
-      const centerY = control.y;
-      const radius = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2)) / 2;
-      const startAngle = Math.atan2(start.y - centerY, start.x - centerX);
-      const endAngle = Math.atan2(end.y - centerY, end.x - centerX);
-  
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-    });
-  }  
+      const cp1x = start.x + (control.x - start.x) / 2;
+      const cp1y = start.y + (control.y - start.y) / 2;
+      const cp2x = control.x + (end.x - control.x) / 2;
+      const cp2y = control.y + (end.y - control.y) / 2;
+      ctx.moveTo(start.x, start.y);    
+      ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, end.x, end.y);
+    });    
+  }
   ctx.stroke();
   if (tips) {
     const tipValues = Object.values(tips);
@@ -60,19 +58,6 @@ export const scratchCanvas = ({
         dispersion
       });
       const prevIndex = tipIndex === 0 ? tipValues.length - 1 : tipIndex - 1;
-      // ctx.rect(
-      //   tipValues[tipIndex].x,
-      //   tipValues[tipIndex].y,
-      //   tipValues[prevIndex].x - tipValues[tipIndex].x,
-      //   tipValues[prevIndex].y - tipValues[tipIndex].y
-      // );
-      // ctx.arc(
-      //   tipValues[tipIndex].x,
-      //   tipValues[tipIndex].y,
-      //   tipDistance / radius,
-      //   tipValues[tipIndex].y,
-      //   Math.abs(tips[tipIndex].x - tipValues[prevIndex].x)
-      // );
       ctx.stroke();
     });
 
