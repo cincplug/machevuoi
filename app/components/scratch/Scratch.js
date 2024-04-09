@@ -3,6 +3,7 @@ import Dots from "./Dots";
 import Lines from "./Lines";
 import Arcs from "./Arcs";
 import Curves from "./Curves";
+import Ovals from "./Ovals";
 import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
 
@@ -20,7 +21,7 @@ function Scratch({ setup, handleInputChange }) {
       if (!startPoint) {
         setStartPoint(index);
       } else if (
-        (activeLayer === "curves" || activeLayer === "arcs") &&
+        ["curves", "arcs", "ovals"].includes(activeLayer) &&
         controlPoint === null
       ) {
         setControlPoint(index);
@@ -60,9 +61,8 @@ function Scratch({ setup, handleInputChange }) {
       type === "lines"
         ? [start, end].sort((a, b) => a - b)
         : [start, control, end];
-    const existingPathIndex = newScratchPoints[type].findIndex(
-      (existingPath) =>
-        arraysHaveSameElements(existingPath, path)
+    const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
+      arraysHaveSameElements(existingPath, path)
     );
 
     const addNewPath = () => {
@@ -109,15 +109,9 @@ function Scratch({ setup, handleInputChange }) {
         className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
-        <Arcs
-          {...{
-            handlePathClick,
-            startPoint,
-            endPoint,
-            controlPoint,
-            setControlPoint
-          }}
-          selectedArcs={scratchPoints.arcs}
+        <Lines
+          {...{ handlePathClick, startPoint, endPoint }}
+          selectedLines={scratchPoints.lines}
         />
         <Curves
           {...{
@@ -129,9 +123,25 @@ function Scratch({ setup, handleInputChange }) {
           }}
           selectedCurves={scratchPoints.curves}
         />
-        <Lines
-          {...{ handlePathClick, startPoint, endPoint }}
-          selectedLines={scratchPoints.lines}
+        <Arcs
+          {...{
+            handlePathClick,
+            startPoint,
+            endPoint,
+            controlPoint,
+            setControlPoint
+          }}
+          selectedArcs={scratchPoints.arcs}
+        />
+        <Ovals
+          {...{
+            handlePathClick,
+            startPoint,
+            endPoint,
+            controlPoint,
+            setControlPoint
+          }}
+          selectedOvals={scratchPoints.ovals}
         />
         {startPoint && (
           <Preview {...{ startPoint, endPoint, controlPoint, activeLayer }} />
@@ -143,7 +153,7 @@ function Scratch({ setup, handleInputChange }) {
           />
         </g>
       </svg>
-      {["dots", "lines", "curves", "arcs"].map((layer, index) => (
+      {["dots", "lines", "curves", "arcs", "ovals"].map((layer, index) => (
         <button
           className={`scratch-layer-button ${
             layer === activeLayer ? "active" : ""

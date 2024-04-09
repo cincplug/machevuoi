@@ -209,7 +209,8 @@
       "dots": [4, 8, 12, 16, 20],
       "lines": [],
       "curves": [],
-      "arcs": []
+      "arcs": [],
+      "ovals": []
     },
     "type": "text"
   },

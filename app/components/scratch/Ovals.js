@@ -2,7 +2,7 @@ import HP from "../../data/handPoints.json";
 
 const points = HP.map((_, index) => index);
 
-const Arcs = ({ selectedArcs, handlePathClick }) => {
+const Ovals = ({ selectedOvals, handlePathClick }) => {
   return (
     <g className={`scratch-layer paths`}>
       {points.flatMap((startPoint, _startIndex, arr) =>
@@ -15,28 +15,34 @@ const Arcs = ({ selectedArcs, handlePathClick }) => {
             ) {
               return null;
             }
-            const arc = [startPoint, controlPoint, endPoint];
-            const isSelected = selectedArcs.some((existingArc) =>
-              existingArc.every((point, index) => point === arc[index])
+            const oval = [startPoint, controlPoint, endPoint];
+            const isSelected = selectedOvals.some((existingOval) =>
+              existingOval.every((point, index) => point === oval[index])
             );
-            const cp1x = HP[startPoint].x + (HP[controlPoint].x - HP[startPoint].x) / 2;
-            const cp1y = HP[startPoint].y + (HP[controlPoint].y - HP[startPoint].y) / 2;
-            const cp2x = HP[controlPoint].x + (HP[endPoint].x - HP[controlPoint].x) / 2;
-            const cp2y = HP[controlPoint].y + (HP[endPoint].y - HP[controlPoint].y) / 2;
+            const rx =
+              (Math.abs(HP[controlPoint].x - HP[startPoint].x) +
+                Math.abs(HP[endPoint].x - HP[startPoint].x)) /
+              2;
+            const ry =
+              (Math.abs(HP[controlPoint].y - HP[startPoint].y) +
+                Math.abs(HP[endPoint].y - HP[startPoint].y)) /
+              2;
+
             return (
               isSelected && (
-                <path
+                <ellipse
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${HP[endPoint].x} ${HP[endPoint].y}`}
-                  className={`scratch-path ${
-                    isSelected ? "selected" : "not-selected"
-                  }`}
+                  cx={HP[startPoint].x}
+                  cy={HP[startPoint].y}
+                  rx={rx}
+                  ry={ry}
+                  className={`scratch-path selected`}
                   onClick={() =>
                     handlePathClick({
                       start: startPoint,
                       control: controlPoint,
                       end: endPoint,
-                      type: "arcs"
+                      type: "ovals"
                     })
                   }
                 />
@@ -49,4 +55,4 @@ const Arcs = ({ selectedArcs, handlePathClick }) => {
   );
 };
 
-export default Arcs;
+export default Ovals;

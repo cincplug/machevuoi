@@ -155,7 +155,8 @@
       "dots": [4, 8, 12, 16, 20],
       "lines": [],
       "curves": [],
-      "arcs": []
+      "arcs": [],
+      "ovals": []
     },
     "dispersion": 1,
     "dash": 0
@@ -186,7 +187,8 @@
         [9, 13]
       ],
       "curves": [[7, 12, 15]],
-      "arcs": []
+      "arcs": [],
+      "ovals": []
     },
     "dispersion": 1,
     "dash": 0
@@ -208,7 +210,8 @@
       "dots": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
       "lines": [],
       "curves": [],
-      "arcs": []
+      "arcs": [],
+      "ovals": []
     },
     "dispersion": 20,
     "dash": 0
@@ -230,7 +233,8 @@
       "dots": [5, 17, 9, 13, 8, 12, 16, 20],
       "lines": [],
       "curves": [],
-      "arcs": []
+      "arcs": [],
+      "ovals": []
     },
     "dispersion": 10,
     "dash": 6

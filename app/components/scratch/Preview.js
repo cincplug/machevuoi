@@ -15,16 +15,41 @@ const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
               className="scratch-preview-path"
             />
           )}
-          {activeLayer === "arcs" && (
-            <path
-              d={`M ${HP[startPoint].x} ${HP[startPoint].y} A ${Math.abs(
-                HP[controlPoint].x - HP[startPoint].x
-              )} ${Math.abs(HP[controlPoint].y - HP[startPoint].y)} 0 0 0 ${
-                endPoint.x
-              } ${endPoint.y}`}
-              className="scratch-preview-path"
-            />
-          )}
+          {activeLayer === "arcs" &&
+            (() => {
+              const cp1x = HP[startPoint].x + (HP[controlPoint].x - HP[startPoint].x) / 2;
+              const cp1y = HP[startPoint].y + (HP[controlPoint].y - HP[startPoint].y) / 2;
+              const cp2x = HP[controlPoint].x + (endPoint.x - HP[controlPoint].x) / 2;
+              const cp2y = HP[controlPoint].y + (endPoint.y - HP[controlPoint].y) / 2;
+              return (
+                <path
+                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${endPoint.x} ${endPoint.y}`}
+                  className="scratch-preview-path"
+                />
+              );
+            })()}
+          {activeLayer === "ovals" &&
+            (() => {
+              const rx =
+                (Math.abs(HP[controlPoint].x - HP[startPoint].x) +
+                  Math.abs(endPoint.x - HP[startPoint].x)) /
+                2;
+              const ry =
+                (Math.abs(HP[controlPoint].y - HP[startPoint].y) +
+                  Math.abs(endPoint.y - HP[startPoint].y)) /
+                2;
+
+              return (
+                <ellipse
+                  key={`${startPoint}-${controlPoint}-${endPoint}`}
+                  cx={HP[startPoint].x}
+                  cy={HP[startPoint].y}
+                  rx={rx}
+                  ry={ry}
+                  className="scratch-preview-path"
+                />
+              );
+            })()}
         </>
       ) : (
         <line
