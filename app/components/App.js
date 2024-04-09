@@ -6,6 +6,7 @@ import { getStoredSetup, storeSetup } from "../utils/storeSetup";
 import Webcam from "react-webcam";
 import Menu from "./nav/Menu";
 import Splash from "./nav/Splash";
+import Message from "./nav/Message";
 import Drawing from "./Drawing";
 // import Cursor from "./Cursor";
 import "../styles.scss";
@@ -25,6 +26,7 @@ const App = () => {
     width: 0,
     height: 0
   });
+  const [message, setMessage] = useState("");
 
   const setupRef = useRef(setup);
   const webcamRef = useRef(null);
@@ -122,7 +124,8 @@ const App = () => {
         setScribble,
         setScribbleNewArea,
         dctx,
-        pctx
+        pctx,
+        setMessage
       }).then((stopDetectorCallback) => {
         setStopDetector(() => stopDetectorCallback);
       });
@@ -237,6 +240,7 @@ const App = () => {
           clearPaths
         }}
       />
+      {message && <Message {...{ message }} />}
       {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
     </div>
   );
