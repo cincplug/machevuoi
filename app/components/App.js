@@ -240,7 +240,7 @@ const App = () => {
           clearPaths
         }}
       />
-      {message && <Message {...{ message }} />}
+      {message && <Message {...{ message, setMessage }} />}
       {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
     </div>
   );
