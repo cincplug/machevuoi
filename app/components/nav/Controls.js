@@ -4,7 +4,8 @@ const Controls = ({ controls, setup, handleInputChange }) =>
     let value = setup[id];
     const checked = value === true;
 
-    const inputValue = type === "color" && !value ? "#000000" : value || "";
+    const defaultValue =
+      type === "color" ? "#000000" : type === "range" ? 0 : "";
 
     const inputProps = {
       className: "control__input",
@@ -13,8 +14,8 @@ const Controls = ({ controls, setup, handleInputChange }) =>
       min,
       max,
       step,
-      value: inputValue,
-      onChange: handleInputChange,
+      value: value || defaultValue,
+      onChange: handleInputChange
     };
 
     if (type === "checkbox") {
