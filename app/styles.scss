@@ -539,26 +539,20 @@ label {
   }
 }
 
-.scratch-preview-path {
-  stroke: var(--color-blue-light);
-  stroke-width: 2px;
-  fill: none;
-  &.control-path {
-    stroke-dasharray: 5;
-  }
-}
-
 .scratch-path {
   fill: none;
   stroke-width: 0.3rem;
-  &.not-selected {
-    stroke: transparent;
-  }
-  &.selected {
-    stroke: var(--color-skin-light);
-  }
+  stroke: var(--color-skin-light);
   &:hover {
     stroke: var(--color-skin-mid);
+  }
+  &.preview {
+    fill: none;
+    stroke: var(--color-skin-light);
+  }
+  &.control-path {
+    stroke-width: 2px;
+    stroke-dasharray: 5;
   }
 }
 

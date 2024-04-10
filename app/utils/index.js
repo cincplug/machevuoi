@@ -1,4 +1,4 @@
-import { getStoredSetup, storeSetup } from "./storeSetup";
+import HP from "../data/handPoints.json";
 
 export const getDistance = (point1, point2) => {
   const dx = point1.x - point2.x;
@@ -136,5 +136,21 @@ export const clearCanvases = () => {
   canvasElements.forEach((canvas) => {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+};
+
+export const getShape = (selectedShapes, handlePathClick, shapeType) => {
+  return selectedShapes.map((shape) => {
+    return {
+      shape,
+      isSelected: true,
+      onClick: () =>
+        handlePathClick({
+          start: shape[0],
+          control: shape[1],
+          end: shape[2],
+          type: shapeType
+        })
+    };
   });
 };

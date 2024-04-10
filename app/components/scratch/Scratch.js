@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Dots from "./Dots";
-import Lines from "./Lines";
-import Arcs from "./Arcs";
-import Curves from "./Curves";
-import Ovals from "./Ovals";
+import Arc from "./Arc";
+import Line from "./Line";
+import Curve from "./Curve";
+import Oval from "./Oval";
 import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
+import { getShape } from "../../utils";
 
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
@@ -66,10 +67,6 @@ function Scratch({ setup, handleInputChange }) {
       arraysHaveSameElements(existingPath, path)
     );
 
-    const addNewPath = () => {
-      newScratchPoints[type] = [...newScratchPoints[type], path];
-    };
-
     const removePath = () => {
       newScratchPoints[type] = [
         ...newScratchPoints[type].slice(0, existingPathIndex),
@@ -77,8 +74,7 @@ function Scratch({ setup, handleInputChange }) {
       ];
     };
 
-    const isNewPath = existingPathIndex === -1;
-    isNewPath ? addNewPath() : removePath();
+    removePath();
 
     handleInputChange({
       target: {
@@ -98,6 +94,13 @@ function Scratch({ setup, handleInputChange }) {
     setMousePoint({ x, y });
   };
 
+  const shapeComponents = {
+    arcs: Arc,
+    lines: Line,
+    curves: Curve,
+    ovals: Oval
+  };
+
   return (
     <div
       className={`scratch-wrap active-${
@@ -110,42 +113,33 @@ function Scratch({ setup, handleInputChange }) {
         className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
-        <Lines
-          {...{ handlePathClick, startPoint, endPoint }}
-          selectedLines={scratchPoints.lines}
-        />
-        <Curves
-          {...{
+        {Object.keys(shapeComponents).map((shapeType) => {
+          const ShapeComponent = shapeComponents[shapeType];
+          const shapes = getShape(
+            scratchPoints[shapeType],
             handlePathClick,
-            startPoint,
-            endPoint,
-            controlPoint,
-            setControlPoint
-          }}
-          selectedCurves={scratchPoints.curves}
-        />
-        <Arcs
-          {...{
-            handlePathClick,
-            startPoint,
-            endPoint,
-            controlPoint,
-            setControlPoint
-          }}
-          selectedArcs={scratchPoints.arcs}
-        />
-        <Ovals
-          {...{
-            handlePathClick,
-            startPoint,
-            endPoint,
-            controlPoint,
-            setControlPoint
-          }}
-          selectedOvals={scratchPoints.ovals}
-        />
+            shapeType
+          );
+          return shapes.map(({ shape, isSelected, onClick }) => (
+            <ShapeComponent
+              key={`${shape.join("-")}`}
+              shape={shape}
+              isSelected={isSelected}
+              onClick={onClick}
+            />
+          ));
+        })}
         {startPoint && (
-          <Preview {...{ startPoint, endPoint, controlPoint, mousePoint, activeLayer }} />
+          <Preview
+            {...{
+              startPoint,
+              endPoint,
+              controlPoint,
+              activeLayer,
+              mousePoint,
+              shapeComponents
+            }}
+          />
         )}
         <g className={`scratch-layer dots`}>
           <Dots
