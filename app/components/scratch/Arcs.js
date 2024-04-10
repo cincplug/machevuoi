@@ -19,15 +19,21 @@ const Arcs = ({ selectedArcs, handlePathClick }) => {
             const isSelected = selectedArcs.some((existingArc) =>
               existingArc.every((point, index) => point === arc[index])
             );
-            const cp1x = HP[startPoint].x + (HP[controlPoint].x - HP[startPoint].x) / 2;
-            const cp1y = HP[startPoint].y + (HP[controlPoint].y - HP[startPoint].y) / 2;
-            const cp2x = HP[controlPoint].x + (HP[endPoint].x - HP[controlPoint].x) / 2;
-            const cp2y = HP[controlPoint].y + (HP[endPoint].y - HP[controlPoint].y) / 2;
+            const spx = HP[startPoint].x;
+            const spy = HP[startPoint].y;
+            const cpx = HP[controlPoint].x;
+            const cpy = HP[controlPoint].y;
+            const epx = HP[endPoint].x;
+            const epy = HP[endPoint].y;
+            const cp1x = spx + (cpx - spx) / 2;
+            const cp1y = spy + (cpy - spy) / 2;
+            const cp2x = cpx + (epx - cpx) / 2;
+            const cp2y = cpy + (epy - cpy) / 2;
             return (
               isSelected && (
                 <path
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${HP[endPoint].x} ${HP[endPoint].y}`}
+                  d={`M ${spx} ${spy} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${epx} ${epy}`}
                   className={`scratch-path ${
                     isSelected ? "selected" : "not-selected"
                   }`}

@@ -1,6 +1,6 @@
 import { getAverageDistance } from "./index";
 
-const getLineWidth = ({ minimum, radius, tipDistance, index = 5 }) => {
+const getLineWidth = ({ minimum, radius, tipDistance }) => {
   return Math.max(minimum, radius / tipDistance);
 };
 
@@ -48,12 +48,14 @@ export const scratchCanvas = ({
   }
   if (ovals.length > 0) {
     ovals.forEach(({ start, control, end }) => {
-      const rx = (Math.abs(control.x - start.x) + Math.abs(end.x - start.x)) / 2;
-      const ry = (Math.abs(control.y - start.y) + Math.abs(end.y - start.y)) / 2;
+      const rx =
+        (Math.abs(control.x - start.x) + Math.abs(end.x - start.x)) / 2;
+      const ry =
+        (Math.abs(control.y - start.y) + Math.abs(end.y - start.y)) / 2;
       ctx.moveTo(start.x + rx, start.y);
       ctx.ellipse(start.x, start.y, rx, ry, 0, 0, 2 * Math.PI);
     });
-  }  
+  }
 
   ctx.stroke();
   if (tips) {

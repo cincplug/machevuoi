@@ -19,11 +19,17 @@ const Curves = ({ selectedCurves, handlePathClick }) => {
             const isSelected = selectedCurves.some((existingCurve) =>
               existingCurve.every((point, index) => point === curve[index])
             );
+            const spx = HP[startPoint].x;
+            const spy = HP[startPoint].y;
+            const cpx = HP[controlPoint].x;
+            const cpy = HP[controlPoint].y;
+            const epx = HP[endPoint].x;
+            const epy = HP[endPoint].y;
             return (
               isSelected && (
                 <path
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  d={`M ${HP[startPoint].x} ${HP[startPoint].y} Q ${HP[controlPoint].x} ${HP[controlPoint].y} ${HP[endPoint].x} ${HP[endPoint].y}`}
+                  d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
                   className={`scratch-path ${
                     isSelected ? "selected" : "not-selected"
                   }`}

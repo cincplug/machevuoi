@@ -11,14 +11,18 @@ const Lines = ({ selectedLines, handlePathClick }) => {
           const isSelected = selectedLines.some((line) =>
             arraysHaveSameElements(line, [startPoint, endPoint])
           );
+          const spx = HP[startPoint].x;
+          const spy = HP[startPoint].y;
+          const epx = HP[endPoint].x;
+          const epy = HP[endPoint].y;
           return (
             isSelected && (
               <line
                 key={`${startIndex}-${endIndex}`}
-                x1={HP[startPoint].x}
-                y1={HP[startPoint].y}
-                x2={HP[endPoint].x}
-                y2={HP[endPoint].y}
+                x1={spx}
+                y1={spy}
+                x2={epx}
+                y2={epy}
                 className={`scratch-path ${
                   isSelected ? "selected" : "not-selected"
                 }`}

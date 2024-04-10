@@ -19,21 +19,21 @@ const Ovals = ({ selectedOvals, handlePathClick }) => {
             const isSelected = selectedOvals.some((existingOval) =>
               existingOval.every((point, index) => point === oval[index])
             );
-            const rx =
-              (Math.abs(HP[controlPoint].x - HP[startPoint].x) +
-                Math.abs(HP[endPoint].x - HP[startPoint].x)) /
-              2;
-            const ry =
-              (Math.abs(HP[controlPoint].y - HP[startPoint].y) +
-                Math.abs(HP[endPoint].y - HP[startPoint].y)) /
-              2;
+            const spx = HP[startPoint].x;
+            const spy = HP[startPoint].y;
+            const cpx = HP[controlPoint].x;
+            const cpy = HP[controlPoint].y;
+            const epx = HP[endPoint].x;
+            const epy = HP[endPoint].y;
+            const rx = (Math.abs(cpx - spx) + Math.abs(epx - spx)) / 2;
+            const ry = (Math.abs(cpy - spy) + Math.abs(epy - spy)) / 2;
 
             return (
               isSelected && (
                 <ellipse
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  cx={HP[startPoint].x}
-                  cy={HP[startPoint].y}
+                  cx={spx}
+                  cy={spy}
                   rx={rx}
                   ry={ry}
                   className={`scratch-path selected`}
