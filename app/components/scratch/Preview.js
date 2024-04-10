@@ -32,24 +32,29 @@ const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
       )}
       {activeLayer === "arcs" &&
         (() => {
-          const cp1x = spx + (cpx - spx) / 2;
-          const cp1y = spy + (cpy - spy) / 2;
-          const cp2x = cpx + (epx - cpx) / 2;
-          const cp2y = cpy + (epy - cpy) / 2;
+          const midX = (spx + epx) / 2;
+          const midY = (spy + epy) / 2;
+          const slope = -(spx - epx) / (spy - epy);
+          const distance = Math.sqrt((spx - epx) ** 2 + (spy - epy) ** 2) / 2;
+          const cpx = midX + distance / Math.sqrt(1 + slope ** 2);
+          const cpy = midY + slope * (cpx - midX);
           return (
             <path
-              d={`M ${spx} ${spy} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${epx} ${epy}`}
+              d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
               className="scratch-preview-path"
             />
           );
         })()}
       {activeLayer === "ovals" &&
         (() => {
-          const distControl = Math.sqrt((cpx - spx)**2 + (cpy - spy)**2);
-          const distEnd = Math.sqrt((epx - spx)**2 + (epy - spy)**2);
+          const distControl = Math.sqrt((cpx - spx) ** 2 + (cpy - spy) ** 2);
+          const distEnd = Math.sqrt((epx - spx) ** 2 + (epy - spy) ** 2);
           const rx = Math.max(distControl, distEnd);
           const ry = Math.min(distControl, distEnd);
-          const rotation = (distControl > distEnd) ? Math.atan2(cpy - spy, cpx - spx) : Math.atan2(epy - spy, epx - spx);
+          const rotation =
+            distControl > distEnd
+              ? Math.atan2(cpy - spy, cpx - spx)
+              : Math.atan2(epy - spy, epx - spx);
           const rotationDeg = rotation * (180 / Math.PI);
           return (
             <ellipse

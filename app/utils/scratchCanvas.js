@@ -37,15 +37,22 @@ export const scratchCanvas = ({
     });
   }
   if (arcs.length > 0) {
-    arcs.forEach(({ start, control, end }) => {
-      const cp1x = start.x + (control.x - start.x) / 2;
-      const cp1y = start.y + (control.y - start.y) / 2;
-      const cp2x = control.x + (end.x - control.x) / 2;
-      const cp2y = control.y + (end.y - control.y) / 2;
+    arcs.forEach(({ start, end }) => {
+      const midX = (start.x + end.x) / 2;
+      const midY = (start.y + end.y) / 2;
+  
+      const slope = -(start.x - end.x) / (start.y - end.y);
+  
+      const distance = Math.sqrt((start.x - end.x)**2 + (start.y - end.y)**2) / 2;
+  
+      const controlX = midX + distance / Math.sqrt(1 + slope**2);
+      const controlY = midY + slope * (controlX - midX);
+  
       ctx.moveTo(start.x, start.y);
-      ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, end.x, end.y);
+      ctx.quadraticCurveTo(controlX, controlY, end.x, end.y);
     });
   }
+  
   if (ovals.length > 0) {
     ovals.forEach(({ start, control, end }) => {
       const distControl = Math.sqrt((control.x - start.x)**2 + (control.y - start.y)**2);

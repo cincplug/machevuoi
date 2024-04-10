@@ -21,19 +21,24 @@ const Arcs = ({ selectedArcs, handlePathClick }) => {
             );
             const spx = HP[startPoint].x;
             const spy = HP[startPoint].y;
-            const cpx = HP[controlPoint].x;
-            const cpy = HP[controlPoint].y;
             const epx = HP[endPoint].x;
             const epy = HP[endPoint].y;
-            const cp1x = spx + (cpx - spx) / 2;
-            const cp1y = spy + (cpy - spy) / 2;
-            const cp2x = cpx + (epx - cpx) / 2;
-            const cp2y = cpy + (epy - cpy) / 2;
+
+            const midX = (spx + epx) / 2;
+            const midY = (spy + epy) / 2;
+
+            const slope = -(spx - epx) / (spy - epy);
+
+            const distance = Math.sqrt((spx - epx)**2 + (spy - epy)**2) / 2;
+
+            const cpx = midX + distance / Math.sqrt(1 + slope**2);
+            const cpy = midY + slope * (cpx - midX);
+
             return (
               isSelected && (
                 <path
                   key={`${startPoint}-${controlPoint}-${endPoint}`}
-                  d={`M ${spx} ${spy} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${epx} ${epy}`}
+                  d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
                   className={`scratch-path ${
                     isSelected ? "selected" : "not-selected"
                   }`}
