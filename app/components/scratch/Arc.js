@@ -1,7 +1,7 @@
 import HP from "../../data/handPoints.json";
 
 const Arc = ({ shape, onClick, isPreview = false }) => {
-  const [startPoint, controlPoint, endPoint] = shape;
+  const [startPoint, _controlPoint, endPoint] = shape;
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
@@ -19,7 +19,6 @@ const Arc = ({ shape, onClick, isPreview = false }) => {
 
   return (
     <path
-      key={`${startPoint}-${controlPoint}-${endPoint}`}
       d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}

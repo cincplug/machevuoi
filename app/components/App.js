@@ -241,7 +241,7 @@ const App = () => {
         }}
       />
       {message && <Message {...{ message, setMessage }} />}
-      {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
+      <pre>{JSON.stringify(setup, null, 4)}</pre>
     </div>
   );
 };

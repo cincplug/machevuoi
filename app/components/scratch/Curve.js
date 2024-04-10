@@ -11,7 +11,6 @@ const Curve = ({ shape, onClick, isPreview = false }) => {
 
   return (
     <path
-      key={`${startPoint}-${controlPoint}-${endPoint}`}
       d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}

@@ -143,7 +143,6 @@ export const getShape = (selectedShapes, handlePathClick, shapeType) => {
   return selectedShapes.map((shape) => {
     return {
       shape,
-      isSelected: true,
       onClick: () =>
         handlePathClick({
           start: shape[0],

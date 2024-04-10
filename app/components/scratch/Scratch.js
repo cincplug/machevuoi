@@ -120,12 +120,10 @@ function Scratch({ setup, handleInputChange }) {
             handlePathClick,
             shapeType
           );
-          return shapes.map(({ shape, isSelected, onClick }) => (
+          return shapes.map(({ shape, onClick }, index) => (
             <ShapeComponent
-              key={`${shape.join("-")}`}
-              shape={shape}
-              isSelected={isSelected}
-              onClick={onClick}
+              key={`${shape.join("-")}-${index}`}
+              {...{shape, onClick}}
             />
           ));
         })}

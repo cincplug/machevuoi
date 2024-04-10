@@ -9,7 +9,6 @@ const Line = ({ shape, onClick }) => {
 
   return (
     <line
-      key={`${startPoint}-${endPoint}`}
       x1={spx}
       y1={spy}
       x2={epx}

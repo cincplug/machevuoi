@@ -20,7 +20,6 @@ const Oval = ({ shape, onClick, isPreview = false }) => {
 
   return (
     <ellipse
-      key={`${startPoint}-${controlPoint}-${endPoint}`}
       cx={spx}
       cy={spy}
       rx={rx}
