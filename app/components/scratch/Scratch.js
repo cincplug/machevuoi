@@ -67,6 +67,10 @@ function Scratch({ setup, handleInputChange }) {
       arraysHaveSameElements(existingPath, path)
     );
 
+    const addNewPath = () => {
+      newScratchPoints[type] = [...newScratchPoints[type], path];
+    };
+
     const removePath = () => {
       newScratchPoints[type] = [
         ...newScratchPoints[type].slice(0, existingPathIndex),
@@ -74,7 +78,8 @@ function Scratch({ setup, handleInputChange }) {
       ];
     };
 
-    removePath();
+    const isNewPath = existingPathIndex === -1;
+    isNewPath ? addNewPath() : removePath();
 
     handleInputChange({
       target: {
