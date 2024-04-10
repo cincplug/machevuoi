@@ -1,10 +1,10 @@
 import HP from "../../data/handPoints.json";
 
-const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
+const Preview = ({ startPoint, endPoint, controlPoint, mousePoint, activeLayer }) => { 
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
-  const epx = endPoint.x;
-  const epy = endPoint.y;
+  const epx = mousePoint.x;
+  const epy = mousePoint.y;
   if (controlPoint === null) {
     return (
       <line
@@ -16,6 +16,7 @@ const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
       />
     );
   }
+  
   const cpx = HP[controlPoint].x;
   const cpy = HP[controlPoint].y;
   return (

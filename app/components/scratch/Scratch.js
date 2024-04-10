@@ -12,6 +12,7 @@ function Scratch({ setup, handleInputChange }) {
   const [startPoint, setStartPoint] = useState(null);
   const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
+  const [mousePoint, setMousePoint] = useState(null);
   const { scratchPoints } = setup;
 
   const handleDotClick = (index) => {
@@ -94,7 +95,7 @@ function Scratch({ setup, handleInputChange }) {
     point.x = event.clientX;
     point.y = event.clientY;
     const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
-    setEndPoint({ x, y });
+    setMousePoint({ x, y });
   };
 
   return (
@@ -144,7 +145,7 @@ function Scratch({ setup, handleInputChange }) {
           selectedOvals={scratchPoints.ovals}
         />
         {startPoint && (
-          <Preview {...{ startPoint, endPoint, controlPoint, activeLayer }} />
+          <Preview {...{ startPoint, endPoint, controlPoint, mousePoint, activeLayer }} />
         )}
         <g className={`scratch-layer dots`}>
           <Dots
