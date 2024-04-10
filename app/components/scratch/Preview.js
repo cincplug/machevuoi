@@ -45,8 +45,12 @@ const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
         })()}
       {activeLayer === "ovals" &&
         (() => {
-          const rx = (Math.abs(cpx - spx) + Math.abs(epx - spx)) / 2;
-          const ry = (Math.abs(cpy - spy) + Math.abs(epy - spy)) / 2;
+          const distControl = Math.sqrt((cpx - spx)**2 + (cpy - spy)**2);
+          const distEnd = Math.sqrt((epx - spx)**2 + (epy - spy)**2);
+          const rx = Math.max(distControl, distEnd);
+          const ry = Math.min(distControl, distEnd);
+          const rotation = (distControl > distEnd) ? Math.atan2(cpy - spy, cpx - spx) : Math.atan2(epy - spy, epx - spx);
+          const rotationDeg = rotation * (180 / Math.PI);
           return (
             <ellipse
               key={`${startPoint}-${controlPoint}-${endPoint}`}
@@ -54,6 +58,7 @@ const Preview = ({ startPoint, endPoint, controlPoint, activeLayer }) => {
               cy={spy}
               rx={rx}
               ry={ry}
+              transform={`rotate(${rotationDeg}, ${spx}, ${spy})`}
               className="scratch-preview-path"
             />
           );

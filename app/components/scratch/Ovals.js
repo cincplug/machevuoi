@@ -25,8 +25,12 @@ const Ovals = ({ selectedOvals, handlePathClick }) => {
             const cpy = HP[controlPoint].y;
             const epx = HP[endPoint].x;
             const epy = HP[endPoint].y;
-            const rx = (Math.abs(cpx - spx) + Math.abs(epx - spx)) / 2;
-            const ry = (Math.abs(cpy - spy) + Math.abs(epy - spy)) / 2;
+            const distControl = Math.sqrt((cpx - spx)**2 + (cpy - spy)**2);
+            const distEnd = Math.sqrt((epx - spx)**2 + (epy - spy)**2);
+            const rx = Math.max(distControl, distEnd);
+            const ry = Math.min(distControl, distEnd);
+            const rotation = (distControl > distEnd) ? Math.atan2(cpy - spy, cpx - spx) : Math.atan2(epy - spy, epx - spx);
+            const rotationDeg = rotation * (180 / Math.PI);
 
             return (
               isSelected && (
@@ -36,6 +40,7 @@ const Ovals = ({ selectedOvals, handlePathClick }) => {
                   cy={spy}
                   rx={rx}
                   ry={ry}
+                  transform={`rotate(${rotationDeg}, ${spx}, ${spy})`}
                   className={`scratch-path selected`}
                   onClick={() =>
                     handlePathClick({
@@ -54,5 +59,6 @@ const Ovals = ({ selectedOvals, handlePathClick }) => {
     </g>
   );
 };
+
 
 export default Ovals;

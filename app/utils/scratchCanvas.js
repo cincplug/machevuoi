@@ -48,14 +48,22 @@ export const scratchCanvas = ({
   }
   if (ovals.length > 0) {
     ovals.forEach(({ start, control, end }) => {
-      const rx =
-        (Math.abs(control.x - start.x) + Math.abs(end.x - start.x)) / 2;
-      const ry =
-        (Math.abs(control.y - start.y) + Math.abs(end.y - start.y)) / 2;
-      ctx.moveTo(start.x + rx, start.y);
-      ctx.ellipse(start.x, start.y, rx, ry, 0, 0, 2 * Math.PI);
+      const distControl = Math.sqrt((control.x - start.x)**2 + (control.y - start.y)**2);
+      const distEnd = Math.sqrt((end.x - start.x)**2 + (end.y - start.y)**2);
+      const rx = Math.max(distControl, distEnd);
+      const ry = Math.min(distControl, distEnd);
+      const rotation = (distControl > distEnd) ? Math.atan2(control.y - start.y, control.x - start.x) : Math.atan2(end.y - start.y, end.x - start.x);
+      
+      const startX = start.x + rx * Math.cos(rotation);
+      const startY = start.y + rx * Math.sin(rotation);
+      
+      ctx.moveTo(startX, startY);
+      ctx.ellipse(start.x, start.y, rx, ry, rotation, 0, 2 * Math.PI);
     });
   }
+  
+  
+  
 
   ctx.stroke();
   if (tips) {
