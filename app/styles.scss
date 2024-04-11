@@ -526,8 +526,16 @@ label {
   &.selected {
     fill: var(--color-skin-mid-light);
   }
-  &:hover {
-    fill: var(--color-skin-light);
+  .active-dots & {
+    &:hover {
+      fill: var(--color-skin-light);
+    }
+  }
+  .active-paths & {
+    &:hover {
+      stroke-width: 1px;
+      stroke: var(--color-skin-light);
+    }
   }
 }
 
