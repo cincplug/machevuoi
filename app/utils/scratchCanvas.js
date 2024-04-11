@@ -19,7 +19,7 @@ export const scratchCanvas = ({
   ctx.lineWidth = getLineWidth({
     minimum,
     radius,
-    tipDistance: radius,
+    tipDistance: radius
   });
   ctx.beginPath();
   if (lines.length > 0) {
@@ -73,20 +73,18 @@ export const scratchCanvas = ({
     });
   }
   ctx.stroke();
+  ctx.beginPath();
 
   if (tips) {
     const tipValues = Object.values(tips);
     const tipDistance = getAverageDistance(tipValues);
-
     Object.keys(tips).forEach((tip, index) => {
       if (!lastTips || !lastTips[tip]) return;
       ctx.moveTo(lastTips[tip].x, lastTips[tip].y);
       ctx.lineWidth = getLineWidth({
-        index,
         minimum,
-        radius,
-        tipDistance,
-        dispersion
+        radius: radius * index + dispersion,
+        tipDistance
       });
       ctx.quadraticCurveTo(
         lastTips[tip].x,
@@ -94,9 +92,9 @@ export const scratchCanvas = ({
         tips[tip].x,
         tips[tip].y
       );
-      ctx.stroke();
     });
   }
+  ctx.stroke();
   lastTips = { ...tips } || null;
   return lastTips;
 };
