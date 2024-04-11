@@ -21,7 +21,7 @@ function Scratch({ setup, handleInputChange }) {
     if (activeLayer === "dots") {
       toggleDot(index);
     } else {
-      if (!startPoint) {
+      if (startPoint === null) {
         setStartPoint(index);
       } else if (
         ["curves", "arcs", "ovals"].includes(activeLayer) &&
@@ -136,7 +136,7 @@ function Scratch({ setup, handleInputChange }) {
             />
           ));
         })}
-        {startPoint && (
+        {startPoint !== null && (
           <Preview
             {...{
               startPoint,
