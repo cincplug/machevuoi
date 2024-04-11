@@ -3,6 +3,7 @@ import Dots from "./Dots";
 import Arc from "./Arc";
 import Line from "./Line";
 import Curve from "./Curve";
+import Circle from "./Circle";
 import Oval from "./Oval";
 import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
@@ -11,7 +12,7 @@ import { getShape } from "../../utils";
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [startPoint, setStartPoint] = useState(null);
-  const [endPoint, setEndPoint] = useState(null);
+  const [endPoint, _setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [mousePoint, setMousePoint] = useState(null);
   const { scratchPoints } = setup;
@@ -62,6 +63,8 @@ function Scratch({ setup, handleInputChange }) {
     const path =
       type === "lines"
         ? [start, end].sort((a, b) => a - b)
+        : type === "circles"
+        ? [start, end]
         : [start, control, end];
     const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
       arraysHaveSameElements(existingPath, path)
@@ -103,6 +106,7 @@ function Scratch({ setup, handleInputChange }) {
     arcs: Arc,
     lines: Line,
     curves: Curve,
+    circles: Circle,
     ovals: Oval
   };
 
@@ -128,7 +132,7 @@ function Scratch({ setup, handleInputChange }) {
           return shapes.map(({ shape, onClick }, index) => (
             <ShapeComponent
               key={`${shape.join("-")}-${index}`}
-              {...{shape, onClick}}
+              {...{ shape, onClick }}
             />
           ));
         })}
@@ -151,17 +155,19 @@ function Scratch({ setup, handleInputChange }) {
           />
         </g>
       </svg>
-      {["dots", "lines", "curves", "arcs", "ovals"].map((layer, index) => (
-        <button
-          className={`scratch-layer-button ${
-            layer === activeLayer ? "active" : ""
-          }`}
-          key={index}
-          onClick={() => setActiveLayer(layer)}
-        >
-          {layer}
-        </button>
-      ))}
+      {["dots", "lines", "curves", "arcs", "circles", "ovals"].map(
+        (layer, index) => (
+          <button
+            className={`scratch-layer-button ${
+              layer === activeLayer ? "active" : ""
+            }`}
+            key={index}
+            onClick={() => setActiveLayer(layer)}
+          >
+            {layer}
+          </button>
+        )
+      )}
     </div>
   );
 }

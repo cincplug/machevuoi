@@ -63,6 +63,15 @@ export const processHands = ({
     });
     return { start: squeezedPoints[0], end: squeezedPoints[1] };
   });
+  
+  const circles = scratchPoints.circles.map((circle) => {
+    const squeezedPoints = squeezePoints({
+      points: circle.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
 
   const curves = scratchPoints.curves.map((curve) => {
     const squeezedPoints = squeezePoints({
@@ -149,7 +158,8 @@ export const processHands = ({
         lines,
         curves,
         arcs,
-        ovals
+        ovals,
+        circles
       });
     } else {
       lastTips = undefined;

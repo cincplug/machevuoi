@@ -210,6 +210,7 @@
       "lines": [],
       "curves": [],
       "arcs": [],
+      "circles": [],
       "ovals": []
     },
     "type": "text"

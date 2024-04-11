@@ -14,7 +14,8 @@ export const scratchCanvas = ({
   lines,
   curves,
   arcs,
-  ovals
+  ovals,
+  circles,
 }) => {
   ctx.lineWidth = getLineWidth({
     minimum,
@@ -23,7 +24,7 @@ export const scratchCanvas = ({
   });
   ctx.beginPath();
   if (lines.length > 0) {
-    lines.forEach(({ start, end }, index) => {
+    lines.forEach(({ start, end }) => {
       ctx.moveTo(start.x, start.y);
       ctx.lineTo(end.x, end.y);
     });
@@ -72,6 +73,22 @@ export const scratchCanvas = ({
       ctx.ellipse(start.x, start.y, rx, ry, rotation, 0, 2 * Math.PI);
     });
   }
+
+  if (circles.length > 0) {
+    circles.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      // Calculate the distance between the start and end points to determine the radius
+      const circleRadius = Math.sqrt((epx - spx) ** 2 + (epy - spy) ** 2);
+
+      // ctx.beginPath();
+      ctx.arc(spx, spy, circleRadius, 0, 2 * Math.PI);
+    });
+  }
+
   ctx.stroke();
   ctx.beginPath();
 
