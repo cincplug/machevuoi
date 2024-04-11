@@ -523,32 +523,24 @@ label {
 
 .scratch-dot {
   fill: var(--color-skin-mid-dark);
-  &:hover {
-    fill: var(--color-skin-mid);
-  }
   &.selected {
-    fill: var(--color-skin-light);
+    fill: var(--color-skin-mid-light);
   }
-  .active-paths & {
-    fill: var(--color-skin-dark);
-    stroke-width: 2px;
-    stroke: var(--color-skin-mid);
-    &:hover {
-      stroke: var(--color-skin-mid-light);
-    }
+  &:hover {
+    fill: var(--color-skin-light);
   }
 }
 
 .scratch-path {
   fill: none;
   stroke-width: 0.3rem;
-  stroke: var(--color-skin-light);
+  stroke: var(--color-skin-mid-light);
   &:hover {
-    stroke: var(--color-skin-mid);
+    stroke: var(--color-skin-light);
   }
   &.preview {
     fill: none;
-    stroke: var(--color-skin-light);
+    stroke: var(--color-skin-mid);
   }
   &.control-path {
     stroke-width: 2px;
