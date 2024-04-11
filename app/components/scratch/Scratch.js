@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Dots from "./Dots";
 import Arc from "./Arc";
 import Line from "./Line";
+import Square from "./Square";
+import Diamond from "./Diamond";
+import Rhomboid from "./Rhomboid";
+import Rectangle from "./Rectangle";
+import Triangle from "./Triangle";
 import Curve from "./Curve";
 import Circle from "./Circle";
 import Oval from "./Oval";
@@ -63,7 +68,14 @@ function Scratch({ setup, handleInputChange }) {
     const path =
       type === "lines"
         ? [start, end].sort((a, b) => a - b)
-        : type === "circles"
+        : [
+            "circles",
+            "squares",
+            "rhomboids",
+            "rectangles",
+            "triangles",
+            "diamonds"
+          ]
         ? [start, end]
         : [start, control, end];
     const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
@@ -105,6 +117,11 @@ function Scratch({ setup, handleInputChange }) {
   const shapeComponents = {
     arcs: Arc,
     lines: Line,
+    squares: Square,
+    diamonds: Diamond,
+    rectangles: Rectangle,
+    rhomboids: Rhomboid,
+    triangles: Triangle,
     curves: Curve,
     circles: Circle,
     ovals: Oval
@@ -155,19 +172,29 @@ function Scratch({ setup, handleInputChange }) {
           />
         </g>
       </svg>
-      {["dots", "lines", "curves", "arcs", "circles", "ovals"].map(
-        (layer, index) => (
-          <button
-            className={`scratch-layer-button ${
-              layer === activeLayer ? "active" : ""
-            }`}
-            key={index}
-            onClick={() => setActiveLayer(layer)}
-          >
-            {layer}
-          </button>
-        )
-      )}
+      {[
+        "dots",
+        "lines",
+        "curves",
+        "arcs",
+        "circles",
+        "ovals",
+        "squares",
+        "diamonds",
+        "rhomboids",
+        "rectangles",
+        "triangles"
+      ].map((layer, index) => (
+        <button
+          className={`scratch-layer-button ${
+            layer === activeLayer ? "active" : ""
+          }`}
+          key={index}
+          onClick={() => setActiveLayer(layer)}
+        >
+          {layer}
+        </button>
+      ))}
     </div>
   );
 }

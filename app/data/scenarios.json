@@ -155,7 +155,7 @@
       "dots": [4, 8, 12, 16, 20],
       "lines": [],
       "curves": [],
-      "arcs": [],
+      "arcs": [], "diamonds": [], "rhomboids": [], "rectangles": [], "triangles": [], "squares": [],
       "circles": [],
       "ovals": []
     },
@@ -187,7 +187,7 @@
         [9, 13]
       ],
       "curves": [[7, 12, 15]],
-      "arcs": [],
+      "arcs": [], "diamonds": [], "rhomboids": [], "rectangles": [], "triangles": [], "squares": [],
       "circles": [],
       "ovals": []
     },
@@ -211,7 +211,7 @@
       "dots": [12, 8, 4, 3, 2, 1, 0, 17, 18, 19, 20, 16],
       "lines": [],
       "curves": [],
-      "arcs": [],
+      "arcs": [], "diamonds": [], "rhomboids": [], "rectangles": [], "triangles": [], "squares": [],
       "circles": [],
       "ovals": []
     },
@@ -235,7 +235,7 @@
       "dots": [5, 17, 9, 13, 8, 12, 16, 20],
       "lines": [],
       "curves": [],
-      "arcs": [],
+      "arcs": [], "diamonds": [], "rhomboids": [], "rectangles": [], "triangles": [], "squares": [],
       "circles": [],
       "ovals": []
     },

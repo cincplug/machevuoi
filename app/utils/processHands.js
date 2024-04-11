@@ -63,7 +63,47 @@ export const processHands = ({
     });
     return { start: squeezedPoints[0], end: squeezedPoints[1] };
   });
-  
+  const squares = scratchPoints.squares.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+  const rectangles = scratchPoints.rectangles.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+  const rhomboids = scratchPoints.rhomboids.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+  const triangles = scratchPoints.triangles.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+  const diamonds = scratchPoints.diamonds.map((line) => {
+    const squeezedPoints = squeezePoints({
+      points: line.map((point) => handPoints[point]),
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
+    return { start: squeezedPoints[0], end: squeezedPoints[1] };
+  });
+
   const circles = scratchPoints.circles.map((circle) => {
     const squeezedPoints = squeezePoints({
       points: circle.map((point) => handPoints[point]),
@@ -159,7 +199,12 @@ export const processHands = ({
         curves,
         arcs,
         ovals,
-        circles
+        circles,
+        squares,
+        rhomboids,
+        rectangles,
+        triangles,
+        diamonds
       });
     } else {
       lastTips = undefined;

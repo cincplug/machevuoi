@@ -15,7 +15,12 @@ export const scratchCanvas = ({
   curves,
   arcs,
   ovals,
-  circles
+  circles,
+  squares,
+  rectangles,
+  triangles,
+  rhomboids,
+  diamonds
 }) => {
   ctx.lineWidth = getLineWidth({
     minimum,
@@ -87,6 +92,113 @@ export const scratchCanvas = ({
       const circleRadius = Math.sqrt((midx - spx) ** 2 + (midy - spy) ** 2);
 
       ctx.arc(midx, midy, circleRadius, 0, 2 * Math.PI);
+    });
+  }
+
+  if (rectangles.length > 0) {
+    rectangles.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      const cpx = spx;
+      const cpy = epy;
+      const dpx = epx;
+      const dpy = spy;
+
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(cpx, cpy);
+      ctx.lineTo(epx, epy);
+      ctx.lineTo(dpx, dpy);
+      ctx.closePath();
+    });
+  }
+
+  if (triangles.length > 0) {
+    triangles.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      const tpx = (spx + epx) / 2 - (Math.sqrt(3) * (epy - spy)) / 2;
+      const tpy = (spy + epy) / 2 + (Math.sqrt(3) * (epx - spx)) / 2;
+
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(tpx, tpy);
+      ctx.lineTo(epx, epy);
+      ctx.closePath();
+    });
+  }
+
+  if (squares.length > 0) {
+    squares.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      const sideLength = Math.sqrt((epx - spx) ** 2 + (epy - spy) ** 2);
+
+      const cpx = spx - (epy - spy);
+      const cpy = spy + (epx - spx);
+      const dpx = epx - (epy - spy);
+      const dpy = epy + (epx - spx);
+
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(cpx, cpy);
+      ctx.lineTo(dpx, dpy);
+      ctx.lineTo(epx, epy);
+      ctx.closePath();
+    });
+  }
+
+  if (diamonds.length > 0) {
+    diamonds.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      const midx = (spx + epx) / 2;
+      const midy = (spy + epy) / 2;
+
+      const cpx = midx - (epy - spy) / 2;
+      const cpy = midy + (epx - spx) / 2;
+      const apx = midx + (epy - spy) / 2;
+      const apy = midy - (epx - spx) / 2;
+
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(cpx, cpy);
+      ctx.lineTo(epx, epy);
+      ctx.lineTo(apx, apy);
+      ctx.closePath();
+    });
+  }
+
+  if (rhomboids.length > 0) {
+    rhomboids.forEach(({ start, end }) => {
+      const spx = start.x;
+      const spy = start.y;
+      const epx = end.x;
+      const epy = end.y;
+
+      const midx = (spx + epx) / 2;
+      const midy = (spy + epy) / 2;
+
+      const halfDiagonal = Math.sqrt((midx - spx) ** 2 + (midy - spy) ** 2);
+
+      const cpx = midx - halfDiagonal;
+      const cpy = midy + halfDiagonal;
+      const dpx = midx + halfDiagonal;
+      const dpy = midy - halfDiagonal;
+
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(cpx, cpy);
+      ctx.lineTo(epx, epy);
+      ctx.lineTo(dpx, dpy);
+      ctx.closePath();
     });
   }
 
