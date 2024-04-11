@@ -7,13 +7,15 @@ const Circle = ({ shape, onClick, isPreview = false }) => {
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
   const epy = isPreview ? endPoint.y : HP[endPoint].y;
 
-  // Calculate the distance between the start and end points to determine the radius
-  const radius = Math.sqrt((epx - spx) ** 2 + (epy - spy) ** 2);
+  const midx = (spx + epx) / 2;
+  const midy = (spy + epy) / 2;
+
+  const radius = Math.sqrt((midx - spx) ** 2 + (midy - spy) ** 2);
 
   return (
     <circle
-      cx={spx}
-      cy={spy}
+      cx={midx}
+      cy={midy}
       r={radius}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
