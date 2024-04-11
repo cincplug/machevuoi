@@ -34,13 +34,11 @@ const Preview = ({
         d={`M ${spx} ${spy} L ${cpx} ${cpy} L ${epx} ${epy}`}
         className="scratch-path preview control-path"
       />
-      {ShapeComponent && (
-        <ShapeComponent
-          shape={[startPoint, controlPoint, mousePoint]}
-          onClick={() => {}}
-          isPreview
-        />
-      )}
+      <ShapeComponent
+        shape={[startPoint, controlPoint, mousePoint]}
+        onClick={() => {}}
+        isPreview
+      />
     </>
   );
 };

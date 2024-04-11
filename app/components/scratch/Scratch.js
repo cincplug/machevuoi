@@ -65,37 +65,28 @@ function Scratch({ setup, handleInputChange }) {
 
   const handlePathClick = ({ start, control, end, type }) => {
     const newScratchPoints = { ...scratchPoints };
-    const path =
-      type === "lines"
-        ? [start, end].sort((a, b) => a - b)
-        : [
-            "circles",
-            "squares",
-            "rhomboids",
-            "rectangles",
-            "triangles",
-            "diamonds"
-          ]
-        ? [start, end]
-        : [start, control, end];
+    const path = control
+      ? [start, control, end]
+      : [start, end].sort((a, b) => a - b);
+  
     const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
       arraysHaveSameElements(existingPath, path)
     );
-
+  
     const addNewPath = () => {
       newScratchPoints[type] = [...newScratchPoints[type], path];
     };
-
+  
     const removePath = () => {
       newScratchPoints[type] = [
         ...newScratchPoints[type].slice(0, existingPathIndex),
         ...newScratchPoints[type].slice(existingPathIndex + 1)
       ];
     };
-
+  
     const isNewPath = existingPathIndex === -1;
     isNewPath ? addNewPath() : removePath();
-
+  
     handleInputChange({
       target: {
         id: "scratchPoints",
@@ -103,7 +94,7 @@ function Scratch({ setup, handleInputChange }) {
         type: "hidden"
       }
     });
-  };
+  };  
 
   const handleMouseMove = (event) => {
     const svg = event.currentTarget;
