@@ -87,6 +87,7 @@ export const processHands = ({
     });
     return { start: squeezedPoints[0], end: squeezedPoints[1] };
   });
+  
   const triangles = scratchPoints.triangles.map((line) => {
     const squeezedPoints = squeezePoints({
       points: line.map((point) => handPoints[point]),
@@ -95,6 +96,7 @@ export const processHands = ({
     });
     return { start: squeezedPoints[0], end: squeezedPoints[1] };
   });
+
   const diamonds = scratchPoints.diamonds.map((line) => {
     const squeezedPoints = squeezePoints({
       points: line.map((point) => handPoints[point]),
@@ -134,8 +136,7 @@ export const processHands = ({
     });
     return {
       start: squeezedPoints[0],
-      control: squeezedPoints[1],
-      end: squeezedPoints[2]
+      end: squeezedPoints[1]
     };
   });
 
