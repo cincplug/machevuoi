@@ -245,20 +245,25 @@
     "dash": 0
   },
   "scratch-canvas-fist": {
-    "description": "Draw some charts with more fingers",
-    "icon": "✊",
+    "theme": "default",
+    "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
+    "pinchThreshold": 100,
     "opacity": 128,
     "videoOpacity": 48,
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "pattern": "canvas",
-    "pinchThreshold": 127,
+    "transDur": 3.2,
+    "pathStroke": "beziers",
+    "hasCursor": true,
     "isScratchCanvas": true,
+    "isAutoClosed": false,
+    "activeScenarioIndex": 11,
+    "text": "",
     "scratchPoints": {
-      "dots": [5, 17, 9, 13, 8, 12, 16, 20],
+      "dots": [13],
       "lines": [],
       "curves": [],
       "arcs": [],
@@ -266,16 +271,26 @@
         [6, 7],
         [10, 11],
         [14, 15],
-        [18, 19]
+        [18, 19],
+        [2, 3]
       ],
       "rhomboids": [],
       "rectangles": [],
       "triangles": [],
-      "squares": [],
+      "squares": [
+        [5, 9],
+        [9, 13],
+        [13, 17]
+      ],
       "circles": [],
       "ovals": []
     },
+    "dash": 1,
     "dispersion": 10,
-    "dash": 6
+    "composite": "source-over",
+    "doesWagDelete": true,
+    "customScenarios": {},
+    "description": "Draw some charts with more fingers",
+    "icon": "✊"
   }
 }
