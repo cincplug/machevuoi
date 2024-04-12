@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dots from "./Dots";
 import Arc from "./Arc";
 import Line from "./Line";
@@ -17,7 +17,6 @@ import { getShape } from "../../utils";
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [startPoint, setStartPoint] = useState(null);
-  const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [mousePoint, setMousePoint] = useState(null);
   const { scratchPoints } = setup;
@@ -45,6 +44,13 @@ function Scratch({ setup, handleInputChange }) {
       }
     }
   };
+  
+  useEffect(() => {
+    if(setup.pressedKey === "Escape") {
+      setStartPoint(null);
+      setControlPoint(null);
+    }
+  }, [setup.pressedKey]);
 
   const toggleDot = (index) => {
     const newScratchPoints = { ...scratchPoints };
@@ -148,7 +154,6 @@ function Scratch({ setup, handleInputChange }) {
           <Preview
             {...{
               startPoint,
-              endPoint,
               controlPoint,
               activeLayer,
               mousePoint,
