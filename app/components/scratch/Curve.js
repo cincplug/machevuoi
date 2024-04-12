@@ -1,7 +1,7 @@
 import HP from "../../data/handPoints.json";
 
-const Curve = ({ shape, onClick, isPreview = false }) => {
-  const [startPoint, controlPoint, endPoint] = shape;
+const Curve = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPreview = false }) => {
+  
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
   const cpx = HP[controlPoint].x;

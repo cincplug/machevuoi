@@ -141,16 +141,11 @@ export const clearCanvases = () => {
 
 export const getShape = (selectedShapes, handlePathClick, shapeType) => {
   return selectedShapes.map((shape) => {
-    let startPoint, controlPoint, endPoint;
-    if (shape) {
-      [startPoint, controlPoint, endPoint] = shape;
-      if (!endPoint) {
-        endPoint = controlPoint;
-        controlPoint = null;
-      }
-    }
+    const startPoint = shape[0];
+    const controlPoint = shape.length === 3 ? shape[1] : null;
+    const endPoint = shape.length === 3 ? shape[2] : shape[1];
     return {
-      shape,
+      shape: { startPoint, controlPoint, endPoint },
       onClick: () =>
         handlePathClick({
           start: startPoint,

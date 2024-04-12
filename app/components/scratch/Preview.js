@@ -11,8 +11,10 @@ const Preview = ({
   const spy = HP[startPoint].y;
   const epx = mousePoint.x;
   const epy = mousePoint.y;
+
+  const ShapeComponent = shapeComponents[activeLayer];
   if (controlPoint === null) {
-    return (
+    return ["lines", "curves", "ovals"].includes(activeLayer) ? (
       <line
         x1={spx}
         y1={spy}
@@ -20,13 +22,17 @@ const Preview = ({
         y2={epy}
         className="scratch-path preview control-path"
       />
+    ) : (
+      <ShapeComponent
+        shape={{ startPoint, controlPoint: startPoint, endPoint: mousePoint }}
+        onClick={() => {}}
+        isPreview
+      />
     );
   }
 
   const cpx = HP[controlPoint].x;
   const cpy = HP[controlPoint].y;
-
-  const ShapeComponent = shapeComponents[activeLayer];
 
   return (
     <>
@@ -35,7 +41,11 @@ const Preview = ({
         className="scratch-path preview control-path"
       />
       <ShapeComponent
-        shape={[startPoint, controlPoint, mousePoint]}
+        shape={{
+          startPoint,
+          controlPoint: controlPoint || startPoint,
+          endPoint: mousePoint
+        }}
         onClick={() => {}}
         isPreview
       />

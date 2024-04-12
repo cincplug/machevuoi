@@ -1,7 +1,6 @@
 import HP from "../../data/handPoints.json";
 
-const Circle = ({ shape, onClick, isPreview = false }) => {
-  const [startPoint, endPoint] = shape;
+const Circle = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }) => {
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
   const epx = isPreview ? endPoint.x : HP[endPoint].x;

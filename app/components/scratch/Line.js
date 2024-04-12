@@ -1,7 +1,6 @@
 import HP from "../../data/handPoints.json";
 
-const Line = ({ shape, onClick }) => {
-  const [startPoint, endPoint] = shape;
+const Line = ({ shape: { startPoint, endPoint }, onClick }) => {
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
   const epx = HP[endPoint].x;

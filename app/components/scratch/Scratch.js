@@ -17,7 +17,7 @@ import { getShape } from "../../utils";
 function Scratch({ setup, handleInputChange }) {
   const [activeLayer, setActiveLayer] = useState("dots");
   const [startPoint, setStartPoint] = useState(null);
-  const [endPoint, _setEndPoint] = useState(null);
+  const [endPoint, setEndPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [mousePoint, setMousePoint] = useState(null);
   const { scratchPoints } = setup;
@@ -29,7 +29,7 @@ function Scratch({ setup, handleInputChange }) {
       if (startPoint === null) {
         setStartPoint(index);
       } else if (
-        ["curves", "arcs", "ovals"].includes(activeLayer) &&
+        ["curves", "ovals"].includes(activeLayer) &&
         controlPoint === null
       ) {
         setControlPoint(index);
@@ -68,25 +68,25 @@ function Scratch({ setup, handleInputChange }) {
     const path = control
       ? [start, control, end]
       : [start, end].sort((a, b) => a - b);
-  
+
     const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
       arraysHaveSameElements(existingPath, path)
     );
-  
+
     const addNewPath = () => {
       newScratchPoints[type] = [...newScratchPoints[type], path];
     };
-  
+
     const removePath = () => {
       newScratchPoints[type] = [
         ...newScratchPoints[type].slice(0, existingPathIndex),
         ...newScratchPoints[type].slice(existingPathIndex + 1)
       ];
     };
-  
+
     const isNewPath = existingPathIndex === -1;
     isNewPath ? addNewPath() : removePath();
-  
+
     handleInputChange({
       target: {
         id: "scratchPoints",
@@ -94,7 +94,7 @@ function Scratch({ setup, handleInputChange }) {
         type: "hidden"
       }
     });
-  };  
+  };
 
   const handleMouseMove = (event) => {
     const svg = event.currentTarget;
@@ -139,7 +139,7 @@ function Scratch({ setup, handleInputChange }) {
           );
           return shapes.map(({ shape, onClick }, index) => (
             <ShapeComponent
-              key={`${shape.join("-")}-${index}`}
+              key={`${JSON.stringify(shape)}-${index}`}
               {...{ shape, onClick }}
             />
           ));
