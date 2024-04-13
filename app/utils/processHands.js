@@ -70,14 +70,16 @@ export const processHands = ({
 
   const shapes = shapeNames.reduce((result, shapeName) => {
     result[shapeName] = scratchPoints[shapeName].map((shape) => {
+      const points = shape.map((point) => handPoints[point]);
       const squeezedPoints = squeezePoints({
-        points: shape.map((point) => handPoints[point]),
+        points,
         squeezeRatio: pinchThreshold,
-        centeringContext: dots
+        centeringContext: points
       });
       const shapeObject = { start: squeezedPoints[0], end: squeezedPoints[1] };
       if (shapeName === "curves" || shapeName === "ovals") {
         shapeObject.control = squeezedPoints[1];
+        shapeObject.end = squeezedPoints[2];
       }
       return shapeObject;
     });
