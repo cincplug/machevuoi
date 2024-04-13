@@ -293,8 +293,8 @@
     "description": "Draw some charts with more fingers",
     "icon": "✊"
   },
-  "scratch-canvas-shark": {
-    "theme": "default",
+  "scratch-canvas-frog": {
+    "icon": "🐸",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -311,31 +311,145 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "doesWagDelete": true,
     "hasCursor": true,
     "isScratchCanvas": true,
-    "activeScenarioIndex": 8,
     "scratchPoints": {
       "dots": [],
-      "lines": [],
+      "lines": [
+        [3, 6],
+        [2, 6],
+        [1, 17],
+        [2, 17],
+        [7, 8],
+        [8, 12],
+        [11, 12],
+        [16, 20],
+        [19, 20],
+        [15, 16],
+        [2, 3],
+        [1, 2],
+        [7, 11],
+        [10, 11],
+        [7, 10],
+        [14, 15],
+        [15, 19],
+        [14, 19]
+      ],
+      "curves": [
+        [6, 2, 17],
+        [6, 14, 17]
+      ],
+      "arcs": [],
+      "diamonds": [],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [
+        [0, 1],
+        [11, 15],
+        [3, 4]
+      ],
+      "squares": [],
+      "circles": [],
+      "ovals": []
+    }
+  },
+  "scratch-canvas-bird": {
+    "icon": "🐦",
+    "pattern": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "pinchThreshold": 100,
+    "opacity": 128,
+    "videoOpacity": 48,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "blendMode": "normal",
+    "transDur": 3.2,
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dispersion": 1,
+    "composite": "source-over",
+    "hasCursor": true,
+    "isScratchCanvas": true,
+    "scratchPoints": {
+      "dots": [],
+      "lines": [
+        [11, 12],
+        [15, 16],
+        [7, 11],
+        [15, 19],
+        [7, 8],
+        [19, 20],
+        [12, 16],
+        [8, 11],
+        [15, 20]
+      ],
       "curves": [],
       "arcs": [],
       "diamonds": [],
       "rhomboids": [],
       "rectangles": [],
       "triangles": [
-        [2, 3],
-        [1, 2],
-        [0, 1],
+        [10, 14],
+        [7, 19]
+      ],
+      "squares": [],
+      "circles": [
+        [10, 11],
+        [14, 15]
+      ],
+      "ovals": []
+    }
+  },
+  "scratch-canvas-fox": {
+    "icon": "🦊",
+    "pattern": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "pinchThreshold": 100,
+    "opacity": 128,
+    "videoOpacity": 48,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "blendMode": "normal",
+    "transDur": 3.2,
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dispersion": 1,
+    "composite": "source-over",
+    "hasCursor": true,
+    "isScratchCanvas": true,
+    "scratchPoints": {
+      "dots": [],
+      "lines": [
+        [7, 8],
+        [8, 11],
+        [15, 20],
+        [19, 20],
+        [12, 16]
+      ],
+      "curves": [
+        [4, 1, 17],
+        [9, 1, 17],
+        [4, 2, 9]
+      ],
+      "arcs": [],
+      "diamonds": [],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [
         [7, 11],
-        [11, 15],
-        [15, 19]
+        [15, 19],
+        [10, 14]
       ],
       "squares": [],
       "circles": [],
       "ovals": []
-    },
-    "icon": "🦈"
+    }
   },
   "scratch-canvas-dog": {
     "icon": "🐶",
@@ -488,6 +602,63 @@
         [19, 20]
       ],
       "ovals": []
+    }
+  },
+  "scratch-canvas-monkey": {
+    "icon": "🐵",
+    "pattern": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "pinchThreshold": 100,
+    "opacity": 128,
+    "videoOpacity": 48,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "blendMode": "normal",
+    "transDur": 3.2,
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dispersion": 1,
+    "composite": "source-over",
+    "hasCursor": true,
+    "isScratchCanvas": true,
+    "scratchPoints": {
+      "dots": [],
+      "lines": [
+        [9, 13],
+        [5, 9],
+        [13, 17],
+        [1, 2],
+        [0, 1],
+        [2, 4],
+        [2, 5],
+        [4, 5],
+        [10, 11],
+        [10, 14],
+        [14, 15]
+      ],
+      "curves": [
+        [9, 1, 17],
+        [5, 1, 13],
+        [6, 9, 18],
+        [6, 14, 18]
+      ],
+      "arcs": [],
+      "diamonds": [
+        [19, 20],
+        [7, 8]
+      ],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [[0, 17]],
+      "squares": [],
+      "circles": [
+        [11, 12],
+        [15, 16]
+      ],
+      "ovals": [[10, 14, 10]]
     }
   }
 }
