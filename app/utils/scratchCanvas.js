@@ -94,6 +94,7 @@ export const scratchCanvas = ({
 
       const circleRadius = Math.sqrt((midx - spx) ** 2 + (midy - spy) ** 2);
 
+      ctx.moveTo(midx + circleRadius, midy);
       ctx.arc(midx, midy, circleRadius, 0, 2 * Math.PI);
     });
   }
