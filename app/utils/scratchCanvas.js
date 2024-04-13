@@ -11,17 +11,20 @@ export const scratchCanvas = ({
   tips,
   lastTips,
   dispersion,
-  lines,
-  curves,
-  arcs,
-  ovals,
-  circles,
-  squares,
-  rectangles,
-  triangles,
-  rhomboids,
-  diamonds
+  shapes
 }) => {
+  const {
+    lines,
+    curves,
+    arcs,
+    ovals,
+    circles,
+    squares,
+    rhomboids,
+    rectangles,
+    triangles,
+    diamonds
+  } = shapes;
   ctx.lineWidth = getLineWidth({
     minimum,
     radius,

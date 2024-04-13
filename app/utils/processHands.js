@@ -55,103 +55,35 @@ export const processHands = ({
     squeezeRatio: pinchThreshold,
     centeringContext: dots
   });
-  const lines = scratchPoints.lines.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
-  const squares = scratchPoints.squares.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
-  const rectangles = scratchPoints.rectangles.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
-  const rhomboids = scratchPoints.rhomboids.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
-  
-  const triangles = scratchPoints.triangles.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
 
-  const diamonds = scratchPoints.diamonds.map((line) => {
-    const squeezedPoints = squeezePoints({
-      points: line.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
+  const shapeNames = [
+    "lines",
+    "squares",
+    "rectangles",
+    "rhomboids",
+    "triangles",
+    "diamonds",
+    "circles",
+    "curves",
+    "arcs",
+    "ovals"
+  ];
 
-  const circles = scratchPoints.circles.map((circle) => {
-    const squeezedPoints = squeezePoints({
-      points: circle.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
+  const shapes = shapeNames.reduce((result, shapeName) => {
+    result[shapeName] = scratchPoints[shapeName].map((shape) => {
+      const squeezedPoints = squeezePoints({
+        points: shape.map((point) => handPoints[point]),
+        squeezeRatio: pinchThreshold,
+        centeringContext: dots
+      });
+      const shapeObject = { start: squeezedPoints[0], end: squeezedPoints[1] };
+      if (shapeName === "curves" || shapeName === "ovals") {
+        shapeObject.control = squeezedPoints[1];
+      }
+      return shapeObject;
     });
-    return { start: squeezedPoints[0], end: squeezedPoints[1] };
-  });
-
-  const curves = scratchPoints.curves.map((curve) => {
-    const squeezedPoints = squeezePoints({
-      points: curve.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return {
-      start: squeezedPoints[0],
-      control: squeezedPoints[1],
-      end: squeezedPoints[2]
-    };
-  });
-
-  const arcs = scratchPoints.arcs.map((arc) => {
-    const squeezedPoints = squeezePoints({
-      points: arc.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return {
-      start: squeezedPoints[0],
-      end: squeezedPoints[1]
-    };
-  });
-
-  const ovals = scratchPoints.ovals.map((oval) => {
-    const squeezedPoints = squeezePoints({
-      points: oval.map((point) => handPoints[point]),
-      squeezeRatio: pinchThreshold,
-      centeringContext: dots
-    });
-    return {
-      start: squeezedPoints[0],
-      control: squeezedPoints[1],
-      end: squeezedPoints[2]
-    };
-  });
+    return result;
+  }, {});
 
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched =
@@ -196,16 +128,7 @@ export const processHands = ({
         pinchThreshold,
         pressedKey,
         dispersion,
-        lines,
-        curves,
-        arcs,
-        ovals,
-        circles,
-        squares,
-        rhomboids,
-        rectangles,
-        triangles,
-        diamonds
+        shapes
       });
     } else {
       lastTips = undefined;
