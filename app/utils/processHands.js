@@ -13,7 +13,6 @@ let lastX, lastY, lastTips;
 export const processHands = ({
   setupRef,
   hands,
-  points,
   setCursor,
   setScribbleNewArea,
   dctx,
@@ -34,7 +33,7 @@ export const processHands = ({
     dispersion,
     doesWagDelete
   } = setupRef.current;
-  const ctx = pressedKey === "Shift" ? dctx : pctx;
+  const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
   ctx.strokeStyle = processColor(color, opacity);
   let newPoints = [];
   if (!["paths"].includes(pattern)) {
@@ -168,5 +167,4 @@ export const processHands = ({
       return prevScribbleNewArea;
     });
   }
-  return [...points, ...newPoints];
 };

@@ -8,14 +8,13 @@ import Menu from "./nav/Menu";
 import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
-// import Cursor from "./Cursor";
+import Cursor from "./Cursor";
 import "../styles.scss";
 import { clearCanvases } from "../utils";
 
 const App = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [points, setPoints] = useState([]);
   const [scribble, setScribble] = useState([]);
   const [scribbleNewArea, setScribbleNewArea] = useState([]);
   const [cursor, setCursor] = useState({ x: 0, y: 0, isPinched: false });
@@ -119,7 +118,6 @@ const App = () => {
       runDetector({
         setupRef,
         video,
-        setPoints,
         setCursor,
         setScribble,
         setScribbleNewArea,
@@ -154,7 +152,6 @@ const App = () => {
   const clearPaths = () => {
     setScribble([]);
     setScribbleNewArea([]);
-    setPoints([]);
     clearCanvases();
   };
 
@@ -209,7 +206,6 @@ const App = () => {
               {...{
                 inputResolution,
                 setup,
-                points,
                 cursor,
                 scribble,
                 scribbleNewArea
@@ -222,11 +218,13 @@ const App = () => {
           >
             Stop camera
           </button>
-          {/* <Cursor
-            cursor={cursor}
-            hasCursor={setup.hasCursor}
-            isScratchCanvas={setup.isScratchCanvas}
-          /> */}
+          {setup.hasCursor && !setup.isScratchCanvas && (
+            <Cursor
+              cursor={cursor}
+              hasCursor={setup.hasCursor}
+              isScratchCanvas={setup.isScratchCanvas}
+            />
+          )}
         </>
       ) : (
         <Splash {...{ handlePlayButtonClick }} />
@@ -236,7 +234,6 @@ const App = () => {
           setup,
           handleInputChange,
           setSetup,
-          setPoints,
           clearPaths
         }}
       />

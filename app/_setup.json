@@ -138,7 +138,7 @@
     "id": "hasCursor",
     "title": "Cursor",
     "description": "Shows or hides cursor",
-    "value": true,
+    "value": false,
     "isHidden": true,
     "type": "checkbox"
   },
