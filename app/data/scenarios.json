@@ -293,6 +293,48 @@
     "description": "Draw some charts with more fingers",
     "icon": "✊"
   },
+  "scratch-canvas-fish": {
+    "icon": "🐟",
+    "pattern": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "pinchThreshold": 100,
+    "opacity": 128,
+    "videoOpacity": 48,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "blendMode": "normal",
+    "transDur": 3.2,
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dispersion": 1,
+    "composite": "source-over",
+    "hasCursor": true,
+    "isScratchCanvas": true,
+    "scratchPoints": {
+      "dots": [],
+      "lines": [[0, 17]],
+      "curves": [
+        [4, 1, 17],
+        [7, 9, 20],
+        [4, 11, 0],
+        [4, 3, 5],
+        [7, 16, 18],
+        [18, 19, 20],
+        [7, 11, 14]
+      ],
+      "arcs": [],
+      "diamonds": [],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [],
+      "squares": [],
+      "circles": [],
+      "ovals": []
+    }
+  },
   "scratch-canvas-frog": {
     "icon": "🐸",
     "pattern": "canvas",
