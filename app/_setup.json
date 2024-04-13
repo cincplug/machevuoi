@@ -135,20 +135,16 @@
     ]
   },
   {
-    "id": "hasCursor",
-    "title": "Cursor",
-    "description": "Shows or hides cursor",
-    "value": false,
-    "isHidden": true,
-    "type": "checkbox"
-  },
-  {
-    "id": "isScratchCanvas",
-    "title": "Scratch canvas",
-    "description": "Selected hand points (scratch points) are used for drawing",
-    "value": false,
-    "isHidden": true,
-    "type": "checkbox"
+    "id": "dash",
+    "title": "Dash",
+    "description": "Length of dashes in a line",
+    "value": 0,
+    "isHandRelated": true,
+    "parentPattern": ["canvas", "paths"],
+    "type": "range",
+    "min": 0,
+    "max": 100,
+    "step": 0.5
   },
   {
     "id": "isAutoClosed",
@@ -160,18 +156,6 @@
     "type": "checkbox"
   },
   {
-    "id": "activeScenarioIndex",
-    "title": "Active scenario index",
-    "description": "Index of the active scenario",
-    "value": 0,
-    "isHidden": true,
-    "isOmittedInScenario": true,
-    "type": "range",
-    "min": 0,
-    "max": 255,
-    "step": 1
-  },
-  {
     "id": "text",
     "title": "Text",
     "description": "Text for hose, kite, and paths patterns",
@@ -179,56 +163,6 @@
     "parentPattern": ["paths", "hose", "kite"],
     "value": "",
     "type": "text"
-  },
-  {
-    "id": "usesButtonPinch",
-    "title": "Button pinch",
-    "description": "Simulates click / hover by pinch on buttons",
-    "isHidden": true,
-    "isStoringPrevented": true,
-    "value": false,
-    "type": "checkbox"
-  },
-  {
-    "id": "pressedKey",
-    "title": "Pressed key",
-    "description": "Which key on the keyboard is currently pressed, if any",
-    "isStoringPrevented": true,
-    "isHidden": true,
-    "value": "",
-    "type": "text"
-  },
-  {
-    "id": "scratchPoints",
-    "title": "Scratch points",
-    "description": "Defines which hand points are used to draw on scratch canvas",
-    "isHandRelated": true,
-    "parentPattern": "canvas",
-    "isHidden": true,
-    "value": {
-      "dots": [4, 8, 12, 16, 20],
-      "lines": [],
-      "curves": [],
-      "arcs": [], "diamonds": [], "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "circles": [],
-      "ovals": []
-    },
-    "type": "text"
-  },
-  {
-    "id": "dash",
-    "title": "Dash",
-    "description": "Length of dashes in a line",
-    "value": 0,
-    "isHandRelated": true,
-    "parentPattern": "canvas",
-    "type": "range",
-    "min": 0,
-    "max": 100,
-    "step": 0.5
   },
   {
     "id": "dispersion",
@@ -287,6 +221,74 @@
     "isOmittedInScenario": true,
     "value": false,
     "type": "checkbox"
+  },
+  {
+    "id": "hasCursor",
+    "title": "Cursor",
+    "description": "Shows or hides cursor",
+    "value": false,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "isScratchCanvas",
+    "title": "Scratch canvas",
+    "description": "Selected hand points (scratch points) are used for drawing",
+    "value": false,
+    "isHidden": true,
+    "type": "checkbox"
+  },
+  {
+    "id": "activeScenarioIndex",
+    "title": "Active scenario index",
+    "description": "Index of the active scenario",
+    "value": 0,
+    "isHidden": true,
+    "isOmittedInScenario": true,
+    "type": "range",
+    "min": 0,
+    "max": 255,
+    "step": 1
+  },
+  {
+    "id": "usesButtonPinch",
+    "title": "Button pinch",
+    "description": "Simulates click / hover by pinch on buttons",
+    "isHidden": true,
+    "isStoringPrevented": true,
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "id": "pressedKey",
+    "title": "Pressed key",
+    "description": "Which key on the keyboard is currently pressed, if any",
+    "isStoringPrevented": true,
+    "isHidden": true,
+    "value": "",
+    "type": "text"
+  },
+  {
+    "id": "scratchPoints",
+    "title": "Scratch points",
+    "description": "Defines which hand points are used to draw on scratch canvas",
+    "isHandRelated": true,
+    "parentPattern": "canvas",
+    "isHidden": true,
+    "value": {
+      "dots": [4, 8, 12, 16, 20],
+      "lines": [],
+      "curves": [],
+      "arcs": [],
+      "diamonds": [],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [],
+      "squares": [],
+      "circles": [],
+      "ovals": []
+    },
+    "type": "text"
   },
   {
     "id": "customScenarios",

@@ -13,7 +13,8 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
     transDur,
     text,
     radius,
-    minimum
+    minimum,
+    dash
   } = setup;
 
   if (pattern === "hose") {
@@ -77,6 +78,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
               fill="none"
               stroke={processColor(color, opacity)}
               strokeWidth={radius}
+              strokeDasharray={dash}
               d={pathData}
             ></path>
             {text && (
