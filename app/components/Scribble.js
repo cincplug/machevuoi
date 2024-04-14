@@ -10,7 +10,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
     color,
     opacity,
     pathStroke,
-    transDur,
+    speed,
     text,
     radius,
     minimum,
@@ -88,12 +88,12 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
                 dominantBaseline="text-after-edge"
               >
                 <textPath href={`#text-path-${scribbleAreaIndex}`}>
-                  {transDur > 0 && (
+                  {speed > 0 && (
                     <animate
                       attributeName="startOffset"
                       to="0%"
                       from="100%"
-                      dur={transDur * 10}
+                      dur={text.length / speed}
                       repeatCount="indefinite"
                     />
                   )}

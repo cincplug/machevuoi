@@ -2,7 +2,7 @@ import React from "react";
 import { processColor } from "../../utils";
 
 const Hose = ({ scribble, scribbleNewArea, setup, radius }) => {
-  const { text, color, opacity, transDur } = setup;
+  const { text, color, opacity, speed } = setup;
 
   const textArray = Array.from(text);
   const area = [...scribble, scribbleNewArea].flat();
@@ -16,8 +16,8 @@ const Hose = ({ scribble, scribbleNewArea, setup, radius }) => {
 
   return area.map((point, index) => {
     const style = {
-      animation: `move-to ${transDur}s linear infinite`,
-      animationDelay: `${-index * transDur}s`,
+      animation: `move-to ${textArray.length / speed}s linear infinite`,
+      animationDelay: `${(-index * 10) / speed}s`,
       "--dx": `${area[Math.max(0, index - 1)].x - point.x}px`,
       "--dy": `${area[Math.max(0, index - 1)].y - point.y}px`
     };

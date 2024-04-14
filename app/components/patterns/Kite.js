@@ -2,7 +2,7 @@ import React from "react";
 import { processColor } from "../../utils";
 
 const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
-  const { text, color, opacity, transDur } = setup;
+  const { text, color, opacity, speed } = setup;
 
   const textArray = Array.from(text);
   const area = [...scribble, scribbleNewArea].flat();
@@ -20,7 +20,7 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
       <path id="text-path" d={pathData} fill="none" />
       {textArray.map((letter, index) => {
         const style = {
-          animation: `move-to ${transDur}s linear infinite`
+          animation: `move-to ${textArray.length / speed}s linear infinite`
         };
         const endOffset = (index / textArray.length) * 100;
         return (
@@ -35,7 +35,7 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
                 attributeName="startOffset"
                 from={`${endOffset}%`}
                 to={`${endOffset + radius}%`}
-                dur={transDur * 10}
+                dur={10 / speed}
                 repeatCount="indefinite"
               />
               {letter}

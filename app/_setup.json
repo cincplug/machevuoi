@@ -109,17 +109,6 @@
     ]
   },
   {
-    "id": "transDur",
-    "title": "Duration",
-    "description": "Duration of transitions",
-    "parentPattern": ["paths", "hose", "kite"],
-    "value": 2,
-    "type": "range",
-    "min": 0,
-    "max": 5,
-    "step": 0.1
-  },
-  {
     "id": "pathStroke",
     "title": "Path stroke",
     "description": "What kind of paths is being used",
@@ -165,6 +154,18 @@
     "parentPattern": ["paths", "hose", "kite"],
     "value": "",
     "type": "text"
+  },
+  {
+    "id": "speed",
+    "title": "Speed",
+    "description": "Speed of transitions",
+    "parentPattern": ["paths", "hose", "kite"],
+    "value": 2,
+    "type": "range",
+    "isHandRelated": true,
+    "min": 0,
+    "max": 15,
+    "step": 0.1
   },
   {
     "id": "dispersion",

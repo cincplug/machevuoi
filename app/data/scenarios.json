@@ -2,7 +2,7 @@
   "pinch-paint-svg": {
     "description": "Draw with your pinched fingers",
     "icon": "👌",
-    "transDur": 3.2,
+    "speed": 3.2,
     "radius": 10,
     "minimum": 2,
     "pinchThreshold": 40,
@@ -21,7 +21,7 @@
   "railway": {
     "description": "Make model railways with your pinched fingers",
     "icon": "🚂",
-    "transDur": 1.6,
+    "speed": 1.6,
     "radius": 4,
     "minimum": 5,
     "pinchThreshold": 40,
@@ -38,7 +38,7 @@
   "pinch-paint-svg-cloud": {
     "description": "Draw clouds with your pinched fingers",
     "icon": "☁️",
-    "transDur": 3.2,
+    "speed": 4.2,
     "radius": 2,
     "minimum": 2,
     "pinchThreshold": 40,
@@ -74,7 +74,7 @@
   "pinch-canvas-pen": {
     "description": "Use the pinch as canvas pen",
     "icon": "🖋️",
-    "transDur": 3.2,
+    "speed": 3.2,
     "radius": 40,
     "minimum": 5,
     "pinchThreshold": 50,
@@ -256,7 +256,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -326,7 +325,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -376,7 +375,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -429,7 +428,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -479,7 +478,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -540,7 +539,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -582,7 +581,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -642,7 +641,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -692,7 +691,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -740,7 +739,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -789,7 +788,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -838,7 +837,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -893,7 +892,7 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-    "transDur": 3.2,
+
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
