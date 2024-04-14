@@ -206,9 +206,6 @@ export const scratchCanvas = ({
     });
   }
 
-  ctx.stroke();
-  ctx.beginPath();
-
   if (tips) {
     const tipValues = Object.values(tips);
     const tipDistance = getAverageDistance(tipValues);
