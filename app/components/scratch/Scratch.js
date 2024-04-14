@@ -9,7 +9,7 @@ import Rectangle from "./Rectangle";
 import Triangle from "./Triangle";
 import Curve from "./Curve";
 import Circle from "./Circle";
-import Oval from "./Oval";
+import Ellipse from "./Ellipse";
 import Preview from "./Preview";
 import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
@@ -28,7 +28,7 @@ function Scratch({ setup, handleInputChange }) {
       if (startPoint === null) {
         setStartPoint(index);
       } else if (
-        ["curves", "ovals"].includes(activeLayer) &&
+        ["curves", "ellipses"].includes(activeLayer) &&
         controlPoint === null
       ) {
         setControlPoint(index);
@@ -121,7 +121,7 @@ function Scratch({ setup, handleInputChange }) {
     triangles: Triangle,
     curves: Curve,
     circles: Circle,
-    ovals: Oval
+    ellipses: Ellipse
   };
 
   return (
@@ -174,7 +174,7 @@ function Scratch({ setup, handleInputChange }) {
         "curves",
         "arcs",
         "circles",
-        "ovals",
+        "ellipses",
         "squares",
         "diamonds",
         "rhomboids",

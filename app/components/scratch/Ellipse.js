@@ -1,6 +1,6 @@
 import HP from "../../data/handPoints.json";
 
-const Oval = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPreview = false }) => {
+const Ellipse = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPreview = false }) => {
   
   const spx = HP[startPoint].x;
   const spy = HP[startPoint].y;
@@ -31,4 +31,4 @@ const Oval = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPrevie
   );
 };
 
-export default Oval;
+export default Ellipse;

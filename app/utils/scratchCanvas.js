@@ -17,7 +17,7 @@ export const scratchCanvas = ({
     lines,
     curves,
     arcs,
-    ovals,
+    ellipses,
     circles,
     squares,
     rhomboids,
@@ -59,8 +59,8 @@ export const scratchCanvas = ({
     });
   }
 
-  if (ovals.length > 0) {
-    ovals.forEach(({ start, control, end }) => {
+  if (ellipses.length > 0) {
+    ellipses.forEach(({ start, control, end }) => {
       const distControl = Math.sqrt(
         (control.x - start.x) ** 2 + (control.y - start.y) ** 2
       );

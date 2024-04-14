@@ -68,7 +68,7 @@ export const processHands = ({
     "circles",
     "curves",
     "arcs",
-    "ovals"
+    "ellipses"
   ];
 
   const shapes = shapeNames.reduce((result, shapeName) => {
@@ -80,7 +80,7 @@ export const processHands = ({
         centeringContext: points
       });
       const shapeObject = { start: squeezedPoints[0], end: squeezedPoints[1] };
-      if (shapeName === "curves" || shapeName === "ovals") {
+      if (shapeName === "curves" || shapeName === "ellipses") {
         shapeObject.control = squeezedPoints[1];
         shapeObject.end = squeezedPoints[2];
       }

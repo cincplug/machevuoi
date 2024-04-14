@@ -162,7 +162,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     },
     "dispersion": 1,
     "dash": 0
@@ -211,7 +211,7 @@
         [17, 18],
         [13, 14]
       ],
-      "ovals": []
+      "ellipses": []
     },
     "dispersion": 1,
     "dash": 0
@@ -240,7 +240,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ovals": [[16, 5, 17]]
+      "ellipses": [[16, 5, 17]]
     },
     "dispersion": 20,
     "dash": 0
@@ -304,7 +304,7 @@
         [2, 3]
       ],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     },
     "dash": 0,
     "dispersion": 10,
@@ -354,7 +354,7 @@
       ],
       "squares": [[4, 17]],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     },
     "dash": 0,
     "dispersion": 10,
@@ -406,7 +406,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ovals": [[0, 1, 1]]
+      "ellipses": [[0, 1, 1]]
     },
     "dash": 0,
     "dispersion": 10,
@@ -458,7 +458,7 @@
       "triangles": [[11, 12]],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     },
     "dash": 0,
     "dispersion": 10,
@@ -514,7 +514,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ovals": [
+      "ellipses": [
         [9, 12, 12],
         [14, 5, 5],
         [9, 14, 13]
@@ -567,7 +567,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-frog": {
@@ -627,7 +627,7 @@
       ],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-duck": {
@@ -682,7 +682,7 @@
         [10, 11],
         [14, 15]
       ],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-fox": {
@@ -730,7 +730,7 @@
       ],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-dog": {
@@ -779,7 +779,7 @@
       ],
       "squares": [],
       "circles": [[10, 14]],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-cat": {
@@ -828,7 +828,7 @@
       ],
       "squares": [],
       "circles": [],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-cow": {
@@ -883,7 +883,7 @@
         [7, 8],
         [19, 20]
       ],
-      "ovals": []
+      "ellipses": []
     }
   },
   "scratch-canvas-monkey": {
@@ -940,7 +940,7 @@
         [11, 12],
         [15, 16]
       ],
-      "ovals": []
+      "ellipses": []
     }
   }
 }

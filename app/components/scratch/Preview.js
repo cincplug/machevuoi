@@ -14,7 +14,7 @@ const Preview = ({
 
   const ShapeComponent = shapeComponents[activeLayer];
   if (controlPoint === null) {
-    return ["lines", "curves", "ovals"].includes(activeLayer) ? (
+    return ["lines", "curves", "ellipses"].includes(activeLayer) ? (
       <line
         x1={spx}
         y1={spy}
