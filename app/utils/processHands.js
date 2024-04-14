@@ -31,8 +31,11 @@ export const processHands = ({
     dash,
     pressedKey,
     dispersion,
-    doesWagDelete
+    doesWagDelete,
+    composite
   } = setupRef.current;
+  dctx.globalCompositeOperation = composite;
+  pctx.globalCompositeOperation = "destination-atop";
   const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
   ctx.strokeStyle = processColor(color, opacity);
   let newPoints = [];

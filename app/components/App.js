@@ -113,8 +113,6 @@ const App = () => {
       }
       const dctx = drawingCanvasRef.current?.getContext("2d") || null;
       const pctx = previewCanvasRef.current?.getContext("2d") || null;
-      dctx.globalCompositeOperation = setup.composite;
-      pctx.globalCompositeOperation = "destination-atop";
       runDetector({
         setupRef,
         video,
