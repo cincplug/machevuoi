@@ -1,11 +1,11 @@
-import DEFAULT_SETUP from "../../_setup.json";
+import CONTROLS from "../../data/controls.json";
 import { saveImage } from "../../utils";
 
 const Buttons = ({ setup, handleInputChange, clearPaths }) => {
   const saveSetup = () => {
     const filteredSetup = Object.fromEntries(
       Object.entries(setup).filter(([key]) => {
-        const entry = DEFAULT_SETUP.find((item) => item.id === key);
+        const entry = CONTROLS.find((item) => item.id === key);
         return entry && !entry.isOmittedInScenario && !entry.isStoringPrevented;
       })
     );

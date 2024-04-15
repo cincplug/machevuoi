@@ -1,4 +1,4 @@
-import DEFAULT_SETUP from "../../_setup.json";
+import CONTROLS from "../../data/controls.json";
 import DEFAULT_SCENARIOS from "../../data/scenarios.json";
 import ControlGroup from "./Controls";
 import Buttons from "./Buttons";
@@ -13,7 +13,7 @@ const Menu = (props) => {
       <nav className={`menu menu--controls`}>
         <ControlGroup
           {...{ setup, handleInputChange }}
-          controls={DEFAULT_SETUP.filter(
+          controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
               (!control.parentPattern ||
@@ -35,7 +35,7 @@ const Menu = (props) => {
       <nav className={`menu menu--secondary`}>
         <ControlGroup
           {...{ setup, handleInputChange }}
-          controls={DEFAULT_SETUP.filter(
+          controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
               (!control.parentPattern ||

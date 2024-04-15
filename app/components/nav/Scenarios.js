@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import DEFAULT_SETUP from "../../_setup.json";
+import CONTROLS from "../../data/controls.json";
 
 const ScenarioSelection = ({
   setup,
@@ -14,7 +14,7 @@ const ScenarioSelection = ({
         const newScenario = scenarios ? scenarios[scenarioKey] : null;
         if (!newScenario) {
           const initialSetup = {};
-          DEFAULT_SETUP.forEach((item) => {
+          CONTROLS.forEach((item) => {
             initialSetup[item.id] = item.value;
           });
           return initialSetup;

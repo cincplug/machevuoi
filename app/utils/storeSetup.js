@@ -1,4 +1,4 @@
-import DEFAULT_SETUP from "../_setup.json";
+import CONTROLS from "../data/controls.json";
 import scenarios from "../data/scenarios.json";
 
 const storageSetupItem = "pecelSetup";
@@ -8,7 +8,7 @@ export const getStoredSetup = () => {
   if (typeof window !== "undefined") {
     const storedSetupRaw = sessionStorage.getItem(storageSetupItem);
     const storedSetup = storedSetupRaw ? JSON.parse(storedSetupRaw) : null;
-    DEFAULT_SETUP.forEach((item) => {
+    CONTROLS.forEach((item) => {
       initialSetup[item.id] = storedSetup
         ? storedSetup[item.id]
         : Object.values(scenarios)[0][item.id] || item.value;
@@ -19,7 +19,7 @@ export const getStoredSetup = () => {
 
 export const storeSetup = (nextSetup) => {
   if (typeof window !== "undefined") {
-    let omittedKeys = DEFAULT_SETUP.filter(
+    let omittedKeys = CONTROLS.filter(
       (item) => item.isStoringPrevented
     ).map((item) => item.id);
     let filteredNextSetup = Object.keys(nextSetup)
