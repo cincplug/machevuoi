@@ -18,7 +18,7 @@ export const squeezePoints = ({ points, squeezeRatio, centeringContext }) => {
     return null;
   }
   const center = centeringContext.reduce(
-    (total, point, array) => {
+    (total, point, _index, array) => {
       return {
         x: total.x + point.x / array.length,
         y: total.y + point.y / array.length
