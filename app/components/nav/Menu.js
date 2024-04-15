@@ -1,6 +1,6 @@
 import CONTROLS from "../../data/controls.json";
 import DEFAULT_SCENARIOS from "../../data/scenarios.json";
-import ControlGroup from "./Controls";
+import Controls from "./Controls";
 import Buttons from "./Buttons";
 import Scenarios from "./Scenarios";
 import Scratch from "../scratch/Scratch";
@@ -11,7 +11,7 @@ const Menu = (props) => {
   return (
     <>
       <nav className={`menu menu--controls`}>
-        <ControlGroup
+        <Controls
           {...{ setup, handleInputChange }}
           controls={CONTROLS.filter(
             (control) =>
@@ -33,7 +33,7 @@ const Menu = (props) => {
         />
       </nav>
       <nav className={`menu menu--secondary`}>
-        <ControlGroup
+        <Controls
           {...{ setup, handleInputChange }}
           controls={CONTROLS.filter(
             (control) =>

@@ -17,11 +17,6 @@ export const runDetector = async ({
   );
   const handsModel = handPoseDetectionModule.SupportedModels.MediaPipeHands;
 
-  // const handsDetectorConfig = {
-  //   runtime: "tfjs",
-  //   modelType: "lite",
-  // };
-
   const handsDetectorConfig = {
     runtime: "mediapipe",
     solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands"

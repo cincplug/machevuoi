@@ -8,7 +8,7 @@
     "pinchThreshold": 40,
     "color": "#160594",
     "bg": "#e5e5e5",
-    "opacity": 192,
+    "opacity": 128,
     "videoOpacity": 48,
     "blendMode": "normal",
     "pattern": "paths",
