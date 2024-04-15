@@ -11,6 +11,9 @@ import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
 import { clearCanvases } from "../utils";
+{
+  /* <pre>{JSON.stringify(setup, null, 4)}</pre> */
+}
 
 interface Cursor {
   x: number;
@@ -32,6 +35,7 @@ const App: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const [isStarted, setIsStarted] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isSetupLoaded, setIsSetupLoaded] = useState<boolean>(false);
   const [scribble, setScribble] = useState<any[]>([]);
   const [scribbleNewArea, setScribbleNewArea] = useState<any[]>([]);
   const [cursor, setCursor] = useState<Cursor>({
@@ -61,7 +65,7 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       setSetup(getStoredSetup());
@@ -69,6 +73,7 @@ const App: React.FC = () => {
         width: window.innerWidth,
         height: window.innerHeight
       });
+      setIsSetupLoaded(true);
     }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key) {
@@ -90,7 +95,6 @@ const App: React.FC = () => {
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
     };
-
   }, [isClient]);
 
   useEffect(() => {
@@ -186,6 +190,10 @@ const App: React.FC = () => {
 
   const { width, height } = inputResolution;
 
+  if (!isSetupLoaded) {
+    return null;
+  }
+
   return (
     <div
       className={`wrap wrap--main wrap--${
@@ -225,13 +233,17 @@ const App: React.FC = () => {
             imageSmoothing={false}
           />
           <canvas
-            className={`canvas ${setup.pattern !== "canvas" ? "hidden" : ""}`}
+            className={`canvas preview-canvas ${
+              setup.pattern !== "canvas" ? "hidden" : ""
+            }`}
             ref={previewCanvasRef}
             width={width}
             height={height}
           ></canvas>
           <canvas
-            className={`canvas ${setup.pattern !== "canvas" ? "hidden" : ""}`}
+            className={`canvas drawing-canvas ${
+              setup.pattern !== "canvas" ? "hidden" : ""
+            }`}
             ref={drawingCanvasRef}
             width={width}
             height={height}
@@ -264,14 +276,16 @@ const App: React.FC = () => {
       ) : (
         <Splash {...{ handlePlayButtonClick }} />
       )}
-      <Menu
-        {...{
-          setup,
-          handleInputChange,
-          setSetup,
-          clearPaths
-        }}
-      />
+      {isSetupLoaded && (
+        <Menu
+          {...{
+            setup,
+            handleInputChange,
+            setSetup,
+            clearPaths
+          }}
+        />
+      )}
       {message && <Message {...{ message, setMessage }} />}
       {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
     </div>
