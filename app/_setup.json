@@ -299,7 +299,7 @@
     "description": "Defines custom scenarios to be kept in storage",
     "isHidden": true,
     "isOmittedInScenario": true,
-    "value": {},
+    "value": null,
     "type": "text"
   }
 ]

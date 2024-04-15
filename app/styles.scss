@@ -103,6 +103,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: var(--gap-half);
+  scrollbar-color: var(--color-skin-mid-light) var(--color-skin-dark);
 }
 
 canvas {
@@ -252,6 +254,7 @@ legend {
   left: 0;
   width: var(--menu-width);
   height: 100vh;
+  overflow: auto;
   padding: var(--gap);
   background: var(--color-skin-dark);
   color: var(--color-silver);

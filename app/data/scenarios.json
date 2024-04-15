@@ -54,7 +54,6 @@
     "isAutoClosed": true,
     "isScratchCanvas": false
   },
-
   "zipper": {
     "description": "Make stitches or zippers with your pinched fingers",
     "icon": "👖",
@@ -228,10 +227,14 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": true,
-    "pinchThreshold": 150,
+    "pinchThreshold": 128,
     "scratchPoints": {
-      "dots": [4, 2, 0, 17, 20, 5, 9, 13, 8, 12, 16],
-      "lines": [],
+      "dots": [20, 8, 12, 16],
+      "lines": [
+        [8, 12],
+        [12, 16],
+        [16, 20]
+      ],
       "curves": [],
       "arcs": [],
       "diamonds": [],
@@ -310,7 +313,6 @@
     "dispersion": 10,
     "composite": "source-over",
     "doesWagDelete": true,
-    "customScenarios": {},
     "description": "Draw some charts with more fingers",
     "icon": "✊"
   },
@@ -325,7 +327,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -335,22 +336,29 @@
     "scratchPoints": {
       "dots": [],
       "lines": [
-        [17, 20],
         [14, 16],
-        [4, 12]
+        [4, 12],
+        [15, 20],
+        [19, 20]
       ],
       "curves": [],
       "arcs": [],
-      "diamonds": [
-        [12, 16],
+      "diamonds": [[12, 16]],
+      "rhomboids": [[4, 8]],
+      "rectangles": [
+        [2, 3],
+        [1, 2],
+        [6, 9],
+        [9, 10],
+        [6, 10],
+        [1, 3],
         [0, 2],
-        [1, 2]
+        [0, 1],
+        [0, 3]
       ],
-      "rhomboids": [[7, 8]],
-      "rectangles": [[0, 3]],
       "triangles": [
         [12, 17],
-        [15, 20]
+        [14, 19]
       ],
       "squares": [[4, 17]],
       "circles": [],
@@ -360,7 +368,6 @@
     "dispersion": 10,
     "composite": "source-over",
     "doesWagDelete": true,
-    "customScenarios": {},
     "description": "Draw some charts with more fingers",
     "icon": "🏠"
   },
@@ -375,7 +382,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -412,7 +418,6 @@
     "dispersion": 10,
     "composite": "source-over",
     "doesWagDelete": true,
-    "customScenarios": {},
     "description": "Draw some charts with more fingers",
     "icon": "🌿"
   },
@@ -428,7 +433,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -464,7 +468,6 @@
     "dispersion": 10,
     "composite": "source-over",
     "doesWagDelete": true,
-    "customScenarios": {},
     "description": "Draw some charts with more fingers"
   },
   "scratch-canvas-bicycle": {
@@ -478,7 +481,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "hasCursor": true,
     "isScratchCanvas": true,
@@ -524,7 +526,6 @@
     "dispersion": 10,
     "composite": "source-over",
     "doesWagDelete": true,
-    "customScenarios": {},
     "description": "Draw some charts with more fingers",
     "icon": "🚲"
   },
@@ -539,7 +540,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -581,7 +581,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -641,7 +640,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -696,7 +694,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -744,7 +741,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -793,7 +789,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -842,7 +837,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,
@@ -897,7 +891,6 @@
     "bg": "#e5e5e5",
     "color": "#141516",
     "blendMode": "normal",
-
     "pathStroke": "beziers",
     "dash": 0,
     "isAutoClosed": false,

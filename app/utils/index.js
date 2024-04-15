@@ -1,5 +1,3 @@
-import HP from "../data/handPoints.json";
-
 export const getDistance = (point1, point2) => {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
@@ -20,7 +18,7 @@ export const squeezePoints = ({ points, squeezeRatio, centeringContext }) => {
     return null;
   }
   const center = centeringContext.reduce(
-    (total, point, index, array) => {
+    (total, point, array) => {
       return {
         x: total.x + point.x / array.length,
         y: total.y + point.y / array.length

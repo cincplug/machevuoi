@@ -1,17 +1,17 @@
-import React, { useCallback, useMemo } from "react";
-import DEFAULT_SCENARIOS from "../../data/scenarios.json";
+import React, { useCallback } from "react";
 import DEFAULT_SETUP from "../../_setup.json";
 
-const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
-  const scenarios = useMemo(
-    () => ({ ...DEFAULT_SCENARIOS, ...setup.customScenarios }),
-    [setup.customScenarios]
-  );
-
+const ScenarioSelection = ({
+  setup,
+  setSetup,
+  handleInputChange,
+  scenarios,
+  title
+}) => {
   const handleScenarioButtonClick = useCallback(
     (_event, scenarioKey, index) => {
       setSetup((prevSetup) => {
-        const newScenario = scenarios[scenarioKey];
+        const newScenario = scenarios ? scenarios[scenarioKey] : null;
         if (!newScenario) {
           const initialSetup = {};
           DEFAULT_SETUP.forEach((item) => {
@@ -32,9 +32,13 @@ const ScenarioSelection = ({ setup, setSetup, handleInputChange }) => {
     [scenarios, setSetup, handleInputChange]
   );
 
+  if (!scenarios) {
+    return null;
+  }
+
   return (
     <fieldset className="menu--scenarios">
-      <legend>Scenarios</legend>
+      <legend>{title}</legend>
       {Object.keys(scenarios).map((scenarioKey, index) => {
         const scenario = scenarios[scenarioKey];
         return (
