@@ -9,7 +9,7 @@ const Buttons = ({ setup, handleInputChange, clearPaths }) => {
         return entry && !entry.isOmittedInScenario && !entry.isStoringPrevented;
       })
     );
-    const customScenariosLength = Object.keys(setup.customScenarios).length;
+    const customScenariosLength = Object.keys(setup.customScenarios || {}).length;
     const newCustomScenarioKey = customScenariosLength + 1;
     const newCustomScenarios = {
       ...setup.customScenarios,
