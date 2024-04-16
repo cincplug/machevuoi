@@ -44,9 +44,9 @@ function Scratch({ setup, handleInputChange }) {
       }
     }
   };
-  
+
   useEffect(() => {
-    if(setup.pressedKey === "Escape") {
+    if (setup.pressedKey === "Escape") {
       setStartPoint(null);
       setControlPoint(null);
     }
@@ -138,12 +138,13 @@ function Scratch({ setup, handleInputChange }) {
       >
         {Object.keys(shapeComponents).map((shapeType) => {
           const ShapeComponent = shapeComponents[shapeType];
-          const shapes = getShape(
-            scratchPoints[shapeType],
+          if (scratchPoints[shapeType].length === 0) return null;
+          const shapes = getShape({
+            selectedShapes: scratchPoints[shapeType],
             handlePathClick,
             shapeType
-          );
-          return shapes.map(({ shape, onClick }, index) => (
+          });          
+          return shapes && shapes.map(({ shape, onClick }, index) => (
             <ShapeComponent
               key={`${JSON.stringify(shape)}-${index}`}
               {...{ shape, onClick }}

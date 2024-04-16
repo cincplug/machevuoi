@@ -1,4 +1,23 @@
+import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
+
+interface Point {
+  x: number;
+  y: number;
+}
+interface Cursor extends Point {
+  isPinched: boolean;
+  isWagging: boolean;
+}
+interface RunDetectorProps {
+  video: HTMLVideoElement;
+  setupRef: React.RefObject<any>;
+  setCursor: React.Dispatch<React.SetStateAction<Cursor>>;
+  setScribbleNewArea: React.Dispatch<React.SetStateAction<Point[]>>;
+  setMessage: (message: string) => void;
+  dctx: CanvasRenderingContext2D | null;
+  pctx: CanvasRenderingContext2D | null;
+}
 
 export const runDetector = async ({
   video,
@@ -8,16 +27,16 @@ export const runDetector = async ({
   setMessage,
   dctx,
   pctx
-}) => {
+}: RunDetectorProps) => {
   let shouldContinue = true;
-  let handsDetector = null;
+  let handsDetector: any = null;
 
   const handPoseDetectionModule = await import(
     "@tensorflow-models/hand-pose-detection"
   );
   const handsModel = handPoseDetectionModule.SupportedModels.MediaPipeHands;
 
-  const handsDetectorConfig = {
+  const handsDetectorConfig: MediaPipeHandsMediaPipeModelConfig = {
     runtime: "mediapipe",
     solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands"
   };
@@ -38,9 +57,9 @@ export const runDetector = async ({
   let lastTime = 0;
   const frameRate = 30;
   const targetFrameTime = 1000 / frameRate;
-  let animationFrameId;
+  let animationFrameId: number;
 
-  const detect = async (timeStamp = 0) => {
+  const detect = async (timeStamp: number = 0) => {
     if (timeStamp - lastTime < targetFrameTime) {
       animationFrameId = requestAnimationFrame(detect);
       return;
@@ -48,27 +67,27 @@ export const runDetector = async ({
     lastTime = timeStamp;
 
     const estimationConfig = { flipHorizontal: true, staticImageMode: false };
-    let hands = null;
+    let hands: any = null;
     try {
       if (handsDetector) {
         hands = await handsDetector.estimateHands(video, estimationConfig);
       }
     } catch (error) {
       console.error("Error estimating hands", error);
-      setMessage("Can't find any hands 🥸");
+      setMessage("Something's not working 🥸");
       return;
     }
 
-    if (hands?.length) {
+    if (hands?.length && setupRef.current !== null) {
       processHands({
-        setupRef,
+        setup: setupRef.current,
         hands,
         setCursor,
         setScribbleNewArea,
         dctx,
         pctx
       });
-    }
+    }    
 
     if (shouldContinue) {
       animationFrameId = requestAnimationFrame(detect);

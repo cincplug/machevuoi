@@ -8,15 +8,74 @@ import {
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 
-let lastX, lastY, lastTips;
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface Cursor extends Point {
+  isPinched: boolean;
+  isWagging: boolean;
+}
+
+type Shape = number[][];
+
+interface ScratchPoints {
+  [key: string]: Shape;
+}
+
+interface Setup {
+  pattern: string;
+  radius: number;
+  color: string;
+  opacity: number;
+  minimum: number;
+  pinchThreshold: number;
+  usesButtonPinch: boolean;
+  isScratchCanvas: boolean;
+  scratchPoints: ScratchPoints;
+  dash: number;
+  pressedKey: string;
+  dispersion: number;
+  doesWagDelete: boolean;
+  composite: GlobalCompositeOperation;
+}
+
+let lastX: number | undefined,
+  lastY: number | undefined,
+  lastTips: Point[] | undefined;
+
+interface Keypoint {
+  x: number;
+  y: number;
+  name: string;
+}
+
+interface Keypoint3D extends Keypoint {
+  z: number;
+}
+
+interface Hand {
+  score: number;
+  handedness: "Left" | "Right";
+  keypoints: Keypoint[];
+  keypoints3D: Keypoint3D[];
+}
 
 export const processHands = ({
-  setupRef,
+  setup,
   hands,
   setCursor,
   setScribbleNewArea,
   dctx,
   pctx
+}: {
+  setup: Setup;
+  hands: Hand[];
+  setCursor: React.Dispatch<React.SetStateAction<Cursor>>;
+  setScribbleNewArea: React.Dispatch<React.SetStateAction<Point[]>>;
+  dctx: CanvasRenderingContext2D | null;
+  pctx: CanvasRenderingContext2D | null;
 }) => {
   const {
     pattern,
@@ -33,12 +92,18 @@ export const processHands = ({
     dispersion,
     doesWagDelete,
     composite
-  } = setupRef.current;
-  dctx.globalCompositeOperation = composite;
-  pctx.globalCompositeOperation = "destination-atop";
+  } = setup;
+  if (dctx) {
+    dctx.globalCompositeOperation = composite;
+  }
+  if (pctx) {
+    pctx.globalCompositeOperation = "destination-atop";
+  }
   const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
-  ctx.strokeStyle = processColor(color, opacity);
-  let newPoints = [];
+  if (ctx) {
+    ctx.strokeStyle = processColor(color, opacity);
+  }
+  let newPoints: Point[] = [];
   if (!["paths"].includes(pattern)) {
     hands.forEach((hand) => {
       if (hand.keypoints) {
@@ -51,7 +116,9 @@ export const processHands = ({
   const thumbTip = handPoints[4];
   const indexTip = handPoints[8];
   const middleTip = handPoints[12];
-  const dots = scratchPoints.dots.map((point) => handPoints[point]);
+  const dots = scratchPoints.dots.map(
+    (point) => handPoints[point as unknown as number]
+  );
   const tips = squeezePoints({
     points: dots,
     squeezeRatio: pinchThreshold,
@@ -71,23 +138,39 @@ export const processHands = ({
     "ellipses"
   ];
 
-  const shapes = shapeNames.reduce((result, shapeName) => {
-    result[shapeName] = scratchPoints[shapeName].map((shape) => {
-      const points = shape.map((point) => handPoints[point]);
-      const squeezedPoints = squeezePoints({
-        points,
-        squeezeRatio: pinchThreshold,
-        centeringContext: points
+  const shapes = shapeNames.reduce(
+    (result: { [key: string]: any }, shapeName) => {
+      result[shapeName] = scratchPoints[shapeName].map((shape) => {
+        const points = shape.map((point) => handPoints[point]);
+        const squeezedPoints = squeezePoints({
+          points,
+          squeezeRatio: pinchThreshold,
+          centeringContext: points
+        });
+
+        if (squeezedPoints) {
+          type ShapeObject =
+            | { start: Point; end: Point }
+            | { start: Point; control: Point; end: Point };
+          let shapeObject: ShapeObject = {
+            start: squeezedPoints[0],
+            end: squeezedPoints[1]
+          };
+          if (shapeName === "curves" || shapeName === "ellipses") {
+            shapeObject = {
+              start: squeezedPoints[0],
+              control: squeezedPoints[1],
+              end: squeezedPoints[2]
+            };
+          }
+
+          return shapeObject;
+        }
       });
-      const shapeObject = { start: squeezedPoints[0], end: squeezedPoints[1] };
-      if (shapeName === "curves" || shapeName === "ellipses") {
-        shapeObject.control = squeezedPoints[1];
-        shapeObject.end = squeezedPoints[2];
-      }
-      return shapeObject;
-    });
-    return result;
-  }, {});
+      return result;
+    },
+    {}
+  );
 
   const thumbIndexDistance = getDistance(thumbTip, indexTip);
   const isPinched =
@@ -98,16 +181,19 @@ export const processHands = ({
     (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
   const x = (thumbTip.x + indexTip.x) / 2;
   const y = (thumbTip.y + indexTip.y) / 2;
-  setCursor((prevCursor) => {
+  setCursor((prevCursor: Cursor) => {
     const threshold = prevCursor.isPinched
       ? pinchThreshold * 2
       : pinchThreshold;
     if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
       checkElementPinch({ x, y, isPinched });
     }
-    const nextCursor = isScratchCanvas ? { tips } : { x, y };
-    nextCursor.isWagging = isWagging;
-    nextCursor.isPinched = thumbIndexDistance < threshold;
+    const nextCursor: Cursor = {
+      x,
+      y,
+      isWagging: isWagging,
+      isPinched: thumbIndexDistance < threshold
+    };
     return nextCursor;
   });
 
@@ -125,12 +211,8 @@ export const processHands = ({
         radius,
         minimum,
         ctx,
-        color,
-        opacity,
         tips,
         lastTips,
-        pinchThreshold,
-        pressedKey,
         dispersion,
         shapes
       });
@@ -143,14 +225,11 @@ export const processHands = ({
         thumbIndexDistance,
         minimum,
         ctx,
-        color,
-        opacity,
-        pinchThreshold,
+        dispersion,
         x,
         y,
         lastX,
-        lastY,
-        dispersion
+        lastY
       });
       lastX = result.lastX;
       lastY = result.lastY;
@@ -159,7 +238,7 @@ export const processHands = ({
       lastY = undefined;
     }
   } else if (isPinched) {
-    setScribbleNewArea((prevScribbleNewArea) => {
+    setScribbleNewArea((prevScribbleNewArea: Point[]) => {
       const isNewArea =
         prevScribbleNewArea.length === 0 ||
         getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
@@ -167,7 +246,9 @@ export const processHands = ({
           y
         }) > minimum;
       if (isNewArea) {
-        return [...prevScribbleNewArea, { x, y }];
+        setScribbleNewArea([...prevScribbleNewArea, { x, y }]);
+      } else {
+        setScribbleNewArea(prevScribbleNewArea);
       }
       return prevScribbleNewArea;
     });

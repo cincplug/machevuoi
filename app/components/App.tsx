@@ -11,9 +11,6 @@ import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
 import { clearCanvases } from "../utils";
-{
-  /* <pre>{JSON.stringify(setup, null, 4)}</pre> */
-}
 
 interface Cursor {
   x: number;
@@ -269,7 +266,6 @@ const App: React.FC = () => {
             <Cursor
               cursor={cursor}
               hasCursor={setup.hasCursor}
-              isScratchCanvas={setup.isScratchCanvas}
             />
           )}
         </>

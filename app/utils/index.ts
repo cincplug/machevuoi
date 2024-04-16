@@ -1,10 +1,15 @@
-export const getDistance = (point1, point2) => {
+interface Point {
+  x: number;
+  y: number;
+}
+
+export const getDistance = (point1: Point, point2: Point): number => {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
   return Math.sqrt(dx * dx + dy * dy);
 };
 
-export const getAverageDistance = (points) => {
+export const getAverageDistance = (points: Point[]): number => {
   const distances = points.flatMap((point1, index1) =>
     points.slice(index1 + 1).map((point2) => getDistance(point1, point2))
   );
@@ -13,7 +18,15 @@ export const getAverageDistance = (points) => {
   return totalDistance / distances.length;
 };
 
-export const squeezePoints = ({ points, squeezeRatio, centeringContext }) => {
+export const squeezePoints = ({
+  points,
+  squeezeRatio,
+  centeringContext
+}: {
+  points: Point[];
+  squeezeRatio: number;
+  centeringContext: Point[];
+}): Point[] | null => {
   if (!points || points.length === 0) {
     return null;
   }
@@ -34,13 +47,19 @@ export const squeezePoints = ({ points, squeezeRatio, centeringContext }) => {
   });
 };
 
-export const processColor = (color, opacity) => {
+export const processColor = (color: string, opacity: number): string => {
   return `${color}${Math.min(255, Math.max(0, Math.round(opacity)))
     .toString(16)
     .padStart(2, "0")}`;
 };
 
-export const renderPath = ({ area, points, radius }) =>
+interface RenderPathProps {
+  area: number[];
+  points: Point[];
+  radius: number;
+}
+
+export const renderPath = ({ area, points, radius }: RenderPathProps): string =>
   area
     .map((activeAreaPoint, activeAreaPointIndex) => {
       const thisPoint = points[activeAreaPoint];
@@ -61,15 +80,15 @@ export const renderPath = ({ area, points, radius }) =>
     })
     .join(" ");
 
-export const saveSetup = (setup) => {
+export const saveSetup = (setup: string): void => {
   navigator.clipboard.writeText(setup);
   console.info(setup);
 };
 
-export const saveImage = () => {
+export const saveImage = (): void => {
   const link = document.createElement("a");
   const svgElement = document.querySelector(".drawing");
-  const canvasElement = document.querySelector(".canvas");
+  const canvasElement = document.querySelector(".canvas") as HTMLCanvasElement;
   if (svgElement) {
     link.download = "lukonica-scribble.svg";
     const base64doc = Buffer.from(
@@ -78,7 +97,7 @@ export const saveImage = () => {
     const e = new MouseEvent("click");
     link.href = "data:image/svg+xml;base64," + base64doc;
     link.dispatchEvent(e);
-  } else {
+  } else if (canvasElement) {
     link.download = "lukonica-canvas.png";
     link.setAttribute(
       "href",
@@ -90,8 +109,14 @@ export const saveImage = () => {
   }
 };
 
-export const checkElementPinch = ({ x, y, isPinched }) => {
-  const element = document.elementFromPoint(x, y);
+interface PinchProps {
+  x: number;
+  y: number;
+  isPinched: boolean;
+}
+
+export const checkElementPinch = ({ x, y, isPinched }: PinchProps): void => {
+  const element = document.elementFromPoint(x, y) as HTMLElement;
   if (!element) {
     return;
   }
@@ -107,37 +132,62 @@ export const checkElementPinch = ({ x, y, isPinched }) => {
   }
 };
 
-const clearHighlight = () => {
+const clearHighlight = (): void => {
   const highlightedElement = document.querySelector(".highlight");
   if (highlightedElement) {
     highlightedElement.classList.remove("highlight");
   }
 };
 
-export const arraysAreEqual = (a, b) => {
+export const arraysHaveSameElements = (a: number[], b: number[]): boolean => {
   if (a.length !== b.length) return false;
-  return a.every((val, index) => val === b[index]);
-};
-
-export const arraysHaveSameElements = (a, b) => {
-  if (a.length !== b.length) return false;
-  const sortedA = [...a].sort();
-  const sortedB = [...b].sort();
+  const sortedA = [...a].sort((a, b) => a - b);
+  const sortedB = [...b].sort((a, b) => a - b);
   for (let i = 0; i < sortedA.length; i++) {
     if (sortedA[i] !== sortedB[i]) return false;
   }
   return true;
 };
 
-export const clearCanvases = () => {
+export const clearCanvases = (): void => {
   const canvasElements = document.querySelectorAll("canvas");
   canvasElements.forEach((canvas) => {
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
   });
 };
 
-export const getShape = (selectedShapes, handlePathClick, shapeType) => {
+type ShapePoint = number;
+type Shape = ShapePoint[];
+type HandlePathClick = (shape: {
+  start: ShapePoint;
+  control: ShapePoint | null;
+  end: ShapePoint;
+  type: string;
+}) => void;
+type ShapeType = string;
+interface ShapeProps {
+  selectedShapes: Shape[];
+  handlePathClick: HandlePathClick;
+  shapeType: ShapeType;
+}
+
+type ShapeReturn = {
+  shape: {
+    startPoint: ShapePoint;
+    controlPoint: ShapePoint | null;
+    endPoint: ShapePoint;
+  };
+  onClick: () => void;
+}[];
+
+export const getShape = ({
+  selectedShapes,
+  handlePathClick,
+  shapeType
+}: ShapeProps): ShapeReturn => {
   return selectedShapes.map((shape) => {
     const startPoint = shape[0];
     const controlPoint = shape.length === 3 ? shape[1] : null;
