@@ -97,33 +97,8 @@ export const processHands = ({
     dctx.globalCompositeOperation = composite;
   }
   if (pctx) {
-    pctx.globalCompositeOperation = "destination-atop";
+    pctx.clearRect(0,0, pctx.canvas.width, pctx.canvas.height)
   }
-  const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
-  if (ctx) {
-    ctx.strokeStyle = processColor(color, opacity);
-  }
-  let newPoints: Point[] = [];
-  if (!["paths"].includes(pattern)) {
-    hands.forEach((hand) => {
-      if (hand.keypoints) {
-        newPoints = newPoints.concat(hand.keypoints);
-      }
-    });
-  }
-  const handPoints = hands[0]?.keypoints;
-  const wrist = handPoints[0];
-  const thumbTip = handPoints[4];
-  const indexTip = handPoints[8];
-  const middleTip = handPoints[12];
-  const dots = scratchPoints.dots.map(
-    (point) => handPoints[point as unknown as number]
-  );
-  const tips = squeezePoints({
-    points: dots,
-    squeezeRatio: pinchThreshold,
-    centeringContext: dots
-  });
 
   const shapeNames = [
     "lines",
@@ -137,120 +112,147 @@ export const processHands = ({
     "arcs",
     "ellipses"
   ];
+if(hands.length > 1) {
+  console.log(hands);
+}
+  hands.forEach((hand) => {
+    const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
+    if (ctx) {
+      ctx.strokeStyle = processColor(color, opacity);
+    }
+    let newPoints: Point[] = [];
+    if (!["paths"].includes(pattern)) {
+      if (hand.keypoints) {
+        newPoints = newPoints.concat(hand.keypoints);
+      }
+    }
+    const wrist = hand.keypoints[0];
+    const thumbTip = hand.keypoints[4];
+    const indexTip = hand.keypoints[8];
+    const middleTip = hand.keypoints[12];
+    const dots = scratchPoints.dots.map(
+      (point) => hand.keypoints[point as unknown as number]
+    );
+    const tips = squeezePoints({
+      points: dots,
+      squeezeRatio: pinchThreshold,
+      centeringContext: dots
+    });
 
-  const shapes = shapeNames.reduce(
-    (result: { [key: string]: any }, shapeName) => {
-      result[shapeName] = scratchPoints[shapeName].map((shape) => {
-        const points = shape.map((point) => handPoints[point]);
-        const squeezedPoints = squeezePoints({
-          points,
-          squeezeRatio: pinchThreshold,
-          centeringContext: points
-        });
+    const shapes = shapeNames.reduce(
+      (result: { [key: string]: any }, shapeName) => {
+        result[shapeName] = scratchPoints[shapeName].map((shape) => {
+          const points = shape.map((point) => hand.keypoints[point]);
+          const squeezedPoints = squeezePoints({
+            points,
+            squeezeRatio: pinchThreshold,
+            centeringContext: points
+          });
 
-        if (squeezedPoints) {
-          type ShapeObject =
-            | { start: Point; end: Point }
-            | { start: Point; control: Point; end: Point };
-          let shapeObject: ShapeObject = {
-            start: squeezedPoints[0],
-            end: squeezedPoints[1]
-          };
-          if (shapeName === "curves" || shapeName === "ellipses") {
-            shapeObject = {
+          if (squeezedPoints) {
+            type ShapeObject =
+              | { start: Point; end: Point }
+              | { start: Point; control: Point; end: Point };
+            let shapeObject: ShapeObject = {
               start: squeezedPoints[0],
-              control: squeezedPoints[1],
-              end: squeezedPoints[2]
+              end: squeezedPoints[1]
             };
+            if (shapeName === "curves" || shapeName === "ellipses") {
+              shapeObject = {
+                start: squeezedPoints[0],
+                control: squeezedPoints[1],
+                end: squeezedPoints[2]
+              };
+            }
+
+            return shapeObject;
           }
+        });
+        return result;
+      },
+      {}
+    );
 
-          return shapeObject;
-        }
-      });
-      return result;
-    },
-    {}
-  );
-
-  const thumbIndexDistance = getDistance(thumbTip, indexTip);
-  const isPinched =
-    pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
-  const isWagging =
-    doesWagDelete &&
-    (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
-    (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
-  const x = (thumbTip.x + indexTip.x) / 2;
-  const y = (thumbTip.y + indexTip.y) / 2;
-  setCursor((prevCursor: Cursor) => {
-    const threshold = prevCursor.isPinched
-      ? pinchThreshold * 2
-      : pinchThreshold;
-    if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
-      checkElementPinch({ x, y, isPinched });
-    }
-    const nextCursor: Cursor = {
-      x,
-      y,
-      isWagging: isWagging,
-      isPinched: thumbIndexDistance < threshold
-    };
-    return nextCursor;
-  });
-
-  if (pattern === "canvas" && ctx) {
-    ctx.setLineDash(dash ? [dash, dash] : []);
-    ctx.lineJoin = "round";
-    if (isWagging) {
-      clearCanvases();
-      lastX = undefined;
-      lastY = undefined;
-      lastTips = undefined;
-    }
-    if (isScratchCanvas) {
-      lastTips = scratchCanvas({
-        radius,
-        minimum,
-        ctx,
-        tips,
-        lastTips,
-        dispersion,
-        shapes
-      });
-    } else {
-      lastTips = undefined;
-    }
-    if (isPinched && !isScratchCanvas) {
-      let result = pinchCanvas({
-        radius,
-        thumbIndexDistance,
-        minimum,
-        ctx,
-        dispersion,
+    const thumbIndexDistance = getDistance(thumbTip, indexTip);
+    const isPinched =
+      pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
+    const isWagging =
+      doesWagDelete &&
+      (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
+      (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
+    const x = (thumbTip.x + indexTip.x) / 2;
+    const y = (thumbTip.y + indexTip.y) / 2;
+    setCursor((prevCursor: Cursor) => {
+      const threshold = prevCursor.isPinched
+        ? pinchThreshold * 2
+        : pinchThreshold;
+      if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
+        checkElementPinch({ x, y, isPinched });
+      }
+      const nextCursor: Cursor = {
         x,
         y,
-        lastX,
-        lastY
-      });
-      lastX = result.lastX;
-      lastY = result.lastY;
-    } else {
-      lastX = undefined;
-      lastY = undefined;
-    }
-  } else if (isPinched) {
-    setScribbleNewArea((prevScribbleNewArea: Point[]) => {
-      const isNewArea =
-        prevScribbleNewArea.length === 0 ||
-        getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
-          x,
-          y
-        }) > minimum;
-      if (isNewArea) {
-        setScribbleNewArea([...prevScribbleNewArea, { x, y }]);
-      } else {
-        setScribbleNewArea(prevScribbleNewArea);
-      }
-      return prevScribbleNewArea;
+        isWagging: isWagging,
+        isPinched: thumbIndexDistance < threshold
+      };
+      return nextCursor;
     });
-  }
+
+    if (pattern === "canvas" && ctx) {
+      ctx.setLineDash(dash ? [dash, dash] : []);
+      ctx.lineJoin = "round";
+      if (isWagging) {
+        clearCanvases();
+        lastX = undefined;
+        lastY = undefined;
+        lastTips = undefined;
+      }
+      if (isScratchCanvas) {
+        lastTips = scratchCanvas({
+          radius,
+          minimum,
+          ctx,
+          tips,
+          lastTips,
+          dispersion,
+          shapes
+        });
+      } else {
+        lastTips = undefined;
+      }
+      if (isPinched && !isScratchCanvas) {
+        let result = pinchCanvas({
+          radius,
+          thumbIndexDistance,
+          minimum,
+          ctx,
+          dispersion,
+          x,
+          y,
+          lastX,
+          lastY
+        });
+        lastX = result.lastX;
+        lastY = result.lastY;
+      } else {
+        lastX = undefined;
+        lastY = undefined;
+      }
+    } else if (isPinched) {
+      setScribbleNewArea((prevScribbleNewArea: Point[]) => {
+        const isNewArea =
+          prevScribbleNewArea.length === 0 ||
+          getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
+            x,
+            y
+          }) > minimum;
+        if (isNewArea) {
+          setScribbleNewArea([...prevScribbleNewArea, { x, y }]);
+        } else {
+          setScribbleNewArea(prevScribbleNewArea);
+        }
+        return prevScribbleNewArea;
+      });
+    }
+  });
 };
