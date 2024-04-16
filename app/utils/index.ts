@@ -18,6 +18,8 @@ export const getAverageDistance = (points: Point[]): number => {
   return totalDistance / distances.length;
 };
 
+type NullablePoint = Point | null;
+
 export const squeezePoints = ({
   points,
   squeezeRatio,
@@ -26,26 +28,36 @@ export const squeezePoints = ({
   points: Point[];
   squeezeRatio: number;
   centeringContext: Point[];
-}): Point[] | null => {
+}): NullablePoint[] => {
   if (!points || points.length === 0) {
-    return null;
+    return [];
   }
   const center = centeringContext.reduce(
     (total, point, _index, array) => {
-      return {
-        x: total.x + point.x / array.length,
-        y: total.y + point.y / array.length
-      };
+      if (point) {
+        return {
+          x: total.x + point.x / array.length,
+          y: total.y + point.y / array.length
+        };
+      } else {
+        return total;
+      }
     },
     { x: 0, y: 0 }
   );
   return points.map((point) => {
-    return {
-      x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
-      y: center.y + ((point.y - center.y) * squeezeRatio) / 100
-    };
-  });
+    if (point) {
+      return {
+        x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
+        y: center.y + ((point.y - center.y) * squeezeRatio) / 100
+      };
+    } else {
+      return null;
+    }
+  }).filter(item => item !== null);
 };
+
+
 
 export const processColor = (color: string, opacity: number): string => {
   return `${color}${Math.min(255, Math.max(0, Math.round(opacity)))

@@ -97,7 +97,7 @@ export const processHands = ({
     dctx.globalCompositeOperation = composite;
   }
   if (pctx) {
-    pctx.clearRect(0,0, pctx.canvas.width, pctx.canvas.height)
+    pctx.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
   }
 
   const shapeNames = [
@@ -112,9 +112,7 @@ export const processHands = ({
     "arcs",
     "ellipses"
   ];
-if(hands.length > 1) {
-  console.log(hands);
-}
+  
   hands.forEach((hand) => {
     const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
@@ -153,19 +151,25 @@ if(hands.length > 1) {
             type ShapeObject =
               | { start: Point; end: Point }
               | { start: Point; control: Point; end: Point };
-            let shapeObject: ShapeObject = {
-              start: squeezedPoints[0],
-              end: squeezedPoints[1]
-            };
-            if (shapeName === "curves" || shapeName === "ellipses") {
-              shapeObject = {
-                start: squeezedPoints[0],
-                control: squeezedPoints[1],
-                end: squeezedPoints[2]
-              };
-            }
 
-            return shapeObject;
+            if (squeezedPoints[0] && squeezedPoints[1]) {
+              let shapeObject: ShapeObject = {
+                start: squeezedPoints[0],
+                end: squeezedPoints[1]
+              };
+              if (
+                (shapeName === "curves" || shapeName === "ellipses") &&
+                squeezedPoints[2]
+              ) {
+                shapeObject = {
+                  start: squeezedPoints[0],
+                  control: squeezedPoints[1],
+                  end: squeezedPoints[2]
+                };
+              }
+
+              return shapeObject;
+            }
           }
         });
         return result;
