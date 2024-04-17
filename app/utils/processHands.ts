@@ -20,6 +20,23 @@ interface Cursor extends Point {
 
 type Shape = number[][];
 
+interface Shapes {
+  lines: ShapeDefinition[];
+  curves: ShapeDefinition[];
+  arcs: ShapeDefinition[];
+  ellipses: ShapeDefinition[];
+  circles: ShapeDefinition[];
+  squares: ShapeDefinition[];
+  rhomboids: ShapeDefinition[];
+  rectangles: ShapeDefinition[];
+  triangles: ShapeDefinition[];
+  diamonds: ShapeDefinition[];
+}
+interface ShapeDefinition {
+  start: Point;
+  end: Point;
+  control?: Point;
+}
 interface ScratchPoints {
   [key: string]: Shape;
 }
@@ -112,7 +129,7 @@ export const processHands = ({
     "arcs",
     "ellipses"
   ];
-  
+
   hands.forEach((hand) => {
     const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
@@ -212,15 +229,16 @@ export const processHands = ({
         lastTips = undefined;
       }
       if (isScratchCanvas) {
-        lastTips = scratchCanvas({
+        scratchCanvas({
           radius,
           minimum,
           ctx,
-          tips,
-          lastTips,
+          tips: tips as Point[],
+          lastTips: lastTips || [],
           dispersion,
-          shapes
+          shapes: shapes as Shapes
         });
+        lastTips = tips as Point[];
       } else {
         lastTips = undefined;
       }

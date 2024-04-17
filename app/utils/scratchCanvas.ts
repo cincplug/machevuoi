@@ -1,6 +1,42 @@
 import { getAverageDistance } from "./index";
 
-const getLineWidth = ({ minimum, radius, tipDistance }) => {
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface Shape {
+  start: Point;
+  control?: Point;
+  end: Point;
+}
+
+type Tips = Point[];
+
+interface Shapes {
+  lines: Shape[];
+  curves: Shape[];
+  arcs: Shape[];
+  ellipses: Shape[];
+  circles: Shape[];
+  squares: Shape[];
+  rhomboids: Shape[];
+  rectangles: Shape[];
+  triangles: Shape[];
+  diamonds: Shape[];
+}
+
+interface ScratchCanvasOptions {
+  radius: number;
+  minimum: number;
+  ctx: CanvasRenderingContext2D;
+  tips: Tips;
+  lastTips: Tips | null;
+  dispersion: number;
+  shapes: Shapes;
+}
+
+const getLineWidth = ({ minimum, radius, tipDistance }: { minimum: number; radius: number; tipDistance: number }): number => {
   return Math.max(minimum, radius / tipDistance);
 };
 
@@ -12,7 +48,7 @@ export const scratchCanvas = ({
   lastTips,
   dispersion,
   shapes
-}) => {
+}: ScratchCanvasOptions): Tips | null => {
   const {
     lines,
     curves,
@@ -41,7 +77,7 @@ export const scratchCanvas = ({
   if (curves.length > 0) {
     curves.forEach(({ start, control, end }) => {
       ctx.moveTo(start.x, start.y);
-      ctx.quadraticCurveTo(control.x, control.y, end.x, end.y);
+      ctx.quadraticCurveTo(control!.x, control!.y, end.x, end.y);
     });
   }
 
@@ -62,7 +98,7 @@ export const scratchCanvas = ({
   if (ellipses.length > 0) {
     ellipses.forEach(({ start, control, end }) => {
       const distControl = Math.sqrt(
-        (control.x - start.x) ** 2 + (control.y - start.y) ** 2
+        (control!.x - start.x) ** 2 + (control!.y - start.y) ** 2
       );
       const distEnd = Math.sqrt(
         (end.x - start.x) ** 2 + (end.y - start.y) ** 2
@@ -71,7 +107,7 @@ export const scratchCanvas = ({
       const ry = Math.min(distControl, distEnd);
       const rotation =
         distControl > distEnd
-          ? Math.atan2(control.y - start.y, control.x - start.x)
+          ? Math.atan2(control!.y - start.y, control!.x - start.x)
           : Math.atan2(end.y - start.y, end.x - start.x);
 
       const startX = start.x + rx * Math.cos(rotation);
