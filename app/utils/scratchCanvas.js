@@ -207,24 +207,25 @@ export const scratchCanvas = ({
   }
 
   if (tips) {
-    const tipValues = Object.values(tips);
-    const tipDistance = getAverageDistance(tipValues);
-    Object.keys(tips).forEach((tip, index) => {
-      if (!lastTips || !lastTips[tip]) return;
-      ctx.moveTo(lastTips[tip].x, lastTips[tip].y);
+    const tipDistance = getAverageDistance(tips);
+
+    tips.forEach((tip, index) => {
+      if (!lastTips || !lastTips[index]) return;
+      const { x: tipX, y: tipY } = tip;
+      const { x: lastTipX, y: lastTipY } = lastTips[index];
+
+      ctx.moveTo(lastTipX, lastTipY);
+
       ctx.lineWidth = getLineWidth({
         minimum,
         radius: radius * index + dispersion,
         tipDistance
       });
-      ctx.quadraticCurveTo(
-        lastTips[tip].x,
-        lastTips[tip].y,
-        tips[tip].x,
-        tips[tip].y
-      );
+
+      ctx.quadraticCurveTo(lastTipX, lastTipY, tipX, tipY);
     });
   }
+
   ctx.stroke();
   lastTips = { ...tips } || null;
   return lastTips;
