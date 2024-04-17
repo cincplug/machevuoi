@@ -78,19 +78,38 @@ const App: React.FC = () => {
           return { ...prevSetup, pressedKey: event.key };
         });
       }
+  
+      // Check if Caps Lock key is pressed
+      if (event.key === 'CapsLock') {
+        const isCapsLock = event.getModifierState && event.getModifierState('CapsLock');
+        setSetup((prevSetup) => {
+          return { ...prevSetup, isCapsLock: isCapsLock };
+        });
+      }
     };
+  
     const handleKeyUp = (event: KeyboardEvent) => {
       setSetup((prevSetup) => {
         return { ...prevSetup, pressedKey: "" };
       });
+  
+      // Check if Caps Lock key is released
+      if (event.key === 'CapsLock') {
+        const isCapsLock = event.getModifierState && event.getModifierState('CapsLock');
+        setSetup((prevSetup) => {
+          return { ...prevSetup, isCapsLock: isCapsLock };
+        });
+      }
+  
       if (event.key === "Backspace") {
         clearPaths();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
     return () => {
-      window.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     };
   }, [isClient]);
 
@@ -263,10 +282,7 @@ const App: React.FC = () => {
             Stop camera
           </button>
           {setup.hasCursor && !setup.isScratchCanvas && (
-            <Cursor
-              cursor={cursor}
-              hasCursor={setup.hasCursor}
-            />
+            <Cursor cursor={cursor} hasCursor={setup.hasCursor} />
           )}
         </>
       ) : (
@@ -283,7 +299,7 @@ const App: React.FC = () => {
         />
       )}
       {message && <Message {...{ message, setMessage }} />}
-      {/* <pre>{JSON.stringify(setup, null, 4)}</pre> */}
+      {}
     </div>
   );
 };

@@ -267,9 +267,20 @@
     "title": "Pressed key",
     "description": "Which key on the keyboard is currently pressed, if any",
     "isStoringPrevented": true,
+    "isOmittedInScenario": true,
     "isHidden": true,
     "value": "",
     "type": "text"
+  },
+  {
+    "id": "isCapsLock",
+    "title": "Caps lock",
+    "description": "Is caps lock on",
+    "isStoringPrevented": true,
+    "isOmittedInScenario": true,
+    "isHidden": true,
+    "value": false,
+    "type": "checkbox"
   },
   {
     "id": "scratchPoints",

@@ -55,6 +55,7 @@ interface Setup {
   pressedKey: string;
   dispersion: number;
   doesWagDelete: boolean;
+  isCapsLock: boolean;
   composite: GlobalCompositeOperation;
 }
 
@@ -108,7 +109,8 @@ export const processHands = ({
     pressedKey,
     dispersion,
     doesWagDelete,
-    composite
+    composite,
+    isCapsLock
   } = setup;
   if (dctx) {
     dctx.globalCompositeOperation = composite;
@@ -131,7 +133,7 @@ export const processHands = ({
   ];
 
   hands.forEach((hand) => {
-    const ctx = pressedKey === "Shift" || !isScratchCanvas ? dctx : pctx;
+    const ctx = pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
       ctx.strokeStyle = processColor(color, opacity);
     }
@@ -194,9 +196,12 @@ export const processHands = ({
       {}
     );
 
+    if(!thumbTip || !indexTip) {
+      return;
+    }
     const thumbIndexDistance = getDistance(thumbTip, indexTip);
     const isPinched =
-      pressedKey === "Shift" || thumbIndexDistance < pinchThreshold;
+      pressedKey === "Shift" || isCapsLock || thumbIndexDistance < pinchThreshold;
     const isWagging =
       doesWagDelete &&
       (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
