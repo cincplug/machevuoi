@@ -37,7 +37,15 @@ interface ScratchCanvasOptions {
   shapes: Shapes;
 }
 
-const getLineWidth = ({ minimum, radius, tipDistance }: { minimum: number; radius: number; tipDistance: number }): number => {
+const getLineWidth = ({
+  minimum,
+  radius,
+  tipDistance
+}: {
+  minimum: number;
+  radius: number;
+  tipDistance: number;
+}): number => {
   return Math.max(minimum, radius / tipDistance);
 };
 
@@ -70,39 +78,61 @@ export const scratchCanvas = ({
   ctx.beginPath();
   if (lines.length > 0) {
     lines.forEach(({ start, end }) => {
-      const { startX, startY, endX, endY } = getShapePoints({ shape: "lines", start, end });
-      ctx.moveTo(startX, startY);
-      ctx.lineTo(endX, endY);
+      const { spx, spy, epx, epy } = getShapePoints({
+        shape: "lines",
+        start,
+        end
+      });
+      ctx.moveTo(spx, spy);
+      ctx.lineTo(epx, epy);
     });
   }
-  
+
   if (curves.length > 0) {
     curves.forEach(({ start, control, end }) => {
-      const { controlX, controlY } = getShapePoints({ shape: "curves", start, control, end });
+      const { cpx, cpy } = getShapePoints({
+        shape: "curves",
+        start,
+        control,
+        end
+      });
       ctx.moveTo(start.x, start.y);
-      ctx.quadraticCurveTo(controlX, controlY, end.x, end.y);
+      ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
     });
   }
-  
+
   if (arcs.length > 0) {
     arcs.forEach(({ start, end }) => {
-      const { midX, midY, controlX, controlY } = getShapePoints({ shape: "arcs", start, end });
+      const { cpx, cpy } = getShapePoints({
+        shape: "arcs",
+        start,
+        end
+      });
       ctx.moveTo(start.x, start.y);
-      ctx.quadraticCurveTo(controlX, controlY, end.x, end.y);
+      ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
     });
   }
-  
+
   if (ellipses.length > 0) {
     ellipses.forEach(({ start, control, end }) => {
-      const { startX, startY, rx, ry, rotation } = getShapePoints({ shape: "ellipses", start, control, end });
-      ctx.moveTo(startX, startY);
+      const { spx, spy, rx, ry, rotation } = getShapePoints({
+        shape: "ellipses",
+        start,
+        control,
+        end
+      });
+      ctx.moveTo(spx, spy);
       ctx.ellipse(start.x, start.y, rx, ry, rotation, 0, 2 * Math.PI);
     });
   }
-  
+
   if (diamonds.length > 0) {
     diamonds.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({ shape: "diamonds", start, end });
+      const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({
+        shape: "diamonds",
+        start,
+        end
+      });
       ctx.moveTo(spx, spy);
       ctx.lineTo(cpx, cpy);
       ctx.lineTo(epx, epy);
@@ -113,7 +143,11 @@ export const scratchCanvas = ({
 
   if (squares.length > 0) {
     squares.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({ shape: "squares", start, end });
+      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
+        shape: "squares",
+        start,
+        end
+      });
       ctx.moveTo(spx, spy);
       ctx.lineTo(cpx, cpy);
       ctx.lineTo(dpx, dpy);
@@ -121,10 +155,14 @@ export const scratchCanvas = ({
       ctx.closePath();
     });
   }
-  
+
   if (rhomboids.length > 0) {
     rhomboids.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({ shape: "rhomboids", start, end });
+      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
+        shape: "rhomboids",
+        start,
+        end
+      });
       ctx.moveTo(spx, spy);
       ctx.lineTo(cpx, cpy);
       ctx.lineTo(epx, epy);
@@ -135,15 +173,23 @@ export const scratchCanvas = ({
 
   if (circles.length > 0) {
     circles.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, midx, midy, circleRadius } = getShapePoints({ shape: "circles", start, end });
-      ctx.moveTo(midx + circleRadius, midy);
-      ctx.arc(midx, midy, circleRadius, 0, 2 * Math.PI);
+      const { mpx, mpy, circleRadius } = getShapePoints({
+        shape: "circles",
+        start,
+        end
+      });
+      ctx.moveTo(mpx + circleRadius, mpy);
+      ctx.arc(mpx, mpy, circleRadius, 0, 2 * Math.PI);
     });
   }
-  
+
   if (rectangles.length > 0) {
     rectangles.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({ shape: "rectangles", start, end });
+      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
+        shape: "rectangles",
+        start,
+        end
+      });
       ctx.moveTo(spx, spy);
       ctx.lineTo(cpx, cpy);
       ctx.lineTo(epx, epy);
@@ -151,10 +197,14 @@ export const scratchCanvas = ({
       ctx.closePath();
     });
   }
-  
+
   if (triangles.length > 0) {
     triangles.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({ shape: "triangles", start, end });
+      const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({
+        shape: "triangles",
+        start,
+        end
+      });
       ctx.moveTo(spx, spy);
       ctx.lineTo(tpx, tpy);
       ctx.lineTo(epx, epy);

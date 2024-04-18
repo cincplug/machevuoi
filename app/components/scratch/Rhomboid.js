@@ -7,15 +7,15 @@ const Square = ({ shape: { startPoint, endPoint }, onClick, isPreview = false })
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
   const epy = isPreview ? endPoint.y : HP[endPoint].y;
 
-  const midx = (spx + epx) / 2;
-  const midy = (spy + epy) / 2;
+  const mpx = (spx + epx) / 2;
+  const mpy = (spy + epy) / 2;
 
-  const halfDiagonal = Math.sqrt((midx - spx) ** 2 + (midy - spy) ** 2);
+  const halfDiagonal = Math.sqrt((mpx - spx) ** 2 + (mpy - spy) ** 2);
 
-  const cpx = midx - halfDiagonal;
-  const cpy = midy + halfDiagonal;
-  const dpx = midx + halfDiagonal;
-  const dpy = midy - halfDiagonal;
+  const cpx = mpx - halfDiagonal;
+  const cpy = mpy + halfDiagonal;
+  const dpx = mpx + halfDiagonal;
+  const dpy = mpy - halfDiagonal;
 
   return (
     <polygon
