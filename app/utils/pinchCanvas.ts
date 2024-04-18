@@ -1,5 +1,17 @@
 import { getDistance } from "./index";
 
+interface PinchCanvasParams {
+  radius: number;
+  thumbIndexDistance: number;
+  minimum: number;
+  ctx: CanvasRenderingContext2D;
+  dispersion: number;
+  x: number;
+  y: number;
+  lastX: number;
+  lastY: number;
+}
+
 export const pinchCanvas = ({
   radius,
   thumbIndexDistance,
@@ -10,7 +22,7 @@ export const pinchCanvas = ({
   y,
   lastX,
   lastY
-}) => {
+}: PinchCanvasParams): { lastX: number; lastY: number } => {
   let targetLineWidth = (radius - thumbIndexDistance) + minimum;
   ctx.lineWidth = (targetLineWidth * 2 - ctx.lineWidth) / 3;
   if (!lastX) {

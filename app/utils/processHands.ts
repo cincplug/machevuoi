@@ -133,7 +133,8 @@ export const processHands = ({
   ];
 
   hands.forEach((hand) => {
-    const ctx = pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
+    const ctx =
+      pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
       ctx.strokeStyle = processColor(color, opacity);
     }
@@ -196,12 +197,14 @@ export const processHands = ({
       {}
     );
 
-    if(!thumbTip || !indexTip) {
+    if (!thumbTip || !indexTip) {
       return;
     }
     const thumbIndexDistance = getDistance(thumbTip, indexTip);
     const isPinched =
-      pressedKey === "Shift" || isCapsLock || thumbIndexDistance < pinchThreshold;
+      pressedKey === "Shift" ||
+      isCapsLock ||
+      thumbIndexDistance < pinchThreshold;
     const isWagging =
       doesWagDelete &&
       (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
@@ -248,7 +251,7 @@ export const processHands = ({
         lastTips = undefined;
       }
       if (isPinched && !isScratchCanvas) {
-        let result = pinchCanvas({
+        pinchCanvas({
           radius,
           thumbIndexDistance,
           minimum,
@@ -256,11 +259,11 @@ export const processHands = ({
           dispersion,
           x,
           y,
-          lastX,
-          lastY
+          lastX: lastX as number,
+          lastY: lastY as number
         });
-        lastX = result.lastX;
-        lastY = result.lastY;
+        lastX = x;
+        lastY = y;
       } else {
         lastX = undefined;
         lastY = undefined;
