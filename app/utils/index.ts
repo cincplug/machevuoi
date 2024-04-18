@@ -1,7 +1,4 @@
-interface Point {
-  x: number;
-  y: number;
-}
+import { Point, NullablePoint } from "../../types";
 
 export const getDistance = (point1: Point, point2: Point): number => {
   const dx = point1.x - point2.x;
@@ -17,8 +14,6 @@ export const getAverageDistance = (points: Point[]): number => {
   const totalDistance = distances.reduce((a, b) => a + b, 0);
   return totalDistance / distances.length;
 };
-
-type NullablePoint = Point | null;
 
 export const squeezePoints = ({
   points,
@@ -45,19 +40,19 @@ export const squeezePoints = ({
     },
     { x: 0, y: 0 }
   );
-  return points.map((point) => {
-    if (point) {
-      return {
-        x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
-        y: center.y + ((point.y - center.y) * squeezeRatio) / 100
-      };
-    } else {
-      return null;
-    }
-  }).filter(item => item !== null);
+  return points
+    .map((point) => {
+      if (point) {
+        return {
+          x: center.x + ((point.x - center.x) * squeezeRatio) / 100,
+          y: center.y + ((point.y - center.y) * squeezeRatio) / 100
+        };
+      } else {
+        return null;
+      }
+    })
+    .filter((item) => item !== null);
 };
-
-
 
 export const processColor = (color: string, opacity: number): string => {
   return `${color}${Math.min(255, Math.max(0, Math.round(opacity)))
@@ -171,26 +166,23 @@ export const clearCanvases = (): void => {
   });
 };
 
-type ShapePoint = number;
-type Shape = ShapePoint[];
 type HandlePathClick = (shape: {
-  start: ShapePoint;
-  control: ShapePoint | null;
-  end: ShapePoint;
+  start: number;
+  control: number | null;
+  end: number;
   type: string;
 }) => void;
-type ShapeType = string;
 interface ShapeProps {
-  selectedShapes: Shape[];
+  selectedShapes: number[][];
   handlePathClick: HandlePathClick;
-  shapeType: ShapeType;
+  shapeType: string;
 }
 
 type ShapeReturn = {
   shape: {
-    startPoint: ShapePoint;
-    controlPoint: ShapePoint | null;
-    endPoint: ShapePoint;
+    startPoint: number;
+    controlPoint: number | null;
+    endPoint: number;
   };
   onClick: () => void;
 }[];

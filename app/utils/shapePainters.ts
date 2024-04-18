@@ -1,9 +1,5 @@
+import { Point } from "../../types";
 import { getShapePoints } from "./shapeCalculators";
-
-interface Point {
-  x: number;
-  y: number;
-}
 
 interface CanvasContext extends CanvasRenderingContext2D {}
 

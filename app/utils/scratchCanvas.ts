@@ -1,32 +1,8 @@
+import { Point, Shape, Shapes } from "../../types";
 import { getAverageDistance } from "./index";
 import { shapePainters } from './shapePainters'; 
 
-interface Point {
-  x: number;
-  y: number;
-}
-
-interface Shape {
-  start: Point;
-  control?: Point;
-  end: Point;
-}
-
 type Tips = Point[];
-
-interface Shapes {
-  lines: Shape[];
-  curves: Shape[];
-  arcs: Shape[];
-  ellipses: Shape[];
-  circles: Shape[];
-  squares: Shape[];
-  rhomboids: Shape[];
-  rectangles: Shape[];
-  triangles: Shape[];
-  diamonds: Shape[];
-}
-
 interface ScratchCanvasOptions {
   radius: number;
   minimum: number;

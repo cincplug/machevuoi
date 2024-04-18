@@ -1,3 +1,4 @@
+import { Point, Shapes } from "../../types";
 import {
   getDistance,
   checkElementPinch,
@@ -8,37 +9,13 @@ import {
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 
-interface Point {
-  x: number;
-  y: number;
-}
-
 interface Cursor extends Point {
   isPinched: boolean;
   isWagging: boolean;
 }
 
-type Shape = number[][];
-
-interface Shapes {
-  lines: ShapeDefinition[];
-  curves: ShapeDefinition[];
-  arcs: ShapeDefinition[];
-  ellipses: ShapeDefinition[];
-  circles: ShapeDefinition[];
-  squares: ShapeDefinition[];
-  rhomboids: ShapeDefinition[];
-  rectangles: ShapeDefinition[];
-  triangles: ShapeDefinition[];
-  diamonds: ShapeDefinition[];
-}
-interface ShapeDefinition {
-  start: Point;
-  end: Point;
-  control?: Point;
-}
 interface ScratchPoints {
-  [key: string]: Shape;
+  [key: string]: number[][];
 }
 
 interface Setup {

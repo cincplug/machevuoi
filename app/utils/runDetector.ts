@@ -1,14 +1,7 @@
+import { Point, Cursor } from "../../types";
 import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
 
-interface Point {
-  x: number;
-  y: number;
-}
-interface Cursor extends Point {
-  isPinched: boolean;
-  isWagging: boolean;
-}
 interface RunDetectorProps {
   video: HTMLVideoElement;
   setupRef: React.RefObject<any>;

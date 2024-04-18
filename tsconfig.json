@@ -6,11 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "incremental": true,
@@ -28,9 +24,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/utils/*.ts"],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "app/utils/*.ts",
+    "types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }
