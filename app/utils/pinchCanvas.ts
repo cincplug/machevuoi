@@ -22,8 +22,8 @@ export const pinchCanvas = ({
   y,
   lastX,
   lastY
-}: PinchCanvasParams): { lastX: number; lastY: number } => {
-  let targetLineWidth = (radius - thumbIndexDistance) + minimum;
+}: PinchCanvasParams): void => {
+  let targetLineWidth = radius - thumbIndexDistance + minimum;
   ctx.lineWidth = (targetLineWidth * 2 - ctx.lineWidth) / 3;
   if (!lastX) {
     ctx.beginPath();
@@ -36,7 +36,4 @@ export const pinchCanvas = ({
       ctx.moveTo(x, y);
     }
   }
-  lastX = x;
-  lastY = y;
-  return { lastX, lastY };
 };
