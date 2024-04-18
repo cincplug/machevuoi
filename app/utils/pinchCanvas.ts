@@ -1,3 +1,4 @@
+import { shapePainters } from "./shapePainters";
 import { getDistance } from "./index";
 
 interface PinchCanvasParams {
@@ -10,6 +11,7 @@ interface PinchCanvasParams {
   y: number;
   lastX: number;
   lastY: number;
+  activeLayer: string;
 }
 
 export const pinchCanvas = ({
@@ -21,19 +23,31 @@ export const pinchCanvas = ({
   x,
   y,
   lastX,
-  lastY
+  lastY,
+  activeLayer
 }: PinchCanvasParams): void => {
   let targetLineWidth = radius - thumbIndexDistance + minimum;
   ctx.lineWidth = (targetLineWidth * 2 - ctx.lineWidth) / 3;
-  if (!lastX) {
+
+  const shapePainter = shapePainters[activeLayer];
+
+  if (shapePainter) {
     ctx.beginPath();
-    ctx.moveTo(x, y);
-  } else {
-    ctx.quadraticCurveTo(lastX, lastY, x, y);
-    ctx.stroke();
-    if (getDistance({ x, y }, { x: lastX, y: lastY }) > dispersion) {
-      ctx.beginPath();
+    if (!lastX) {
       ctx.moveTo(x, y);
+    } else {
+      if (activeLayer === "dots") {
+        ctx.moveTo(lastX, lastY);
+        ctx.quadraticCurveTo(lastX, lastY, x, y);
+      }
+      const distance = getDistance({ x, y }, { x: lastX, y: lastY });
+
+      if (distance > dispersion) {
+        shapePainter({ ctx, start: { x: lastX, y: lastY }, end: { x, y }, control: {x: (lastX + x) / 2, y: (lastY + y) / 2} });
+      }
     }
   }
+  ctx.stroke();
+  lastX = x;
+  lastY = y;
 };

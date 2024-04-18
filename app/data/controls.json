@@ -318,7 +318,6 @@
     "title": "Shape",
     "description": "Active shape",
     "isHandRelated": true,
-    "isStoringPrevented": true,
     "isOmittedInScenario": true,
     "isButtons": true,
     "value": "dots",

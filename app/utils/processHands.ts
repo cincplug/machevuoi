@@ -34,6 +34,7 @@ interface Setup {
   doesWagDelete: boolean;
   isCapsLock: boolean;
   composite: GlobalCompositeOperation;
+  activeLayer: string;
 }
 
 let lastX: number | undefined,
@@ -87,7 +88,8 @@ export const processHands = ({
     dispersion,
     doesWagDelete,
     composite,
-    isCapsLock
+    isCapsLock,
+    activeLayer
   } = setup;
   if (dctx) {
     dctx.globalCompositeOperation = composite;
@@ -237,7 +239,8 @@ export const processHands = ({
           x,
           y,
           lastX: lastX as number,
-          lastY: lastY as number
+          lastY: lastY as number,
+          activeLayer
         });
         lastX = x;
         lastY = y;

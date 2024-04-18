@@ -145,7 +145,6 @@ export const shapePainters: Record<string, ShapePainter> = {
       start,
       end
     });
-    ctx.beginPath();
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
     ctx.lineTo(epx, epy);
