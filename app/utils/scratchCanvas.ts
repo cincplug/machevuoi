@@ -1,5 +1,5 @@
 import { getAverageDistance } from "./index";
-import { getShapePoints } from "./getShapePoints";
+import { shapePainters } from './shapePainters'; 
 
 interface Point {
   x: number;
@@ -57,161 +57,17 @@ export const scratchCanvas = ({
   lastTips,
   dispersion,
   shapes
-}: ScratchCanvasOptions): Tips | null => {
-  const {
-    lines,
-    curves,
-    arcs,
-    ellipses,
-    circles,
-    squares,
-    rhomboids,
-    rectangles,
-    triangles,
-    diamonds
-  } = shapes;
-  ctx.lineWidth = getLineWidth({
-    minimum,
-    radius,
-    tipDistance: radius
-  });
+}: ScratchCanvasOptions): void => {
   ctx.beginPath();
-  if (lines.length > 0) {
-    lines.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy } = getShapePoints({
-        shape: "lines",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(epx, epy);
+  Object.keys(shapes).forEach((shapeName) => {
+    const shapeList = shapes[shapeName as keyof Shapes];
+    shapeList.forEach((shape: Shape) => {
+      const painter = shapePainters[shapeName];
+      if (painter) {
+        painter({ ctx, ...shape });
+      }
     });
-  }
-
-  if (curves.length > 0) {
-    curves.forEach(({ start, control, end }) => {
-      const { cpx, cpy } = getShapePoints({
-        shape: "curves",
-        start,
-        control,
-        end
-      });
-      ctx.moveTo(start.x, start.y);
-      ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
-    });
-  }
-
-  if (arcs.length > 0) {
-    arcs.forEach(({ start, end }) => {
-      const { cpx, cpy } = getShapePoints({
-        shape: "arcs",
-        start,
-        end
-      });
-      ctx.moveTo(start.x, start.y);
-      ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
-    });
-  }
-
-  if (ellipses.length > 0) {
-    ellipses.forEach(({ start, control, end }) => {
-      const { spx, spy, rx, ry, rotation } = getShapePoints({
-        shape: "ellipses",
-        start,
-        control,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.ellipse(start.x, start.y, rx, ry, rotation, 0, 2 * Math.PI);
-    });
-  }
-
-  if (diamonds.length > 0) {
-    diamonds.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({
-        shape: "diamonds",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(cpx, cpy);
-      ctx.lineTo(epx, epy);
-      ctx.lineTo(apx, apy);
-      ctx.closePath();
-    });
-  }
-
-  if (squares.length > 0) {
-    squares.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
-        shape: "squares",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(cpx, cpy);
-      ctx.lineTo(dpx, dpy);
-      ctx.lineTo(epx, epy);
-      ctx.closePath();
-    });
-  }
-
-  if (rhomboids.length > 0) {
-    rhomboids.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
-        shape: "rhomboids",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(cpx, cpy);
-      ctx.lineTo(epx, epy);
-      ctx.lineTo(dpx, dpy);
-      ctx.closePath();
-    });
-  }
-
-  if (circles.length > 0) {
-    circles.forEach(({ start, end }) => {
-      const { mpx, mpy, circleRadius } = getShapePoints({
-        shape: "circles",
-        start,
-        end
-      });
-      ctx.moveTo(mpx + circleRadius, mpy);
-      ctx.arc(mpx, mpy, circleRadius, 0, 2 * Math.PI);
-    });
-  }
-
-  if (rectangles.length > 0) {
-    rectangles.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
-        shape: "rectangles",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(cpx, cpy);
-      ctx.lineTo(epx, epy);
-      ctx.lineTo(dpx, dpy);
-      ctx.closePath();
-    });
-  }
-
-  if (triangles.length > 0) {
-    triangles.forEach(({ start, end }) => {
-      const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({
-        shape: "triangles",
-        start,
-        end
-      });
-      ctx.moveTo(spx, spy);
-      ctx.lineTo(tpx, tpy);
-      ctx.lineTo(epx, epy);
-      ctx.closePath();
-    });
-  }
-
+  });
   if (tips) {
     const tipDistance = getAverageDistance(tips);
 
@@ -231,8 +87,5 @@ export const scratchCanvas = ({
       ctx.quadraticCurveTo(lastTipX, lastTipY, tipX, tipY);
     });
   }
-
   ctx.stroke();
-  lastTips = { ...tips } || null;
-  return lastTips;
 };
