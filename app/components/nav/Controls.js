@@ -1,6 +1,7 @@
 const Controls = ({ controls, setup, handleInputChange }) =>
   controls.map((item, index) => {
-    const { id, type, min, max, step, title, description, options } = item;
+    const { id, type, min, max, step, title, description, options, isButtons } =
+      item;
     let value = setup[id];
     const checked = value === true;
 
@@ -22,6 +23,25 @@ const Controls = ({ controls, setup, handleInputChange }) =>
       inputProps.checked = checked;
     }
 
+    if (isButtons)
+      return (
+        <fieldset className="scratch-wrap" key={`${id}-${index}`}>
+          {options.map((option, optionIndex) => (
+            <button
+              className={`scratch-layer-button ${
+                value === option ? "active" : ""
+              }`}
+              key={optionIndex}
+              onClick={() =>
+                handleInputChange({ target: { value: option, id } })
+              }
+            >
+              {option}
+            </button>
+          ))}
+        </fieldset>
+      );
+
     return (
       <div
         className={`control control--${type} control--${id}`}
@@ -32,9 +52,7 @@ const Controls = ({ controls, setup, handleInputChange }) =>
           <select
             className="control__select"
             {...{ value, id }}
-            onChange={(event) => {
-              handleInputChange(event);
-            }}
+            onChange={handleInputChange}
           >
             {options.map((option, optionIndex) => (
               <option key={optionIndex} value={option}>

@@ -15,11 +15,10 @@ import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
 
 function Scratch({ setup, handleInputChange }) {
-  const [activeLayer, setActiveLayer] = useState("dots");
   const [startPoint, setStartPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [mousePoint, setMousePoint] = useState(null);
-  const { scratchPoints } = setup;
+  const { scratchPoints, activeLayer } = setup;
 
   const handleDotClick = (index) => {
     if (activeLayer === "dots") {
@@ -169,29 +168,6 @@ function Scratch({ setup, handleInputChange }) {
           />
         </g>
       </svg>
-      {[
-        "dots",
-        "lines",
-        "curves",
-        "arcs",
-        "circles",
-        "ellipses",
-        "squares",
-        "diamonds",
-        "rhomboids",
-        "rectangles",
-        "triangles"
-      ].map((layer, index) => (
-        <button
-          className={`scratch-layer-button ${
-            layer === activeLayer ? "active" : ""
-          }`}
-          key={index}
-          onClick={() => setActiveLayer(layer)}
-        >
-          {layer}
-        </button>
-      ))}
     </div>
   );
 }

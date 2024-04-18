@@ -236,6 +236,8 @@ input[type="checkbox"] {
 
 fieldset {
   display: contents;
+  border: none;
+  padding: var(--gap-half) 0;
 }
 
 legend {
@@ -354,8 +356,6 @@ legend {
       }
       fieldset {
         display: flex;
-        border: none;
-        padding: var(--gap-half) 0;
       }
       legend {
         padding: 0;

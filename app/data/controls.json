@@ -312,5 +312,29 @@
     "isOmittedInScenario": true,
     "value": null,
     "type": "text"
+  },
+  {
+    "id": "activeLayer",
+    "title": "Shape",
+    "description": "Active shape",
+    "isHandRelated": true,
+    "isStoringPrevented": true,
+    "isOmittedInScenario": true,
+    "isButtons": true,
+    "value": "dots",
+    "type": "select",
+    "options": [
+      "dots",
+      "lines",
+      "curves",
+      "arcs",
+      "circles",
+      "ellipses",
+      "squares",
+      "diamonds",
+      "rhomboids",
+      "rectangles",
+      "triangles"
+    ]
   }
 ]
