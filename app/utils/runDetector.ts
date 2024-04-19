@@ -1,12 +1,12 @@
-import { Point, Cursor } from "../../types";
+import { IPoint, ICursor } from "../../types";
 import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
 
 interface RunDetectorProps {
   video: HTMLVideoElement;
   setupRef: React.RefObject<any>;
-  setCursor: React.Dispatch<React.SetStateAction<Cursor>>;
-  setScribbleNewArea: React.Dispatch<React.SetStateAction<Point[]>>;
+  setCursor: React.Dispatch<React.SetStateAction<ICursor>>;
+  setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
   setMessage: (message: string) => void;
   dctx: CanvasRenderingContext2D | null;
   pctx: CanvasRenderingContext2D | null;
