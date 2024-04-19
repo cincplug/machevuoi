@@ -260,7 +260,6 @@
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "isAutoClosed": false,
     "activeScenarioIndex": 11,
@@ -328,7 +327,6 @@
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "isAutoClosed": false,
     "activeScenarioIndex": 11,
@@ -383,7 +381,6 @@
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "isAutoClosed": false,
     "activeScenarioIndex": 11,
@@ -434,7 +431,6 @@
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "isAutoClosed": false,
     "activeScenarioIndex": 11,
@@ -482,7 +478,6 @@
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "isAutoClosed": false,
     "activeScenarioIndex": 11,
@@ -546,7 +541,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -587,7 +581,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -646,7 +639,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -700,7 +692,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -747,7 +738,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -795,7 +785,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -843,7 +832,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],
@@ -897,7 +885,6 @@
     "text": "",
     "dispersion": 1,
     "composite": "source-over",
-    "hasCursor": true,
     "isScratchCanvas": true,
     "scratchPoints": {
       "dots": [],

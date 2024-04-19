@@ -229,6 +229,7 @@
     "id": "hasCursor",
     "title": "Cursor",
     "description": "Shows or hides cursor",
+    "isOmittedInScenario": true,
     "value": false,
     "isHidden": true,
     "type": "checkbox"
