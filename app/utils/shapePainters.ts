@@ -120,14 +120,14 @@ export const shapePainters: Record<string, ShapePainter> = {
     end: Point;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
-      shape: "rhomboids",
+      shape: "squares",
       start,
       end
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
-    ctx.lineTo(epx, epy);
     ctx.lineTo(dpx, dpy);
+    ctx.lineTo(epx, epy);
     ctx.closePath();
   },
 
