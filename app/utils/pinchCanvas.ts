@@ -27,15 +27,14 @@ export const pinchCanvas = ({
   activeLayer
 }: PinchCanvasParams): void => {
   ctx.beginPath();
+  ctx.lineWidth = Math.max(minimum, radius / thumbIndexDistance);
   const shapePainter = shapePainters[activeLayer];
   if (shapePainter) {
     if (!lastX) {
       ctx.moveTo(x, y);
     } else {
-      if (dispersion > 0) {
-        const distance = getDistance({ x, y }, { x: lastX, y: lastY });
-        ctx.lineWidth = Math.max(minimum, radius / distance) + dispersion;
-      }
+      const distance = getDistance({ x, y }, { x: lastX, y: lastY });
+      ctx.lineWidth = Math.max(minimum, (ctx.lineWidth / distance) * dispersion);
       shapePainter({
         ctx,
         start: { x: lastX, y: lastY },
@@ -44,9 +43,6 @@ export const pinchCanvas = ({
       });
     }
   } else {
-    let targetLineWidth = Math.max(minimum, radius / thumbIndexDistance);
-    ctx.lineWidth =
-      (targetLineWidth * dispersion - ctx.lineWidth) / (dispersion + 1);
     ctx.moveTo(lastX, lastY);
     ctx.quadraticCurveTo(lastX, lastY, x, y);
   }
