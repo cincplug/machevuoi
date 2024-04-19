@@ -1,4 +1,5 @@
 import HP from "../../data/handPoints.json";
+import { getShapePoints } from "../../utils/shapeCalculators";
 
 const Preview = ({
   startPoint,

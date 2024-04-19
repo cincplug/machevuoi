@@ -1,4 +1,5 @@
 import HP from "../../data/handPoints.json";
+import { getShapePoints } from "../../utils/shapeCalculators";
 
 const Triangle = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }) => {
   
@@ -7,11 +8,11 @@ const Triangle = ({ shape: { startPoint, endPoint }, onClick, isPreview = false 
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
   const epy = isPreview ? endPoint.y : HP[endPoint].y;
 
-  const dx = epx - spx;
-  const dy = epy - spy;
-
-  const tpx = (spx + epx) / 2 - Math.sqrt(3) * (epy - spy) / 2;
-  const tpy = (spy + epy) / 2 + Math.sqrt(3) * (epx - spx) / 2;
+  const { tpx, tpy } = getShapePoints({
+    shape: "triangles",
+    start: { x: spx, y: spy },
+    end: { x: epx, y: epy }
+  });
 
   return (
     <polygon

@@ -1,4 +1,5 @@
 import HP from "../../data/handPoints.json";
+import { getShapePoints } from "../../utils/shapeCalculators";
 
 const Diamond = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }) => {
   
@@ -7,13 +8,11 @@ const Diamond = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
   const epy = isPreview ? endPoint.y : HP[endPoint].y;
 
-  const mpx = (spx + epx) / 2;
-  const mpy = (spy + epy) / 2;
-
-  const cpx = mpx - (epy - spy) / 2;
-  const cpy = mpy + (epx - spx) / 2;
-  const apx = mpx + (epy - spy) / 2;
-  const apy = mpy - (epx - spx) / 2;
+  const { cpx, cpy, apx, apy } = getShapePoints({
+    shape: "diamonds",
+    start: { x: spx, y: spy },
+    end: { x: epx, y: epy }
+  });
 
   return (
     <polygon

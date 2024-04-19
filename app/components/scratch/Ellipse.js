@@ -1,4 +1,5 @@
 import HP from "../../data/handPoints.json";
+import { getShapePoints } from "../../utils/shapeCalculators";
 
 const Ellipse = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPreview = false }) => {
   
@@ -8,14 +9,12 @@ const Ellipse = ({ shape: { startPoint, controlPoint, endPoint }, onClick, isPre
   const cpy = HP[controlPoint].y;
   const epx = isPreview ? endPoint.x : HP[endPoint].x;
   const epy = isPreview ? endPoint.y : HP[endPoint].y;
-  const distControl = Math.sqrt((cpx - spx) ** 2 + (cpy - spy) ** 2);
-  const distEnd = Math.sqrt((epx - spx) ** 2 + (epy - spy) ** 2);
-  const rx = Math.max(distControl, distEnd);
-  const ry = Math.min(distControl, distEnd);
-  const rotation =
-    distControl > distEnd
-      ? Math.atan2(cpy - spy, cpx - spx)
-      : Math.atan2(epy - spy, epx - spx);
+  const { rx, ry, rotation } = getShapePoints({
+    shape: "ellipses",
+    start: { x: spx, y: spy },
+    end: { x: epx, y: epy },
+    control: { x: cpx, y: cpy}
+  });
   const rotationDeg = rotation * (180 / Math.PI);
 
   return (
