@@ -1,4 +1,4 @@
-import { Point, Shapes } from "../../types";
+import { IPoint, ICursor, ISetup, IShapes } from "../../types";
 import {
   getDistance,
   checkElementPinch,
@@ -9,37 +9,9 @@ import {
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 
-interface Cursor extends Point {
-  isPinched: boolean;
-  isWagging: boolean;
-}
-
-interface ScratchPoints {
-  [key: string]: number[][];
-}
-
-interface Setup {
-  pattern: string;
-  radius: number;
-  color: string;
-  opacity: number;
-  minimum: number;
-  pinchThreshold: number;
-  usesButtonPinch: boolean;
-  isScratchCanvas: boolean;
-  scratchPoints: ScratchPoints;
-  dash: number;
-  pressedKey: string;
-  dispersion: number;
-  doesWagDelete: boolean;
-  isCapsLock: boolean;
-  composite: GlobalCompositeOperation;
-  activeLayer: string;
-}
-
 let lastX: number | undefined,
   lastY: number | undefined,
-  lastTips: Point[] | undefined;
+  lastTips: IPoint[] | undefined;
 
 interface Keypoint {
   x: number;
@@ -66,10 +38,10 @@ export const processHands = ({
   dctx,
   pctx
 }: {
-  setup: Setup;
+  setup: ISetup;
   hands: Hand[];
-  setCursor: React.Dispatch<React.SetStateAction<Cursor>>;
-  setScribbleNewArea: React.Dispatch<React.SetStateAction<Point[]>>;
+  setCursor: React.Dispatch<React.SetStateAction<ICursor>>;
+  setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
   dctx: CanvasRenderingContext2D | null;
   pctx: CanvasRenderingContext2D | null;
 }) => {
@@ -92,7 +64,7 @@ export const processHands = ({
     activeLayer
   } = setup;
   if (dctx) {
-    dctx.globalCompositeOperation = composite;
+    dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
   }
   if (pctx) {
     pctx.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
@@ -115,10 +87,10 @@ export const processHands = ({
     const ctx =
       pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
-      ctx.strokeStyle = processColor(color, opacity);
+      ctx.strokeStyle = processColor(color as string, opacity as number);
     }
-    let newPoints: Point[] = [];
-    if (!["paths"].includes(pattern)) {
+    let newPoints: IPoint[] = [];
+    if (!["paths"].includes(pattern as string)) {
       if (hand.keypoints) {
         newPoints = newPoints.concat(hand.keypoints);
       }
@@ -127,8 +99,8 @@ export const processHands = ({
     const thumbTip = hand.keypoints[4];
     const indexTip = hand.keypoints[8];
     const middleTip = hand.keypoints[12];
-    const dots = scratchPoints.dots.map(
-      (point) => hand.keypoints[point as unknown as number]
+    const dots = scratchPoints?.dots.map(
+      (point: number) => hand.keypoints[point]
     );
     const tips = squeezePoints({
       points: dots,
@@ -138,7 +110,7 @@ export const processHands = ({
 
     const shapes = shapeNames.reduce(
       (result: { [key: string]: any }, shapeName) => {
-        result[shapeName] = scratchPoints[shapeName].map((shape) => {
+        result[shapeName] = scratchPoints[shapeName].map((shape: number[]) => {
           const points = shape.map((point) => hand.keypoints[point]);
           const squeezedPoints = squeezePoints({
             points,
@@ -147,12 +119,10 @@ export const processHands = ({
           });
 
           if (squeezedPoints) {
-            type ShapeObject =
-              | { start: Point; end: Point }
-              | { start: Point; control: Point; end: Point };
-
             if (squeezedPoints[0] && squeezedPoints[1]) {
-              let shapeObject: ShapeObject = {
+              let shapeObject:
+                | { start: IPoint; end: IPoint }
+                | { start: IPoint; control: IPoint; end: IPoint } = {
                 start: squeezedPoints[0],
                 end: squeezedPoints[1]
               };
@@ -190,14 +160,14 @@ export const processHands = ({
       (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
     const x = (thumbTip.x + indexTip.x) / 2;
     const y = (thumbTip.y + indexTip.y) / 2;
-    setCursor((prevCursor: Cursor) => {
+    setCursor((prevCursor: ICursor) => {
       const threshold = prevCursor.isPinched
-        ? pinchThreshold * 2
+        ? (pinchThreshold as number) * 2
         : pinchThreshold;
       if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
         checkElementPinch({ x, y, isPinched });
       }
-      const nextCursor: Cursor = {
+      const nextCursor: ICursor = {
         x,
         y,
         isWagging: isWagging,
@@ -220,12 +190,12 @@ export const processHands = ({
           radius,
           minimum,
           ctx,
-          tips: tips as Point[],
+          tips: tips as IPoint[],
           lastTips: lastTips || [],
           dispersion,
-          shapes: shapes as Shapes
+          shapes: shapes as IShapes
         });
-        lastTips = tips as Point[];
+        lastTips = tips as IPoint[];
       } else {
         lastTips = undefined;
       }
@@ -249,7 +219,7 @@ export const processHands = ({
         lastY = undefined;
       }
     } else if (isPinched) {
-      setScribbleNewArea((prevScribbleNewArea: Point[]) => {
+      setScribbleNewArea((prevScribbleNewArea: IPoint[]) => {
         const isNewArea =
           prevScribbleNewArea.length === 0 ||
           getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {

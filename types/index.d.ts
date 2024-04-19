@@ -1,21 +1,24 @@
-export interface Point {
+export interface ISetup {
+  [key: string]: string | number | boolean | object | array | null;
+}
+export interface IPoint {
   x: number;
   y: number;
 }
 
-export interface Cursor extends Point {
+export interface ICursor extends IPoint {
   isPinched: boolean;
   isWagging: boolean;
 }
 
-export type NullablePoint = Point | null;
-export interface Shape {
+export type NullablePoint = IPoint | null;
+export interface IShape {
   start: Point;
   end: Point;
   control?: Point;
 }
 
-export interface Shapes {
+export interface IShapes {
   lines: Shape[];
   curves: Shape[];
   arcs: Shape[];

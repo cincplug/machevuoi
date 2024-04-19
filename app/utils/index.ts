@@ -1,12 +1,12 @@
-import { Point, NullablePoint } from "../../types";
+import { IPoint, NullablePoint } from "../../types";
 
-export const getDistance = (point1: Point, point2: Point): number => {
+export const getDistance = (point1: IPoint, point2: IPoint): number => {
   const dx = point1.x - point2.x;
   const dy = point1.y - point2.y;
   return Math.sqrt(dx * dx + dy * dy);
 };
 
-export const getAverageDistance = (points: Point[]): number => {
+export const getAverageDistance = (points: IPoint[]): number => {
   const distances = points.flatMap((point1, index1) =>
     points.slice(index1 + 1).map((point2) => getDistance(point1, point2))
   );
@@ -20,9 +20,9 @@ export const squeezePoints = ({
   squeezeRatio,
   centeringContext
 }: {
-  points: Point[];
+  points: IPoint[];
   squeezeRatio: number;
-  centeringContext: Point[];
+  centeringContext: IPoint[];
 }): NullablePoint[] => {
   if (!points || points.length === 0) {
     return [];
@@ -62,7 +62,7 @@ export const processColor = (color: string, opacity: number): string => {
 
 interface RenderPathProps {
   area: number[];
-  points: Point[];
+  points: IPoint[];
   radius: number;
 }
 

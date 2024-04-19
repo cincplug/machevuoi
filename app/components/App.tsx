@@ -1,4 +1,5 @@
 "use client";
+import { ISetup, ICursor } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
 import "@tensorflow/tfjs-backend-webgl";
 import { runDetector } from "../utils/runDetector";
@@ -12,17 +13,6 @@ import Cursor from "./Cursor";
 import "../styles.scss";
 import { clearCanvases } from "../utils";
 
-interface Cursor {
-  x: number;
-  y: number;
-  isPinched: boolean;
-  isWagging: boolean;
-}
-
-interface Setup {
-  [key: string]: string | number | boolean | object | null;
-}
-
 interface InputResolution {
   width: number;
   height: number;
@@ -35,13 +25,13 @@ const App: React.FC = () => {
   const [isSetupLoaded, setIsSetupLoaded] = useState<boolean>(false);
   const [scribble, setScribble] = useState<any[]>([]);
   const [scribbleNewArea, setScribbleNewArea] = useState<any[]>([]);
-  const [cursor, setCursor] = useState<Cursor>({
+  const [cursor, setCursor] = useState<ICursor>({
     x: 0,
     y: 0,
     isPinched: false,
     isWagging: false
   });
-  const [setup, setSetup] = useState<Setup>(getStoredSetup());
+  const [setup, setSetup] = useState<ISetup>(getStoredSetup());
   const [stopDetector, setStopDetector] = useState<Function | null>(null);
   const [shouldRunDetector, setShouldRunDetector] = useState<boolean>(false);
   const [inputResolution, setInputResolution] = useState<InputResolution>({
@@ -50,7 +40,7 @@ const App: React.FC = () => {
   });
   const [message, setMessage] = useState<string>("");
 
-  const setupRef = useRef<Setup>(setup);
+  const setupRef = useRef<ISetup>(setup);
   const webcamRef = useRef<Webcam | null>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -78,38 +68,40 @@ const App: React.FC = () => {
           return { ...prevSetup, pressedKey: event.key };
         });
       }
-  
+
       // Check if Caps Lock key is pressed
-      if (event.key === 'CapsLock') {
-        const isCapsLock = event.getModifierState && event.getModifierState('CapsLock');
+      if (event.key === "CapsLock") {
+        const isCapsLock =
+          event.getModifierState && event.getModifierState("CapsLock");
         setSetup((prevSetup) => {
           return { ...prevSetup, isCapsLock: isCapsLock };
         });
       }
     };
-  
+
     const handleKeyUp = (event: KeyboardEvent) => {
       setSetup((prevSetup) => {
         return { ...prevSetup, pressedKey: "" };
       });
-  
+
       // Check if Caps Lock key is released
-      if (event.key === 'CapsLock') {
-        const isCapsLock = event.getModifierState && event.getModifierState('CapsLock');
+      if (event.key === "CapsLock") {
+        const isCapsLock =
+          event.getModifierState && event.getModifierState("CapsLock");
         setSetup((prevSetup) => {
           return { ...prevSetup, isCapsLock: isCapsLock };
         });
       }
-  
+
       if (event.key === "Backspace") {
         clearPaths();
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', handleKeyUp);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyUp);
     };
   }, [isClient]);
 
@@ -149,7 +141,7 @@ const App: React.FC = () => {
   };
 
   const handlePlayButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
+    _event: React.MouseEvent<HTMLButtonElement>
   ) => {
     setIsStarted((prevIsStarted) => {
       setSetup((prevSetup) => {

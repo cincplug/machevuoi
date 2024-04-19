@@ -1,8 +1,8 @@
-import { Point, Shape, Shapes } from "../../types";
+import { IPoint, IShape, IShapes } from "../../types";
 import { getAverageDistance } from "./index";
 import { shapePainters } from './shapePainters'; 
 
-type Tips = Point[];
+type Tips = IPoint[];
 interface ScratchCanvasOptions {
   radius: number;
   minimum: number;
@@ -10,7 +10,7 @@ interface ScratchCanvasOptions {
   tips: Tips;
   lastTips: Tips | null;
   dispersion: number;
-  shapes: Shapes;
+  shapes: IShapes;
 }
 
 const getLineWidth = ({
@@ -36,8 +36,8 @@ export const scratchCanvas = ({
 }: ScratchCanvasOptions): void => {
   ctx.beginPath();
   Object.keys(shapes).forEach((shapeName) => {
-    const shapeList = shapes[shapeName as keyof Shapes];
-    shapeList.forEach((shape: Shape) => {
+    const shapeList = shapes[shapeName as keyof IShapes];
+    shapeList.forEach((shape: IShape) => {
       const painter = shapePainters[shapeName];
       if (painter) {
         painter({ ctx, ...shape });

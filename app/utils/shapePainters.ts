@@ -1,13 +1,13 @@
-import { Point } from "../../types";
+import { IPoint } from "../../types";
 import { getShapePoints } from "./shapeCalculators";
 
 interface CanvasContext extends CanvasRenderingContext2D {}
 
 type ShapePainter = (params: {
   ctx: CanvasContext;
-  start: Point;
-  end: Point;
-  control?: Point;
+  start: IPoint;
+  end: IPoint;
+  control?: IPoint;
 }) => void;
 
 export const shapePainters: Record<string, ShapePainter> = {
@@ -17,8 +17,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy } = getShapePoints({
       shape: "lines",
@@ -36,9 +36,9 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    control?: Point;
-    end: Point;
+    start: IPoint;
+    control?: IPoint;
+    end: IPoint;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "curves",
@@ -56,8 +56,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "arcs",
@@ -75,9 +75,9 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    control?: Point;
-    end: Point;
+    start: IPoint;
+    control?: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, rx, ry, rotation } = getShapePoints({
       shape: "ellipses",
@@ -95,8 +95,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({
       shape: "diamonds",
@@ -116,8 +116,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "squares",
@@ -137,8 +137,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rhomboids",
@@ -158,8 +158,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { mpx, mpy, circleRadius } = getShapePoints({
       shape: "circles",
@@ -176,8 +176,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rectangles",
@@ -197,8 +197,8 @@ export const shapePainters: Record<string, ShapePainter> = {
     end
   }: {
     ctx: CanvasContext;
-    start: Point;
-    end: Point;
+    start: IPoint;
+    end: IPoint;
   }): void => {
     const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({
       shape: "triangles",

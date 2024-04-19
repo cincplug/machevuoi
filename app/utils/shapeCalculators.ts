@@ -1,6 +1,6 @@
-import { Point } from "../../types";
+import { IPoint } from "../../types";
 
-type ControlPoint = Point | null;
+type ControlPoint = IPoint | null;
 
 export const getShapePoints = ({
   shape,
@@ -9,8 +9,8 @@ export const getShapePoints = ({
   control
 }: {
   shape: string;
-  start: Point;
-  end: Point;
+  start: IPoint;
+  end: IPoint;
   control?: ControlPoint;
 }): any => {
   if (shape in shapeCalculators) {
@@ -25,13 +25,13 @@ type ShapeCalculator = ({
   end,
   control
 }: {
-  start: Point;
-  end: Point;
+  start: IPoint;
+  end: IPoint;
   control?: ControlPoint;
 }) => any;
 
 const shapeCalculators: Record<string, ShapeCalculator> = {
-  lines: ({ start, end }: { start: Point; end: Point }): any => {
+  lines: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -43,15 +43,15 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     control,
     end
   }: {
-    start: Point;
-    control?: ControlPoint;
-    end: Point;
+    start: IPoint;
+  end: IPoint;
+  control?: ControlPoint;
   }): any => {
     const cpx = control ? control.x : start.x;
     const cpy = control ? control.y : start.y;
     return { start, control, end, cpx, cpy };
   },
-  arcs: ({ start, end }: { start: Point; end: Point }): any => {
+  arcs: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const mpx = (start.x + end.x) / 2;
     const mpy = (start.y + end.y) / 2;
     const slope = -(start.x - end.x) / (start.y - end.y);
@@ -66,9 +66,9 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     control,
     end
   }: {
-    start: Point;
-    control?: ControlPoint;
-    end: Point;
+    start: IPoint;
+  end: IPoint;
+  control?: ControlPoint;
   }): any => {
     const distControl = control
       ? Math.sqrt((control.x - start.x) ** 2 + (control.y - start.y) ** 2)
@@ -83,7 +83,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const spy = start.y + rx * Math.sin(rotation);
     return { spx, spy, rx, ry, rotation };
   },
-  diamonds: ({ start, end }: { start: Point; end: Point }): any => {
+  diamonds: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -96,7 +96,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const apy = mpy - (epx - spx) / 2;
     return { spx, spy, epx, epy, cpx, cpy, apx, apy };
   },
-  squares: ({ start, end }: { start: Point; end: Point }): any => {
+  squares: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -107,7 +107,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const dpy = epy + (epx - spx);
     return { spx, spy, epx, epy, cpx, cpy, dpx, dpy };
   },
-  rhomboids: ({ start, end }: { start: Point; end: Point }): any => {
+  rhomboids: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -121,7 +121,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const dpy = mpy - halfDiagonal;
     return { spx, spy, epx, epy, cpx, cpy, dpx, dpy };
   },
-  circles: ({ start, end }: { start: Point; end: Point }): any => {
+  circles: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -131,7 +131,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const circleRadius = Math.sqrt((mpx - spx) ** 2 + (mpy - spy) ** 2);
     return { mpx, mpy, circleRadius };
   },
-  rectangles: ({ start, end }: { start: Point; end: Point }): any => {
+  rectangles: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
@@ -142,7 +142,7 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const dpy = spy;
     return { spx, spy, epx, epy, cpx, cpy, dpx, dpy };
   },
-  triangles: ({ start, end }: { start: Point; end: Point }): any => {
+  triangles: ({ start, end }: { start: IPoint; end: IPoint }): any => {
     const spx = start.x;
     const spy = start.y;
     const epx = end.x;
