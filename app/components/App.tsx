@@ -229,9 +229,7 @@ const App: React.FC = () => {
             width={width}
             height={height}
             style={{
-              opacity: setup.videoOpacity
-                ? (setup.videoOpacity as number) / 255
-                : 1,
+              opacity: setup.videoOpacity / 255,
               position: "absolute"
             }}
             videoConstraints={inputResolution}
