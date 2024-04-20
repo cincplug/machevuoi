@@ -11,6 +11,7 @@ interface ScratchCanvasOptions {
   lastTips: Tips | null;
   dispersion: number;
   shapes: IShapes;
+  handIndex: number;
 }
 
 const MIN_DISTANCE_FACTOR = 0.5;
@@ -44,7 +45,8 @@ export const scratchCanvas = ({
   tips,
   lastTips,
   dispersion,
-  shapes
+  shapes,
+  handIndex
 }: ScratchCanvasOptions): void => {
   ctx.beginPath();
   const shapeTipDistance = getAverageDistance(
@@ -66,7 +68,7 @@ export const scratchCanvas = ({
   if (tips) {
     ctx.beginPath();
     const tipDistance = getAverageDistance(tips);
-    if(!shapeTipDistance) {
+    if (!shapeTipDistance) {
       ctx.lineWidth = calculateLineWidth(tipDistance, radius, dispersion);
     }
     tips.forEach((tip, index) => {
@@ -74,9 +76,10 @@ export const scratchCanvas = ({
       const { x: tipX, y: tipY } = tip;
       const { x: lastTipX, y: lastTipY } = lastTips[index];
 
-      ctx.moveTo(lastTipX, lastTipY);
-
-      ctx.quadraticCurveTo(lastTipX, lastTipY, tipX, tipY);
+      if (handIndex % 2 === 0) {
+        ctx.moveTo(lastTipX, lastTipY);
+        ctx.quadraticCurveTo(lastTipX, lastTipY, tipX, tipY);
+      }
     });
     ctx.stroke();
   }

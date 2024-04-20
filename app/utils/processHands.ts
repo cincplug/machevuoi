@@ -83,7 +83,7 @@ export const processHands = ({
     "ellipses"
   ];
 
-  hands.forEach((hand) => {
+  hands.forEach((hand, handIndex) => {
     const ctx =
       pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
     if (ctx) {
@@ -193,7 +193,8 @@ export const processHands = ({
           tips: tips as IPoint[],
           lastTips: lastTips || [],
           dispersion,
-          shapes: shapes as IShapes
+          shapes: shapes as IShapes,
+          handIndex: handIndex as number
         });
         lastTips = tips as IPoint[];
       } else {
