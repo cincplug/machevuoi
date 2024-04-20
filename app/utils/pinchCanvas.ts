@@ -1,5 +1,4 @@
 import { shapePainters } from "./shapePainters";
-import { getDistance } from "./index";
 
 interface PinchCanvasParams {
   radius: number;

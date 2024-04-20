@@ -218,7 +218,7 @@
   "scratch-canvas-wide": {
     "description": "Draw some joints with expanded fingers",
     "icon": "🖐️",
-    "radius": 50,
+    "radius": 20,
     "minimum": 1,
     "bg": "#e5e5e5",
     "color": "#141516",
@@ -309,7 +309,7 @@
       "ellipses": []
     },
     "dash": 0,
-    "dispersion": 10,
+    "dispersion": 50,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers",

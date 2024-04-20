@@ -24,7 +24,7 @@
     "type": "range",
     "isHandRelated": true,
     "min": 0.5,
-    "max": 500,
+    "max": 100,
     "step": 0.5
   },
   {
