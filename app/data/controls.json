@@ -222,7 +222,7 @@
     "description": "Whether to delete everything by wagging",
     "isHandRelated": true,
     "isOmittedInScenario": true,
-    "value": false,
+    "value": true,
     "type": "checkbox"
   },
   {
