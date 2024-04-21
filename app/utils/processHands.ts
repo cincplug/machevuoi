@@ -63,12 +63,6 @@ export const processHands = ({
     isCapsLock,
     activeLayer
   } = setup;
-  if (dctx) {
-    dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
-  }
-  if (pctx) {
-    pctx.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
-  }
 
   const shapeNames = [
     "lines",
@@ -84,11 +78,6 @@ export const processHands = ({
   ];
 
   hands.forEach((hand, handIndex) => {
-    const ctx =
-      pressedKey === "Shift" || isCapsLock || !isScratchCanvas ? dctx : pctx;
-    if (ctx) {
-      ctx.strokeStyle = processColor(color as string, opacity as number);
-    }
     let newPoints: IPoint[] = [];
     if (!["paths"].includes(pattern as string)) {
       if (hand.keypoints) {
@@ -176,7 +165,20 @@ export const processHands = ({
       return nextCursor;
     });
 
-    if (pattern === "canvas" && ctx) {
+    if (pattern === "canvas") {
+      const ctx = isPinched ? dctx : pctx;
+      if (ctx === null) return null;
+      if (!isPinched && handIndex === 0) {
+        dctx?.beginPath();
+        dctx?.moveTo(x, y);
+        pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        pctx?.beginPath();
+      }
+      if (isPinched && dctx) {
+        pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
+      }
+      ctx.strokeStyle = processColor(color as string, opacity as number);
       ctx.setLineDash(dash ? [dash, dash] : []);
       ctx.lineJoin = "round";
       if (isWagging) {
@@ -200,7 +202,7 @@ export const processHands = ({
       } else {
         lastTips = undefined;
       }
-      if (isPinched && !isScratchCanvas) {
+      if (!isScratchCanvas) {
         pinchCanvas({
           radius,
           thumbIndexDistance,
@@ -209,8 +211,8 @@ export const processHands = ({
           dispersion,
           x,
           y,
-          lastX: lastX as number,
-          lastY: lastY as number,
+          lastX: lastX || x,
+          lastY: lastY || y,
           activeLayer
         });
         lastX = x;
