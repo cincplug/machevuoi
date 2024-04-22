@@ -535,7 +535,7 @@ label {
       fill: var(--color-skin-light);
     }
   }
-  .active-paths & {
+  .active-shapes & {
     &:hover {
       stroke-width: 1px;
       stroke: var(--color-skin-light);

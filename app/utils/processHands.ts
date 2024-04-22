@@ -81,7 +81,7 @@ export const processHands = ({
 
   hands.forEach((hand, handIndex) => {
     let newPoints: IPoint[] = [];
-    if (!["paths"].includes(pattern as string)) {
+    if (!["svg"].includes(pattern as string)) {
       if (hand.keypoints) {
         newPoints = newPoints.concat(hand.keypoints);
       }

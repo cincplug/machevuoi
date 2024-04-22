@@ -4,20 +4,18 @@ const Info = (props) => {
   return (
     <div className="info">
       <>
-        {["paths", "canvas"].includes(pattern) &&
-          !isScratchCanvas && (
-            <>
-              <p>Pinch thumb and forefinger 👌 to draw</p>
-              <p>Release the pinch to stop drawing</p>
-              <p>Wag your forefinger 👆 to delete</p>
-              {pattern !== "canvas" && (
-                <p>Add text along the path if you want</p>
-              )}
-            </>
-          )}
-        {isScratchCanvas && (
+        {!isScratchCanvas ? (
           <>
-            <p>Hold <strong>Shift</strong> to draw</p>
+            <p>Pinch thumb and forefinger 👌 to draw</p>
+            <p>Release the pinch to stop drawing</p>
+            <p>Wag your forefinger 👆 to delete</p>
+            {pattern !== "canvas" && <p>Add text along the path if you want</p>}
+          </>
+        ) : (
+          <>
+            <p>
+              Hold <strong>Shift</strong> to draw
+            </p>
             <p>Choose finger points that draw</p>
             <p>Use pinch to scale the brush</p>
             <p>Wag forefinger 👆 to delete</p>

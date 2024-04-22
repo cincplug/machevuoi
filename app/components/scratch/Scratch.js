@@ -126,7 +126,7 @@ function Scratch({ setup, handleInputChange }) {
   return (
     <div
       className={`scratch-wrap active-${
-        activeLayer === "dots" ? "dots" : "paths"
+        activeLayer === "dots" ? "dots" : "shapes"
       }`}
     >
       <svg

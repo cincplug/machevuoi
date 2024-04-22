@@ -259,7 +259,6 @@ const App: React.FC = () => {
               {...{
                 inputResolution,
                 setup,
-                cursor,
                 scribble,
                 scribbleNewArea
               }}

@@ -4,6 +4,7 @@
     "title": "Theme",
     "description": "Colors and font",
     "isOmittedInScenario": true,
+    "isHidden": true,
     "value": "default",
     "type": "select",
     "options": ["default", "cognizant"]
@@ -12,14 +13,15 @@
     "id": "pattern",
     "title": "Pattern",
     "description": "What sort of graphics is used",
+    "isHidden": true,
     "value": "numbers",
     "type": "select",
-    "options": ["paths", "canvas"]
+    "options": ["svg", "canvas"]
   },
   {
     "id": "radius",
-    "title": "Radius",
-    "description": "Size of things",
+    "title": "Line width",
+    "description": "Base line width",
     "value": 10,
     "type": "range",
     "isHandRelated": true,
@@ -29,7 +31,7 @@
   },
   {
     "id": "minimum",
-    "title": "Minimum",
+    "title": "Min line width",
     "description": "Minimal line width",
     "value": 5,
     "type": "range",
@@ -56,6 +58,7 @@
     "description": "How much the hand pattern will be scaled up or down",
     "value": 100,
     "isHandRelated": true,
+    "parentPattern": "canvas",
     "type": "range",
     "min": 1,
     "max": 200,
@@ -73,7 +76,7 @@
   },
   {
     "id": "videoOpacity",
-    "title": "Video",
+    "title": "Video opacity",
     "description": "Opacity of source video",
     "value": 48,
     "type": "range",
@@ -127,7 +130,7 @@
     "value": "lines",
     "type": "select",
     "isHandRelated": true,
-    "parentPattern": "paths",
+    "parentPattern": "svg",
     "options": [
       "lines",
       "arcs",
@@ -153,7 +156,7 @@
     "title": "Auto-close",
     "description": "Whether to automatically close the path",
     "isHandRelated": true,
-    "parentPattern": "paths",
+    "parentPattern": "svg",
     "value": false,
     "type": "checkbox"
   },
@@ -162,7 +165,7 @@
     "title": "Text",
     "description": "Text to go along paths",
     "isHandRelated": true,
-    "parentPattern": "paths",
+    "parentPattern": "svg",
     "value": "",
     "type": "text"
   },
@@ -172,7 +175,7 @@
     "description": "Font size of text along paths",
     "value": 12,
     "isHandRelated": true,
-    "parentPattern": "paths",
+    "parentPattern": "svg",
     "type": "range",
     "min": 8,
     "max": 100,
@@ -182,7 +185,7 @@
     "id": "speed",
     "title": "Speed",
     "description": "Speed of transitions",
-    "parentPattern": "paths",
+    "parentPattern": "svg",
     "value": 2,
     "type": "range",
     "isHandRelated": true,
@@ -240,18 +243,18 @@
     ]
   },
   {
-    "id": "doesPinchDraw",
-    "title": "Pinch draw 👌",
-    "description": "Whether to draw by pinching fingers",
+    "id": "doesWagDelete",
+    "title": "Wag delete 👆",
+    "description": "Whether to delete everything by wagging",
     "isHandRelated": true,
     "isOmittedInScenario": true,
     "value": true,
     "type": "checkbox"
   },
   {
-    "id": "doesWagDelete",
-    "title": "Wag delete 👆",
-    "description": "Whether to delete everything by wagging",
+    "id": "doesPinchDraw",
+    "title": "Pinch draw 👌",
+    "description": "Whether to draw by pinching fingers",
     "isHandRelated": true,
     "isOmittedInScenario": true,
     "value": true,
@@ -353,6 +356,7 @@
     "isHandRelated": true,
     "isOmittedInScenario": true,
     "isButtons": true,
+    "parentPattern": "canvas",
     "value": "dots",
     "type": "select",
     "options": [
