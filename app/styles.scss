@@ -134,7 +134,7 @@ button {
     }
     &.pause-button {
       position: fixed;
-      bottom: var(--gap-double);
+      bottom: 3rem;
       z-index: 1;
       left: 50%;
       transform: translateX(-50%);
@@ -410,9 +410,10 @@ legend {
   padding: var(--gap);
   box-sizing: border-box;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: var(--menu-width);
   color: var(--color-skin-light);
+  background: var(--color-skin-dark);
 }
 
 label {

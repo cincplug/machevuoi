@@ -31,6 +31,15 @@ const Menu = (props) => {
             title: "Scenarios"
           }}
         />
+        <Scenarios
+          {...{
+            setup,
+            setSetup,
+            handleInputChange,
+            scenarios: setup.customScenarios,
+            title: "Custom scenarios"
+          }}
+        />
       </nav>
       <nav className={`menu menu--secondary`}>
         <Controls
@@ -47,15 +56,6 @@ const Menu = (props) => {
         {isScratchCanvas && pattern === "canvas" && (
           <Scratch {...{ setup, handleInputChange }} />
         )}
-        <Scenarios
-          {...{
-            setup,
-            setSetup,
-            handleInputChange,
-            scenarios: setup.customScenarios,
-            title: "Custom scenarios"
-          }}
-        />
       </nav>
     </>
   );
