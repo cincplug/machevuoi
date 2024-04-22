@@ -43,6 +43,18 @@
     "title": "Pinch",
     "description": "How tight you need to squeeze your thumb and index finger to draw",
     "value": 40,
+    "isHidden": true,
+    "isHandRelated": true,
+    "type": "range",
+    "min": 1,
+    "max": 200,
+    "step": 1
+  },
+  {
+    "id": "squeezeRatio",
+    "title": "Squeeze",
+    "description": "How much the hand pattern will be scaled up or down",
+    "value": 100,
     "isHandRelated": true,
     "type": "range",
     "min": 1,

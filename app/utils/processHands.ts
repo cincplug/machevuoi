@@ -52,6 +52,7 @@ export const processHands = ({
     opacity,
     minimum,
     pinchThreshold,
+    squeezeRatio,
     usesButtonPinch,
     isScratchCanvas,
     scratchPoints,
@@ -93,7 +94,7 @@ export const processHands = ({
     );
     const tips = squeezePoints({
       points: dots,
-      squeezeRatio: pinchThreshold,
+      squeezeRatio,
       centeringContext: dots
     });
 
@@ -103,7 +104,7 @@ export const processHands = ({
           const points = shape.map((point) => hand.keypoints[point]);
           const squeezedPoints = squeezePoints({
             points,
-            squeezeRatio: pinchThreshold,
+            squeezeRatio,
             centeringContext: points
           });
 
