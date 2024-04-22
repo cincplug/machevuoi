@@ -113,16 +113,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!cursor.isPinched && scribbleNewArea.length > 0) {
-      if (scribbleNewArea.length > 0) {
-        setScribbleNewArea((prevScribbleNewArea) => {
-          setScribble((prevScribble) => {
-            return [...prevScribble, prevScribbleNewArea];
-          });
-          return [];
-        });
-      }
+      setScribble((prevScribble) => [...prevScribble, [...scribbleNewArea]]);
+      setScribbleNewArea([]);
     }
-  }, [cursor.isPinched, scribbleNewArea.length]);
+  }, [cursor.isPinched, scribbleNewArea]);  
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSetup((prevSetup) => {

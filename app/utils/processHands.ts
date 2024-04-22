@@ -236,9 +236,7 @@ export const processHands = ({
             y
           }) > minimum;
         if (isNewArea) {
-          setScribbleNewArea([...prevScribbleNewArea, { x, y }]);
-        } else {
-          setScribbleNewArea(prevScribbleNewArea);
+          return [...prevScribbleNewArea, { x, y }];
         }
         return prevScribbleNewArea;
       });
