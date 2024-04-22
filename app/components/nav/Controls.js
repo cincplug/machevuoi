@@ -32,7 +32,7 @@ const Controls = ({ controls, setup, handleInputChange }) =>
                 value === option ? "active" : ""
               }`}
               title={`Add ${option}`}
-              ariaLabel={option}
+              aria-label={option}
               key={optionIndex}
               onClick={() =>
                 handleInputChange({ target: { value: option, id } })
