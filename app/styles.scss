@@ -96,15 +96,14 @@ html {
   @include until {
     font-size: 14px;
   }
+  scrollbar-width: var(--gap-half);
+  scrollbar-color: var(--color-skin-mid-light) var(--color-skin-dark);
 }
 
 body {
-  overflow: hidden;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-width: var(--gap-half);
-  scrollbar-color: var(--color-skin-mid-light) var(--color-skin-dark);
 }
 
 canvas {
@@ -435,6 +434,7 @@ label {
 }
 
 .wrap {
+  overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
