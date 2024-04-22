@@ -229,6 +229,15 @@
     ]
   },
   {
+    "id": "doesPinchDraw",
+    "title": "Pinch draw 👌",
+    "description": "Whether to draw by pinching fingers",
+    "isHandRelated": true,
+    "isOmittedInScenario": true,
+    "value": true,
+    "type": "checkbox"
+  },
+  {
     "id": "doesWagDelete",
     "title": "Wag delete 👆",
     "description": "Whether to delete everything by wagging",

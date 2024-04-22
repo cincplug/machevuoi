@@ -59,6 +59,7 @@ export const processHands = ({
     dash,
     pressedKey,
     dispersion,
+    doesPinchDraw,
     doesWagDelete,
     composite,
     isCapsLock,
@@ -140,10 +141,11 @@ export const processHands = ({
       return;
     }
     const thumbIndexDistance = getDistance(thumbTip, indexTip);
-    const isPinched =
+    const isPinched = thumbIndexDistance < pinchThreshold;
+    const isDrawing =
       pressedKey === "Shift" ||
       isCapsLock ||
-      thumbIndexDistance < pinchThreshold;
+      (doesPinchDraw && isPinched);
     const isWagging =
       doesWagDelete &&
       (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&
@@ -167,15 +169,15 @@ export const processHands = ({
     });
 
     if (pattern === "canvas") {
-      const ctx = isPinched ? dctx : pctx;
+      const ctx = isDrawing ? dctx : pctx;
       if (ctx === null) return null;
-      if (!isPinched && handIndex === 0) {
+      if (!isDrawing && handIndex === 0) {
         dctx?.beginPath();
         dctx?.moveTo(x, y);
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         pctx?.beginPath();
       }
-      if (isPinched && dctx) {
+      if (isDrawing && dctx) {
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
@@ -222,7 +224,7 @@ export const processHands = ({
         lastX = undefined;
         lastY = undefined;
       }
-    } else if (isPinched) {
+    } else if (isDrawing) {
       setScribbleNewArea((prevScribbleNewArea: IPoint[]) => {
         const isNewArea =
           prevScribbleNewArea.length === 0 ||
