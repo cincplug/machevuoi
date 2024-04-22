@@ -5,7 +5,6 @@ const Splash = (props) => {
       <h1>Pecel</h1>
       <button
         className="splash-button"
-        title="Start the app"
         onClick={handlePlayButtonClick}
       >
         Start camera
