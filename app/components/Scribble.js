@@ -1,8 +1,6 @@
 import React from "react";
 import pathStrokes from "./patterns/path-strokes";
 import { processColor } from "../utils";
-import Hose from "./patterns/Hose";
-import Kite from "./patterns/Kite";
 
 const Scribble = ({ scribble, scribbleNewArea, setup }) => {
   const {
@@ -18,24 +16,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
     dash
   } = setup;
 
-  if (pattern === "hose") {
-    return (
-      <Hose
-        scribble={scribble}
-        scribbleNewArea={scribbleNewArea}
-        setup={setup}
-      />
-    );
-  }
-  if (pattern === "kite") {
-    return (
-      <Kite
-        scribble={scribble}
-        scribbleNewArea={scribbleNewArea}
-        setup={setup}
-      />
-    );
-  }
   return (
     <>
       {[...scribble, scribbleNewArea].map((scribbleArea, scribbleAreaIndex) => {

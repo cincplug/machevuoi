@@ -4,7 +4,7 @@ const Info = (props) => {
   return (
     <div className="info">
       <>
-        {["paths", "hose", "kite", "canvas"].includes(pattern) &&
+        {["paths", "canvas"].includes(pattern) &&
           !isScratchCanvas && (
             <>
               <p>Pinch thumb and forefinger 👌 to draw</p>

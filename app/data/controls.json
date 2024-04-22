@@ -14,7 +14,7 @@
     "description": "What sort of graphics is used",
     "value": "numbers",
     "type": "select",
-    "options": ["paths", "hose", "kite", "canvas"]
+    "options": ["paths", "canvas"]
   },
   {
     "id": "radius",
@@ -143,7 +143,6 @@
     "description": "Length of dashes in a line",
     "value": 0,
     "isHandRelated": true,
-    "parentPattern": ["canvas", "paths"],
     "type": "range",
     "min": 0,
     "max": 100,
@@ -154,26 +153,26 @@
     "title": "Auto-close",
     "description": "Whether to automatically close the path",
     "isHandRelated": true,
-    "parentPattern": ["paths", "hose", "kite"],
+    "parentPattern": "paths",
     "value": false,
     "type": "checkbox"
   },
   {
     "id": "text",
     "title": "Text",
-    "description": "Text for hose, kite, and paths patterns",
+    "description": "Text to go along paths",
     "isHandRelated": true,
-    "parentPattern": ["paths", "hose", "kite"],
+    "parentPattern": "paths",
     "value": "",
     "type": "text"
   },
   {
     "id": "fontSize",
     "title": "Text size",
-    "description": "Font size of text along paths in SVG",
+    "description": "Font size of text along paths",
     "value": 12,
     "isHandRelated": true,
-    "parentPattern": ["paths", "hose", "kite"],
+    "parentPattern": "paths",
     "type": "range",
     "min": 8,
     "max": 100,
@@ -183,7 +182,7 @@
     "id": "speed",
     "title": "Speed",
     "description": "Speed of transitions",
-    "parentPattern": ["paths", "hose", "kite"],
+    "parentPattern": "paths",
     "value": 2,
     "type": "range",
     "isHandRelated": true,
