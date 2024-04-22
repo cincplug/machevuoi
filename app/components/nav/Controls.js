@@ -25,12 +25,13 @@ const Controls = ({ controls, setup, handleInputChange }) =>
 
     if (isButtons)
       return (
-        <fieldset className="scratch-wrap" key={`${id}-${index}`}>
+        <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
           {options.map((option, optionIndex) => (
             <button
-              className={`scratch-layer-button ${
+              className={`icon-button ${option} ${
                 value === option ? "active" : ""
               }`}
+              title={option}
               key={optionIndex}
               onClick={() =>
                 handleInputChange({ target: { value: option, id } })

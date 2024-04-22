@@ -106,7 +106,7 @@ export const processHands = ({
           const squeezedPoints = squeezePoints({
             points,
             squeezeRatio,
-            centeringContext: points
+            centeringContext: dots || points
           });
 
           if (squeezedPoints) {

@@ -3,7 +3,7 @@ import DEFAULT_SCENARIOS from "../../data/scenarios.json";
 import Controls from "./Controls";
 import Buttons from "./Buttons";
 import Scenarios from "./Scenarios";
-import Scratch from "../scratch/Scratch";
+import ShapeSelection from "./ShapeSelection";
 
 const Menu = (props) => {
   const { setup, setSetup, handleInputChange, clearPaths } = props;
@@ -54,7 +54,7 @@ const Menu = (props) => {
           )}
         />
         {isScratchCanvas && pattern === "canvas" && (
-          <Scratch {...{ setup, handleInputChange }} />
+          <ShapeSelection {...{ setup, handleInputChange }} />
         )}
       </nav>
     </>

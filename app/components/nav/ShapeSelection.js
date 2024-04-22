@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Dots from "./Dots";
-import Arc from "./Arc";
-import Line from "./Line";
-import Square from "./Square";
-import Diamond from "./Diamond";
-import Rhomboid from "./Rhomboid";
-import Rectangle from "./Rectangle";
-import Triangle from "./Triangle";
-import Curve from "./Curve";
-import Circle from "./Circle";
-import Ellipse from "./Ellipse";
-import Preview from "./Preview";
+import Dots from "../shapes/Dots";
+import shapeComponents from "../shapes";
+import Preview from "../shapes/Preview";
 import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
 
-function Scratch({ setup, handleInputChange }) {
+function ShapeSelection({ setup, handleInputChange }) {
   const [startPoint, setStartPoint] = useState(null);
   const [controlPoint, setControlPoint] = useState(null);
   const [mousePoint, setMousePoint] = useState(null);
@@ -110,22 +101,9 @@ function Scratch({ setup, handleInputChange }) {
     setMousePoint({ x, y });
   };
 
-  const shapeComponents = {
-    arcs: Arc,
-    lines: Line,
-    squares: Square,
-    diamonds: Diamond,
-    rectangles: Rectangle,
-    rhomboids: Rhomboid,
-    triangles: Triangle,
-    curves: Curve,
-    circles: Circle,
-    ellipses: Ellipse
-  };
-
   return (
     <div
-      className={`scratch-wrap active-${
+      className={`icon-buttons-wrap active-${
         activeLayer === "dots" ? "dots" : "shapes"
       }`}
     >
@@ -142,13 +120,16 @@ function Scratch({ setup, handleInputChange }) {
             selectedShapes: scratchPoints[shapeType],
             handlePathClick,
             shapeType
-          });          
-          return shapes && shapes.map(({ shape, onClick }, index) => (
-            <ShapeComponent
-              key={`${JSON.stringify(shape)}-${index}`}
-              {...{ shape, onClick }}
-            />
-          ));
+          });
+          return (
+            shapes &&
+            shapes.map(({ shape, onClick }, index) => (
+              <ShapeComponent
+                key={`${JSON.stringify(shape)}-${index}`}
+                {...{ shape, onClick }}
+              />
+            ))
+          );
         })}
         {startPoint !== null && (
           <Preview
@@ -172,4 +153,4 @@ function Scratch({ setup, handleInputChange }) {
   );
 }
 
-export default Scratch;
+export default ShapeSelection;

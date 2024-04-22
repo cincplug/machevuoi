@@ -116,7 +116,7 @@ canvas {
 
 button {
   margin: 0;
-  background: var(--bg-input);
+  background-color: var(--bg-input);
   color: var(--color-skin-dark);
   border: none;
   border-radius: 2rem;
@@ -128,9 +128,9 @@ button {
     font-weight: bold;
   }
   &.video-button {
-    background: var(--color-blue-light);
+    background-color: var(--color-blue-light);
     &:hover {
-      background: var(--color-blue);
+      background-color: var(--color-blue);
     }
     &.pause-button {
       position: fixed;
@@ -188,7 +188,7 @@ button {
   &:hover,
   &:active,
   &.highlight {
-    background: var(--color-skin-mid-light);
+    background-color: var(--color-skin-mid-light);
   }
 }
 
@@ -223,10 +223,10 @@ input[type="checkbox"] {
 
   &:checked {
     & + label:before {
-      background: var(--color-skin-light);
+      background-color: var(--color-skin-light);
       content: "✔️";
       color: var(--color-black);
-      font-size: var(--font-size-);
+      font-size: var(--font-size-s);
       line-height: var(--font-size-m);
       text-align: center;
     }
@@ -273,7 +273,7 @@ legend {
 
   button {
     &.active {
-      background: var(--bg-input-active);
+      background-color: var(--bg-input-active);
     }
   }
 
@@ -335,12 +335,10 @@ legend {
     &--secondary {
       top: 0;
       bottom: auto;
-      display: flex;
-      flex-direction: column;
       width: 100%;
-      max-height: 7rem;
-      overflow-x: auto;
-      overflow-y: hidden;
+      max-height: 10rem;
+      overflow-x: hidden;
+      overflow-y: auto;
 
       button {
         padding: 0;
@@ -414,6 +412,7 @@ legend {
   width: var(--menu-width);
   color: var(--color-skin-light);
   background: var(--color-skin-dark);
+  z-index: 111;
 }
 
 label {
@@ -502,13 +501,6 @@ label {
   top: 0;
 }
 
-.scratch-wrap {
-  grid-column: span 12;
-  display: grid;
-  grid-template-columns: inherit;
-  grid-gap: inherit;
-  position: relative;
-}
 .scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
@@ -519,10 +511,32 @@ label {
   grid-column: span 12;
 }
 
-.scratch-layer-button {
-  grid-column: span 4;
+.icon-buttons-wrap {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: inherit;
+  grid-gap: inherit;
+  position: relative;
+}
+
+.icon-button {
+  grid-column: span 2;
+  height: 2rem;
   padding: 0.3rem 0;
   border-radius: var(--radius);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -100rem;
+
+  $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
+    rhomboids, squares, triangles;
+
+  @each $shape in $shapes {
+    &.#{$shape} {
+      background-image: url("./assets/img/icons/#{$shape}.svg");
+    }
+  }
 }
 
 .scratch-dot {

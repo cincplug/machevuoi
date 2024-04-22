@@ -27,6 +27,6 @@
     "**/*.tsx",
     "app/utils/*.ts",
     "types/**/*.ts"
-, "app/components/scratch/Scratch.js"  ],
+, "app/components/nav/ShapeSelection.js"  ],
   "exclude": ["node_modules"]
 }

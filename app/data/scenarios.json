@@ -219,7 +219,7 @@
   "scratch-canvas-wide": {
     "description": "Draw some joints with expanded fingers",
     "icon": "🖐️",
-    "radius": 8,
+    "radius": 3,
     "minimum": 1,
     "bg": "#e5e5e5",
     "color": "#141516",
