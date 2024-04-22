@@ -90,13 +90,18 @@ export const processHands = ({
     const thumbTip = hand.keypoints[4];
     const indexTip = hand.keypoints[8];
     const middleTip = hand.keypoints[12];
+    const fallbackDots = [4, 8, 12];
     const dots = scratchPoints?.dots.map(
       (point: number) => hand.keypoints[point]
     );
+    const centeringContext =
+      dots.length > 0
+        ? dots
+        : fallbackDots.map((point: number) => hand.keypoints[point]);
     const tips = squeezePoints({
       points: dots,
       squeezeRatio,
-      centeringContext: dots
+      centeringContext
     });
 
     const shapes = shapeNames.reduce(
@@ -106,7 +111,7 @@ export const processHands = ({
           const squeezedPoints = squeezePoints({
             points,
             squeezeRatio,
-            centeringContext: dots || points
+            centeringContext
           });
 
           if (squeezedPoints) {
@@ -143,9 +148,7 @@ export const processHands = ({
     const thumbIndexDistance = getDistance(thumbTip, indexTip);
     const isPinched = thumbIndexDistance < pinchThreshold;
     const isDrawing =
-      pressedKey === "Shift" ||
-      isCapsLock ||
-      (doesPinchDraw && isPinched);
+      pressedKey === "Shift" || isCapsLock || (doesPinchDraw && isPinched);
     const isWagging =
       doesWagDelete &&
       (wrist.y - indexTip.y) / (wrist.y - middleTip.y) > 3 &&

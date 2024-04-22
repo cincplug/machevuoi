@@ -27,20 +27,21 @@
   --color-white: #e8e8e8;
   --color-black: #000;
   --color-black-light: #222;
-  --color-black-light-semi: #222c;
   --color-grey: #747474;
   --color-silver: #ccc;
   --color-blue-light: #0ce;
   --color-blue: #068;
   --color-skin-dark: #2d1f14;
   --color-skin-mid-dark: #6d4931;
-  --color-skin-mid-dark-semi: #6d493180;
   --color-skin-mid: #c49a68;
   --color-skin-mid-light: #e6bc98;
   --color-skin-light: #ffe7d1;
   --color-yellow: #ec2;
-  --color-yellow-semi: #fd28;
   --color-red: #c22;
+  
+  --color-black-light-semi: #222c;
+  --color-skin-dark-semi: #2d1f14d0;
+  --color-yellow-semi: #fd28;
 
   --gradient-dark: linear-gradient(
     var(--color-black),
@@ -370,7 +371,6 @@ legend {
   padding: 0;
   margin: 0 0 var(--gap-half);
   font-size: var(--font-size-m);
-  position: relative;
   &--checkbox {
     flex-direction: row;
     align-self: center;
@@ -404,15 +404,14 @@ legend {
   content: attr(title);
   font-size: var(--font-size-m);
   text-align: left;
-  position: fixed;
+  position: absolute;
   padding: var(--gap);
   box-sizing: border-box;
   bottom: 0;
-  right: 0;
-  width: var(--menu-width);
+  left: 0;
+  width: 100%;
   color: var(--color-skin-light);
   background: var(--color-skin-dark);
-  z-index: 111;
 }
 
 label {
@@ -527,7 +526,6 @@ label {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  text-indent: -100rem;
 
   $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
     rhomboids, squares, triangles;

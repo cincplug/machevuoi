@@ -31,13 +31,13 @@ const Controls = ({ controls, setup, handleInputChange }) =>
               className={`icon-button ${option} ${
                 value === option ? "active" : ""
               }`}
-              title={option}
+              title={`Add ${option}`}
+              ariaLabel={option}
               key={optionIndex}
               onClick={() =>
                 handleInputChange({ target: { value: option, id } })
               }
             >
-              {option}
             </button>
           ))}
         </fieldset>
