@@ -1,8 +1,8 @@
 import React from "react";
 import { processColor } from "../../utils";
 
-const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
-  const { text, color, opacity, speed } = setup;
+const Kite = ({ scribble, scribbleNewArea, setup }) => {
+  const { radius, text, color, opacity, speed, fontSize, dash } = setup;
 
   const textArray = Array.from(text);
   const area = [...scribble, scribbleNewArea].flat();
@@ -12,12 +12,19 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
         .map((point, index) => {
           return `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`;
         })
-        .join(" ") + " Z"
+        .join(" ")
     : null;
 
   return (
     <svg>
-      <path id="text-path" d={pathData} fill="none" />
+      <path
+        id="text-path"
+        d={pathData}
+        fill="none"
+        stroke={processColor(color, opacity)}
+        strokeWidth={radius}
+        strokeDasharray={dash}
+      />
       {textArray.map((letter, index) => {
         const style = {
           animation: `move-to ${textArray.length / speed}s linear infinite`
@@ -27,7 +34,7 @@ const Kite = ({ scribble, scribbleNewArea, setup, radius }) => {
           <text
             fill={processColor(color, opacity)}
             key={`sent-${index}`}
-            fontSize={radius + textArray.length - index}
+            fontSize={fontSize + textArray.length - index}
             style={style}
           >
             <textPath href="#text-path" startOffset={`${endOffset}%`}>

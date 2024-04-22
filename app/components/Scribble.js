@@ -12,6 +12,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
     pathStroke,
     speed,
     text,
+    fontSize,
     radius,
     minimum,
     dash
@@ -23,7 +24,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
         scribble={scribble}
         scribbleNewArea={scribbleNewArea}
         setup={setup}
-        radius={radius}
       />
     );
   }
@@ -33,7 +33,6 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
         scribble={scribble}
         scribbleNewArea={scribbleNewArea}
         setup={setup}
-        radius={radius}
       />
     );
   }
@@ -84,7 +83,7 @@ const Scribble = ({ scribble, scribbleNewArea, setup }) => {
             {text && (
               <text
                 fill={processColor(color, opacity)}
-                fontSize={radius * 10}
+                fontSize={fontSize}
                 dominantBaseline="text-after-edge"
               >
                 <textPath href={`#text-path-${scribbleAreaIndex}`}>

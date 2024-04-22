@@ -33,7 +33,8 @@
     "pattern": "paths",
     "pathStroke": "lines",
     "isScratchCanvas": false,
-    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿"
+    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
+    "fontSize": 30
   },
   "pinch-paint-svg-cloud": {
     "description": "Draw clouds with your pinched fingers",

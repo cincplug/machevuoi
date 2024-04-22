@@ -154,7 +154,7 @@
     "title": "Auto-close",
     "description": "Whether to automatically close the path",
     "isHandRelated": true,
-    "parentPattern": "paths",
+    "parentPattern": ["paths", "hose", "kite"],
     "value": false,
     "type": "checkbox"
   },
@@ -166,6 +166,18 @@
     "parentPattern": ["paths", "hose", "kite"],
     "value": "",
     "type": "text"
+  },
+  {
+    "id": "fontSize",
+    "title": "Text size",
+    "description": "Font size of text along paths in SVG",
+    "value": 12,
+    "isHandRelated": true,
+    "parentPattern": ["paths", "hose", "kite"],
+    "type": "range",
+    "min": 8,
+    "max": 100,
+    "step": 0.5
   },
   {
     "id": "speed",
