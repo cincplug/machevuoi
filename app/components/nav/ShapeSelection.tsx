@@ -1,3 +1,8 @@
+import {
+  ISetup,
+  ChangeEventType,
+  ShapeComponentsType,
+} from "../../../types";
 import React, { useState, useEffect } from "react";
 import Dots from "../shapes/Dots";
 import shapeComponents from "../shapes";
@@ -5,13 +10,29 @@ import Preview from "../shapes/Preview";
 import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
 
-function ShapeSelection({ setup, handleInputChange }) {
-  const [startPoint, setStartPoint] = useState(null);
-  const [controlPoint, setControlPoint] = useState(null);
-  const [mousePoint, setMousePoint] = useState(null);
+interface IProps {
+  setup: ISetup;
+  handleInputChange: (event: ChangeEventType) => void;
+}
+
+interface IPathClick {
+  start: number;
+  control: number | null;
+  end: number;
+  type: string;
+}
+
+type AnyComponent = React.FC<any>;
+
+const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
+  const [startPoint, setStartPoint] = useState<number | null>(null);
+  const [controlPoint, setControlPoint] = useState<number | null>(null);
+  const [mousePoint, setMousePoint] = useState<{ x: number; y: number } | null>(
+    null
+  );
   const { scratchPoints, activeLayer } = setup;
 
-  const handleDotClick = (index) => {
+  const handleDotClick = (index: number) => {
     if (activeLayer === "dots") {
       toggleDot(index);
     } else {
@@ -42,12 +63,12 @@ function ShapeSelection({ setup, handleInputChange }) {
     }
   }, [setup.pressedKey]);
 
-  const toggleDot = (index) => {
+  const toggleDot = (index: number) => {
     const newScratchPoints = { ...scratchPoints };
     newScratchPoints[activeLayer] = newScratchPoints[activeLayer].includes(
       index
     )
-      ? newScratchPoints[activeLayer].filter((point) => point !== index)
+      ? newScratchPoints[activeLayer].filter((point: number) => point !== index)
       : [...newScratchPoints[activeLayer], index];
 
     handleInputChange({
@@ -59,14 +80,14 @@ function ShapeSelection({ setup, handleInputChange }) {
     });
   };
 
-  const handlePathClick = ({ start, control, end, type }) => {
+  const handlePathClick = ({ start, control, end, type }: IPathClick) => {
     const newScratchPoints = { ...scratchPoints };
     const path = control
       ? [start, control, end]
       : [start, end].sort((a, b) => a - b);
 
-    const existingPathIndex = newScratchPoints[type].findIndex((existingPath) =>
-      arraysHaveSameElements(existingPath, path)
+    const existingPathIndex = newScratchPoints[type].findIndex(
+      (existingPath: []) => arraysHaveSameElements(existingPath, path)
     );
 
     const addNewPath = () => {
@@ -92,13 +113,18 @@ function ShapeSelection({ setup, handleInputChange }) {
     });
   };
 
-  const handleMouseMove = (event) => {
-    const svg = event.currentTarget;
+  const handleMouseMove = (
+    event: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    const svg = event.currentTarget as unknown as SVGSVGElement;
     const point = svg.createSVGPoint();
     point.x = event.clientX;
     point.y = event.clientY;
-    const { x, y } = point.matrixTransform(svg.getScreenCTM().inverse());
-    setMousePoint({ x, y });
+    const ctm = svg.getScreenCTM();
+    if (ctm !== null) {
+      const { x, y } = point.matrixTransform(ctm.inverse());
+      setMousePoint({ x, y });
+    }
   };
 
   return (
@@ -113,24 +139,26 @@ function ShapeSelection({ setup, handleInputChange }) {
         className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
-        {Object.keys(shapeComponents).map((shapeType) => {
-          const ShapeComponent = shapeComponents[shapeType];
-          if (scratchPoints[shapeType].length === 0) return null;
-          const shapes = getShape({
-            selectedShapes: scratchPoints[shapeType],
-            handlePathClick,
-            shapeType
-          });
-          return (
-            shapes &&
-            shapes.map(({ shape, onClick }, index) => (
-              <ShapeComponent
-                key={`${JSON.stringify(shape)}-${index}`}
-                {...{ shape, onClick }}
-              />
-            ))
-          );
-        })}
+        {(Object.keys(shapeComponents) as (keyof ShapeComponentsType)[]).map(
+          (shapeType) => {
+            const ShapeComponent: AnyComponent = shapeComponents[shapeType];
+            if (scratchPoints[shapeType].length === 0) return null;
+            const shapes = getShape({
+              selectedShapes: scratchPoints[shapeType],
+              handlePathClick,
+              shapeType
+            });
+            return (
+              shapes &&
+              shapes.map(({ shape, onClick }, index) => (
+                <ShapeComponent
+                  key={`${JSON.stringify(shape)}-${index}`}
+                  {...{ shape, onClick }}
+                />
+              ))
+            );
+          }
+        )}
         {startPoint !== null && (
           <Preview
             {...{
@@ -151,6 +179,6 @@ function ShapeSelection({ setup, handleInputChange }) {
       </svg>
     </div>
   );
-}
+};
 
 export default ShapeSelection;

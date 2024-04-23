@@ -41,7 +41,12 @@ export const scratchCanvas = ({
     shapeList.forEach((shape: IShape) => {
       const painter = shapePainters[shapeName];
       if (painter) {
-        painter({ ctx, ...shape });
+        painter({
+          ctx,
+          start: shape.startPoint,
+          end: shape.endPoint,
+          control: shape.controlPoint
+        });
       }
     });
   });

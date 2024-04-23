@@ -15,9 +15,13 @@ export interface ICursor extends IPoint {
 }
 
 export interface IShape {
-  start: Point;
-  end: Point;
-  control?: Point;
+  startPoint: IPoint;
+  endPoint: IPoint;
+  controlPoint?: IPoint;
+}
+
+export interface IShapeWithControl extends IShape {
+  controlPoint: IPoint;
 }
 
 export interface IShapes {
@@ -44,3 +48,26 @@ export type ChangeEventType =
         type: string;
       };
     };
+
+export type ShapeComponentProps = {
+  shape: IShape;
+  onClick: any;
+  isPreview?: boolean;
+};
+
+export type ShapeComponentWithControlPointProps = ShapeComponentProps & {
+  shape: IShapeWithControl;
+};
+
+export type ShapeComponentsType = {
+  arcs: React.FC<ShapeComponentProps>;
+  lines: React.FC<ShapeComponentProps>;
+  squares: React.FC<ShapeComponentProps>;
+  diamonds: React.FC<ShapeComponentProps>;
+  rectangles: React.FC<ShapeComponentProps>;
+  rhomboids: React.FC<ShapeComponentProps>;
+  triangles: React.FC<ShapeComponentProps>;
+  circles: React.FC<ShapeComponentProps>;
+  curves: React.FC<ShapeComponentWithControlPointProps>;
+  ellipses: React.FC<ShapeComponentWithControlPointProps>;
+};

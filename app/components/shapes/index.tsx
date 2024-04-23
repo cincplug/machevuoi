@@ -1,3 +1,4 @@
+import { ShapeComponentsType } from "../../../types";
 import Arc from "./Arc";
 import Line from "./Line";
 import Square from "./Square";
@@ -9,7 +10,7 @@ import Curve from "./Curve";
 import Circle from "./Circle";
 import Ellipse from "./Ellipse";
 
-const shapeComponents = {
+const shapeComponents: ShapeComponentsType = {
   arcs: Arc,
   lines: Line,
   squares: Square,
