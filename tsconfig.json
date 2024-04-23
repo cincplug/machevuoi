@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     "app/utils/*.ts",
-    "types/**/*.ts"
-, "app/components/nav/ShapeSelection.js"  ],
+    "types/**/*.ts",
+  ],
   "exclude": ["node_modules"]
 }

@@ -96,11 +96,6 @@ export const renderPath = ({ area, points, radius }: RenderPathProps): string =>
     })
     .join(" ");
 
-export const saveSetup = (setup: string): void => {
-  navigator.clipboard.writeText(setup);
-  console.info(setup);
-};
-
 export const saveImage = (): void => {
   const link = document.createElement("a");
   const svgElement = document.querySelector(".drawing");

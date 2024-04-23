@@ -1,7 +1,18 @@
+import { ISetup } from "../../../types";
 import CONTROLS from "../../data/controls.json";
 import { saveImage } from "../../utils";
 
-const Buttons = ({ setup, handleInputChange, clearPaths }) => {
+interface IProps {
+  setup: ISetup;
+  handleInputChange: (event: object) => void;
+  clearPaths: () => void;
+}
+
+const Buttons: React.FC<IProps> = ({
+  setup,
+  handleInputChange,
+  clearPaths
+}) => {
   const saveSetup = () => {
     const filteredSetup = Object.fromEntries(
       Object.entries(setup).filter(([key]) => {
@@ -9,7 +20,9 @@ const Buttons = ({ setup, handleInputChange, clearPaths }) => {
         return entry && !entry.isOmittedInScenario && !entry.isStoringPrevented;
       })
     );
-    const customScenariosLength = Object.keys(setup.customScenarios || {}).length;
+    const customScenariosLength = Object.keys(
+      setup.customScenarios || {}
+    ).length;
     const newCustomScenarioKey = customScenariosLength + 1;
     const newCustomScenarios = {
       ...setup.customScenarios,
@@ -39,7 +52,7 @@ const Buttons = ({ setup, handleInputChange, clearPaths }) => {
       <button
         className="control control--button"
         onClick={() => {
-          saveSetup(setup);
+          saveSetup();
         }}
         title="Save setup"
       >
