@@ -1,19 +1,31 @@
-import HP from "../../data/handPoints.json";
-import { getShapePoints } from "../../utils/shapeCalculators";
+import { getPoint } from "../../utils";
+import { IPoint, ShapeComponentsType } from "../../../types";
 
-const Preview = ({
+interface PreviewProps {
+  startPoint: IPoint;
+  controlPoint: IPoint | null;
+  mousePoint: IPoint | null;
+  activeLayer: string;
+  shapeComponents: ShapeComponentsType;
+}
+
+const Preview: React.FC<PreviewProps> = ({
   startPoint,
   controlPoint,
   mousePoint,
   activeLayer,
   shapeComponents
 }) => {
-  const spx = HP[startPoint].x;
-  const spy = HP[startPoint].y;
+  const { x: spx, y: spy } = getPoint(startPoint, true);
+  if (mousePoint === null) {
+    return null;
+  }
   const epx = mousePoint.x;
   const epy = mousePoint.y;
 
-  const ShapeComponent = shapeComponents[activeLayer];
+  const ShapeComponent =
+    shapeComponents[activeLayer as keyof ShapeComponentsType];
+
   if (controlPoint === null) {
     return ["lines", "curves", "ellipses"].includes(activeLayer) ? (
       <line
@@ -32,8 +44,7 @@ const Preview = ({
     );
   }
 
-  const cpx = HP[controlPoint].x;
-  const cpy = HP[controlPoint].y;
+  const { x: cpx, y: cpy } = getPoint(controlPoint, true);
 
   return (
     <>

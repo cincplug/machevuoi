@@ -1,5 +1,4 @@
 import { getPoint } from "../../utils";
-import { getShapePoints } from "../../utils/shapeCalculators";
 import { IShapeWithControl } from "../../../types";
 
 interface CurveProps {

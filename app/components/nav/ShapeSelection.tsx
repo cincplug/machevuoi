@@ -1,8 +1,5 @@
-import {
-  ISetup,
-  ChangeEventType,
-  ShapeComponentsType,
-} from "../../../types";
+import { ISetup, ChangeEventType, ShapeComponentsType } from "../../../types";
+import HP from "../../data/handPoints.json";
 import React, { useState, useEffect } from "react";
 import Dots from "../shapes/Dots";
 import shapeComponents from "../shapes";
@@ -162,8 +159,8 @@ const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
         {startPoint !== null && (
           <Preview
             {...{
-              startPoint,
-              controlPoint,
+              startPoint: HP[startPoint],
+              controlPoint: controlPoint !== null ? HP[controlPoint] : null,
               activeLayer,
               mousePoint,
               shapeComponents
