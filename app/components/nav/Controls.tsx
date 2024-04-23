@@ -1,4 +1,24 @@
-const Controls = ({ controls, setup, handleInputChange }) =>
+import { ISetup } from "../../../types";
+
+interface IControl {
+  id: string;
+  type: string;
+  min: number;
+  max: number;
+  step: string;
+  title: string;
+  description: string;
+  options: string[];
+  isButtons: boolean;
+}
+
+interface IProps {
+  setup: ISetup;
+  controls: IControl[];
+  handleInputChange: (event: object) => void;
+}
+
+const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
   controls.map((item, index) => {
     const { id, type, min, max, step, title, description, options, isButtons } =
       item;
@@ -16,6 +36,7 @@ const Controls = ({ controls, setup, handleInputChange }) =>
       max,
       step,
       value: value || defaultValue,
+      ...(type === "checkbox" && { checked }),
       onChange: handleInputChange
     };
 
@@ -37,8 +58,7 @@ const Controls = ({ controls, setup, handleInputChange }) =>
               onClick={() =>
                 handleInputChange({ target: { value: option, id } })
               }
-            >
-            </button>
+            ></button>
           ))}
         </fieldset>
       );
