@@ -570,20 +570,6 @@ label {
   }
 }
 
-.info {
-  grid-column: span 12;
-  font-size: var(--font-size-m);
-  background: inherit;
-  color: var(--color-skin-light);
-  p {
-    margin: var(--gap-half) 0;
-  }
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-}
-
 .message {
   position: absolute;
   top: 50%;
