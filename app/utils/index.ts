@@ -54,6 +54,15 @@ export const squeezePoints = ({
     .filter((item) => item !== null);
 };
 
+export const getLineWidth = (
+  radius: number,
+  distance: number,
+  dispersion: number,
+  minimum: number
+): number => {
+  return Math.max(radius - Math.pow(radius, dispersion - 1) * distance / 2, minimum);
+};
+
 export const processColor = (color: string, opacity: number): string => {
   return `${color}${Math.min(255, Math.max(0, Math.round(opacity)))
     .toString(16)

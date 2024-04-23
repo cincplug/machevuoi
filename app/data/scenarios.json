@@ -68,7 +68,7 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": false,
-    "dispersion": 37,
+    "dispersion": 0.5,
     "dash": 3
   },
   "pinch-canvas-pen": {
@@ -85,14 +85,14 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": false,
-    "dispersion": 14,
+    "dispersion": 0.9,
     "dash": 0
   },
   "pinch-canvas-ballpen": {
     "description": "Use the pinch as canvas ball pen",
     "icon": "🖊️",
     "radius": 15,
-    "minimum": 2,
+    "minimum": 1,
     "squeezeRatio": 50,
     "bg": "#e5e5e5",
     "color": "#4030b0",
@@ -103,14 +103,14 @@
     "imageUrl": "",
     "pathStroke": "beziers",
     "isScratchCanvas": false,
-    "dispersion": 4,
+    "dispersion": 0.8,
     "dash": 0.5
   },
   "pinch-canvas-pencil": {
     "description": "Use the pinch as canvas pencil",
     "icon": "📝",
     "radius": 7,
-    "minimum": 0,
+    "minimum": 1,
     "squeezeRatio": 46,
     "bg": "#e5e5e5",
     "color": "#141516",
@@ -119,7 +119,7 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": false,
-    "dispersion": 10,
+    "dispersion": 0.5,
     "dash": 0
   },
   "pinch-canvas-brush": {
@@ -135,7 +135,7 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": false,
-    "dispersion": 20,
+    "dispersion": 0.5,
     "dash": 0
   },
   "scratch-canvas-narrow": {
@@ -164,7 +164,7 @@
       "circles": [],
       "ellipses": []
     },
-    "dispersion": 1,
+    "dispersion": 0.5,
     "dash": 0
   },
   "scratch-canvas-mid": {
@@ -213,7 +213,7 @@
       ],
       "ellipses": []
     },
-    "dispersion": 1,
+    "dispersion": 0.5,
     "dash": 0
   },
   "scratch-canvas-wide": {
@@ -246,7 +246,7 @@
       "circles": [],
       "ellipses": [[16, 5, 17]]
     },
-    "dispersion": 20,
+    "dispersion": 0.5,
     "dash": 0
   },
   "scratch-canvas-fist": {
@@ -310,7 +310,7 @@
       "ellipses": []
     },
     "dash": 0,
-    "dispersion": 50,
+    "dispersion": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers",
@@ -364,7 +364,7 @@
       "ellipses": []
     },
     "dash": 0,
-    "dispersion": 10,
+    "dispersion": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers",
@@ -413,7 +413,7 @@
       "ellipses": [[0, 1, 1]]
     },
     "dash": 0,
-    "dispersion": 5,
+    "dispersion": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers",
@@ -462,7 +462,7 @@
       "ellipses": []
     },
     "dash": 0,
-    "dispersion": 10,
+    "dispersion": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers"
@@ -519,7 +519,7 @@
       ]
     },
     "dash": 0,
-    "dispersion": 10,
+    "dispersion": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
     "description": "Draw some charts with more fingers",
@@ -540,7 +540,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -580,7 +580,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -638,7 +638,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -691,7 +691,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -737,7 +737,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -785,7 +785,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -832,7 +832,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {
@@ -885,7 +885,7 @@
     "dash": 0,
     "isAutoClosed": false,
     "text": "",
-    "dispersion": 1,
+    "dispersion": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
     "scratchPoints": {

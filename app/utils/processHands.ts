@@ -88,7 +88,7 @@ export const processHands = ({
     }
     const wrist = hand.keypoints[0];
     const thumbTip = hand.keypoints[4];
-    const indexTip = hand.keypoints[8];
+    const indexTip = hand.keypoints[7];
     const middleTip = hand.keypoints[12];
     const fallbackDots = [4, 8, 12];
     const dots = scratchPoints?.dots.map(
