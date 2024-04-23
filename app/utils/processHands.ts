@@ -1,4 +1,3 @@
-import { IPoint, ICursor, ISetup, IShapes } from "../../types";
 import {
   getDistance,
   checkElementPinch,
@@ -8,6 +7,7 @@ import {
 } from "./index";
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
+import { IPoint, ICursor, ISetup, IShapes } from "../../types";
 
 let lastX: number | undefined,
   lastY: number | undefined,

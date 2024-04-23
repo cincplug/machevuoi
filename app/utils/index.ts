@@ -1,5 +1,5 @@
-import { IPoint, NullablePoint } from "../../types";
 import HP from "../data/handPoints.json";
+import { IPoint, NullablePoint } from "../../types";
 
 export const getDistance = (point1: IPoint, point2: IPoint): number => {
   const dx = point1.x - point2.x;

@@ -1,6 +1,6 @@
-import { ISetup } from "../../types";
 import CONTROLS from "../data/controls.json";
 import scenarios from "../data/scenarios.json";
+import { ISetup } from "../../types";
 
 interface IControlItem {
   id: string;

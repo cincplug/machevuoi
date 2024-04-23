@@ -1,11 +1,11 @@
-import { ISetup, ChangeEventType, ShapeComponentsType } from "../../../types";
-import HP from "../../data/handPoints.json";
 import React, { useState, useEffect } from "react";
+import HP from "../../data/handPoints.json";
 import Dots from "../shapes/Dots";
-import shapeComponents from "../shapes";
 import Preview from "../shapes/Preview";
+import shapeComponents from "../shapes";
 import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
+import { ISetup, ChangeEventType, ShapeComponentsType } from "../../../types";
 
 interface IProps {
   setup: ISetup;

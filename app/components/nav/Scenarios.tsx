@@ -1,6 +1,6 @@
-import { ISetup, ChangeEventType } from "../../../types";
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
+import { ISetup, ChangeEventType } from "../../../types";
 
 interface IProps {
   setup: ISetup;

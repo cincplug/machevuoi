@@ -1,4 +1,3 @@
-import React from "react";
 import { getPoint } from "../../utils";
 import { getShapePoints } from "../../utils/shapeCalculators";
 import { IShape } from "../../../types";

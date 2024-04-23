@@ -1,7 +1,7 @@
-import { ISetup, IPoint } from "../../types";
 import React from "react";
 import pathStrokes from "./patterns/path-strokes";
 import { processColor } from "../utils";
+import { ISetup, IPoint } from "../../types";
 
 interface IProps {
   inputResolution: { width: number; height: number };

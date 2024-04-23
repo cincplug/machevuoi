@@ -1,5 +1,4 @@
 import { ICursor } from "../../types";
-import React from "react";
 
 interface IProps {
   cursor: ICursor,

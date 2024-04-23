@@ -1,17 +1,17 @@
 "use client";
-import { ISetup, ICursor, ChangeEventType } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
 import "@tensorflow/tfjs-backend-webgl";
+import Webcam from "react-webcam";
+import { clearCanvases } from "../utils";
 import { runDetector } from "../utils/runDetector";
 import { getStoredSetup, storeSetup } from "../utils/storeSetup";
-import Webcam from "react-webcam";
 import Menu from "./nav/Menu";
 import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import "../styles.scss";
-import { clearCanvases } from "../utils";
+import { ISetup, ICursor, ChangeEventType } from "../../types";
 
 interface InputResolution {
   width: number;

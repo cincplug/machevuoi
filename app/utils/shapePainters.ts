@@ -1,5 +1,5 @@
-import { IPoint } from "../../types";
 import { getShapePoints } from "./shapeCalculators";
+import { IPoint } from "../../types";
 
 interface CanvasContext extends CanvasRenderingContext2D {}
 

@@ -1,6 +1,6 @@
-import { IPoint, IShape, IShapes } from "../../types";
 import { getAverageDistance, getLineWidth } from ".";
 import { shapePainters } from "./shapePainters";
+import { IPoint, IShape, IShapes } from "../../types";
 
 type Tips = IPoint[];
 interface ScratchCanvasOptions {

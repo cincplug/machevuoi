@@ -1,6 +1,6 @@
-import { IPoint, ICursor } from "../../types";
 import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
+import { IPoint, ICursor } from "../../types";
 
 interface RunDetectorProps {
   video: HTMLVideoElement;

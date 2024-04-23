@@ -1,5 +1,5 @@
 import { shapePainters } from "./shapePainters";
-import { getDistance, getLineWidth } from ".";
+import { getLineWidth } from ".";
 
 interface PinchCanvasParams {
   radius: number;

@@ -1,6 +1,6 @@
-import { ISetup, ChangeEventType } from "../../../types";
 import CONTROLS from "../../data/controls.json";
 import { saveImage } from "../../utils";
+import { ISetup, ChangeEventType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
