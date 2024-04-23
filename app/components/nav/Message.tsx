@@ -1,4 +1,9 @@
-const Message = ({ message, setMessage }) => {
+interface IProps {
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Message: React.FC<IProps> = ({ message, setMessage }) => {
   return (
     <div className="message">
       {message.split(/(?<=[.!?])\s/).map((sentence, index) => (
