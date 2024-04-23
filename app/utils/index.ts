@@ -1,4 +1,5 @@
 import { IPoint, NullablePoint } from "../../types";
+import HP from "../data/handPoints.json";
 
 export const getDistance = (point1: IPoint, point2: IPoint): number => {
   const dx = point1.x - point2.x;
@@ -211,4 +212,11 @@ export const getShape = ({
         })
     };
   });
+};
+
+export const getPoint = (point: number | IPoint, isPreview: boolean): IPoint => {
+  if (isPreview && typeof point !== 'number') {
+    return point;
+  }
+  return HP[point as number];
 };

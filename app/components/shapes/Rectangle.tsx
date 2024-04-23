@@ -1,18 +1,23 @@
-import HP from "../../data/handPoints.json";
+import { getPoint } from "../../utils";
 import { getShapePoints } from "../../utils/shapeCalculators";
+import { IShape } from "../../../types";
 
-const Square = ({
+interface RectangleProps {
+  shape: IShape;
+  onClick: () => void;
+  isPreview?: boolean;
+}
+
+const Rectangle: React.FC<RectangleProps> = ({
   shape: { startPoint, endPoint },
   onClick,
   isPreview = false
 }) => {
-  const spx = HP[startPoint].x;
-  const spy = HP[startPoint].y;
-  const epx = isPreview ? endPoint.x : HP[endPoint].x;
-  const epy = isPreview ? endPoint.y : HP[endPoint].y;
+  const { x: spx, y: spy } = getPoint(startPoint, isPreview);
+  const { x: epx, y: epy } = getPoint(endPoint, isPreview);
 
   const { cpx, cpy, dpx, dpy } = getShapePoints({
-    shape: "rhomboids",
+    shape: "rectangles",
     start: { x: spx, y: spy },
     end: { x: epx, y: epy }
   });
@@ -26,4 +31,4 @@ const Square = ({
   );
 };
 
-export default Square;
+export default Rectangle;

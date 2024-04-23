@@ -1,12 +1,16 @@
-import HP from "../../data/handPoints.json";
+import { getPoint } from "../../utils";
 import { getShapePoints } from "../../utils/shapeCalculators";
+import { IShape } from "../../../types"; 
 
-const Diamond = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }) => {
-  
-  const spx = HP[startPoint].x;
-  const spy = HP[startPoint].y;
-  const epx = isPreview ? endPoint.x : HP[endPoint].x;
-  const epy = isPreview ? endPoint.y : HP[endPoint].y;
+interface DiamondProps {
+  shape: IShape;
+  onClick: () => void;
+  isPreview?: boolean;
+}
+
+const Diamond: React.FC<DiamondProps> = ({ shape: { startPoint, endPoint }, onClick, isPreview = false }) => {
+  const { x: spx, y: spy } = getPoint(startPoint, isPreview);
+  const { x: epx, y: epy } = getPoint(endPoint, isPreview);
 
   const { cpx, cpy, apx, apy } = getShapePoints({
     shape: "diamonds",
