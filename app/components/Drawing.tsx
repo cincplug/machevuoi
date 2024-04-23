@@ -1,8 +1,16 @@
+import { ISetup, IPoint } from "../../types";
 import React from "react";
 import pathStrokes from "./patterns/path-strokes";
 import { processColor } from "../utils";
 
-const Drawing = (props) => {
+interface IProps {
+  inputResolution: { width: number; height: number };
+  setup: ISetup;
+  scribble: IPoint[][];
+  scribbleNewArea: IPoint[];
+}
+
+const Drawing: React.FC<IProps> = (props) => {
   const { inputResolution, setup, scribble, scribbleNewArea } = props;
   const { width, height } = inputResolution;
   const {
@@ -30,7 +38,7 @@ const Drawing = (props) => {
             const area = scribbleArea.flat().reverse();
             const pathData =
               area
-                .map((point, index) => {
+                .map((point: IPoint, index: number) => {
                   const lastPoint = area[area.length - 1] || point;
                   const prevPoint = area[Math.max(0, index - 1)] || point;
                   const nextPoint = area[Math.min(index + 1, area.length - 1)];

@@ -11,7 +11,6 @@ export interface ICursor extends IPoint {
   isWagging: boolean;
 }
 
-export type NullablePoint = IPoint | null;
 export interface IShape {
   start: Point;
   end: Point;
@@ -30,3 +29,5 @@ export interface IShapes {
   triangles: Shape[];
   diamonds: Shape[];
 }
+
+export type NullablePoint = IPoint | null;
