@@ -1,5 +1,5 @@
 "use client";
-import { ISetup, ICursor } from "../../types";
+import { ISetup, ICursor, ChangeEventType } from "../../types";
 import React, { useEffect, useRef, useState } from "react";
 import "@tensorflow/tfjs-backend-webgl";
 import { runDetector } from "../utils/runDetector";
@@ -116,9 +116,9 @@ const App: React.FC = () => {
       setScribble((prevScribble) => [...prevScribble, [...scribbleNewArea]]);
       setScribbleNewArea([]);
     }
-  }, [cursor.isPinched, scribbleNewArea]);  
+  }, [cursor.isPinched, scribbleNewArea]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEventType) => {
     setSetup((prevSetup) => {
       const { id, value, type } = event.target;
       const nextSetup = { ...prevSetup };
@@ -275,8 +275,8 @@ const App: React.FC = () => {
         <Menu
           {...{
             setup,
-            handleInputChange,
             setSetup,
+            handleInputChange,
             clearPaths
           }}
         />

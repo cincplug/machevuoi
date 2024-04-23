@@ -1,3 +1,4 @@
+import { ISetup, ChangeEventType } from "../../../types";
 import CONTROLS from "../../data/controls.json";
 import DEFAULT_SCENARIOS from "../../data/scenarios.json";
 import Controls from "./Controls";
@@ -5,8 +6,19 @@ import Buttons from "./Buttons";
 import Scenarios from "./Scenarios";
 import ShapeSelection from "./ShapeSelection";
 
-const Menu = (props) => {
-  const { setup, setSetup, handleInputChange, clearPaths } = props;
+interface IProps {
+  setup: ISetup;
+  setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
+  handleInputChange: (event: ChangeEventType) => void;
+  clearPaths: () => void;
+}
+
+const Menu: React.FC<IProps> = ({
+  setup,
+  setSetup,
+  handleInputChange,
+  clearPaths
+}) => {
   const { pattern, isScratchCanvas } = setup;
   return (
     <>

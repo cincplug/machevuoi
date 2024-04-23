@@ -1,21 +1,9 @@
-import { ISetup } from "../../../types";
-
-interface IControl {
-  id: string;
-  type: string;
-  min: number;
-  max: number;
-  step: string;
-  title: string;
-  description: string;
-  options: string[];
-  isButtons: boolean;
-}
+import { ISetup, IControl, ChangeEventType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
   controls: IControl[];
-  handleInputChange: (event: object) => void;
+  handleInputChange: (event: ChangeEventType) => void;
 }
 
 const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
@@ -47,7 +35,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
     if (isButtons)
       return (
         <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
-          {options.map((option, optionIndex) => (
+          {options.map((option: string, optionIndex: number) => (
             <button
               className={`icon-button ${option} ${
                 value === option ? "active" : ""
@@ -56,7 +44,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
               aria-label={option}
               key={optionIndex}
               onClick={() =>
-                handleInputChange({ target: { value: option, id } })
+                handleInputChange({ target: { value: option, id, type: "" } })
               }
             ></button>
           ))}
@@ -75,7 +63,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
             {...{ value, id }}
             onChange={handleInputChange}
           >
-            {options.map((option, optionIndex) => (
+            {options.map((option: string, optionIndex: number) => (
               <option key={optionIndex} value={option}>
                 {option}
               </option>

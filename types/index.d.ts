@@ -1,6 +1,9 @@
 export interface ISetup {
   [key: string]: string | number | boolean | object | array | null;
 }
+export interface IControl {
+  [key: string]: string | number | boolean | object | array | null;
+}
 export interface IPoint {
   x: number;
   y: number;
@@ -31,3 +34,13 @@ export interface IShapes {
 }
 
 export type NullablePoint = IPoint | null;
+
+export type ChangeEventType =
+  | React.ChangeEvent<HTMLInputElement>
+  | {
+      target: {
+        value: string | number | boolean | object | null;
+        id: string;
+        type: string;
+      };
+    };

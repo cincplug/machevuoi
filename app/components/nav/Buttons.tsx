@@ -1,10 +1,10 @@
-import { ISetup } from "../../../types";
+import { ISetup, ChangeEventType } from "../../../types";
 import CONTROLS from "../../data/controls.json";
 import { saveImage } from "../../utils";
 
 interface IProps {
   setup: ISetup;
-  handleInputChange: (event: object) => void;
+  handleInputChange: (event: ChangeEventType) => void;
   clearPaths: () => void;
 }
 
