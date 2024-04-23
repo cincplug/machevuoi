@@ -1,6 +1,12 @@
+import { ICursor } from "../../types";
 import React from "react";
 
-const Cursor = (props) => {
+interface IProps {
+  cursor: ICursor,
+  hasCursor: boolean
+}
+
+const Cursor: React.FC<IProps> = (props) => {
   const { cursor, hasCursor } = props;
   const { x, y, isPinched, isWagging } = cursor;
   const pinchClass = isPinched ? "active" : "inactive";
