@@ -1,7 +1,18 @@
+import { ISetup, ChangeEventType } from "../../../types";
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
 
-const ScenarioSelection = ({
+interface IProps {
+  setup: ISetup;
+  setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
+  handleInputChange: (event: ChangeEventType) => void;
+  scenarios: {
+    [key: string]: ISetup;
+  };
+  title: string;
+}
+
+const ScenarioSelection: React.FC<IProps> = ({
   setup,
   setSetup,
   handleInputChange,
@@ -9,11 +20,16 @@ const ScenarioSelection = ({
   title
 }) => {
   const handleScenarioButtonClick = useCallback(
-    (_event, scenarioKey, index) => {
+    (
+      _event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      scenarioKey: string,
+      index: number
+    ) => {
       setSetup((prevSetup) => {
-        const newScenario = scenarios ? scenarios[scenarioKey] : null;
+        const newScenario =
+          scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
         if (!newScenario) {
-          const initialSetup = {};
+          const initialSetup: ISetup = {};
           CONTROLS.forEach((item) => {
             initialSetup[item.id] = item.value;
           });
