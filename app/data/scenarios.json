@@ -244,7 +244,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ellipses": [[16, 5, 17]]
+      "ellipses": []
     },
     "dispersion": 0.5,
     "dash": 0
@@ -437,7 +437,7 @@
     "activeScenarioIndex": 11,
     "text": "",
     "scratchPoints": {
-      "dots": [],
+      "dots": [8, 5, 17, 20],
       "lines": [
         [7, 7],
         [9, 17],
@@ -484,7 +484,7 @@
     "activeScenarioIndex": 11,
     "text": "",
     "scratchPoints": {
-      "dots": [],
+      "dots": [9, 14],
       "lines": [
         [0, 9],
         [1, 9],
