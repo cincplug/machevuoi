@@ -4,8 +4,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Pecel",
-  description: "Advanced illustrator tool",
+  title: "Ma che vuoi",
+  description: "Illustrator tool based on Italian hand gesture 🤌",
 };
 
 interface RootLayoutProps {

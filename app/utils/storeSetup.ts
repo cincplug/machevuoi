@@ -19,7 +19,7 @@ interface IControlItem {
   isStoringPrevented?: boolean;
 }
 
-const storageSetupItem = "pecelSetup";
+const storageSetupItem = "machevuoiSetup";
 
 export const getStoredSetup = (): ISetup => {
   const initialSetup: ISetup = {};

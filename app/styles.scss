@@ -38,7 +38,7 @@
   --color-skin-light: #ffe7d1;
   --color-yellow: #ec2;
   --color-red: #c22;
-  
+
   --color-black-light-semi: #222c;
   --color-skin-dark-semi: #2d1f14d0;
   --color-yellow-semi: #fd28;
@@ -452,14 +452,83 @@ label {
   background: var(--color-skin-mid-dark);
   flex-direction: column;
   justify-content: space-evenly;
+  color: var(--color-skin-mid-light);
+
+  @keyframes gesture {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  @keyframes gesture-line {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes gesture-text {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes slogan {
+    0%, 50% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
   h1 {
     margin: 0;
-    letter-spacing: 0.1rem;
     font-size: 2rem;
-    color: var(--color-skin-mid-light);
+    position: relative;
+    .text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: gesture-text 1.7s forwards;
+    }
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      height: 0.1rem;
+      top: 100%;
+      background: var(--color-skin-mid-light);
+      animation: gesture-line 1.5s forwards;
+    }
+    &:after {
+      display: block;
+      content: "🤌";
+      position: absolute;
+      top: 80%;
+      transform: rotate(-45deg);
+      animation: gesture 1.6s forwards;
+    }
   }
-  h2 {
-    margin: 0.5rem 0 0.7rem;
+
+  .slogan {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: normal;
+    overflow: hidden;
+  }
+
+  .slogan-text {
+    animation: slogan 3s ease-out forwards;
   }
 }
 
