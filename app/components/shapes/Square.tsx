@@ -18,8 +18,8 @@ const Square: React.FC<SquareProps> = ({
 
   const { cpx, cpy, dpx, dpy } = getShapePoints({
     shape: "squares",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

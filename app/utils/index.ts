@@ -172,9 +172,9 @@ export const clearCanvases = (): void => {
 };
 
 type HandlePathClick = (shape: {
-  start: number;
-  control: number | null;
-  end: number;
+  startPoint: number;
+  controlPoint: number | null;
+  endPoint: number;
   type: string;
 }) => void;
 interface ShapeProps {
@@ -205,9 +205,9 @@ export const getShape = ({
       shape: { startPoint, controlPoint, endPoint },
       onClick: () =>
         handlePathClick({
-          start: startPoint,
-          control: controlPoint,
-          end: endPoint,
+          startPoint,
+          controlPoint,
+          endPoint,
           type: shapeType
         })
     };

@@ -18,8 +18,8 @@ const Arc: React.FC<ArcProps> = ({
 
   const { cpx, cpy } = getShapePoints({
     shape: "arcs",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

@@ -5,25 +5,25 @@ interface CanvasContext extends CanvasRenderingContext2D {}
 
 type ShapePainter = (params: {
   ctx: CanvasContext;
-  start: IPoint;
-  end: IPoint;
-  control?: IPoint;
+  startPoint: IPoint;
+  endPoint: IPoint;
+  controlPoint?: IPoint;
 }) => void;
 
 export const shapePainters: Record<string, ShapePainter> = {
   lines: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy } = getShapePoints({
       shape: "lines",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(epx, epy);
@@ -31,77 +31,77 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   curves: ({
     ctx,
-    start,
-    control,
-    end
+    startPoint,
+    controlPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    control?: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    controlPoint?: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "curves",
-      start,
-      control,
-      end
+      startPoint,
+      controlPoint,
+      endPoint
     });
-    ctx.moveTo(start.x, start.y);
-    ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
+    ctx.moveTo(startPoint.x, startPoint.y);
+    ctx.quadraticCurveTo(cpx, cpy, endPoint.x, endPoint.y);
   },
 
   arcs: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "arcs",
-      start,
-      end
+      startPoint,
+      endPoint
     });
-    ctx.moveTo(start.x, start.y);
-    ctx.quadraticCurveTo(cpx, cpy, end.x, end.y);
+    ctx.moveTo(startPoint.x, startPoint.y);
+    ctx.quadraticCurveTo(cpx, cpy, endPoint.x, endPoint.y);
   },
 
   ellipses: ({
     ctx,
-    start,
-    control,
-    end
+    startPoint,
+    controlPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    control?: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    controlPoint?: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, rx, ry, rotation } = getShapePoints({
       shape: "ellipses",
-      start,
-      control,
-      end
+      startPoint,
+      controlPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
-    ctx.ellipse(start.x, start.y, rx, ry, rotation, 0, 2 * Math.PI);
+    ctx.ellipse(startPoint.x, startPoint.y, rx, ry, rotation, 0, 2 * Math.PI);
   },
 
   diamonds: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({
       shape: "diamonds",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
@@ -112,17 +112,17 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   squares: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "squares",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
@@ -133,17 +133,17 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   rhomboids: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rhomboids",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
@@ -154,17 +154,17 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   circles: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { mpx, mpy, circleRadius } = getShapePoints({
       shape: "circles",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(mpx + circleRadius, mpy);
     ctx.arc(mpx, mpy, circleRadius, 0, 2 * Math.PI);
@@ -172,17 +172,17 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   rectangles: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rectangles",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(cpx, cpy);
@@ -193,17 +193,17 @@ export const shapePainters: Record<string, ShapePainter> = {
 
   triangles: ({
     ctx,
-    start,
-    end
+    startPoint,
+    endPoint
   }: {
     ctx: CanvasContext;
-    start: IPoint;
-    end: IPoint;
+    startPoint: IPoint;
+    endPoint: IPoint;
   }): void => {
     const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({
       shape: "triangles",
-      start,
-      end
+      startPoint,
+      endPoint
     });
     ctx.moveTo(spx, spy);
     ctx.lineTo(tpx, tpy);

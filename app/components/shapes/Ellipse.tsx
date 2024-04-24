@@ -18,9 +18,9 @@ const Ellipse: React.FC<EllipseProps> = ({
   const { x: cpx, y: cpy } = getPoint(controlPoint, isPreview);
   const { rx, ry, rotation } = getShapePoints({
     shape: "ellipses",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy },
-    control: { x: cpx, y: cpy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy },
+    controlPoint: { x: cpx, y: cpy }
   });
   const rotationDeg = rotation * (180 / Math.PI);
 

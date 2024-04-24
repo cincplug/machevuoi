@@ -13,9 +13,9 @@ interface IProps {
 }
 
 interface IPathClick {
-  start: number;
-  control: number | null;
-  end: number;
+  startPoint: number;
+  controlPoint: number | null;
+  endPoint: number;
   type: string;
 }
 
@@ -42,9 +42,9 @@ const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
         setControlPoint(index);
       } else {
         handlePathClick({
-          start: startPoint,
-          control: controlPoint,
-          end: index,
+          startPoint,
+          controlPoint,
+          endPoint: index,
           type: activeLayer
         });
         setStartPoint(null);
@@ -77,11 +77,11 @@ const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
     });
   };
 
-  const handlePathClick = ({ start, control, end, type }: IPathClick) => {
+  const handlePathClick = ({ startPoint, controlPoint, endPoint, type }: IPathClick) => {
     const newScratchPoints = { ...scratchPoints };
-    const path = control
-      ? [start, control, end]
-      : [start, end].sort((a, b) => a - b);
+    const path = controlPoint
+      ? [startPoint, controlPoint, endPoint]
+      : [startPoint, endPoint].sort((a, b) => a - b);
 
     const existingPathIndex = newScratchPoints[type].findIndex(
       (existingPath: []) => arraysHaveSameElements(existingPath, path)

@@ -18,8 +18,8 @@ const Rhomboid: React.FC<RhomboidProps> = ({
 
   const { cpx, cpy, dpx, dpy } = getShapePoints({
     shape: "rhomboids",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

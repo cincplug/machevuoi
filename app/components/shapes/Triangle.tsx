@@ -18,8 +18,8 @@ const Triangle: React.FC<TriangleProps> = ({
 
   const { tpx, tpy } = getShapePoints({
     shape: "triangles",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

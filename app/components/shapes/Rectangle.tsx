@@ -18,8 +18,8 @@ const Rectangle: React.FC<RectangleProps> = ({
 
   const { cpx, cpy, dpx, dpy } = getShapePoints({
     shape: "rectangles",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

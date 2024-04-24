@@ -117,19 +117,19 @@ export const processHands = ({
           if (squeezedPoints) {
             if (squeezedPoints[0] && squeezedPoints[1]) {
               let shapeObject:
-                | { start: IPoint; end: IPoint }
-                | { start: IPoint; control: IPoint; end: IPoint } = {
-                start: squeezedPoints[0],
-                end: squeezedPoints[1]
+                | { startPoint: IPoint; endPoint: IPoint }
+                | { startPoint: IPoint; controlPoint: IPoint; endPoint: IPoint } = {
+                startPoint: squeezedPoints[0],
+                endPoint: squeezedPoints[1]
               };
               if (
                 (shapeName === "curves" || shapeName === "ellipses") &&
                 squeezedPoints[2]
               ) {
                 shapeObject = {
-                  start: squeezedPoints[0],
-                  control: squeezedPoints[1],
-                  end: squeezedPoints[2]
+                  startPoint: squeezedPoints[0],
+                  controlPoint: squeezedPoints[1],
+                  endPoint: squeezedPoints[2]
                 };
               }
 

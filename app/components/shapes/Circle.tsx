@@ -18,8 +18,8 @@ const Circle: React.FC<CircleProps> = ({
 
   const { mpx, mpy, circleRadius } = getShapePoints({
     shape: "circles",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

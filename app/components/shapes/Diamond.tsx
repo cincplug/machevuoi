@@ -14,8 +14,8 @@ const Diamond: React.FC<DiamondProps> = ({ shape: { startPoint, endPoint }, onCl
 
   const { cpx, cpy, apx, apy } = getShapePoints({
     shape: "diamonds",
-    start: { x: spx, y: spy },
-    end: { x: epx, y: epy }
+    startPoint: { x: spx, y: spy },
+    endPoint: { x: epx, y: epy }
   });
 
   return (

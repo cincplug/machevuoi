@@ -28,7 +28,7 @@ export const scratchCanvas = ({
   const shapeTipDistance = getAverageDistance(
     Object.values(shapes)
       .flat()
-      .map((shape) => shape.start)
+      .map((shape) => shape.startPoint)
   );
   ctx.lineWidth = getLineWidth(
     radius + Object.keys(shapes).length,
@@ -43,9 +43,9 @@ export const scratchCanvas = ({
       if (painter) {
         painter({
           ctx,
-          start: shape.startPoint,
-          end: shape.endPoint,
-          control: shape.controlPoint
+          startPoint: shape.startPoint,
+          endPoint: shape.endPoint,
+          controlPoint: shape.controlPoint
         });
       }
     });

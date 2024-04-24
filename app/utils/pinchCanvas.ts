@@ -35,9 +35,9 @@ export const pinchCanvas = ({
     } else {
       shapePainter({
         ctx,
-        start: { x: lastX, y: lastY },
-        end: { x, y },
-        control: { x: (lastX + x) / 2, y: (lastY + y) / 2 }
+        startPoint: { x: lastX, y: lastY },
+        endPoint: { x, y },
+        controlPoint: { x: (lastX + x) / 2, y: (lastY + y) / 2 }
       });
     }
   } else {
