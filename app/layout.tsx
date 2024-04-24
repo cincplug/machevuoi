@@ -8,7 +8,11 @@ export const metadata = {
   description: "Advanced illustrator tool",
 };
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
