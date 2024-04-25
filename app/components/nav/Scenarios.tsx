@@ -1,6 +1,9 @@
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
+import { Noto_Emoji } from "next/font/google";
 import { ISetup, ChangeEventType } from "../../../types";
+
+const notoEmoji = Noto_Emoji({ subsets: ["emoji"] });
 
 interface IProps {
   setup: ISetup;
@@ -27,7 +30,7 @@ const ScenarioSelection: React.FC<IProps> = ({
     ) => {
       setSetup((prevSetup) => {
         const newScenario =
-          scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
+        scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
         if (!newScenario) {
           const initialSetup: ISetup = {};
           CONTROLS.forEach((item) => {
@@ -47,11 +50,11 @@ const ScenarioSelection: React.FC<IProps> = ({
     },
     [scenarios, setSetup, handleInputChange]
   );
-
+  
   if (!scenarios) {
     return null;
   }
-
+  
   return (
     <fieldset className="menu--scenarios">
       <legend>{title}</legend>
@@ -59,7 +62,7 @@ const ScenarioSelection: React.FC<IProps> = ({
         const scenario = scenarios[scenarioKey];
         return (
           <button
-            className={`menu--scenarios__button ${
+            className={`menu--scenarios__button ${notoEmoji.className} ${
               index === setup.activeScenarioIndex ? "active" : "inactive"
             }`}
             title={scenario?.description}
