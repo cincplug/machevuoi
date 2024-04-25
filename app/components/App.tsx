@@ -10,6 +10,7 @@ import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
 import Cursor from "./Cursor";
+import Info from "./nav/Info";
 import "../styles.scss";
 import { ISetup, ICursor, ChangeEventType } from "../../types";
 
@@ -259,10 +260,10 @@ const App: React.FC = () => {
             />
           )}
           <button
-            className="splash-button video-button pause-button"
+            className="info-close pause-button"
             onClick={handlePlayButtonClick}
           >
-            Stop camera
+            ⏸︎
           </button>
           {setup.hasCursor && !setup.isScratchCanvas && (
             <Cursor cursor={cursor} hasCursor={setup.hasCursor} />
@@ -281,6 +282,7 @@ const App: React.FC = () => {
           }}
         />
       )}
+      {isStarted && <Info {...{ setup }} />}
       {message && <Message {...{ message, setMessage }} />}
       {}
     </div>

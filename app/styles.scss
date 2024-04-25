@@ -34,8 +34,7 @@
   --color-skin-mid: #b1d08e;
   --color-skin-mid-light: #f8d58a;
   --color-skin-light: #ffe3a6;
-  
-  
+
   --color-yellow: #ec2;
   --color-red: #c22;
 
@@ -47,8 +46,6 @@
     var(--color-black),
     var(--color-black-light-semi)
   );
-
-  --gradient-dolce: linear-gradient(to bottom, var(--color-skin-mid), var(--color-skin-mid-dark));
 
   --gap: 0.75rem;
   --gap-half: calc(var(--gap) / 2);
@@ -69,6 +66,11 @@
   --bg: var(--color-skin-dark);
   --bg-input: var(--color-skin-mid);
   --bg-input-active: var(--color-skin-mid-light);
+  --gradient-dolce: linear-gradient(
+    to bottom,
+    var(--color-skin-mid),
+    var(--color-skin-mid-dark)
+  );
 }
 
 .theme-cognizant {
@@ -140,7 +142,7 @@ button {
     }
     &.pause-button {
       position: fixed;
-      bottom: 3rem;
+      bottom: 10rem;
       z-index: 1;
       left: 50%;
       transform: translateX(-50%);
@@ -294,9 +296,9 @@ legend {
       padding: 0.4rem;
       box-shadow: 0 0.3rem 0.4rem #0002,
         0 -0.1rem 0 0.05rem var(--color-skin-light);
-        &.inactive:not(:hover) {
-          background: var(--gradient-dolce);
-        }
+      &.inactive:not(:hover) {
+        background: var(--gradient-dolce);
+      }
     }
   }
 
@@ -469,7 +471,7 @@ label {
       left: 100%;
     }
   }
-  
+
   @keyframes gesture-line {
     0% {
       width: 0;
@@ -489,14 +491,15 @@ label {
   }
 
   @keyframes slogan {
-    0%, 96% {
+    0%,
+    96% {
       opacity: 0;
     }
     100% {
       opacity: 1;
     }
   }
-  
+
   h1 {
     margin: 0;
     font-size: 2rem;
@@ -676,4 +679,38 @@ pre {
   background: var(--color-skin-mid);
   overflow-y: auto;
   font-size: 0.7rem;
+}
+
+.info {
+  position: fixed;
+  left: var(--menu-width);
+  right: var(--menu-width);
+  bottom: 0;
+  font-size: var(--font-size-m);
+  background: var(--color-skin-dark);
+  color: var(--color-skin-light);
+  padding: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  p {
+    margin: var(--gap-half) 0;
+  }
+  ul,
+  ol {
+    padding-left: 0;
+    list-style-position: inside;
+  }
+}
+
+.info-close {
+  position: absolute;
+  bottom: var(--gap);
+  right: calc(var(--gap) + var(--menu-width));
+  padding: var(--gap-half) var(--gap);
+  border: 1px solid var(--color-skin-mid-dark);
+  &.pause-button {
+    top: var(--gap);
+    bottom: auto;
+    font-size: var(--font-size-l);
+  }
 }
