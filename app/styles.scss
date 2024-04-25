@@ -29,11 +29,13 @@
   --color-silver: #ccc;
   --color-blue-light: #0ce;
   --color-blue: #068;
-  --color-skin-dark: #2d1f14;
-  --color-skin-mid-dark: #6d4931;
-  --color-skin-mid: #c49a68;
-  --color-skin-mid-light: #e6bc98;
-  --color-skin-light: #ffe7d1;
+  --color-skin-dark: #2b2e2c;
+  --color-skin-mid-dark: #707c52;
+  --color-skin-mid: #b1d08e;
+  --color-skin-mid-light: #f8d58a;
+  --color-skin-light: #ffe3a6;
+  
+  
   --color-yellow: #ec2;
   --color-red: #c22;
 
@@ -45,6 +47,8 @@
     var(--color-black),
     var(--color-black-light-semi)
   );
+
+  --gradient-dolce: linear-gradient(to bottom, var(--color-skin-mid), var(--color-skin-mid-dark));
 
   --gap: 0.75rem;
   --gap-half: calc(var(--gap) / 2);
@@ -58,6 +62,7 @@
   --font-size-s: 0.5rem;
   --font-size-m: 0.8rem;
   --font-size-l: 1rem;
+  --font-size-xl: 1.2rem;
 }
 
 .theme {
@@ -121,8 +126,12 @@ button {
   &.splash-button {
     margin: 0 var(--gap);
     padding: var(--gap) var(--gap-double);
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-xl);
     font-weight: bold;
+    background-color: var(--color-skin-mid-light);
+    &:hover {
+      background-color: var(--color-skin-light);
+    }
   }
   &.video-button {
     background-color: var(--color-blue-light);
@@ -270,7 +279,7 @@ legend {
 
   button {
     &.active {
-      background-color: var(--bg-input-active);
+      background: var(--bg-input-active);
     }
   }
 
@@ -285,6 +294,9 @@ legend {
       padding: 0.4rem;
       box-shadow: 0 0.3rem 0.4rem #0002,
         0 -0.1rem 0 0.05rem var(--color-skin-light);
+        &.inactive:not(:hover) {
+          background: var(--gradient-dolce);
+        }
     }
   }
 
@@ -447,7 +459,7 @@ label {
   background: var(--color-skin-mid-dark);
   flex-direction: column;
   justify-content: space-evenly;
-  color: var(--color-skin-mid-light);
+  color: var(--color-skin-light);
 
   @keyframes gesture {
     0% {
@@ -477,11 +489,11 @@ label {
   }
 
   @keyframes slogan {
-    0%, 50% {
-      transform: translateY(100%);
+    0%, 96% {
+      opacity: 0;
     }
     100% {
-      transform: translateY(0);
+      opacity: 1;
     }
   }
   
@@ -499,9 +511,9 @@ label {
       display: block;
       content: "";
       position: absolute;
-      height: 0.1rem;
+      height: 0.2rem;
       top: 100%;
-      background: var(--color-skin-mid-light);
+      background: var(--color-skin-mid);
       animation: gesture-line 1.5s forwards;
     }
     &:after {
@@ -523,7 +535,7 @@ label {
   }
 
   .slogan-text {
-    animation: slogan 3s ease-out forwards;
+    animation: slogan 2s ease-out forwards;
   }
 }
 
