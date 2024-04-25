@@ -58,7 +58,7 @@ export const processHands = ({
     scratchPoints,
     dash,
     pressedKey,
-    dispersion,
+    dynamics,
     doesPinchDraw,
     doesWagDelete,
     composite,
@@ -200,7 +200,7 @@ export const processHands = ({
           ctx,
           tips: tips as IPoint[],
           lastTips: lastTips || [],
-          dispersion,
+          dynamics,
           shapes: shapes as IShapes,
           handIndex: handIndex as number
         });
@@ -214,7 +214,7 @@ export const processHands = ({
           thumbIndexDistance,
           minimum,
           ctx,
-          dispersion,
+          dynamics,
           x,
           y,
           lastX: lastX || x,

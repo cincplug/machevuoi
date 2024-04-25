@@ -6,7 +6,7 @@ interface PinchCanvasParams {
   thumbIndexDistance: number;
   minimum: number;
   ctx: CanvasRenderingContext2D;
-  dispersion: number;
+  dynamics: number;
   x: number;
   y: number;
   lastX: number;
@@ -19,14 +19,14 @@ export const pinchCanvas = ({
   thumbIndexDistance,
   minimum,
   ctx,
-  dispersion,
+  dynamics,
   x,
   y,
   lastX,
   lastY,
   activeLayer
 }: PinchCanvasParams): void => {
-  ctx.lineWidth = getLineWidth(radius, thumbIndexDistance, dispersion, minimum);
+  ctx.lineWidth = getLineWidth(radius, thumbIndexDistance, dynamics, minimum);
   const shapePainter = shapePainters[activeLayer];
   if (shapePainter) {
     ctx.beginPath();

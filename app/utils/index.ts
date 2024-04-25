@@ -58,10 +58,10 @@ export const squeezePoints = ({
 export const getLineWidth = (
   radius: number,
   distance: number,
-  dispersion: number,
+  dynamics: number,
   minimum: number
 ): number => {
-  return Math.max(radius - Math.pow(radius, dispersion - 1) * distance / 2, minimum);
+  return Math.max(radius - Math.pow(radius, dynamics - 1) * distance / 2, minimum);
 };
 
 export const processColor = (color: string, opacity: number): string => {

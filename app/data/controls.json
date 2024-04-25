@@ -194,9 +194,9 @@
     "step": 0.1
   },
   {
-    "id": "dispersion",
-    "title": "Dispersion",
-    "description": "How much the line disperses as you draw",
+    "id": "dynamics",
+    "title": "Dynamics",
+    "description": "Determines how much distance between fingers influences line width",
     "value": 1,
     "isHandRelated": true,
     "parentPattern": "canvas",

@@ -9,7 +9,7 @@ interface ScratchCanvasOptions {
   ctx: CanvasRenderingContext2D;
   tips: Tips;
   lastTips: Tips | null;
-  dispersion: number;
+  dynamics: number;
   shapes: IShapes;
   handIndex: number;
 }
@@ -20,7 +20,7 @@ export const scratchCanvas = ({
   ctx,
   tips,
   lastTips,
-  dispersion,
+  dynamics,
   shapes,
   handIndex
 }: ScratchCanvasOptions): void => {
@@ -33,7 +33,7 @@ export const scratchCanvas = ({
   ctx.lineWidth = getLineWidth(
     radius + Object.keys(shapes).length,
     shapeTipDistance,
-    dispersion,
+    dynamics,
     minimum
   );
   Object.keys(shapes).forEach((shapeName) => {
@@ -58,7 +58,7 @@ export const scratchCanvas = ({
       ctx.lineWidth = getLineWidth(
         radius + tips.length,
         tipDistance,
-        dispersion,
+        dynamics,
         minimum
       );
     }
