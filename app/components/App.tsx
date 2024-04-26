@@ -259,12 +259,6 @@ const App: React.FC = () => {
               }}
             />
           )}
-          <button
-            className="info-close pause-button"
-            onClick={handlePlayButtonClick}
-          >
-            ⏸︎
-          </button>
           {setup.hasCursor && !setup.isScratchCanvas && (
             <Cursor cursor={cursor} hasCursor={setup.hasCursor} />
           )}
@@ -282,7 +276,7 @@ const App: React.FC = () => {
           }}
         />
       )}
-      {isStarted && <Info {...{ setup }} />}
+      {isStarted && <Info {...{ setup, handlePlayButtonClick }} />}
       {message && <Message {...{ message, setMessage }} />}
       {}
     </div>

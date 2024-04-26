@@ -3,11 +3,22 @@ import { ISetup } from "../../../types";
 
 interface IProps {
   setup: ISetup;
+  handlePlayButtonClick: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
-const Info: React.FC<IProps> = ({ setup }) => {
+const Info: React.FC<IProps> = ({ setup, handlePlayButtonClick }) => {
   const [isVisible, setIsVisible] = useState(true);
   const { pattern, isScratchCanvas } = setup;
+  const pauseButton = (
+    <button
+      className="info-close pause-button cancel"
+      onClick={handlePlayButtonClick}
+    >
+      Stop camera
+    </button>
+  );
   return isVisible ? (
     <>
       <div className="info">
@@ -41,14 +52,23 @@ const Info: React.FC<IProps> = ({ setup }) => {
           )}
         </section>
       </div>
-      <button className="info-close" onClick={() => setIsVisible(false)}>
-        Close info
-      </button>
+      <div className="info-buttons">
+        <button
+          className="info-close cancel"
+          onClick={() => setIsVisible(false)}
+        >
+          Hide info
+        </button>
+        {pauseButton}
+      </div>
     </>
   ) : (
-    <button className="info-close" onClick={() => setIsVisible(true)}>
-      Show info
-    </button>
+    <div className="info-buttons">
+      <button className="info-close" onClick={() => setIsVisible(true)}>
+        Show info
+      </button>
+      {pauseButton}
+    </div>
   );
 };
 

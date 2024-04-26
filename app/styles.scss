@@ -37,6 +37,7 @@
 
   --color-yellow: #ec2;
   --color-red: #c22;
+  --color-red-light: #f4aa8c;
 
   --color-black-light-semi: #222c;
   --color-skin-dark-semi: #2d1f14d0;
@@ -148,6 +149,9 @@ button {
       transform: translateX(-50%);
       margin: 0;
     }
+  }
+  &.cancel {
+    background: var(--color-red-light);
   }
 }
 
@@ -412,12 +416,12 @@ legend {
   content: attr(title);
   font-size: var(--font-size-m);
   text-align: left;
-  position: absolute;
+  position: fixed;
   padding: var(--gap);
   box-sizing: border-box;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: var(--menu-width);
   color: var(--color-skin-light);
   background: var(--color-skin-dark);
 }
@@ -691,7 +695,7 @@ pre {
   color: var(--color-skin-light);
   padding: var(--gap);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   p {
     margin: var(--gap-half) 0;
   }
@@ -702,15 +706,18 @@ pre {
   }
 }
 
-.info-close {
-  position: absolute;
+.info-buttons {
+  position: fixed;
   bottom: var(--gap);
-  right: calc(var(--gap) + var(--menu-width));
+  left: calc(100vw - var(--menu-width) + var(--gap));
+  width: calc(var(--menu-width) - var(--gap) * 2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-close {
   padding: var(--gap-half) var(--gap);
-  border: 1px solid var(--color-skin-mid-dark);
-  &.pause-button {
-    top: var(--gap);
-    bottom: auto;
+  &.pause-button .icon {
     font-size: var(--font-size-l);
   }
 }
