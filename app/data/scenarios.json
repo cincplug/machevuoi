@@ -1,6 +1,6 @@
 {
   "pinch-paint-svg": {
-    "description": "Draw with your pinched fingers",
+    "description": "Vector mode, no text",
     "icon": "👌",
     "speed": 3.2,
     "radius": 10,
@@ -20,7 +20,7 @@
     "text": ""
   },
   "railway": {
-    "description": "Make model railways with your pinched fingers",
+    "description": "Vector mode, text imitating model railway",
     "icon": "🚂",
     "speed": 1.6,
     "radius": 8,
@@ -39,7 +39,7 @@
     "fontSize": 30
   },
   "pinch-paint-svg-cloud": {
-    "description": "Draw clouds with your pinched fingers",
+    "description": "Vector mode, cloud pattern",
     "icon": "☁️",
     "speed": 4.2,
     "radius": 2,
@@ -59,7 +59,7 @@
     "isScratchCanvas": false
   },
   "zipper": {
-    "description": "Make stitches or zippers with your pinched fingers",
+    "description": "Canvas mode resembling stitches or zippers pattern",
     "icon": "👖",
     "radius": 22,
     "minimum": 5,
@@ -75,7 +75,7 @@
     "dash": 3
   },
   "pinch-canvas-pen": {
-    "description": "Use the pinch as canvas pen",
+    "description": "Canvas mode, thick line",
     "icon": "🖋️",
     "speed": 3.2,
     "radius": 26,
@@ -92,7 +92,7 @@
     "dash": 0
   },
   "pinch-canvas-ballpen": {
-    "description": "Use the pinch as canvas ball pen",
+    "description": "Canvas mode, medium line",
     "icon": "🖊️",
     "radius": 15,
     "minimum": 1,
@@ -110,7 +110,7 @@
     "dash": 0.5
   },
   "pinch-canvas-pencil": {
-    "description": "Use the pinch as canvas pencil",
+    "description": "Canvas mode, thin line",
     "icon": "📝",
     "radius": 7,
     "minimum": 1,
@@ -126,7 +126,7 @@
     "dash": 0
   },
   "pinch-canvas-brush": {
-    "description": "Use the pinch as canvas paintbrush",
+    "description": "Canvas mode, very thick line",
     "icon": "🖌️",
     "radius": 53,
     "minimum": 1,
@@ -142,7 +142,7 @@
     "dash": 0
   },
   "scratch-canvas-narrow": {
-    "description": "Draw with pinched fingers, but all of them",
+    "description": "Canvas mode, all fingers, squeezed",
     "icon": "🤌",
     "radius": 5,
     "minimum": 1,
@@ -171,7 +171,7 @@
     "dash": 0
   },
   "scratch-canvas-mid": {
-    "description": "Draw curves with more fingers",
+    "description": "Canvas mode, various shapes, not squeezed",
     "icon": "✋",
     "radius": 5,
     "minimum": 1,
@@ -220,7 +220,7 @@
     "dash": 0
   },
   "scratch-canvas-wide": {
-    "description": "Draw some joints with expanded fingers",
+    "description": "Canvas mode, counter-squeezed",
     "icon": "🖐️",
     "radius": 3,
     "minimum": 1,
@@ -316,7 +316,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
-    "description": "Draw some charts with more fingers",
+    "description": "Canvas mode, fist pattern",
     "icon": "✊"
   },
   "scratch-canvas-house": {
@@ -370,7 +370,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
-    "description": "Draw some charts with more fingers",
+    "description": "Canvas mode, house pattern",
     "icon": "🏠"
   },
   "scratch-canvas-plant": {
@@ -419,7 +419,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
-    "description": "Draw some charts with more fingers",
+    "description": "Canvas mode, plant pattern",
     "icon": "🌿"
   },
   "scratch-canvas-book": {
@@ -468,7 +468,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
-    "description": "Draw some charts with more fingers"
+    "description": "Canvas mode, book pattern"
   },
   "scratch-canvas-bicycle": {
     "theme": "default",
@@ -525,7 +525,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "doesWagDelete": true,
-    "description": "Draw some charts with more fingers",
+    "description": "Canvas mode, bicycle pattern",
     "icon": "🚲"
   },
   "scratch-canvas-fish": {
@@ -570,6 +570,7 @@
   },
   "scratch-canvas-frog": {
     "icon": "🐸",
+    "description": "Canvas mode, frog pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -628,6 +629,7 @@
   },
   "scratch-canvas-duck": {
     "icon": "🦆",
+    "description": "Canvas mode, duck pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -681,6 +683,7 @@
   },
   "scratch-canvas-fox": {
     "icon": "🦊",
+    "description": "Canvas mode, fox pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -727,6 +730,7 @@
   },
   "scratch-canvas-dog": {
     "icon": "🐶",
+    "description": "Canvas mode, dog pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -775,6 +779,7 @@
   },
   "scratch-canvas-cat": {
     "icon": "😺",
+    "description": "Canvas mode, cat pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -822,6 +827,7 @@
   },
   "scratch-canvas-cow": {
     "icon": "🐄",
+    "description": "Canvas mode, cow pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -875,6 +881,7 @@
   },
   "scratch-canvas-monkey": {
     "icon": "🐵",
+    "description": "Canvas mode, monkey pattern",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
