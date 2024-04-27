@@ -21,8 +21,8 @@ const Menu: React.FC<IProps> = ({
 }) => {
   const { pattern, isScratchCanvas } = setup;
   return (
-    <>
-      <nav className={`menu menu--controls`}>
+    <section className="controls">
+      <aside className={`menu menu--primary`}>
         <Controls
           {...{ setup, handleInputChange }}
           controls={CONTROLS.filter(
@@ -52,8 +52,8 @@ const Menu: React.FC<IProps> = ({
             title: "Custom scenarios"
           }}
         />
-      </nav>
-      <nav className={`menu menu--secondary`}>
+      </aside>
+      <aside className={`menu menu--secondary`}>
         <Controls
           {...{ setup, handleInputChange }}
           controls={CONTROLS.filter(
@@ -68,8 +68,8 @@ const Menu: React.FC<IProps> = ({
         {isScratchCanvas && pattern === "canvas" && (
           <ShapeSelection {...{ setup, handleInputChange }} />
         )}
-      </nav>
-    </>
+      </aside>
+    </section>
   );
 };
 
