@@ -63,7 +63,8 @@ export const processHands = ({
     doesWagDelete,
     composite,
     isCapsLock,
-    activeLayer
+    activeLayer,
+    straightness
   } = setup;
 
   const shapeNames = [
@@ -234,7 +235,7 @@ export const processHands = ({
           getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
             x,
             y
-          }) > minimum;
+          }) > straightness;
         if (isNewArea) {
           return [...prevScribbleNewArea, { x, y }];
         }

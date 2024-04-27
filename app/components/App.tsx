@@ -278,7 +278,7 @@ const App: React.FC = () => {
       )}
       {isStarted && <Info {...{ setup, handlePlayButtonClick }} />}
       {message && <Message {...{ message, setMessage }} />}
-      {}
+      {/* <pre>{JSON.stringify(scribbleNewArea, null, 4)}</pre> */}
     </div>
   );
 };
