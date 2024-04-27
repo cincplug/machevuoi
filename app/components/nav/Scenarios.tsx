@@ -1,14 +1,14 @@
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
 import { Noto_Emoji } from "next/font/google";
-import { ISetup, ChangeEventType } from "../../../types";
+import { ISetup, UpdateSetupType } from "../../../types";
 
 const notoEmoji = Noto_Emoji({ subsets: ["emoji"] });
 
 interface IProps {
   setup: ISetup;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
-  handleInputChange: (event: ChangeEventType) => void;
+  updateSetup: (event: UpdateSetupType) => void;
   scenarios: {
     [key: string]: ISetup;
   };
@@ -18,7 +18,7 @@ interface IProps {
 const ScenarioSelection: React.FC<IProps> = ({
   setup,
   setSetup,
-  handleInputChange,
+  updateSetup,
   scenarios,
   title
 }) => {
@@ -30,7 +30,7 @@ const ScenarioSelection: React.FC<IProps> = ({
     ) => {
       setSetup((prevSetup) => {
         const newScenario =
-        scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
+          scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
         if (!newScenario) {
           const initialSetup: ISetup = {};
           CONTROLS.forEach((item) => {
@@ -40,21 +40,19 @@ const ScenarioSelection: React.FC<IProps> = ({
         }
         return { ...prevSetup, ...newScenario };
       });
-      handleInputChange({
-        target: {
-          id: "activeScenarioIndex",
-          value: index,
-          type: "range"
-        }
+      updateSetup({
+        id: "activeScenarioIndex",
+        value: index,
+        type: "range"
       });
     },
-    [scenarios, setSetup, handleInputChange]
+    [scenarios, setSetup, updateSetup]
   );
-  
+
   if (!scenarios) {
     return null;
   }
-  
+
   return (
     <fieldset className="menu--scenarios">
       <legend>{title}</legend>

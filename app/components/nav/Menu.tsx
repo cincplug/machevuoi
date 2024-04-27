@@ -4,19 +4,19 @@ import Controls from "./Controls";
 import Buttons from "./Buttons";
 import Scenarios from "./Scenarios";
 import ShapeSelection from "./ShapeSelection";
-import { ISetup, ChangeEventType } from "../../../types";
+import { ISetup, UpdateSetupType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
-  handleInputChange: (event: ChangeEventType) => void;
+  updateSetup: (event: UpdateSetupType) => void;
   clearPaths: () => void;
 }
 
 const Menu: React.FC<IProps> = ({
   setup,
   setSetup,
-  handleInputChange,
+  updateSetup,
   clearPaths
 }) => {
   const { pattern, isScratchCanvas } = setup;
@@ -24,7 +24,7 @@ const Menu: React.FC<IProps> = ({
     <section className="controls">
       <aside className={`menu menu--primary`}>
         <Controls
-          {...{ setup, handleInputChange }}
+          {...{ setup, updateSetup }}
           controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
@@ -33,12 +33,12 @@ const Menu: React.FC<IProps> = ({
               !control.isHandRelated
           )}
         />
-        <Buttons {...{ setup, handleInputChange, clearPaths }} />
+        <Buttons {...{ setup, updateSetup, clearPaths }} />
         <Scenarios
           {...{
             setup,
             setSetup,
-            handleInputChange,
+            updateSetup,
             scenarios: DEFAULT_SCENARIOS,
             title: "Scenarios"
           }}
@@ -47,7 +47,7 @@ const Menu: React.FC<IProps> = ({
           {...{
             setup,
             setSetup,
-            handleInputChange,
+            updateSetup,
             scenarios: setup.customScenarios,
             title: "Custom scenarios"
           }}
@@ -55,7 +55,7 @@ const Menu: React.FC<IProps> = ({
       </aside>
       <aside className={`menu menu--secondary`}>
         <Controls
-          {...{ setup, handleInputChange }}
+          {...{ setup, updateSetup }}
           controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
@@ -66,7 +66,7 @@ const Menu: React.FC<IProps> = ({
           )}
         />
         {isScratchCanvas && pattern === "canvas" && (
-          <ShapeSelection {...{ setup, handleInputChange }} />
+          <ShapeSelection {...{ setup, updateSetup }} />
         )}
       </aside>
     </section>

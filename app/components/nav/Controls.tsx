@@ -1,13 +1,29 @@
-import { ISetup, IControl, ChangeEventType } from "../../../types";
+import { ISetup, IControl, UpdateSetupType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
   controls: IControl[];
-  handleInputChange: (event: ChangeEventType) => void;
+  updateSetup: (event: UpdateSetupType) => void;
 }
 
-const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
-  controls.map((item, index) => {
+const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value, type } = event.target;
+    updateSetup({ id, value, type });
+  };
+  const handleOptionButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const target = event.target as HTMLButtonElement;
+    const { id, value } = target;
+    updateSetup({ id, value, type: "select" });
+  };
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { id, value } = event.target;
+    updateSetup({ id, value, type: "select" });
+  };
+
+  return controls.map((item, index) => {
     const { id, type, min, max, step, title, description, options, isButtons } =
       item;
     let value = setup[id];
@@ -43,9 +59,9 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
               title={`Add ${option}`}
               aria-label={option}
               key={optionIndex}
-              onClick={() =>
-                handleInputChange({ target: { value: option, id, type: "" } })
-              }
+              id={id}
+              value={option}
+              onClick={handleOptionButtonClick}
             ></button>
           ))}
         </fieldset>
@@ -61,7 +77,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
           <select
             className="control__select"
             {...{ value, id }}
-            onChange={handleInputChange}
+            onChange={handleSelectChange}
           >
             {options.map((option: string, optionIndex: number) => (
               <option key={optionIndex} value={option}>
@@ -79,5 +95,6 @@ const Controls: React.FC<IProps> = ({ controls, setup, handleInputChange }) =>
       </div>
     );
   });
+};
 
 export default Controls;

@@ -39,15 +39,11 @@ export interface IShapes {
 
 export type NullablePoint = IPoint | null;
 
-export type ChangeEventType =
-  | React.ChangeEvent<HTMLInputElement>
-  | {
-      target: {
-        value: string | number | boolean | object | null;
-        id: string;
-        type: string;
-      };
-    };
+export type UpdateSetupType = {
+  id: string;
+  value: string | number | boolean | object | null;
+  type: string;
+};
 
 export type ShapeComponentProps = {
   shape: IShape;

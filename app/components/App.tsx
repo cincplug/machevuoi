@@ -12,7 +12,7 @@ import Drawing from "./Drawing";
 import Cursor from "./Cursor";
 import Info from "./nav/Info";
 import "../styles.scss";
-import { ISetup, ICursor, ChangeEventType } from "../../types";
+import { ISetup, ICursor, UpdateSetupType } from "../../types";
 
 interface InputResolution {
   width: number;
@@ -119,9 +119,8 @@ const App: React.FC = () => {
     }
   }, [cursor.isPinched, scribbleNewArea]);
 
-  const handleInputChange = (event: ChangeEventType) => {
+  const updateSetup = ({ id, value, type } : UpdateSetupType) => {
     setSetup((prevSetup) => {
-      const { id, value, type } = event.target;
       const nextSetup = { ...prevSetup };
       if (type === "checkbox") {
         nextSetup[id] = !nextSetup[id];
@@ -271,7 +270,7 @@ const App: React.FC = () => {
           {...{
             setup,
             setSetup,
-            handleInputChange,
+            updateSetup,
             clearPaths
           }}
         />

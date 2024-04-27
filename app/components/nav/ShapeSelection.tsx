@@ -5,11 +5,11 @@ import Preview from "../shapes/Preview";
 import shapeComponents from "../shapes";
 import { arraysHaveSameElements } from "../../utils";
 import { getShape } from "../../utils";
-import { ISetup, ChangeEventType, ShapeComponentsType } from "../../../types";
+import { ISetup, UpdateSetupType, ShapeComponentsType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
-  handleInputChange: (event: ChangeEventType) => void;
+  updateSetup: (event: UpdateSetupType) => void;
 }
 
 interface IPathClick {
@@ -21,7 +21,7 @@ interface IPathClick {
 
 type AnyComponent = React.FC<any>;
 
-const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
+const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
   const [startPoint, setStartPoint] = useState<number | null>(null);
   const [controlPoint, setControlPoint] = useState<number | null>(null);
   const [mousePoint, setMousePoint] = useState<{ x: number; y: number } | null>(
@@ -68,16 +68,19 @@ const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
       ? newScratchPoints[activeLayer].filter((point: number) => point !== index)
       : [...newScratchPoints[activeLayer], index];
 
-    handleInputChange({
-      target: {
-        id: "scratchPoints",
-        value: newScratchPoints,
-        type: "hidden"
-      }
+    updateSetup({
+      id: "scratchPoints",
+      value: newScratchPoints,
+      type: "hidden"
     });
   };
 
-  const handlePathClick = ({ startPoint, controlPoint, endPoint, type }: IPathClick) => {
+  const handlePathClick = ({
+    startPoint,
+    controlPoint,
+    endPoint,
+    type
+  }: IPathClick) => {
     const newScratchPoints = { ...scratchPoints };
     const path = controlPoint
       ? [startPoint, controlPoint, endPoint]
@@ -101,12 +104,10 @@ const ShapeSelection: React.FC<IProps> = ({ setup, handleInputChange }) => {
     const isNewPath = existingPathIndex === -1;
     isNewPath ? addNewPath() : removePath();
 
-    handleInputChange({
-      target: {
-        id: "scratchPoints",
-        value: newScratchPoints,
-        type: "hidden"
-      }
+    updateSetup({
+      id: "scratchPoints",
+      value: newScratchPoints,
+      type: "hidden"
     });
   };
 

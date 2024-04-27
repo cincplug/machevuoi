@@ -1,18 +1,14 @@
 import CONTROLS from "../../data/controls.json";
 import { saveImage } from "../../utils";
-import { ISetup, ChangeEventType } from "../../../types";
+import { ISetup, UpdateSetupType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
-  handleInputChange: (event: ChangeEventType) => void;
+  updateSetup: (event: UpdateSetupType) => void;
   clearPaths: () => void;
 }
 
-const Buttons: React.FC<IProps> = ({
-  setup,
-  handleInputChange,
-  clearPaths
-}) => {
+const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
   const saveSetup = () => {
     const filteredSetup = Object.fromEntries(
       Object.entries(setup).filter(([key]) => {
@@ -28,12 +24,10 @@ const Buttons: React.FC<IProps> = ({
       ...setup.customScenarios,
       [newCustomScenarioKey]: filteredSetup
     };
-    handleInputChange({
-      target: {
-        id: "customScenarios",
-        value: newCustomScenarios,
-        type: "hidden"
-      }
+    updateSetup({
+      id: "customScenarios",
+      value: newCustomScenarios,
+      type: "hidden"
     });
   };
 
