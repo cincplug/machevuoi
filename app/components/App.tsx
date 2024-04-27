@@ -6,11 +6,11 @@ import { clearCanvases } from "../utils";
 import { runDetector } from "../utils/runDetector";
 import { getStoredSetup, storeSetup } from "../utils/storeSetup";
 import Menu from "./nav/Menu";
+import MiniMenu from "./nav/MiniMenu";
 import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
 import Cursor from "./Cursor";
-import Info from "./nav/Info";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
 
@@ -119,7 +119,7 @@ const App: React.FC = () => {
     }
   }, [cursor.isPinched, scribbleNewArea]);
 
-  const updateSetup = ({ id, value, type } : UpdateSetupType) => {
+  const updateSetup = ({ id, value, type }: UpdateSetupType) => {
     setSetup((prevSetup) => {
       const nextSetup = { ...prevSetup };
       if (type === "checkbox") {
@@ -275,7 +275,7 @@ const App: React.FC = () => {
           }}
         />
       )}
-      {<Info {...{ setup, updateSetup, handlePlayButtonClick }} />}
+      <MiniMenu {...{ setup, isStarted, updateSetup, handlePlayButtonClick }} />
       {message && <Message {...{ message, setMessage }} />}
       {/* <pre>{JSON.stringify(scribbleNewArea, null, 4)}</pre> */}
     </div>

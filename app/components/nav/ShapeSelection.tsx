@@ -127,7 +127,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
 
   return (
     <div
-      className={`icon-buttons-wrap active-${
+      className={`scratch-wrap active-${
         activeLayer === "dots" ? "dots" : "shapes"
       }`}
     >

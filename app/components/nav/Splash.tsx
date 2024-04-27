@@ -13,7 +13,6 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
       <div className="slogan">
         <div className="slogan-text">
           <p>Paint with your hand in the thin air</p>
-          <p>Make sure there is enough light</p>
         </div>
       </div>
       <button className="splash-button" onClick={handlePlayButtonClick}>

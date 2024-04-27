@@ -30,7 +30,7 @@
   --color-silver: #ccc;
   --color-blue-light: #0ce;
   --color-blue: #068;
-  --color-skin-dark: #2b2e2c;
+  --color-skin-dark: #272625;
   --color-skin-mid-dark: #707c52;
   --color-skin-mid: #b1d08e;
   --color-skin-mid-light: #f8d58a;
@@ -269,6 +269,7 @@ legend {
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
+    padding-bottom: 3rem;
   }
 }
 
@@ -327,7 +328,6 @@ legend {
   @include until {
     width: auto;
     height: auto;
-    background: var(--color-black);
     position: static;
 
     .control {
@@ -406,6 +406,7 @@ legend {
   &--button {
     height: 2rem;
     align-items: center;
+    margin: 0;
   }
 }
 
@@ -589,11 +590,14 @@ label {
   grid-column: span 12;
 }
 
-.icon-buttons-wrap {
+.scratch-wrap {
   grid-column: span 12;
   display: grid;
   grid-template-columns: inherit;
   grid-gap: inherit;
+  @include until {
+    padding: var(--gap);
+  }
 }
 
 .icon-button {
@@ -689,10 +693,11 @@ pre {
   bottom: 0;
   font-size: var(--font-size-m);
   background: var(--color-skin-dark);
-  color: var(--color-skin-light);
-  padding: var(--gap);
+  color: var(--color-silver);
+  padding: var(--gap-half);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  z-index: 2;
   p {
     margin: var(--gap-half) 0;
   }
@@ -701,20 +706,33 @@ pre {
     padding-left: 0;
     list-style-position: inside;
   }
+  @include until {
+    width: auto;
+    height: auto;
+    position: static;
+  }
 }
 
-.info-buttons {
+.mini-menu {
   position: fixed;
-  bottom: var(--gap);
-  left: calc(100vw - var(--menu-width) + var(--gap));
-  width: calc(var(--menu-width) - var(--gap) * 2);
-  display: flex;
-  justify-content: space-between;
-}
-
-.info-close {
-  padding: var(--gap-half) var(--gap);
-  &.pause-button .icon {
-    font-size: var(--font-size-l);
+  bottom: 0;
+  right: 0;
+  width: var(--menu-width);
+  background: var(--color-skin-dark);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: var(--gap);
+  padding: var(--gap);
+  @include until {
+    width: 100vw;
+  }
+  .row {
+    display: contents;
+  }
+  button {
+    grid-column: span 6;
+    @include until {
+      grid-column: span 4;
+    }
   }
 }
