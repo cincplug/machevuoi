@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { ISetup, UpdateSetupType } from "../../../types";
 
 interface IProps {
@@ -14,8 +13,7 @@ const Info: React.FC<IProps> = ({
   updateSetup,
   handlePlayButtonClick
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const { pattern, isScratchCanvas } = setup;
+  const { pattern, isScratchCanvas, isInfoVisible } = setup;
   const handleMenuButtonClick = () => {
     updateSetup({
       id: "isMenuVisible",
@@ -39,7 +37,7 @@ const Info: React.FC<IProps> = ({
       ...
     </button>
   );
-  return isVisible ? (
+  return isInfoVisible ? (
     <>
       <div className="info">
         <section>
@@ -75,7 +73,9 @@ const Info: React.FC<IProps> = ({
       <div className="info-buttons">
         <button
           className="info-close cancel"
-          onClick={() => setIsVisible(false)}
+          onClick={() =>
+            updateSetup({ id: "isInfoVisible", value: false, type: "checkbox" })
+          }
         >
           Hide info
         </button>
@@ -85,7 +85,12 @@ const Info: React.FC<IProps> = ({
     </>
   ) : (
     <div className="info-buttons">
-      <button className="info-close" onClick={() => setIsVisible(true)}>
+      <button
+        className="info-close"
+        onClick={() =>
+          updateSetup({ id: "isInfoVisible", value: true, type: "checkbox" })
+        }
+      >
         Show info
       </button>
       {menuToggleButton}
