@@ -19,7 +19,10 @@ const Menu: React.FC<IProps> = ({
   updateSetup,
   clearPaths
 }) => {
-  const { pattern, isScratchCanvas } = setup;
+  const { isMenuVisible, pattern, isScratchCanvas } = setup;
+  if (!isMenuVisible) {
+    return null;
+  }
   return (
     <section className="controls">
       <aside className={`menu menu--primary`}>

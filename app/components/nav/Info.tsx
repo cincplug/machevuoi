@@ -1,22 +1,42 @@
 import React, { useState } from "react";
-import { ISetup } from "../../../types";
+import { ISetup, UpdateSetupType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
+  updateSetup: (event: UpdateSetupType) => void;
   handlePlayButtonClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 }
 
-const Info: React.FC<IProps> = ({ setup, handlePlayButtonClick }) => {
+const Info: React.FC<IProps> = ({
+  setup,
+  updateSetup,
+  handlePlayButtonClick
+}) => {
   const [isVisible, setIsVisible] = useState(true);
   const { pattern, isScratchCanvas } = setup;
+  const handleMenuButtonClick = () => {
+    updateSetup({
+      id: "isMenuVisible",
+      value: !setup.isMenuVisible,
+      type: "checkbox"
+    });
+  };
   const pauseButton = (
     <button
       className="info-close pause-button cancel"
       onClick={handlePlayButtonClick}
     >
       Stop camera
+    </button>
+  );
+  const menuToggleButton = (
+    <button
+      className="info-close pause-button cancel"
+      onClick={handleMenuButtonClick}
+    >
+      ...
     </button>
   );
   return isVisible ? (
@@ -59,6 +79,7 @@ const Info: React.FC<IProps> = ({ setup, handlePlayButtonClick }) => {
         >
           Hide info
         </button>
+        {menuToggleButton}
         {pauseButton}
       </div>
     </>
@@ -67,6 +88,7 @@ const Info: React.FC<IProps> = ({ setup, handlePlayButtonClick }) => {
       <button className="info-close" onClick={() => setIsVisible(true)}>
         Show info
       </button>
+      {menuToggleButton}
       {pauseButton}
     </div>
   );

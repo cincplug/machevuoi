@@ -385,5 +385,14 @@
       "rectangles",
       "triangles"
     ]
+  },
+  {
+    "id": "isMenuVisible",
+    "title": "Menu",
+    "description": "Show or hide menu",
+    "isOmittedInScenario": true,
+    "isHidden": true,
+    "value": true,
+    "type": "checkbox"
   }
 ]
