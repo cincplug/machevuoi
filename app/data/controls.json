@@ -394,14 +394,5 @@
     "isHidden": true,
     "value": true,
     "type": "checkbox"
-  },
-  {
-    "id": "isInfoVisible",
-    "title": "Info",
-    "description": "Show or hide info",
-    "isOmittedInScenario": true,
-    "isHidden": true,
-    "value": true,
-    "type": "checkbox"
   }
 ]

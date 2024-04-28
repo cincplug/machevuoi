@@ -16,7 +16,7 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
   updateSetup,
   handlePlayButtonClick
 }) => {
-  const { isInfoVisible, isMenuVisible } = setup;
+  const { isMenuVisible } = setup;
 
   const handleMenuButtonClick = () => {
     updateSetup({
@@ -26,25 +26,9 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
     });
   };
 
-  const InfoButton = () => (
-    <button
-      className={`control control--button info-button ${
-        isInfoVisible ? "cancel" : ""
-      }`}
-      onClick={() =>
-        updateSetup({
-          id: "isInfoVisible",
-          value: !isInfoVisible,
-          type: "checkbox"
-        })
-      }
-    >
-      {isInfoVisible ? "Hide info" : "Show info"}
-    </button>
-  );
-
-  const pauseButton = (
-    <button
+  return (
+    <aside className="mini-menu">
+      <button
       className={`control control--button pause-button ${
         isStarted ? "cancel" : ""
       }`}
@@ -52,9 +36,6 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
     >
       {isStarted ? "Stop camera" : "Start camera"}
     </button>
-  );
-
-  const menuToggleButton = (
     <button
       className={`control control--button menu-button ${
         isMenuVisible ? "cancel" : ""
@@ -63,16 +44,7 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
     >
       {isMenuVisible ? "Hide menu" : "Show menu"}
     </button>
-  );
-
-  return (
-    <div className="mini-menu">
-      <div className="row">{pauseButton}</div>
-      <div className="row">
-        <InfoButton />
-        {menuToggleButton}
-      </div>
-    </div>
+    </aside>
   );
 };
 

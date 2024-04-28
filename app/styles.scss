@@ -726,13 +726,7 @@ pre {
   @include until {
     width: 100vw;
   }
-  .row {
-    display: contents;
-  }
   button {
     grid-column: span 6;
-    @include until {
-      grid-column: span 4;
-    }
   }
 }

@@ -19,14 +19,14 @@ const Info: React.FC<IProps> = ({ setup }) => {
       </section>
       <section>
         {pattern !== "canvas" || !isScratchCanvas ? (
-          <p>In this mode, you use your thumb and forefinger draw 👌</p>
+          <p>In this mode, you use your thumb and forefinger to draw 👌</p>
         ) : (
           <p>In this mode, you use your whole hand to draw 🖐️🤘🫱✌️</p>
         )}
         {pattern === "canvas" ? (
           <>
             <p>Line width is influenced by tightness of your grip</p>
-            <p>You can use both of your hands, try it</p>
+            <p>You can use both of your hands</p>
             <p>You can save your work as PNG</p>
           </>
         ) : (
