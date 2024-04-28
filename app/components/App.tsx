@@ -53,15 +53,6 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setInputResolution({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
-  }, []);
   
   useEffect(() => {
     if (inputResolution.width <= 767) {
@@ -75,6 +66,12 @@ const App: React.FC = () => {
     if (typeof window !== "undefined") {
       setSetup(getStoredSetup());
       setIsSetupLoaded(true);
+    }
+    if (typeof window !== "undefined") {
+      setInputResolution({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key) {

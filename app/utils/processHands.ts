@@ -185,7 +185,7 @@ export const processHands = ({
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
-      ctx.strokeStyle = processColor(color as string, (isDrawing ? opacity : 1) as number);
+      ctx.strokeStyle = processColor(color as string, (isDrawing ? opacity : 255) as number);
       ctx.setLineDash(dash ? [dash, dash] : []);
       ctx.lineJoin = "round";
       if (isWagging) {
