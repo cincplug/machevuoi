@@ -24,9 +24,6 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
       </button>
       <section className="pro-tips">
         <p>For best results, ensure good light</p>
-        <p>
-          Areas close to screen boundaries seem to be less reactive
-        </p>
         <ul>
           <li>pinch your fingers to draw 🤌 (ma che vuoi?)</li>
           <li>or hold <strong>Shift</strong> while you draw</li>

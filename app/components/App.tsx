@@ -63,6 +63,11 @@ const App: React.FC = () => {
       });
       setIsSetupLoaded(true);
     }
+    if (inputResolution.width <= 767) {
+      setSetup(prevSetup => {
+        return {...prevSetup, isMenuVisible: false}}
+      )
+    }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key) {
         setSetup((prevSetup) => {
@@ -70,7 +75,6 @@ const App: React.FC = () => {
         });
       }
 
-      // Check if Caps Lock key is pressed
       if (event.key === "CapsLock") {
         const isCapsLock =
           event.getModifierState && event.getModifierState("CapsLock");
@@ -85,7 +89,6 @@ const App: React.FC = () => {
         return { ...prevSetup, pressedKey: "" };
       });
 
-      // Check if Caps Lock key is released
       if (event.key === "CapsLock") {
         const isCapsLock =
           event.getModifierState && event.getModifierState("CapsLock");
@@ -104,7 +107,7 @@ const App: React.FC = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [isClient]);
+  }, [isClient, inputResolution.width]);
 
   useEffect(() => {
     if (setup.doesWagDelete && cursor.isWagging && setup.pattern !== "canvas") {
@@ -148,7 +151,7 @@ const App: React.FC = () => {
           setIsLoaded(false);
         }
         setShouldRunDetector(!prevIsStarted);
-        if (inputResolution.width <= 512) {
+        if (inputResolution.width <= 767) {
           prevSetup.isMenuVisible = false;
         }
         return prevSetup;
@@ -276,7 +279,6 @@ const App: React.FC = () => {
       )}
       <MiniMenu {...{ setup, isStarted, updateSetup, handlePlayButtonClick }} />
       {message && <Message {...{ message, setMessage }} />}
-      {/* <pre>{JSON.stringify(scribbleNewArea, null, 4)}</pre> */}
     </div>
   );
 };
