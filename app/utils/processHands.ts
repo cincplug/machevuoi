@@ -119,7 +119,11 @@ export const processHands = ({
             if (squeezedPoints[0] && squeezedPoints[1]) {
               let shapeObject:
                 | { startPoint: IPoint; endPoint: IPoint }
-                | { startPoint: IPoint; controlPoint: IPoint; endPoint: IPoint } = {
+                | {
+                    startPoint: IPoint;
+                    controlPoint: IPoint;
+                    endPoint: IPoint;
+                  } = {
                 startPoint: squeezedPoints[0],
                 endPoint: squeezedPoints[1]
               };
@@ -156,21 +160,6 @@ export const processHands = ({
       (wrist.y - indexTip.y) / (wrist.x - indexTip.x) > 3;
     const x = (thumbTip.x + indexTip.x) / 2;
     const y = (thumbTip.y + indexTip.y) / 2;
-    setCursor((prevCursor: ICursor) => {
-      const threshold = prevCursor.isPinched
-        ? (pinchThreshold as number) * 2
-        : pinchThreshold;
-      if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
-        checkElementPinch({ x, y, isPinched });
-      }
-      const nextCursor: ICursor = {
-        x,
-        y,
-        isWagging: isWagging,
-        isPinched: thumbIndexDistance < threshold
-      };
-      return nextCursor;
-    });
 
     if (pattern === "canvas") {
       const ctx = isDrawing ? dctx : pctx;
@@ -185,7 +174,10 @@ export const processHands = ({
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
-      ctx.strokeStyle = processColor(color as string, (isDrawing ? opacity : 255) as number);
+      ctx.strokeStyle = processColor(
+        color as string,
+        (isDrawing ? opacity : 255) as number
+      );
       ctx.setLineDash(dash ? [dash, dash] : []);
       ctx.lineJoin = "round";
       if (isWagging) {
@@ -206,8 +198,6 @@ export const processHands = ({
           handIndex: handIndex as number
         });
         lastTips = tips as IPoint[];
-      } else {
-        lastTips = undefined;
       }
       if (!isScratchCanvas) {
         pinchCanvas({
@@ -222,25 +212,35 @@ export const processHands = ({
           lastY: lastY || y,
           activeLayer
         });
-        lastX = x;
-        lastY = y;
-      } else {
-        lastX = undefined;
-        lastY = undefined;
       }
-    } else if (isDrawing) {
-      setScribbleNewArea((prevScribbleNewArea: IPoint[]) => {
-        const isNewArea =
-          prevScribbleNewArea.length === 0 ||
-          getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
-            x,
-            y
-          }) > straightness;
-        if (isNewArea) {
-          return [...prevScribbleNewArea, { x, y }];
-        }
-        return prevScribbleNewArea;
+    } else {
+      setCursor({
+        x,
+        y,
+        lastX,
+        lastY,
+        isWagging,
+        isPinched
       });
+      if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
+        checkElementPinch({ x, y, isPinched });
+      }
+      if (isDrawing) {
+        setScribbleNewArea((prevScribbleNewArea: IPoint[]) => {
+          const isNewArea =
+            prevScribbleNewArea.length === 0 ||
+            getDistance(prevScribbleNewArea[prevScribbleNewArea.length - 1], {
+              x,
+              y
+            }) > straightness;
+          if (isNewArea) {
+            return [...prevScribbleNewArea, { x, y }];
+          }
+          return prevScribbleNewArea;
+        });
+      }
     }
+    lastX = x;
+    lastY = y;
   });
 };

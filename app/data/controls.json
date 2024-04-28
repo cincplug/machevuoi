@@ -274,15 +274,6 @@
     "type": "checkbox"
   },
   {
-    "id": "hasCursor",
-    "title": "Cursor",
-    "description": "Shows or hides cursor",
-    "isOmittedInScenario": true,
-    "value": false,
-    "isHidden": true,
-    "type": "checkbox"
-  },
-  {
     "id": "isScratchCanvas",
     "title": "Scratch canvas",
     "description": "Selected hand points (scratch points) are used for drawing",

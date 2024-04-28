@@ -10,7 +10,6 @@ import MiniMenu from "./nav/MiniMenu";
 import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
-import Cursor from "./Cursor";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
 
@@ -29,6 +28,8 @@ const App: React.FC = () => {
   const [cursor, setCursor] = useState<ICursor>({
     x: 0,
     y: 0,
+    lastX: 0,
+    lastY: 0,
     isPinched: false,
     isWagging: false
   });
@@ -53,12 +54,12 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   useEffect(() => {
     if (inputResolution.width <= 767) {
-      setSetup(prevSetup => {
-        return {...prevSetup, isMenuVisible: false}}
-      )
+      setSetup((prevSetup) => {
+        return { ...prevSetup, isMenuVisible: false };
+      });
     }
   }, [inputResolution.width]);
 
@@ -255,17 +256,17 @@ const App: React.FC = () => {
             height={height}
           ></canvas>
           {setup.pattern !== "canvas" && (
-            <Drawing
-              {...{
-                inputResolution,
-                setup,
-                scribble,
-                scribbleNewArea
-              }}
-            />
-          )}
-          {setup.hasCursor && !setup.isScratchCanvas && (
-            <Cursor cursor={cursor} hasCursor={setup.hasCursor} />
+            <>
+              <Drawing
+                {...{
+                  inputResolution,
+                  setup,
+                  scribble,
+                  scribbleNewArea,
+                  cursor,
+                }}
+              />
+            </>
           )}
         </>
       ) : (

@@ -15,13 +15,11 @@ const Info: React.FC<IProps> = ({ setup }) => {
       )}{" "}
       {pattern === "canvas" ? (
         <>
-          <p>Grip affects line width</p>
-          <p>You can use both of your hands</p>
+          <p>Grip affects line width depending on dynamics</p>
         </>
       ) : (
         <>
-          <p>Grip does not affect line width.</p>
-          <p> Only one hand can draw. </p>
+          <p>Grip doesn&apos;t affect line width</p>
           <p>You can add text</p>
         </>
       )}

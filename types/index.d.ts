@@ -10,6 +10,8 @@ export interface IPoint {
 }
 
 export interface ICursor extends IPoint {
+  lastX: number | undefined;
+  lastY: number | undefined;
   isPinched: boolean;
   isWagging: boolean;
 }
