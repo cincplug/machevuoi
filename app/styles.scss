@@ -7,7 +7,7 @@
   font-display: swap;
 }
 
-@mixin until($breakpoint: 768px) {
+@mixin until($breakpoint: 767px) {
   @media screen and (max-width: $breakpoint) {
     @content;
   }
@@ -287,8 +287,8 @@ ol {
   @include until {
     position: fixed;
     left: 0;
-    top: 50vh;
-    height: 50vh;
+    top: 0;
+    height: 100vh;
     width: 100vw;
     overflow-y: auto;
     padding-bottom: 3rem;
@@ -310,6 +310,11 @@ ol {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-gap: var(--gap);
   grid-auto-rows: max-content;
+  @include until {
+    width: auto;
+    height: auto;
+    position: relative;
+  }
 
   &--secondary {
     left: auto;
@@ -348,10 +353,6 @@ ol {
   }
 
   @include until {
-    width: auto;
-    height: auto;
-    position: relative;
-
     .control {
       grid-column: span 6;
 
@@ -598,12 +599,6 @@ label {
 
   .slogan-text {
     animation: slogan 1.7s ease-out forwards;
-  }
-
-  @include until {
-    height: 50vh;
-    top: 0;
-    bottom: auto;
   }
 }
 
