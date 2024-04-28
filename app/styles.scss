@@ -274,10 +274,10 @@ ol {
 
 .controls {
   @include until {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 50vh;
+    height: 50vh;
     width: 100vw;
-    height: 100vh;
     overflow-y: auto;
     padding-bottom: 3rem;
   }
@@ -338,7 +338,7 @@ ol {
   @include until {
     width: auto;
     height: auto;
-    position: static;
+    position: relative;
 
     .control {
       grid-column: span 6;
@@ -568,7 +568,7 @@ label {
         top: 0;
         right: 0;
         bottom: 0;
-        left:0;
+        left: 0;
         background: var(--color-skin-dark);
         border: 1px solid var(--color-skin-light);
         border-radius: 0.3rem;
@@ -765,6 +765,7 @@ pre {
   padding: var(--gap);
   @include until {
     width: 100vw;
+    box-shadow: 0 0.2rem 1rem var(--color-skin-mid);
   }
   button {
     grid-column: span 6;

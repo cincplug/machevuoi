@@ -148,6 +148,9 @@ const App: React.FC = () => {
           setIsLoaded(false);
         }
         setShouldRunDetector(!prevIsStarted);
+        if (inputResolution.width <= 512) {
+          prevSetup.isMenuVisible = false;
+        }
         return prevSetup;
       });
       return !prevIsStarted;
@@ -162,9 +165,7 @@ const App: React.FC = () => {
     if (isLoaded) return;
     if (shouldRunDetector) {
       const { videoWidth, videoHeight } = video;
-      if (inputResolution.width >= 768) {
-        setInputResolution({ width: videoWidth, height: videoHeight });
-      }
+      setInputResolution({ width: videoWidth, height: videoHeight });
       const dctx = drawingCanvasRef.current?.getContext("2d") || null;
       const pctx = previewCanvasRef.current?.getContext("2d") || null;
       runDetector({
