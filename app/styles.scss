@@ -169,6 +169,9 @@ input {
     background: var(--color-skin-mid-dark);
     border: none;
     padding: 0;
+    .control:hover & {
+      background: var(--color-skin-mid-light);
+    }
     &::-webkit-slider-thumb {
       @include thumb-styles;
     }
@@ -438,6 +441,9 @@ label {
     margin: 0.4rem 0 0.2rem;
   }
   .value {
+    color: var(--color-skin-light);
+  }
+  .control:hover & {
     color: var(--color-skin-light);
   }
 }
