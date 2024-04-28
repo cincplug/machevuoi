@@ -164,8 +164,6 @@ const App: React.FC = () => {
     if (video.readyState !== 4) return;
     if (isLoaded) return;
     if (shouldRunDetector) {
-      const { videoWidth, videoHeight } = video;
-      setInputResolution({ width: videoWidth, height: videoHeight });
       const dctx = drawingCanvasRef.current?.getContext("2d") || null;
       const pctx = previewCanvasRef.current?.getContext("2d") || null;
       runDetector({
