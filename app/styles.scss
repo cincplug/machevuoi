@@ -465,12 +465,12 @@ label {
   justify-content: space-evenly;
   color: var(--color-skin-light);
 
-  @keyframes gesture {
+  @keyframes gesture-icon {
     0% {
       left: 0;
     }
     100% {
-      left: 100%;
+      left: 103%;
     }
   }
 
@@ -494,11 +494,11 @@ label {
 
   @keyframes slogan {
     0%,
-    96% {
-      opacity: 0;
+    50% {
+      transform: translateY(-3rem);
     }
     100% {
-      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -526,21 +526,21 @@ label {
       content: "🤌";
       position: absolute;
       top: 80%;
-      transform: rotate(-45deg);
-      animation: gesture 1.6s forwards;
+      transform: translate(-0.5rem, 0.2rem) rotate(-45deg);
+      animation: gesture-icon 1.5s forwards;
     }
   }
 
   .slogan {
     text-align: center;
-    font-size: 1.2rem;
-    line-height: 2rem;
+    line-height: 1.4;
     font-weight: normal;
     overflow: hidden;
+    margin-top: var(--gap);
   }
 
   .slogan-text {
-    animation: slogan 2s ease-out forwards;
+    animation: slogan 1.7s ease-out forwards;
   }
 }
 
