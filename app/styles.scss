@@ -322,10 +322,8 @@ ol {
     grid-auto-rows: max-content;
   }
 
-  button {
-    &.active {
-      background-color: var(--bg-input-active);
-    }
+  button.active {
+    background-color: var(--bg-input-active);
   }
 
   p {
@@ -351,48 +349,6 @@ ol {
   &--stretched {
     grid-auto-rows: auto;
   }
-
-  @include until {
-    .control {
-      grid-column: span 6;
-
-      &--color {
-        grid-column: span 2;
-      }
-      &--checkbox,
-      &--select,
-      &--range {
-        grid-column: span 4;
-      }
-
-      &--button {
-        grid-column: span 4;
-        align-self: flex-end;
-      }
-    }
-
-    &--button {
-      grid-column: span 4;
-      padding: 0.5rem 0;
-    }
-
-    &--secondary {
-      button {
-        padding: 0;
-        margin-right: var(--gap);
-        flex: 0 0 calc(100% / 8);
-        width: 3rem;
-        height: 3rem;
-        flex: none;
-        &.active {
-          background: var(--bg-input-active);
-        }
-        &.icon-button {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
 }
 
 .control {
@@ -409,17 +365,29 @@ ol {
     align-self: center;
     justify-content: flex-start;
     margin: 0;
+    @include until {
+      grid-column: span 4;
+    }
   }
   &--color {
     width: 1rem;
     grid-column: span 3;
+    @include until {
+      grid-column: span 2;
+    }
   }
   &--range {
     min-width: 0;
+    @include until {
+      grid-column: span 4;
+    }
   }
   &--select {
     select {
       width: 100%;
+    }
+    @include until {
+      grid-column: span 4;
     }
   }
   &--imageUrl,
@@ -430,6 +398,11 @@ ol {
     height: 2rem;
     align-items: center;
     margin: 0;
+    @include until {
+      grid-column: span 4;
+      align-self: flex-end;
+      padding: 0.5rem 0;
+    }
   }
 }
 
