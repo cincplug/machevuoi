@@ -268,6 +268,7 @@ const App: React.FC = () => {
       {setup.isMenuVisible && isSetupLoaded && (
         <Menu
           {...{
+            isStarted,
             setup,
             setSetup,
             updateSetup,

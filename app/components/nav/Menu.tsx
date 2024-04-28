@@ -9,6 +9,7 @@ import { ISetup, UpdateSetupType } from "../../../types";
 
 interface IProps {
   setup: ISetup;
+  isStarted: boolean;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
   updateSetup: (event: UpdateSetupType) => void;
   clearPaths: () => void;
@@ -16,6 +17,7 @@ interface IProps {
 
 const Menu: React.FC<IProps> = ({
   setup,
+  isStarted,
   setSetup,
   updateSetup,
   clearPaths
@@ -70,7 +72,7 @@ const Menu: React.FC<IProps> = ({
           <ShapeSelection {...{ setup, updateSetup }} />
         )}
       </aside>
-      <Info {...{ setup }} />
+      {isStarted && <Info {...{ setup }} />}
     </section>
   );
 };

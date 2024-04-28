@@ -41,7 +41,7 @@
   --color-red-light: #f4aa8c;
 
   --color-black-light-semi: #222c;
-  --color-skin-dark-semi: #2d1f14d0;
+  --color-skin-dark-semi: #27262580;
   --color-yellow-semi: #fd28;
 
   --gradient-dark: linear-gradient(
@@ -52,6 +52,7 @@
   --gap: 0.75rem;
   --gap-half: calc(var(--gap) / 2);
   --gap-double: calc(var(--gap) * 2);
+  --gap-neg-small: -0.1rem;
 
   --menu-width: 16rem;
   --input-height: 1.8rem;
@@ -258,6 +259,12 @@ fieldset {
 legend {
   grid-column: span 12;
   font-size: var(--font-size-m);
+}
+
+ul,
+ol {
+  padding-left: 0;
+  list-style-position: inside;
 }
 
 #root {
@@ -537,6 +544,38 @@ label {
     }
   }
 
+  .pro-tips {
+    max-width: 30rem;
+    background: var(--color-skin-dark-semi);
+    padding: var(--gap-double);
+    border-radius: 0.5rem;
+    p {
+      margin: var(--gap) 0;
+    }
+    li {
+      margin: var(--gap-half) 0;
+    }
+    strong {
+      position: relative;
+      display: inline-block;
+      padding: 0.2rem 0.4rem;
+      font-weight: normal;
+      &:before {
+        display: block;
+        position: absolute;
+        content: "";
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left:0;
+        background: var(--color-skin-dark);
+        border: 1px solid var(--color-skin-light);
+        border-radius: 0.3rem;
+      }
+    }
+  }
+
   .slogan {
     text-align: center;
     line-height: 1.4;
@@ -701,16 +740,11 @@ pre {
   background: var(--color-skin-dark);
   color: var(--color-silver);
   padding: var(--gap-half);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  justify-content: space-evenly;
   z-index: 2;
   p {
     margin: var(--gap-half) 0;
-  }
-  ul,
-  ol {
-    padding-left: 0;
-    list-style-position: inside;
   }
   @include until {
     width: auto;
