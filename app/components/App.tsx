@@ -56,17 +56,25 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setSetup(getStoredSetup());
       setInputResolution({
         width: window.innerWidth,
         height: window.innerHeight
       });
-      setIsSetupLoaded(true);
     }
+  }, []);
+  
+  useEffect(() => {
     if (inputResolution.width <= 767) {
       setSetup(prevSetup => {
         return {...prevSetup, isMenuVisible: false}}
       )
+    }
+  }, [inputResolution.width]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSetup(getStoredSetup());
+      setIsSetupLoaded(true);
     }
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key) {
@@ -107,7 +115,7 @@ const App: React.FC = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [isClient, inputResolution.width]);
+  }, [isClient]);
 
   useEffect(() => {
     if (setup.doesWagDelete && cursor.isWagging && setup.pattern !== "canvas") {
