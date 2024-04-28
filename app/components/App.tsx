@@ -222,8 +222,7 @@ const App: React.FC = () => {
             width={width}
             height={height}
             style={{
-              opacity: setup.videoOpacity / 255,
-              position: "absolute"
+              opacity: setup.videoOpacity / 255
             }}
             videoConstraints={inputResolution}
             forceScreenshotSourceSize={true}

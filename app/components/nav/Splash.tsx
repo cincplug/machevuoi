@@ -7,7 +7,7 @@ interface IProps {
 const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
   return (
     <div className="wrap splash">
-      <div>
+      <section>
         <h1>
           <span className="text">Ma che vuoi?</span>
         </h1>
@@ -18,7 +18,7 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
             in the thin air
           </p>
         </div>
-      </div>
+      </section>
       <button className="splash-button" onClick={handlePlayButtonClick}>
         Start camera
       </button>

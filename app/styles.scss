@@ -7,7 +7,7 @@
   font-display: swap;
 }
 
-@mixin until($breakpoint: 512px) {
+@mixin until($breakpoint: 768px) {
   @media screen and (max-width: $breakpoint) {
     @content;
   }
@@ -121,6 +121,12 @@ canvas {
   bottom: 0;
 }
 
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 button {
   margin: 0;
   background-color: var(--bg-input);
@@ -155,6 +161,11 @@ button {
   &.cancel {
     background: var(--color-red-light);
   }
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
 }
 
 input {
@@ -575,9 +586,6 @@ label {
         border-radius: 0.3rem;
       }
     }
-    @include until {
-      display: none;
-    }
   }
 
   .slogan {
@@ -590,6 +598,12 @@ label {
 
   .slogan-text {
     animation: slogan 1.7s ease-out forwards;
+  }
+
+  @include until {
+    height: 50vh;
+    top: 0;
+    bottom: auto;
   }
 }
 
