@@ -34,7 +34,7 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
   return (
     <>
       <button
-        className="control control--button"
+        className="control button"
         onClick={() => {
           saveImage();
         }}
@@ -44,7 +44,7 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
       </button>
 
       <button
-        className="control control--button cancel"
+        className="control button cancel"
         title="Clear what you've just drawn (you can also wag your finger)"
         onClick={clearPaths}
       >
@@ -52,7 +52,7 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
       </button>
 
       <button
-        className="control control--button cancel"
+        className="control button cancel"
         title="Reset all settings to defaults"
         onClick={() => {
           sessionStorage.clear();
@@ -63,7 +63,7 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
       </button>
 
       <button
-        className="control control--button"
+        className="control button"
         onClick={() => {
           saveSetup();
         }}

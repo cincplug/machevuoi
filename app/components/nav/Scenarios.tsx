@@ -54,13 +54,13 @@ const ScenarioSelection: React.FC<IProps> = ({
   }
 
   return (
-    <fieldset className="menu--scenarios">
+    <fieldset className="scenarios">
       <legend>{title}</legend>
       {Object.keys(scenarios).map((scenarioKey, index) => {
         const scenario = scenarios[scenarioKey];
         return (
           <button
-            className={`menu--scenarios__button ${notoEmoji.className} ${
+            className={`${notoEmoji.className} ${
               index === setup.activeScenarioIndex ? "active" : "inactive"
             }`}
             title={scenario?.description}

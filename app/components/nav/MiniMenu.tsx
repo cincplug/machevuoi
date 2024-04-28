@@ -29,7 +29,7 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
   return (
     <aside className="mini-menu">
       <button
-      className={`control control--button pause-button ${
+      className={`control button pause-button ${
         isStarted ? "cancel" : ""
       }`}
       onClick={handlePlayButtonClick}
@@ -37,7 +37,7 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
       {isStarted ? "Stop camera" : "Start camera"}
     </button>
     <button
-      className={`control control--button menu-button ${
+      className={`control button menu-button ${
         isMenuVisible ? "cancel" : ""
       }`}
       onClick={handleMenuButtonClick}

@@ -291,7 +291,8 @@ ol {
     height: 100vh;
     width: 100vw;
     overflow-y: auto;
-    padding-bottom: 3rem;
+    padding-bottom: 5rem;
+    background: var(--color-skin-dark);
   }
 }
 
@@ -316,7 +317,7 @@ ol {
     position: relative;
   }
 
-  &--secondary {
+  &.secondary {
     left: auto;
     right: 0;
     grid-auto-rows: max-content;
@@ -329,25 +330,21 @@ ol {
   p {
     grid-column: span 12;
   }
+}
 
-  &--scenarios {
-    &__button {
-      grid-column: span 3;
-      font-size: 1.7rem;
-      padding: 0.4rem;
-      box-shadow: 0 0.3rem 0.4rem #0002,
-        0 -0.1rem 0 0.05rem var(--color-skin-light);
-      &.inactive:not(:hover) {
-        background: var(--gradient-dolce);
-      }
-      @include until {
-        grid-column: span 2;
-      }
+.scenarios {
+  button {
+    grid-column: span 3;
+    font-size: 1.7rem;
+    padding: 0.4rem;
+    box-shadow: 0 0.3rem 0.4rem #0002,
+      0 -0.1rem 0 0.05rem var(--color-skin-light);
+    &.inactive:not(:hover) {
+      background: var(--gradient-dolce);
     }
-  }
-
-  &--stretched {
-    grid-auto-rows: auto;
+    @include until {
+      grid-column: span 2;
+    }
   }
 }
 
@@ -360,7 +357,7 @@ ol {
   padding: 0;
   margin: 0 0 var(--gap-half);
   font-size: var(--font-size-m);
-  &--checkbox {
+  &.checkbox {
     flex-direction: row;
     align-self: center;
     justify-content: flex-start;
@@ -369,20 +366,20 @@ ol {
       grid-column: span 4;
     }
   }
-  &--color {
+  &.color {
     width: 1rem;
     grid-column: span 3;
     @include until {
       grid-column: span 2;
     }
   }
-  &--range {
+  &.range {
     min-width: 0;
     @include until {
       grid-column: span 4;
     }
   }
-  &--select {
+  &.select {
     select {
       width: 100%;
     }
@@ -390,11 +387,11 @@ ol {
       grid-column: span 4;
     }
   }
-  &--imageUrl,
-  &--text {
+  &.imageUrl,
+  &.text {
     grid-column: span 12;
   }
-  &--button {
+  &.button {
     height: 2rem;
     align-items: center;
     margin: 0;
@@ -448,7 +445,7 @@ label {
   justify-content: center;
   align-items: center;
   margin: auto;
-  &--not-started {
+  &.not-started {
     background: var(--color-black-light);
   }
 }

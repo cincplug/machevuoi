@@ -25,7 +25,7 @@ const Menu: React.FC<IProps> = ({
   const { pattern, isScratchCanvas } = setup;
   return (
     <section className="controls">
-      <aside className={`menu menu--primary`}>
+      <aside className={`menu primary`}>
         <Controls
           {...{ setup, updateSetup }}
           controls={CONTROLS.filter(
@@ -56,7 +56,7 @@ const Menu: React.FC<IProps> = ({
           }}
         />
       </aside>
-      <aside className={`menu menu--secondary`}>
+      <aside className={`menu secondary`}>
         <Controls
           {...{ setup, updateSetup }}
           controls={CONTROLS.filter(

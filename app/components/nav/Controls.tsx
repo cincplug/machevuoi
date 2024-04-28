@@ -33,7 +33,6 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
       type === "color" ? "#000000" : type === "range" ? 0 : "";
 
     const inputProps = {
-      className: "control__input",
       type,
       id,
       min,
@@ -69,13 +68,12 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
 
     return (
       <div
-        className={`control control--${type} control--${id}`}
+        className={`control ${type} control-${id}`}
         key={`${id}-${index}`}
         title={description}
       >
         {type === "select" ? (
           <select
-            className="control__select"
             {...{ value, id }}
             onChange={handleSelectChange}
           >
@@ -88,7 +86,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
         ) : (
           <input {...inputProps} />
         )}
-        <label className="control__label" htmlFor={id}>
+        <label htmlFor={id}>
           <span className="text">{title}</span>
           {type === "range" && <span className="value">{value}</span>}
         </label>

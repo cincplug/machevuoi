@@ -197,7 +197,7 @@ const App: React.FC = () => {
 
   return (
     <div
-      className={`wrap wrap--main wrap--${
+      className={`wrap ${
         isStarted && isLoaded ? "started" : "not-started"
       } theme theme-${setup.theme}`}
       style={{ width, height }}
