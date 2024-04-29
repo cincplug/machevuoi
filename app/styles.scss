@@ -415,6 +415,7 @@ ol {
   width: var(--menu-width);
   color: var(--color-skin-light);
   background: var(--color-skin-dark);
+  font-family: "Figtree", sans-serif;
 }
 
 label {
@@ -463,15 +464,21 @@ label {
 
   @keyframes gesture-icon {
     0% {
+      left: -40%;
+      top: -10%;
+    }
+    20% {
+      top: 80%;
       left: 0;
     }
     100% {
+      top: 80%;
       left: 103%;
     }
   }
 
   @keyframes gesture-line {
-    0% {
+    0%, 22% {
       width: 0;
     }
     100% {
@@ -480,7 +487,7 @@ label {
   }
 
   @keyframes gesture-text {
-    0% {
+    0%, 25% {
       width: 0;
     }
     100% {
@@ -490,7 +497,7 @@ label {
 
   @keyframes slogan {
     0%,
-    50% {
+    60% {
       transform: translateY(3rem);
     }
     100% {
@@ -506,7 +513,7 @@ label {
       display: inline-block;
       overflow: hidden;
       white-space: nowrap;
-      animation: gesture-text 1.7s forwards;
+      animation: gesture-text 2.5s linear forwards;
     }
     &:before {
       display: block;
@@ -515,16 +522,32 @@ label {
       height: 0.2rem;
       top: 100%;
       background: var(--color-skin-mid);
-      animation: gesture-line 1.5s forwards;
+      animation: gesture-line 2.4s linear forwards;
     }
     &:after {
       display: block;
-      content: "🤌";
+      content: "";
+      background: url(../app/assets/img/machevuoi.png) no-repeat 0 0;
+      background-size: contain;
+      width: 3rem;
+      height: 3rem;
       position: absolute;
       top: 80%;
-      transform: translate(-0.5rem, 0.2rem) rotate(-45deg);
-      animation: gesture-icon 1.5s forwards;
+      transform: translate(-0.4rem, 0);
+      animation: gesture-icon 2.4s linear forwards;
     }
+  }
+
+  .slogan {
+    text-align: center;
+    line-height: 1.4;
+    font-weight: normal;
+    overflow: hidden;
+    margin-top: var(--gap);
+  }
+
+  .slogan-text {
+    animation: slogan 3s ease-out forwards;
   }
 
   .pro-tips {
@@ -560,18 +583,6 @@ label {
     @include until {
       max-width: calc(100vw - 2 * var(--gap));
     }
-  }
-
-  .slogan {
-    text-align: center;
-    line-height: 1.4;
-    font-weight: normal;
-    overflow: hidden;
-    margin-top: var(--gap);
-  }
-
-  .slogan-text {
-    animation: slogan 1.7s ease-out forwards;
   }
 }
 
