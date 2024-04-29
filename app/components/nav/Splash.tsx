@@ -22,15 +22,6 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
       <button className="splash-button" onClick={handlePlayButtonClick}>
         Start camera
       </button>
-      <section className="pro-tips">
-        <p>For best results, ensure good light</p>
-        <ul>
-          <li>pinch your fingers to draw 🤌 (ma che vuoi?)</li>
-          <li>or hold <strong>Shift</strong> while you draw</li>
-          <li>or turn on <strong>Caps Lock</strong> before you start drawing</li>
-        </ul>
-        <p>Wag your forefinger 👆 (basta) to erase your drawing</p>
-      </section>
     </div>
   );
 };
