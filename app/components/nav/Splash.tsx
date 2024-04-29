@@ -13,7 +13,7 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
         </h1>
         <div className="slogan">
           <p className="slogan-text">
-            Paint with bare hand
+            Paint with your bare hand
             <br />
             in the thin air
           </p>
