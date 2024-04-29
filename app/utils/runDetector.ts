@@ -7,6 +7,7 @@ interface RunDetectorProps {
   setupRef: React.RefObject<any>;
   setCursor: React.Dispatch<React.SetStateAction<ICursor>>;
   setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
+  setIsDetectorRunning: React.Dispatch<React.SetStateAction<boolean>>;
   setMessage: (message: string) => void;
   dctx: CanvasRenderingContext2D | null;
   pctx: CanvasRenderingContext2D | null;
@@ -17,6 +18,7 @@ export const runDetector = async ({
   setupRef,
   setCursor,
   setScribbleNewArea,
+  setIsDetectorRunning,
   setMessage,
   dctx,
   pctx
@@ -65,6 +67,7 @@ export const runDetector = async ({
       if (handsDetector) {
         hands = await handsDetector.estimateHands(video, estimationConfig);
       }
+      setIsDetectorRunning(true);
     } catch (error) {
       console.error("Error estimating hands", error);
       setMessage("Something's not working 🥸");

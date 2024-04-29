@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "@tensorflow/tfjs-backend-webgl";
 import Webcam from "react-webcam";
+import Image from "next/image";
 import { clearCanvases } from "../utils";
 import { runDetector } from "../utils/runDetector";
 import { getStoredSetup, storeSetup } from "../utils/storeSetup";
@@ -21,8 +22,9 @@ interface InputResolution {
 const App: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const [isStarted, setIsStarted] = useState<boolean>(false);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
   const [isSetupLoaded, setIsSetupLoaded] = useState<boolean>(false);
+  const [isDetectorRunning, setIsDetectorRunning] = useState<boolean>(false);
   const [scribble, setScribble] = useState<any[]>([]);
   const [scribbleNewArea, setScribbleNewArea] = useState<any[]>([]);
   const [cursor, setCursor] = useState<ICursor>({
@@ -154,7 +156,7 @@ const App: React.FC = () => {
           } catch (error) {
             console.error("An error occurred:", error);
           }
-          setIsLoaded(false);
+          setIsVideoLoaded(false);
         }
         setShouldRunDetector(!prevIsStarted);
         if (inputResolution.width <= 767) {
@@ -171,7 +173,7 @@ const App: React.FC = () => {
   ) => {
     const video = videoNode.currentTarget;
     if (video.readyState !== 4) return;
-    if (isLoaded) return;
+    if (isVideoLoaded) return;
     if (shouldRunDetector) {
       const dctx = drawingCanvasRef.current?.getContext("2d") || null;
       const pctx = previewCanvasRef.current?.getContext("2d") || null;
@@ -180,6 +182,7 @@ const App: React.FC = () => {
         video,
         setCursor,
         setScribbleNewArea,
+        setIsDetectorRunning,
         dctx,
         pctx,
         setMessage
@@ -189,7 +192,7 @@ const App: React.FC = () => {
         }
       });
     }
-    setIsLoaded(true);
+    setIsVideoLoaded(true);
   };
 
   const clearPaths = () => {
@@ -207,7 +210,7 @@ const App: React.FC = () => {
   return (
     <div
       className={`wrap ${
-        isStarted && isLoaded ? "started" : "not-started"
+        isStarted && isVideoLoaded ? "started" : "not-started"
       } theme theme-${setup.theme}`}
       style={{ width, height }}
     >
@@ -263,7 +266,7 @@ const App: React.FC = () => {
                   setup,
                   scribble,
                   scribbleNewArea,
-                  cursor,
+                  cursor
                 }}
               />
             </>
@@ -285,6 +288,15 @@ const App: React.FC = () => {
       )}
       <MiniMenu {...{ setup, isStarted, updateSetup, handlePlayButtonClick }} />
       {message && <Message {...{ message, setMessage }} />}
+      {isStarted && !isDetectorRunning && (
+        <Image
+          className="loader"
+          src="/spinner.svg"
+          alt="Loading"
+          width={100}
+          height={100}
+        />
+      )}
     </div>
   );
 };

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 50 50">
+    <circle id="myCircle" cx="25" cy="25" r="20" fill="none" stroke-width="3"
+        style="stroke:#272625;stroke-linecap:round;animation:spin 2s linear infinite;stroke-dasharray:60;stroke-dashoffset:120" />
+    <style>@keyframes spin{to{stroke-dashoffset:0}}@keyframes move{to{startOffset:0%}}</style>
+</svg>
