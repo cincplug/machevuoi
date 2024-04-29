@@ -45,7 +45,6 @@ const Drawing: React.FC<IProps> = ({
           area
             .map((point: IPoint, index: number) => {
               const lastPoint = area[area.length - 1] || point;
-              const prevPoint = area[Math.max(0, index - 1)] || point;
               const nextPoint = area[Math.min(index + 1, area.length - 1)];
               if (!point || !lastPoint) return null;
               if (radius > 0 && lastPoint && index > 0) {
@@ -59,7 +58,6 @@ const Drawing: React.FC<IProps> = ({
                 return pathStrokes({
                   pathStroke: pathStroke,
                   thisPoint: point,
-                  prevPoint,
                   nextPoint,
                   controlPoint,
                   radius,
