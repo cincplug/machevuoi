@@ -140,16 +140,16 @@
     "id": "pathStroke",
     "title": "Path stroke",
     "description": "What kind of paths is being used",
-    "value": "lines",
+    "value": "beziers",
     "type": "select",
     "isHandRelated": true,
     "parentPattern": "svg",
     "options": [
-      "lines",
-      "arcs",
-      "quadratics",
       "beziers",
-      "bezinerves",
+      "lines",
+      "cloud",
+      "blast",
+      "peas",
       "watermelons"
     ]
   },

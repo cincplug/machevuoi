@@ -61,7 +61,6 @@ const Drawing: React.FC<IProps> = ({
                   nextPoint,
                   controlPoint,
                   radius,
-                  minimum
                 });
               } else {
                 return `${index === 0 ? "M" : "L"} ${point.x},${point.y}`;
@@ -109,7 +108,7 @@ const Drawing: React.FC<IProps> = ({
         stroke={processColor(color, opacity)}
         strokeWidth={radius}
         strokeDasharray={dash}
-        d={`M${lastX}, ${lastY} L${x}, ${y}`}
+        d={`M${lastX || x}, ${lastY || y} L${x}, ${y}`}
       />
     </svg>
   );
