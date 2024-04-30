@@ -497,7 +497,7 @@ label {
       top: 100%;
       background: var(--color-skin-mid);
       @media (prefers-reduced-motion: no-preference) {
-        animation: gesture-line 1.7s linear forwards;
+        animation: gesture-line 1.7s ease-in-out forwards;
       }
     }
     &:after {
@@ -510,9 +510,9 @@ label {
       position: absolute;
       top: 80%;
       left: 103%;
-      transform: translate(-0.4rem, 0);
+      transform: translate(-0.4rem, -0.2rem);
       @media (prefers-reduced-motion: no-preference) {
-        animation: gesture-icon 1.7s linear forwards;
+        animation: gesture-icon 1.7s ease-in-out forwards;
       }
     }
   }
