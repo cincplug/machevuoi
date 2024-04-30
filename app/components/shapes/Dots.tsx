@@ -1,17 +1,19 @@
-import HP from "../../data/handPoints.json";
+import { getExtendedHandPoints } from "../../utils";
 
 interface DotsProps {
   selectedDots: number[];
   handleDotClick: (index: number) => void;
 }
 
+const extendedHandPoints = getExtendedHandPoints();
+
 const Dots: React.FC<DotsProps> = ({ selectedDots, handleDotClick }) => {
-  return HP.map((point, index) => (
+  return extendedHandPoints.map((point, index) => (
     <circle
       key={index}
       cx={point.x}
       cy={point.y}
-      r={12}
+      r={index <= 20 ? 12 : 7}
       onClick={() => handleDotClick(index)}
       className={`scratch-dot ${
         selectedDots && selectedDots.includes(index) ? "selected" : "not-selected"

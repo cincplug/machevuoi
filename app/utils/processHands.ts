@@ -3,7 +3,8 @@ import {
   checkElementPinch,
   squeezePoints,
   processColor,
-  clearCanvases
+  clearCanvases,
+  getExtendedHandPoints
 } from "./index";
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
@@ -81,18 +82,19 @@ export const processHands = ({
   ];
 
   hands.forEach((hand, handIndex) => {
-    const wrist = hand.keypoints[0];
-    const thumbTip = hand.keypoints[4];
-    const indexTip = hand.keypoints[7];
-    const middleTip = hand.keypoints[12];
+    const extendedKeyPoints = getExtendedHandPoints(hand.keypoints);
+    const wrist = extendedKeyPoints[0];
+    const thumbTip = extendedKeyPoints[4];
+    const indexTip = extendedKeyPoints[7];
+    const middleTip = extendedKeyPoints[12];
     const fallbackDots = [4, 8, 12];
     const dots = scratchPoints?.dots.map(
-      (point: number) => hand.keypoints[point]
+      (point: number) => extendedKeyPoints[point]
     );
     const centeringContext =
       dots.length > 0
         ? dots
-        : fallbackDots.map((point: number) => hand.keypoints[point]);
+        : fallbackDots.map((point: number) => extendedKeyPoints[point]);
     const tips = squeezePoints({
       points: dots,
       squeezeRatio,
@@ -102,7 +104,7 @@ export const processHands = ({
     const shapes = shapeNames.reduce(
       (result: { [key: string]: any }, shapeName) => {
         result[shapeName] = scratchPoints[shapeName].map((shape: number[]) => {
-          const points = shape.map((point) => hand.keypoints[point]);
+          const points = shape.map((point) => extendedKeyPoints[point]);
           const squeezedPoints = squeezePoints({
             points,
             squeezeRatio,

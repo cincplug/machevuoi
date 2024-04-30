@@ -1,4 +1,5 @@
-import HP from "../data/handPoints.json";
+import BASE_HAND_POINTS from "../data/baseHandPoints.json";
+import EXTRA_POINT_INDICES from "../data/extraPointIndices.json";
 import { IPoint, NullablePoint } from "../../types";
 
 export const getDistance = (point1: IPoint, point2: IPoint): number => {
@@ -61,7 +62,10 @@ export const getLineWidth = (
   dynamics: number,
   minimum: number
 ): number => {
-  return Math.max(radius - Math.pow(radius, dynamics - 1) * distance / 2, minimum);
+  return Math.max(
+    radius - (Math.pow(radius, dynamics - 1) * distance) / 2,
+    minimum
+  );
 };
 
 export const processColor = (color: string, opacity: number): string => {
@@ -214,9 +218,30 @@ export const getShape = ({
   });
 };
 
-export const getPoint = (point: number | IPoint, isPreview: boolean): IPoint => {
-  if (isPreview && typeof point !== 'number') {
+export const getMidPoint = (
+  handPoints: IPoint[],
+  point1: number,
+  point2: number
+) => {
+  return {
+    x: (handPoints[point1].x + handPoints[point2].x) / 2,
+    y: (handPoints[point1].y + handPoints[point2].y) / 2
+  };
+};
+
+export const getExtendedHandPoints = (handPoints = BASE_HAND_POINTS) => {
+  return handPoints.concat(
+    EXTRA_POINT_INDICES.map(([point1, point2]) => getMidPoint(handPoints, point1, point2))
+  );
+};
+
+export const getPoint = (
+  point: number | IPoint,
+  isPreview: boolean
+): IPoint => {
+  if (isPreview && typeof point !== "number") {
     return point;
   }
-  return HP[point as number];
+  const extendedHandPoints = getExtendedHandPoints();
+  return extendedHandPoints[point as number];
 };

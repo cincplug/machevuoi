@@ -602,9 +602,8 @@ label {
 .scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
-  background: url(../app/assets/img/hand-model.svg) no-repeat -4px -10px;
-  background-size: 107%;
 }
+
 .scratch-layer {
   grid-column: span 12;
 }
@@ -645,12 +644,12 @@ label {
   }
   .active-dots & {
     &:hover {
-      fill: var(--color-skin-light);
+      fill: var(--color-red-light);
     }
   }
   .active-shapes & {
     &:hover {
-      stroke-width: 1px;
+      stroke-width: 2px;
       stroke: var(--color-skin-light);
     }
   }
@@ -661,7 +660,7 @@ label {
   stroke-width: 0.3rem;
   stroke: var(--color-skin-mid-light);
   &:hover {
-    stroke: var(--color-skin-light);
+    stroke: var(--color-red-light);
   }
   &.preview {
     fill: none;

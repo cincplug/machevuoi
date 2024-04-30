@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import HP from "../../data/handPoints.json";
 import Dots from "../shapes/Dots";
 import Preview from "../shapes/Preview";
 import shapeComponents from "../shapes";
-import { arraysHaveSameElements } from "../../utils";
+import { arraysHaveSameElements, getExtendedHandPoints } from "../../utils";
 import { getShape } from "../../utils";
 import { ISetup, UpdateSetupType, ShapeComponentsType } from "../../../types";
 
@@ -20,6 +19,8 @@ interface IPathClick {
 }
 
 type AnyComponent = React.FC<any>;
+
+const extendedHandPoints = getExtendedHandPoints();
 
 const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
   const [startPoint, setStartPoint] = useState<number | null>(null);
@@ -160,8 +161,8 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
         {startPoint !== null && (
           <Preview
             {...{
-              startPoint: HP[startPoint],
-              controlPoint: controlPoint !== null ? HP[controlPoint] : null,
+              startPoint: extendedHandPoints[startPoint],
+              controlPoint: controlPoint !== null ? extendedHandPoints[controlPoint] : null,
               activeLayer,
               mousePoint,
               shapeComponents
