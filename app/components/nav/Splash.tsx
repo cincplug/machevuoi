@@ -8,9 +8,7 @@ const Splash: React.FC<IProps> = ({ handlePlayButtonClick }) => {
   return (
     <div className="wrap splash">
       <section>
-        <h1>
-          <span className="text">Ma che vuoi?</span>
-        </h1>
+        <h1>Ma che vuoi?</h1>
         <div className="slogan">
           <p className="slogan-text">
             Paint with your bare hand

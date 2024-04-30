@@ -85,15 +85,6 @@
   --font-family: "Gellix", sans-serif;
 }
 
-@keyframes move-to {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(var(--dx, 0), var(--dy, 0));
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -464,65 +455,48 @@ label {
 
   @keyframes gesture-icon {
     0% {
-      left: -40%;
+      left: -80%;
       top: -10%;
+      transform: scale(1.2);
+      filter: drop-shadow(-1rem 1rem 1rem var(--color-skin-dark));
     }
-    20% {
+    41% {
       top: 80%;
       left: 0;
+      transform: scale(1);
     }
     100% {
+      filter: none;
       top: 80%;
       left: 103%;
     }
   }
-
+  
   @keyframes gesture-line {
-    0%, 22% {
-      width: 0;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-
-  @keyframes gesture-text {
-    0%, 25% {
-      width: 0;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-
-  @keyframes slogan {
     0%,
-    60% {
-      transform: translateY(3rem);
+    41% {
+      width: 0;
     }
     100% {
-      transform: translateY(0);
+      width: 100%;
     }
   }
-
+  
   h1 {
     margin: 0;
     font-size: 2rem;
     position: relative;
-    .text {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      animation: gesture-text 2.5s linear forwards;
-    }
     &:before {
       display: block;
       content: "";
       position: absolute;
+      width: 100%;
       height: 0.2rem;
       top: 100%;
       background: var(--color-skin-mid);
-      animation: gesture-line 2.4s linear forwards;
+      @media (prefers-reduced-motion: no-preference) {
+        animation: gesture-line 1.7s linear forwards;
+      }
     }
     &:after {
       display: block;
@@ -533,8 +507,11 @@ label {
       height: 3rem;
       position: absolute;
       top: 80%;
+      left: 103%;
       transform: translate(-0.4rem, 0);
-      animation: gesture-icon 2.4s linear forwards;
+      @media (prefers-reduced-motion: no-preference) {
+        animation: gesture-icon 1.7s linear forwards;
+      }
     }
   }
 
@@ -544,10 +521,6 @@ label {
     font-weight: normal;
     overflow: hidden;
     margin-top: var(--gap);
-  }
-
-  .slogan-text {
-    animation: slogan 3s ease-out forwards;
   }
 
   .pro-tips {
