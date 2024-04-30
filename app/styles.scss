@@ -457,31 +457,33 @@ label {
     0% {
       left: -80%;
       top: -10%;
-      transform: scale(1.2);
-      filter: drop-shadow(-1rem 1rem 1rem var(--color-skin-dark));
+      transform: scale(1.5);
+      filter: drop-shadow(0.5rem 1rem 1rem var(--color-skin-dark));
     }
-    41% {
+    40% {
       top: 80%;
       left: 0;
       transform: scale(1);
     }
-    100% {
+    75% {
       filter: none;
+    }
+    100% {
       top: 80%;
       left: 103%;
     }
   }
-  
+
   @keyframes gesture-line {
     0%,
-    41% {
+    40% {
       width: 0;
     }
     100% {
       width: 100%;
     }
   }
-  
+
   h1 {
     margin: 0;
     font-size: 2rem;
