@@ -422,6 +422,57 @@
     "description": "Canvas mode, plant pattern",
     "icon": "🌿"
   },
+  "scratch-canvas-tulip": {
+    "theme": "default",
+    "pattern": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "isScratchCanvas": true,
+    "isAutoClosed": false,
+    "activeScenarioIndex": 11,
+    "text": "",
+    "scratchPoints": {
+      "dots": [14, 8, 12, 16, 6],
+      "lines": [[16, 14]],
+      "curves": [
+        [6, 14, 8],
+        [6, 8, 14],
+        [14, 6, 8],
+        [12, 6, 14],
+        [14, 12, 6],
+        [12, 14, 6],
+        [16, 6, 14],
+        [14, 16, 6],
+        [6, 14, 16]
+      ],
+      "arcs": [
+        [6, 12],
+        [14, 12],
+        [6, 0],
+        [14, 0]
+      ],
+      "diamonds": [],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [],
+      "squares": [],
+      "circles": [],
+      "ellipses": []
+    },
+    "dash": 0,
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "doesWagDelete": true,
+    "description": "Canvas mode, plant pattern",
+    "icon": "🌷"
+  },
   "scratch-canvas-book": {
     "icon": "📖",
     "theme": "default",
