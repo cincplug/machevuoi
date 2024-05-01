@@ -13,7 +13,7 @@ const Dots: React.FC<DotsProps> = ({ selectedDots, handleDotClick }) => {
       key={index}
       cx={point.x}
       cy={point.y}
-      r={index <= 20 ? 12 : 7}
+      r={index <= 20 ? 10 : 7}
       onClick={() => handleDotClick(index)}
       className={`scratch-dot ${
         selectedDots && selectedDots.includes(index) ? "selected" : "not-selected"
