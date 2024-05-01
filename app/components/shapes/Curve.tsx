@@ -9,7 +9,7 @@ interface CurveProps {
 
 const Curve: React.FC<CurveProps> = ({
   shape: { startPoint, controlPoint, endPoint },
-  onClick,
+  title, onClick, 
   isPreview = false
 }) => {
   const { x: spx, y: spy } = getPoint(startPoint, isPreview);

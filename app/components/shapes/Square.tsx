@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface SquareProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Square: React.FC<SquareProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -27,7 +29,9 @@ const Square: React.FC<SquareProps> = ({
       points={`${spx},${spy} ${cpx},${cpy} ${dpx},${dpy} ${epx},${epy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </polygon>
   );
 };
 

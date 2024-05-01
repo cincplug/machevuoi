@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface RhomboidProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Rhomboid: React.FC<RhomboidProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -27,7 +29,9 @@ const Rhomboid: React.FC<RhomboidProps> = ({
       points={`${spx},${spy} ${cpx},${cpy} ${epx},${epy} ${dpx},${dpy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </polygon>
   );
 };
 

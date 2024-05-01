@@ -4,12 +4,14 @@ import { IShapeWithControl } from "../../../types";
 
 interface EllipseProps {
   shape: IShapeWithControl;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Ellipse: React.FC<EllipseProps> = ({
   shape: { startPoint, controlPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -33,7 +35,9 @@ const Ellipse: React.FC<EllipseProps> = ({
       transform={`rotate(${rotationDeg}, ${spx}, ${spy})`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </ellipse>
   );
 };
 

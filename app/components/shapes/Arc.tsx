@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface ArcProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Arc: React.FC<ArcProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -27,7 +29,9 @@ const Arc: React.FC<ArcProps> = ({
       d={`M ${spx} ${spy} Q ${cpx} ${cpy} ${epx} ${epy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </path>
   );
 };
 

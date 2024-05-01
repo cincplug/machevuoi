@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface TriangleProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Triangle: React.FC<TriangleProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -27,7 +29,9 @@ const Triangle: React.FC<TriangleProps> = ({
       points={`${spx},${spy} ${tpx},${tpy} ${epx},${epy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </polygon>
   );
 };
 

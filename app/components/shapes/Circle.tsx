@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface CircleProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Circle: React.FC<CircleProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -29,7 +31,9 @@ const Circle: React.FC<CircleProps> = ({
       r={circleRadius}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </circle>
   );
 };
 

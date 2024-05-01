@@ -4,12 +4,14 @@ import { IShape } from "../../../types";
 
 interface RectangleProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Rectangle: React.FC<RectangleProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -27,7 +29,9 @@ const Rectangle: React.FC<RectangleProps> = ({
       points={`${spx},${spy} ${cpx},${cpy} ${epx},${epy} ${dpx},${dpy}`}
       className={`scratch-path ${isPreview ? "preview" : ""}`}
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </polygon>
   );
 };
 

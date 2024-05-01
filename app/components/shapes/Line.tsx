@@ -3,12 +3,14 @@ import { IShape } from "../../../types";
 
 interface LineProps {
   shape: IShape;
+  title: string;
   onClick: () => void;
   isPreview?: boolean;
 }
 
 const Line: React.FC<LineProps> = ({
   shape: { startPoint, endPoint },
+  title,
   onClick,
   isPreview = false
 }) => {
@@ -23,7 +25,9 @@ const Line: React.FC<LineProps> = ({
       y2={epy}
       className="scratch-path"
       onClick={onClick}
-    />
+    >
+      <title>{title}</title>
+    </line>
   );
 };
 

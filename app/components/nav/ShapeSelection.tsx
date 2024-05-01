@@ -126,11 +126,18 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     }
   };
 
+  const isDots = activeLayer === "dots";
+  const activeLayerSingular = activeLayer.slice(0, -1);
+  const dotTooltip = !isDots
+    ? `Click to set the ${
+        !startPoint ? "start" : "next"
+      } point of the new ${activeLayerSingular}`
+    : "";
+
   return (
     <div
-      className={`scratch-wrap active-${
-        activeLayer === "dots" ? "dots" : "shapes"
-      }`}
+      className={`scratch-wrap active-${isDots ? "dots" : "shapes"}`}
+      title={`Click dots to  ${isDots ? "add or remove them" : `add new ${activeLayer}`}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +158,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
               shapes &&
               shapes.map(({ shape, onClick }, index) => (
                 <ShapeComponent
+                  title={`Click to remove this ${activeLayerSingular}`}
                   key={`${JSON.stringify(shape)}-${index}`}
                   {...{ shape, onClick }}
                 />
@@ -162,7 +170,8 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           <Preview
             {...{
               startPoint: extendedHandPoints[startPoint],
-              controlPoint: controlPoint !== null ? extendedHandPoints[controlPoint] : null,
+              controlPoint:
+                controlPoint !== null ? extendedHandPoints[controlPoint] : null,
               activeLayer,
               mousePoint,
               shapeComponents
@@ -173,6 +182,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           <Dots
             selectedDots={scratchPoints.dots}
             handleDotClick={handleDotClick}
+            {...{ dotTooltip }}
           />
         </g>
       </svg>
