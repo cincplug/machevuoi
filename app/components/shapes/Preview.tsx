@@ -39,6 +39,7 @@ const Preview: React.FC<PreviewProps> = ({
       <ShapeComponent
         shape={{ startPoint, controlPoint: startPoint, endPoint: mousePoint }}
         onClick={() => {}}
+        title={activeLayer}
         isPreview
       />
     );
