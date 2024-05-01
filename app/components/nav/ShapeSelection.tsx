@@ -135,10 +135,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     : "";
 
   return (
-    <div
-      className={`scratch-wrap active-${isDots ? "dots" : "shapes"}`}
-      title={`Click dots to  ${isDots ? "add or remove them" : `add new ${activeLayer}`}`}
-    >
+    <div className={`scratch-wrap active-${isDots ? "dots" : "shapes"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 460 500"
@@ -186,6 +183,9 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           />
         </g>
       </svg>
+      <p className="scratch-info">
+        Click dots to {isDots ? <>add or remove them</> : <>add <strong>{activeLayer}</strong></>}
+      </p>
     </div>
   );
 };

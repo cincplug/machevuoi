@@ -580,9 +580,8 @@ label {
 .scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
-  background: var(--color-skin-mid-dark-semi) url(../app/assets/img/hand-model.svg) no-repeat 0 0;
+  background: url(../app/assets/img/hand-model.svg) no-repeat 0 0;
   background-size: 100%;
-  border: 1px solid var(--color-skin-mid-dark);
 }
 
 .scratch-layer {
@@ -594,6 +593,10 @@ label {
   display: grid;
   grid-template-columns: inherit;
   grid-gap: inherit;
+  background: var(--color-skin-mid-dark-semi);
+  border: 1px solid var(--color-skin-mid-dark);
+  margin: 0 -1rem;
+  padding: var(--gap) var(--gap-half);
   @include until {
     padding: var(--gap);
   }
@@ -654,6 +657,12 @@ label {
     stroke-width: 2px;
     stroke-dasharray: 5;
   }
+}
+
+.scratch-info {
+  padding: 0 var(--gap);
+  font-size: var(--font-size-m);
+  color: var(--color-skin-mid-light);
 }
 
 .message {
