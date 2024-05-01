@@ -42,6 +42,7 @@
 
   --color-black-light-semi: #222c;
   --color-skin-dark-semi: #27262580;
+  --color-skin-mid-dark-semi: #707c5230;
   --color-yellow-semi: #fd28;
 
   --gradient-dark: linear-gradient(
@@ -579,9 +580,9 @@ label {
 .scratch-svg {
   grid-column: span 12;
   transition: all 0.2s ease-in-out;
-  background: url(../app/assets/img/hand-model.svg) no-repeat -4px -10px;
-  background-size: 107%;
-  margin: 0 -0.5rem;
+  background: var(--color-skin-mid-dark-semi) url(../app/assets/img/hand-model.svg) no-repeat 0 0;
+  background-size: 100%;
+  border: 1px solid var(--color-skin-mid-dark);
 }
 
 .scratch-layer {
