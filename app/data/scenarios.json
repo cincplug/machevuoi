@@ -78,7 +78,7 @@
     "description": "Canvas mode, thick line",
     "icon": "🖋️",
     "speed": 3.2,
-    "radius": 26,
+    "radius": 24,
     "minimum": 1,
     "squeezeRatio": 50,
     "bg": "#e5e5e5",
@@ -128,7 +128,7 @@
   "pinch-canvas-brush": {
     "description": "Canvas mode, very thick line",
     "icon": "🖌️",
-    "radius": 53,
+    "radius": 32,
     "minimum": 1,
     "squeezeRatio": 46,
     "opacity": 128,
@@ -138,7 +138,7 @@
     "blendMode": "normal",
     "pattern": "canvas",
     "isScratchCanvas": false,
-    "dynamics": 0.5,
+    "dynamics": 0.8,
     "dash": 0
   },
   "scratch-canvas-narrow": {

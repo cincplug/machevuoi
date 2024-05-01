@@ -199,16 +199,14 @@ select {
   text-transform: capitalize;
 }
 
-input[type="range"],
-input[type="color"],
+input,
 select,
 button {
-  font-family: var(--font-family);
-  &:hover,
-  &:active,
-  &.highlight {
+  &:hover {
     background-color: var(--color-skin-mid-light);
+    cursor: pointer;
   }
+  font-family: var(--font-family);
 }
 
 input[type="url"] {
@@ -426,6 +424,7 @@ label {
     color: var(--color-skin-light);
   }
   .control:hover & {
+    cursor: pointer;
     color: var(--color-skin-light);
   }
 }
@@ -571,28 +570,6 @@ label {
   display: none;
 }
 
-.cursor {
-  position: absolute;
-  background: var(--color-blue);
-  width: var(--gap-double);
-  height: var(--gap-double);
-  border-radius: var(--gap);
-  transform: translate(-50%, -50%);
-  transition: all 0.1s ease-out;
-  &.fingertip {
-    opacity: 0.7;
-    width: var(--gap);
-    height: var(--gap);
-  }
-  &.active {
-    transform: translate(-50%, -50%) scale(0.5);
-    background: var(--color-blue-light);
-  }
-  &.wagging:first-of-type {
-    background: var(--color-red);
-  }
-}
-
 .bg {
   position: absolute;
   left: 0;
@@ -604,7 +581,7 @@ label {
   transition: all 0.2s ease-in-out;
   background: url(../app/assets/img/hand-model.svg) no-repeat -4px -10px;
   background-size: 107%;
-
+  margin: 0 -0.5rem;
 }
 
 .scratch-layer {
@@ -648,12 +625,14 @@ label {
   .active-dots & {
     &:hover {
       fill: var(--color-red-light);
+      cursor: pointer;
     }
   }
   .active-shapes & {
     &:hover {
       stroke-width: 2px;
       stroke: var(--color-skin-light);
+      cursor: pointer;
     }
   }
 }
@@ -664,6 +643,7 @@ label {
   stroke: var(--color-skin-mid-light);
   &:hover {
     stroke: var(--color-red-light);
+    cursor: pointer;
   }
   &.preview {
     fill: none;
