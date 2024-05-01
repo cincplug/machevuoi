@@ -58,6 +58,31 @@
     "isAutoClosed": true,
     "isScratchCanvas": false
   },
+  "pinch-paint-svg-watermelon": {
+    "pattern": "svg",
+    "radius": 9.5,
+    "minimum": 2,
+    "straightness": 5,
+    "pinchThreshold": 75,
+    "squeezeRatio": 40,
+    "opacity": 192,
+    "videoOpacity": 32,
+    "bg": "#289a09",
+    "color": "#ff8f8f",
+    "blendMode": "normal",
+    "pathStroke": "watermelons",
+    "dash": 0.5,
+    "isAutoClosed": true,
+    "text": "The fixed point that the element rotates around is also known as the transform origin.",
+    "fontSize": 57.5,
+    "speed": 1.5,
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": false,
+    "description": "Vector mode, watermelon pattern",
+    "icon": "🍉",
+    "imageUrl": ""
+  },
   "zipper": {
     "description": "Canvas mode resembling stitches or zippers pattern",
     "icon": "👖",
@@ -450,13 +475,17 @@
         [12, 14, 6],
         [16, 6, 14],
         [14, 16, 6],
-        [6, 14, 16]
+        [6, 14, 16],
+        [14, 4, 0],
+        [6, 19, 0]
       ],
       "arcs": [
         [6, 12],
         [14, 12],
         [6, 0],
-        [14, 0]
+        [14, 0],
+        [0, 6],
+        [0, 14]
       ],
       "diamonds": [],
       "rhomboids": [],
