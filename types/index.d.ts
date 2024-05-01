@@ -49,6 +49,7 @@ export type UpdateSetupType = {
 
 export type ShapeComponentProps = {
   shape: IShape;
+  title: string;
   onClick: any;
   isPreview?: boolean;
 };
