@@ -165,6 +165,8 @@ export const arraysHaveSameElements = (a: number[], b: number[]): boolean => {
   return true;
 };
 
+export const arraysAreEqual = (a: number[], b: number[]) => a.length === b.length && a.every((val: number, index: number) => val === b[index]);
+
 export const clearCanvases = (): void => {
   const canvasElements = document.querySelectorAll("canvas");
   canvasElements.forEach((canvas) => {

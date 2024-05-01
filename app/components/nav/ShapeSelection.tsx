@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dots from "../shapes/Dots";
 import Preview from "../shapes/Preview";
 import shapeComponents from "../shapes";
-import { arraysHaveSameElements, getExtendedHandPoints } from "../../utils";
+import { arraysAreEqual, getExtendedHandPoints } from "../../utils";
 import { getShape } from "../../utils";
 import { ISetup, UpdateSetupType, ShapeComponentsType } from "../../../types";
 
@@ -85,10 +85,10 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     const newScratchPoints = { ...scratchPoints };
     const path = controlPoint
       ? [startPoint, controlPoint, endPoint]
-      : [startPoint, endPoint].sort((a, b) => a - b);
+      : [startPoint, endPoint];
 
     const existingPathIndex = newScratchPoints[type].findIndex(
-      (existingPath: []) => arraysHaveSameElements(existingPath, path)
+      (existingPath: []) => arraysAreEqual(existingPath, path)
     );
 
     const addNewPath = () => {
