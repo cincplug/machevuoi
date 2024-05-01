@@ -60,6 +60,7 @@ const Preview: React.FC<PreviewProps> = ({
           endPoint: mousePoint
         }}
         onClick={() => {}}
+        title={activeLayer}
         isPreview
       />
     </>
