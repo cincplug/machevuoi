@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "@tensorflow/tfjs-backend-webgl";
 import Webcam from "react-webcam";
-import Image from "next/image";
 import { clearCanvases } from "../utils";
 import { runDetector } from "../utils/runDetector";
 import { getStoredSetup, storeSetup } from "../utils/storeSetup";
@@ -11,6 +10,7 @@ import MiniMenu from "./nav/MiniMenu";
 import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
+import Loader from "./Loader";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
 
@@ -288,15 +288,7 @@ const App: React.FC = () => {
       )}
       <MiniMenu {...{ setup, isStarted, updateSetup, handlePlayButtonClick }} />
       {message && <Message {...{ message, setMessage }} />}
-      {isStarted && !isDetectorRunning && (
-        <Image
-          className="loader"
-          src="/spinner.svg"
-          alt="Loading"
-          width={100}
-          height={100}
-        />
-      )}
+      {isStarted && !isDetectorRunning && <Loader color={setup.color} />}
     </div>
   );
 };
