@@ -21,10 +21,11 @@ const pathStrokes = ({
     } ${(thisPoint.y + nextPoint.y) / 2}`,
     lines: `L${thisPoint.x} ${thisPoint.y} `,
     cloud: `A${radius} ${radius} 0 0 1 ${thisPoint.x} ${thisPoint.y}`,
-    curls: `A14,14 0 0 1 ${nextPoint.x},${nextPoint.y}
-    A27,27 0 0 1 ${nextPoint.x},${nextPoint.y}
-    A22,22 0 0 1 ${thisPoint.x},${thisPoint.y}
-    A31,31 0 0 1 ${thisPoint.x},${thisPoint.y}`,
+    curls: `A1,1 0 0 1 ${thisPoint.x},${thisPoint.y}
+    A4,4 0 0 1 ${nextPoint.x},${nextPoint.y}
+    A6,6 0 0 1 ${thisPoint.x},${thisPoint.y}
+    A8,8 0 0 1 ${nextPoint.x},${nextPoint.y}
+    A11,11 0 0 1 ${thisPoint.x},${thisPoint.y}`,
     cable: `C${thisPoint.x + radius * radius},${
       thisPoint.y + radius * radius
     } ${nextPoint.x - radius * radius},${nextPoint.y - radius * radius} ${

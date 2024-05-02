@@ -59,26 +59,7 @@
     "isAutoClosed": false,
     "isScratchCanvas": false
   },
-  "pinch-svg-curls": {
-    "description": "Vector mode, comic curls pattern",
-    "icon": "➰",
-    "speed": 4.2,
-    "radius": 5,
-    "minimum": 2,
-    "dash": 0,
-    "squeezeRatio": 40,
-    "bg": "#aa7c2c",
-    "color": "#61baff",
-    "opacity": 224,
-    "videoOpacity": 32,
-    "blendMode": "overlay",
-    "pattern": "svg",
-    "imageUrl": "",
-    "pathStroke": "curls",
-    "text": "",
-    "isAutoClosed": false,
-    "isScratchCanvas": false
-  },
+
   "pinch-svg-watermelon": {
     "pattern": "svg",
     "radius": 14,
@@ -118,6 +99,25 @@
     "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
     "fontSize": 30
   },
+  "pinch-svg-flute": {
+    "description": "Vector mode, flute pattern",
+    "icon": "🪈",
+    "speed": 4.2,
+    "radius": 2,
+    "dash": 0,
+    "squeezeRatio": 40,
+    "bg": "#442e08",
+    "color": "#ddeeff",
+    "opacity": 192,
+    "videoOpacity": 32,
+    "blendMode": "normal",
+    "pattern": "svg",
+    "imageUrl": "",
+    "pathStroke": "curls",
+    "text": "",
+    "isAutoClosed": false,
+    "isScratchCanvas": false
+  },
   "pinch-canvas-pen": {
     "description": "Canvas mode, thick line",
     "icon": "🖋️",
@@ -155,7 +155,7 @@
   },
   "pinch-canvas-pencil": {
     "description": "Canvas mode, thin line",
-    "icon": "📝",
+    "icon": "✏️",
     "radius": 7,
     "minimum": 1,
     "squeezeRatio": 46,
@@ -183,6 +183,22 @@
     "pattern": "canvas",
     "isScratchCanvas": false,
     "dynamics": 0.8,
+    "dash": 0
+  },
+  "pinch-canvas-thread": {
+    "description": "Canvas mode resembling necklace",
+    "icon": "🧵",
+    "radius": 3,
+    "minimum": 1,
+    "opacity": 180,
+    "videoOpacity": 32,
+    "bg": "#65073e",
+    "color": "#ffe9ad",
+    "blendMode": "normal",
+    "pattern": "canvas",
+    "isScratchCanvas": false,
+    "activeLayer": "arcs",
+    "dynamics": 0.5,
     "dash": 0
   },
   "pinch-canvas-zipper": {
@@ -215,22 +231,6 @@
     "isScratchCanvas": false,
     "activeLayer": "ellipses",
     "dynamics": 0.3,
-    "dash": 0
-  },
-  "pinch-canvas-thread": {
-    "description": "Canvas mode resembling necklace",
-    "icon": "🧵",
-    "radius": 3,
-    "minimum": 1,
-    "opacity": 180,
-    "videoOpacity": 32,
-    "bg": "#65073e",
-    "color": "#ffe9ad",
-    "blendMode": "normal",
-    "pattern": "canvas",
-    "isScratchCanvas": false,
-    "activeLayer": "arcs",
-    "dynamics": 0.5,
     "dash": 0
   },
   "pinch-canvas-saw": {
