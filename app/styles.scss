@@ -603,6 +603,9 @@ label {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  &:first-child {
+    grid-column: 1 / span 2;
+  }
 
   $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
     rhomboids, squares, triangles;

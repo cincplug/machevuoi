@@ -8,6 +8,7 @@ type ShapePainter = (params: {
   startPoint: IPoint;
   endPoint: IPoint;
   controlPoint?: IPoint;
+  isAutoClosed?: boolean;
 }) => void;
 
 export const shapePainters: Record<string, ShapePainter> = {
@@ -33,12 +34,14 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx,
     startPoint,
     controlPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     controlPoint?: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "curves",
@@ -48,16 +51,19 @@ export const shapePainters: Record<string, ShapePainter> = {
     });
     ctx.moveTo(startPoint.x, startPoint.y);
     ctx.quadraticCurveTo(cpx, cpy, endPoint.x, endPoint.y);
+    if (isAutoClosed) ctx.closePath();
   },
 
   arcs: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { cpx, cpy } = getShapePoints({
       shape: "arcs",
@@ -66,6 +72,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     });
     ctx.moveTo(startPoint.x, startPoint.y);
     ctx.quadraticCurveTo(cpx, cpy, endPoint.x, endPoint.y);
+    if (isAutoClosed) ctx.closePath();
   },
 
   ellipses: ({
@@ -92,11 +99,13 @@ export const shapePainters: Record<string, ShapePainter> = {
   diamonds: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, apx, apy } = getShapePoints({
       shape: "diamonds",
@@ -107,17 +116,19 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.lineTo(cpx, cpy);
     ctx.lineTo(epx, epy);
     ctx.lineTo(apx, apy);
-    ctx.closePath();
+    if (isAutoClosed) ctx.closePath();
   },
 
   squares: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "squares",
@@ -128,17 +139,19 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.lineTo(cpx, cpy);
     ctx.lineTo(dpx, dpy);
     ctx.lineTo(epx, epy);
-    ctx.closePath();
+    if (isAutoClosed) ctx.closePath();
   },
 
   rhomboids: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rhomboids",
@@ -149,7 +162,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.lineTo(cpx, cpy);
     ctx.lineTo(epx, epy);
     ctx.lineTo(dpx, dpy);
-    ctx.closePath();
+    if (isAutoClosed) ctx.closePath();
   },
 
   circles: ({
@@ -173,11 +186,13 @@ export const shapePainters: Record<string, ShapePainter> = {
   rectangles: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
       shape: "rectangles",
@@ -188,17 +203,19 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.lineTo(cpx, cpy);
     ctx.lineTo(epx, epy);
     ctx.lineTo(dpx, dpy);
-    ctx.closePath();
+    if (isAutoClosed) ctx.closePath();
   },
 
   triangles: ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    isAutoClosed
   }: {
     ctx: CanvasContext;
     startPoint: IPoint;
     endPoint: IPoint;
+    isAutoClosed?: boolean;
   }): void => {
     const { spx, spy, epx, epy, tpx, tpy } = getShapePoints({
       shape: "triangles",
@@ -208,6 +225,6 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.moveTo(spx, spy);
     ctx.lineTo(tpx, tpy);
     ctx.lineTo(epx, epy);
-    ctx.closePath();
+    if (isAutoClosed) ctx.closePath();
   }
 };

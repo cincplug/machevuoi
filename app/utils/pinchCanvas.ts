@@ -12,6 +12,7 @@ interface PinchCanvasParams {
   lastX: number;
   lastY: number;
   activeLayer: string;
+  isAutoClosed: boolean;
 }
 
 export const pinchCanvas = ({
@@ -24,7 +25,8 @@ export const pinchCanvas = ({
   y,
   lastX,
   lastY,
-  activeLayer
+  activeLayer,
+  isAutoClosed
 }: PinchCanvasParams): void => {
   ctx.lineWidth = getLineWidth(radius, thumbIndexDistance, dynamics, minimum);
   const shapePainter = shapePainters[activeLayer];
@@ -37,7 +39,8 @@ export const pinchCanvas = ({
         ctx,
         startPoint: { x: lastX, y: lastY },
         endPoint: { x, y },
-        controlPoint: { x: (lastX + x) / 2, y: (lastY + y) / 2 }
+        controlPoint: { x: (lastX + x) / 2, y: (lastY + y) / 2 },
+        isAutoClosed
       });
     }
   } else {

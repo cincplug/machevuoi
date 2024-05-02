@@ -166,14 +166,6 @@
     "step": 0.1
   },
   {
-    "id": "isAutoClosed",
-    "title": "Auto-close",
-    "description": "Whether to automatically close the path",
-    "isHandRelated": true,
-    "value": false,
-    "type": "checkbox"
-  },
-  {
     "id": "text",
     "title": "Text",
     "description": "Text to go along paths",
@@ -254,6 +246,14 @@
       "saturation",
       "color"
     ]
+  },
+  {
+    "id": "isAutoClosed",
+    "title": "Auto-close",
+    "description": "Whether to automatically close the path",
+    "isHandRelated": true,
+    "value": false,
+    "type": "checkbox"
   },
   {
     "id": "doesWagDelete",

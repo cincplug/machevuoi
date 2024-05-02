@@ -65,7 +65,8 @@ export const processHands = ({
     composite,
     isCapsLock,
     activeLayer,
-    straightness
+    straightness,
+    isAutoClosed
   } = setup;
 
   const shapeNames = [
@@ -191,7 +192,8 @@ export const processHands = ({
           lastTips: lastTips || [],
           dynamics,
           shapes: shapes as IShapes,
-          handIndex: handIndex as number
+          handIndex: handIndex as number,
+          isAutoClosed: isAutoClosed as boolean
         });
         lastTips = tips as IPoint[];
       }
@@ -206,7 +208,8 @@ export const processHands = ({
           y,
           lastX: lastX || x,
           lastY: lastY || y,
-          activeLayer
+          activeLayer,
+          isAutoClosed: isAutoClosed as boolean
         });
       }
     } else {

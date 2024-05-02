@@ -12,6 +12,7 @@ interface ScratchCanvasOptions {
   dynamics: number;
   shapes: IShapes;
   handIndex: number;
+  isAutoClosed: boolean;
 }
 
 export const scratchCanvas = ({
@@ -22,7 +23,8 @@ export const scratchCanvas = ({
   lastTips,
   dynamics,
   shapes,
-  handIndex
+  handIndex,
+  isAutoClosed
 }: ScratchCanvasOptions): void => {
   ctx.beginPath();
   const shapeTipDistance = getAverageDistance(
@@ -39,13 +41,14 @@ export const scratchCanvas = ({
   Object.keys(shapes).forEach((shapeName) => {
     const shapeList = shapes[shapeName as keyof IShapes];
     shapeList.forEach((shape: IShape) => {
-      const painter = shapePainters[shapeName];
-      if (painter) {
-        painter({
+      const shapePainter = shapePainters[shapeName];
+      if (shapePainter) {
+        shapePainter({
           ctx,
           startPoint: shape.startPoint,
           endPoint: shape.endPoint,
-          controlPoint: shape.controlPoint
+          controlPoint: shape.controlPoint,
+          isAutoClosed
         });
       }
     });
