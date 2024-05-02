@@ -170,7 +170,6 @@
     "title": "Auto-close",
     "description": "Whether to automatically close the path",
     "isHandRelated": true,
-    "parentPattern": "svg",
     "value": false,
     "type": "checkbox"
   },
