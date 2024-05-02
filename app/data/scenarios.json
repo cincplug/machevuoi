@@ -164,7 +164,7 @@
   "pinch-canvas-necklace": {
     "description": "Canvas mode resembling necklace",
     "icon": "📿",
-    "radius": 2,
+    "radius": 6,
     "minimum": 1,
     "opacity": 180,
     "videoOpacity": 32,
@@ -174,13 +174,13 @@
     "pattern": "canvas",
     "isScratchCanvas": false,
     "activeLayer": "ellipses",
-    "dynamics": 0.5,
+    "dynamics": 0.3,
     "dash": 0
   },
   "pinch-canvas-thread": {
     "description": "Canvas mode resembling necklace",
     "icon": "🧵",
-    "radius": 2,
+    "radius": 3,
     "minimum": 1,
     "opacity": 180,
     "videoOpacity": 32,
@@ -321,7 +321,6 @@
     "dash": 0
   },
   "scratch-canvas-fist": {
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -383,12 +382,10 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, fist pattern",
     "icon": "✊"
   },
   "scratch-canvas-house": {
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -437,12 +434,10 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, house pattern",
     "icon": "🏠"
   },
   "scratch-canvas-plant": {
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -486,12 +481,10 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, plant pattern",
     "icon": "🌿"
   },
   "scratch-canvas-tulip": {
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -504,7 +497,6 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
     "text": "",
     "scratchPoints": {
       "dots": [14, 8, 12, 16, 6, 4, 0],
@@ -543,13 +535,11 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, plant pattern",
     "icon": "🌷"
   },
   "scratch-canvas-book": {
     "icon": "📖",
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -562,8 +552,6 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
-    "text": "",
     "scratchPoints": {
       "dots": [8, 5, 17, 20],
       "lines": [
@@ -592,11 +580,9 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, book pattern"
   },
   "scratch-canvas-bicycle": {
-    "theme": "default",
     "pattern": "canvas",
     "radius": 5,
     "minimum": 1,
@@ -649,7 +635,6 @@
     "dash": 0,
     "dynamics": 0.5,
     "composite": "source-over",
-    "doesWagDelete": true,
     "description": "Canvas mode, bicycle pattern",
     "icon": "🚲"
   },

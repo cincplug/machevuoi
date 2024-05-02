@@ -60,7 +60,7 @@ const ScenarioSelection: React.FC<IProps> = ({
         const scenario = scenarios[scenarioKey];
         return (
           <button
-            className={`${notoEmoji.className} ${
+            className={`${notoEmoji.className} icon-button ${
               index === setup.activeScenarioIndex ? "active" : "inactive"
             }`}
             title={scenario?.description}

@@ -323,17 +323,8 @@ ol {
 
 .scenarios {
   button {
-    grid-column: span 3;
-    font-size: 1.7rem;
-    padding: 0.4rem;
-    box-shadow: 0 0.3rem 0.4rem #0002,
-      0 -0.1rem 0 0.05rem var(--color-skin-light);
-    &.inactive:not(:hover) {
-      background: var(--gradient-dolce);
-    }
-    @include until {
-      grid-column: span 2;
-    }
+    font-size: 1.4rem;
+    padding: 0;
   }
 }
 
