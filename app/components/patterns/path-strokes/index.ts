@@ -5,8 +5,7 @@ type StrokeType =
   | "cloud"
   | "blast"
   | "beziers"
-  | "peas"
-  | "watermelons";
+  | "peas";
 
 interface PathStrokeProps {
   pathStroke: StrokeType;
@@ -34,8 +33,7 @@ const pathStrokes = ({
     blast: `Q ${thisPoint.x} ${thisPoint.y} ${controlPoint.x} ${controlPoint.y}`,
     peas: `C ${nextPoint.x} ${nextPoint.y}, ${nextPoint.x} ${
       nextPoint.y
-    }, ${(nextPoint.x + thisPoint.x) / 2} ${(nextPoint.y + thisPoint.y) / 2}`,
-    watermelons: `A${radius} ${radius} 1 0 1 ${thisPoint.x} ${thisPoint.y} Z`
+    }, ${(nextPoint.x + thisPoint.x) / 2} ${(nextPoint.y + thisPoint.y) / 2}`
   };
   return strokeDefinitions[pathStroke];
 };
