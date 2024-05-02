@@ -585,10 +585,9 @@ label {
   grid-gap: inherit;
   background: color-mix(
     in lch,
-    var(--color-skin-mid-dark) 40%,
+    var(--color-skin-mid) 20%,
     var(--color-skin-dark)
   );
-  border: 1px solid var(--color-skin-mid-dark);
   margin: 0 -1rem;
   padding: var(--gap) var(--gap-half);
   @include until {
@@ -618,7 +617,7 @@ label {
 .scratch-dot {
   fill: color-mix(
     in lch,
-    var(--color-skin-mid-dark) 70%,
+    var(--color-skin-mid-dark) 40%,
     var(--color-skin-mid)
   );
   &.selected {
