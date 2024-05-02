@@ -1,5 +1,5 @@
 {
-  "pinch-paint-svg": {
+  "pinch-svg": {
     "description": "Vector mode, no text",
     "icon": "👌",
     "speed": 3.2,
@@ -19,26 +19,7 @@
     "isScratchCanvas": false,
     "text": ""
   },
-  "railway": {
-    "description": "Vector mode, text imitating model railway",
-    "icon": "🚂",
-    "speed": 1.6,
-    "radius": 8,
-    "minimum": 5,
-    "dash": 2,
-    "squeezeRatio": 40,
-    "color": "#000000",
-    "bg": "#f4f074",
-    "opacity": 192,
-    "videoOpacity": 32,
-    "blendMode": "normal",
-    "pattern": "svg",
-    "pathStroke": "lines",
-    "isScratchCanvas": false,
-    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
-    "fontSize": 30
-  },
-  "pinch-paint-svg-cloud": {
+  "pinch-svg-cloud": {
     "description": "Vector mode, cloud pattern",
     "icon": "☁️",
     "speed": 4.2,
@@ -58,7 +39,47 @@
     "isAutoClosed": true,
     "isScratchCanvas": false
   },
-  "pinch-paint-svg-watermelon": {
+  "pinch-svg-cable": {
+    "description": "Vector mode, old phone cable pattern",
+    "icon": "📞",
+    "speed": 4.2,
+    "radius": 5,
+    "minimum": 2,
+    "dash": 0,
+    "squeezeRatio": 40,
+    "bg": "#aa2c2c",
+    "color": "#e5e5e5",
+    "opacity": 192,
+    "videoOpacity": 32,
+    "blendMode": "normal",
+    "pattern": "svg",
+    "imageUrl": "",
+    "pathStroke": "cable",
+    "text": "",
+    "isAutoClosed": false,
+    "isScratchCanvas": false
+  },
+  "pinch-svg-curls": {
+    "description": "Vector mode, comic curls pattern",
+    "icon": "➰",
+    "speed": 4.2,
+    "radius": 5,
+    "minimum": 2,
+    "dash": 0,
+    "squeezeRatio": 40,
+    "bg": "#aa7c2c",
+    "color": "#61baff",
+    "opacity": 224,
+    "videoOpacity": 32,
+    "blendMode": "overlay",
+    "pattern": "svg",
+    "imageUrl": "",
+    "pathStroke": "curls",
+    "text": "",
+    "isAutoClosed": false,
+    "isScratchCanvas": false
+  },
+  "pinch-svg-watermelon": {
     "pattern": "svg",
     "radius": 14,
     "straightness": 15,
@@ -77,6 +98,25 @@
     "description": "Vector mode, watermelon pattern",
     "icon": "🍉",
     "imageUrl": ""
+  },
+  "pinch-svg-railway": {
+    "description": "Vector mode, text imitating model railway",
+    "icon": "🚂",
+    "speed": 1.6,
+    "radius": 8,
+    "minimum": 5,
+    "dash": 2,
+    "squeezeRatio": 40,
+    "color": "#000000",
+    "bg": "#f4f074",
+    "opacity": 192,
+    "videoOpacity": 32,
+    "blendMode": "normal",
+    "pattern": "svg",
+    "pathStroke": "lines",
+    "isScratchCanvas": false,
+    "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
+    "fontSize": 30
   },
   "pinch-canvas-pen": {
     "description": "Canvas mode, thick line",
