@@ -72,6 +72,7 @@
     "value": 100,
     "isHandRelated": true,
     "parentPattern": "canvas",
+    "isScratchCanvasRelated": true,
     "type": "range",
     "min": 1,
     "max": 200,
