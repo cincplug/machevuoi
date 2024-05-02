@@ -202,11 +202,15 @@ select {
 input,
 select,
 button {
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+select,
+button {
   &:hover {
     background-color: var(--color-skin-mid-light);
-    cursor: pointer;
   }
-  font-family: var(--font-family);
 }
 
 input[type="url"] {
