@@ -118,10 +118,10 @@ const App: React.FC = () => {
   }, [isClient]);
 
   useEffect(() => {
-    if (setup.doesWagDelete && cursor.isWagging && setup.pattern !== "canvas") {
+    if (setup.doesWagDelete && cursor.isWagging && setup.output !== "canvas") {
       clearPaths();
     }
-  }, [cursor.isWagging, setup.pattern, setup.doesWagDelete]);
+  }, [cursor.isWagging, setup.output, setup.doesWagDelete]);
 
   useEffect(() => {
     if (!cursor.isPinched && scribbleNewArea.length > 0) {
@@ -244,7 +244,7 @@ const App: React.FC = () => {
           />
           <canvas
             className={`canvas preview-canvas ${
-              setup.pattern !== "canvas" ? "hidden" : ""
+              setup.output !== "canvas" ? "hidden" : ""
             }`}
             ref={previewCanvasRef}
             width={width}
@@ -252,13 +252,13 @@ const App: React.FC = () => {
           ></canvas>
           <canvas
             className={`canvas drawing-canvas ${
-              setup.pattern !== "canvas" ? "hidden" : ""
+              setup.output !== "canvas" ? "hidden" : ""
             }`}
             ref={drawingCanvasRef}
             width={width}
             height={height}
           ></canvas>
-          {setup.pattern !== "canvas" && (
+          {setup.output !== "canvas" && (
             <>
               <Drawing
                 {...{

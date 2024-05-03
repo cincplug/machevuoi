@@ -12,7 +12,7 @@
     "opacity": 128,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "svg",
+    "output": "svg",
     "imageUrl": "",
     "pathStroke": "beziers",
     "isAutoClosed": false,
@@ -32,7 +32,7 @@
     "opacity": 192,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "svg",
+    "output": "svg",
     "imageUrl": "",
     "pathStroke": "cloud",
     "text": "",
@@ -52,7 +52,7 @@
     "opacity": 192,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "svg",
+    "output": "svg",
     "imageUrl": "",
     "pathStroke": "cable",
     "text": "",
@@ -71,7 +71,7 @@
     "opacity": 192,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "svg",
+    "output": "svg",
     "imageUrl": "",
     "pathStroke": "flute",
     "text": "",
@@ -79,7 +79,7 @@
     "isScratchCanvas": false
   },
   "pinch-svg-watermelon": {
-    "pattern": "svg",
+    "output": "svg",
     "radius": 10,
     "straightness": 15,
     "opacity": 192,
@@ -111,7 +111,7 @@
     "opacity": 192,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "svg",
+    "output": "svg",
     "pathStroke": "lines",
     "isScratchCanvas": false,
     "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
@@ -129,7 +129,7 @@
     "opacity": 128,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "dynamics": 0.9,
     "dash": 0
@@ -145,7 +145,7 @@
     "opacity": 192,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "imageUrl": "",
     "pathStroke": "beziers",
     "isScratchCanvas": false,
@@ -163,7 +163,7 @@
     "opacity": 74,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "dynamics": 0.5,
     "dash": 0
@@ -179,7 +179,7 @@
     "bg": "#e5e5e5",
     "color": "#00751d",
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "dynamics": 0.8,
     "dash": 0
@@ -194,7 +194,7 @@
     "bg": "#65073e",
     "color": "#ffe9ad",
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "activeLayer": "arcs",
     "dynamics": 0.5,
@@ -211,7 +211,7 @@
     "bg": "#2465dd",
     "color": "#ffe9ad",
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "dynamics": 0.5,
     "dash": 3
@@ -226,7 +226,7 @@
     "bg": "#35076e",
     "color": "#ffe9ad",
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "activeLayer": "ellipses",
     "dynamics": 0.3,
@@ -242,7 +242,7 @@
     "bg": "#35670e",
     "color": "#ffe9ad",
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": false,
     "activeLayer": "triangles",
     "dynamics": 0.5,
@@ -258,7 +258,7 @@
     "opacity": 128,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": true,
     "squeezeRatio": 10,
     "scratchPoints": {
@@ -287,7 +287,7 @@
     "opacity": 128,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": true,
     "squeezeRatio": 100,
     "scratchPoints": {
@@ -336,7 +336,7 @@
     "opacity": 128,
     "videoOpacity": 32,
     "blendMode": "normal",
-    "pattern": "canvas",
+    "output": "canvas",
     "isScratchCanvas": true,
     "squeezeRatio": 128,
     "scratchPoints": {
@@ -360,7 +360,7 @@
     "dash": 0
   },
   "scratch-canvas-fist": {
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -425,7 +425,7 @@
     "icon": "✊"
   },
   "scratch-canvas-house": {
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -477,7 +477,7 @@
     "icon": "🏠"
   },
   "scratch-canvas-plant": {
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -524,7 +524,7 @@
     "icon": "🌿"
   },
   "scratch-canvas-tulip": {
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -579,7 +579,7 @@
   },
   "scratch-canvas-book": {
     "icon": "📖",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -622,7 +622,7 @@
     "description": "Canvas mode, book pattern"
   },
   "scratch-canvas-bicycle": {
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -679,7 +679,7 @@
   },
   "scratch-canvas-fish": {
     "icon": "🐟",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -720,7 +720,7 @@
   "scratch-canvas-frog": {
     "icon": "🐸",
     "description": "Canvas mode, frog pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -780,7 +780,7 @@
   "scratch-canvas-duck": {
     "icon": "🦆",
     "description": "Canvas mode, duck pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -834,7 +834,7 @@
   "scratch-canvas-fox": {
     "icon": "🦊",
     "description": "Canvas mode, fox pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -881,7 +881,7 @@
   "scratch-canvas-dog": {
     "icon": "🐶",
     "description": "Canvas mode, dog pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -939,7 +939,7 @@
   "scratch-canvas-cat": {
     "icon": "😺",
     "description": "Canvas mode, cat pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -987,7 +987,7 @@
   "scratch-canvas-cow": {
     "icon": "🐄",
     "description": "Canvas mode, cow pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
@@ -1041,7 +1041,7 @@
   "scratch-canvas-monkey": {
     "icon": "🐵",
     "description": "Canvas mode, monkey pattern",
-    "pattern": "canvas",
+    "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,

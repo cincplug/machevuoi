@@ -10,8 +10,8 @@
     "options": ["default", "cognizant"]
   },
   {
-    "id": "pattern",
-    "title": "Pattern",
+    "id": "output",
+    "title": "Output",
     "description": "What sort of graphics is used",
     "isHidden": true,
     "value": "numbers",
@@ -36,7 +36,7 @@
     "value": 5,
     "type": "range",
     "isHandRelated": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "min": 0,
     "max": 20,
     "step": 1
@@ -48,7 +48,7 @@
     "value": 10,
     "type": "range",
     "isHandRelated": true,
-    "parentPattern": "svg",
+    "parentOutput": "svg",
     "min": 5,
     "max": 100,
     "step": 1
@@ -68,10 +68,10 @@
   {
     "id": "squeezeRatio",
     "title": "Squeeze",
-    "description": "How much the hand pattern will be scaled up or down",
+    "description": "How much the hand output will be scaled up or down",
     "value": 100,
     "isHandRelated": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "isScratchCanvasRelated": true,
     "type": "range",
     "min": 1,
@@ -144,7 +144,7 @@
     "value": "beziers",
     "type": "select",
     "isHandRelated": true,
-    "parentPattern": "svg",
+    "parentOutput": "svg",
     "options": [
       "beziers",
       "lines",
@@ -169,7 +169,7 @@
     "title": "Text",
     "description": "Text to go along paths",
     "isHandRelated": true,
-    "parentPattern": "svg",
+    "parentOutput": "svg",
     "value": "",
     "type": "text"
   },
@@ -179,7 +179,7 @@
     "description": "Font size of text along paths",
     "value": 12,
     "isHandRelated": true,
-    "parentPattern": "svg",
+    "parentOutput": "svg",
     "type": "range",
     "min": 8,
     "max": 100,
@@ -189,7 +189,7 @@
     "id": "speed",
     "title": "Speed",
     "description": "Speed of transitions",
-    "parentPattern": "svg",
+    "parentOutput": "svg",
     "value": 2,
     "type": "range",
     "isHandRelated": true,
@@ -203,7 +203,7 @@
     "description": "Determines how much distance between fingers influences line width",
     "value": 1,
     "isHandRelated": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "isScratchCanvasRelated": false,
     "type": "range",
     "min": 0.1,
@@ -215,7 +215,7 @@
     "title": "Composite",
     "description": "Composite operation (blending mode within the canvas)",
     "isHandRelated": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "value": "source-over",
     "type": "select",
     "options": [
@@ -326,7 +326,7 @@
     "title": "Scratch points",
     "description": "Defines which hand points are used to draw on scratch canvas",
     "isHandRelated": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "isHidden": true,
     "value": {
       "dots": [4, 8, 12, 16, 20],
@@ -359,7 +359,7 @@
     "isHandRelated": true,
     "isOmittedInScenario": true,
     "isButtons": true,
-    "parentPattern": "canvas",
+    "parentOutput": "canvas",
     "value": "dots",
     "type": "select",
     "options": [

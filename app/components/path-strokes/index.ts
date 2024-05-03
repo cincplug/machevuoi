@@ -1,4 +1,4 @@
-import { IPoint } from "../../../../types";
+import { IPoint } from "../../../types";
 
 type StrokeType = "lines" | "cloud" | "flute" | "beziers" | "cable";
 

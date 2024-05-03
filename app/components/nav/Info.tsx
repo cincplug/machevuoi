@@ -5,15 +5,15 @@ interface IProps {
 }
 
 const Info: React.FC<IProps> = ({ setup }) => {
-  const { pattern, isScratchCanvas } = setup;
+  const { output, isScratchCanvas } = setup;
   return (
     <div className="info">
-      {pattern !== "canvas" || !isScratchCanvas ? (
+      {output !== "canvas" || !isScratchCanvas ? (
         <p>Use thumb and forefinger to draw 👌 </p>
       ) : (
         <p>Use whole hand to draw 🖐️🤘🫱✌️</p>
       )}{" "}
-      {pattern === "canvas" ? (
+      {output === "canvas" ? (
         <>
           <p>Grip affects line width depending on dynamics</p>
         </>

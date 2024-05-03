@@ -47,7 +47,7 @@ export const processHands = ({
   pctx: CanvasRenderingContext2D | null;
 }) => {
   const {
-    pattern,
+    output,
     radius,
     color,
     opacity,
@@ -158,7 +158,7 @@ export const processHands = ({
     const x = (thumbTip.x + indexTip.x) / 2;
     const y = (thumbTip.y + indexTip.y) / 2;
 
-    if (pattern === "canvas") {
+    if (output === "canvas") {
       const ctx = isDrawing ? dctx : pctx;
       if (ctx === null) return null;
       if (!isDrawing && handIndex === 0) {

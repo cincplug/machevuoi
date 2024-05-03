@@ -14,7 +14,7 @@ interface IControlItem {
   min?: number;
   max?: number;
   step?: number;
-  parentPattern?: string | string[];
+  parentOutput?: string | string[];
   isHidden?: boolean;
   isStoringPrevented?: boolean;
 }

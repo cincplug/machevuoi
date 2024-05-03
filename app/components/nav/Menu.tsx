@@ -22,7 +22,7 @@ const Menu: React.FC<IProps> = ({
   updateSetup,
   clearPaths
 }) => {
-  const { pattern, isScratchCanvas } = setup;
+  const { output, isScratchCanvas } = setup;
   return (
     <section className="controls">
       <aside className={`menu primary`}>
@@ -31,8 +31,8 @@ const Menu: React.FC<IProps> = ({
           controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
-              (!control.parentPattern ||
-                control.parentPattern.includes(pattern)) &&
+              (!control.parentOutput ||
+                control.parentOutput.includes(output)) &&
               !control.isHandRelated
           )}
         />
@@ -62,13 +62,13 @@ const Menu: React.FC<IProps> = ({
           controls={CONTROLS.filter(
             (control) =>
               !control.isHidden &&
-              (!control.parentPattern ||
-                control.parentPattern.includes(pattern)) &&
+              (!control.parentOutput ||
+                control.parentOutput.includes(output)) &&
               control.isHandRelated &&
               (isScratchCanvas || !control.isScratchCanvasRelated)
           )}
         />
-        {isScratchCanvas && pattern === "canvas" && (
+        {isScratchCanvas && output === "canvas" && (
           <ShapeSelection {...{ setup, updateSetup }} />
         )}
       </aside>

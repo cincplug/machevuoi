@@ -1,5 +1,5 @@
 import React from "react";
-import pathStrokes from "./patterns/path-strokes";
+import pathStrokes from "./path-strokes";
 import { processColor } from "../utils";
 import { ISetup, IPoint, ICursor } from "../../types";
 
