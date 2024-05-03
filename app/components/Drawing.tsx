@@ -28,7 +28,6 @@ const Drawing: React.FC<IProps> = ({
     speed,
     text,
     fontSize,
-    minimum,
     dash
   } = setup;
 
@@ -59,7 +58,6 @@ const Drawing: React.FC<IProps> = ({
                   pathStroke: pathStroke,
                   thisPoint: point,
                   nextPoint,
-                  controlPoint,
                   radius,
                 });
               } else {
