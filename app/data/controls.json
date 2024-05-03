@@ -268,7 +268,6 @@
     "title": "Pinch draw 👌",
     "description": "Whether to draw by pinching fingers",
     "isHandRelated": true,
-    "isOmittedInPattern": true,
     "value": true,
     "type": "checkbox"
   },

@@ -131,6 +131,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "activeLayer": "lines",
     "dynamics": 0.9,
     "dash": 0
   },
@@ -147,8 +148,9 @@
     "blendMode": "normal",
     "output": "canvas",
     "imageUrl": "",
-    "pathStroke": "beziers",
     "isScratchCanvas": false,
+    "activeLayer": "curves",
+    "isAutoClosed": true,
     "dynamics": 0.8,
     "dash": 0.5
   },
@@ -165,10 +167,11 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "activeLayer": "lines",
     "dynamics": 0.5,
     "dash": 0
   },
-  "pinch-canvas-brush": {
+  "pinch-canvas-paintbrush": {
     "description": "Canvas mode, very thick line",
     "icon": "🖌️",
     "radius": 32,
@@ -181,7 +184,80 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "activeLayer": "curves",
+    "isAutoClosed": true,
     "dynamics": 0.8,
+    "dash": 0
+  },
+  "pinch-canvas-toothbrush": {
+    "description": "Canvas mode, very thick line",
+    "icon": "🪥",
+    "radius": 4.5,
+    "minimum": 3,
+    "squeezeRatio": 46,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#e5e5e5",
+    "color": "#75001d",
+    "blendMode": "normal",
+    "output": "canvas",
+    "isScratchCanvas": false,
+    "activeLayer": "squares",
+    "isAutoClosed": false,
+    "dynamics": 0.6,
+    "dash": 0
+  },
+  "pinch-canvas-kite": {
+    "description": "Canvas mode, kite pattern",
+    "icon": "🪁",
+    "radius": 4.5,
+    "minimum": 2,
+    "squeezeRatio": 46,
+    "opacity": 192,
+    "videoOpacity": 32,
+    "bg": "#e5e5e5",
+    "color": "#2465dd",
+    "blendMode": "normal",
+    "output": "canvas",
+    "isScratchCanvas": false,
+    "activeLayer": "diamonds",
+    "isAutoClosed": true,
+    "dynamics": 0.6,
+    "dash": 0
+  },
+  "pinch-canvas-sun": {
+    "description": "Canvas mode, sun pattern",
+    "icon": "☀️",
+    "radius": 30,
+    "minimum": 1,
+    "squeezeRatio": 46,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#75001d",
+    "color": "#ffdd00",
+    "blendMode": "normal",
+    "output": "canvas",
+    "isScratchCanvas": false,
+    "activeLayer": "circles",
+    "dynamics": 0.6,
+    "dash": 5
+  },
+  "pinch-canvas-moon": {
+    "description": "Canvas mode, moon pattern",
+    "icon": "🌛",
+    "radius": 19,
+    "minimum": 1,
+    "squeezeRatio": 46,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#1d0075",
+    "color": "#ffdd00",
+    "blendMode": "normal",
+    "output": "canvas",
+    "isScratchCanvas": false,
+    "activeLayer": "arcs",
+    "isAutoClosed": true,
+    "dynamics": 0.6,
     "dash": 0
   },
   "pinch-canvas-thread": {
@@ -196,6 +272,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "isAutoClosed": false,
     "activeLayer": "arcs",
     "dynamics": 0.5,
     "dash": 0
@@ -206,13 +283,14 @@
     "radius": 22,
     "minimum": 5,
     "squeezeRatio": 46,
-    "opacity": 120,
+    "opacity": 192,
     "videoOpacity": 32,
-    "bg": "#2465dd",
+    "bg": "#1d4575",
     "color": "#ffe9ad",
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "activeLayer": "lines",
     "dynamics": 0.5,
     "dash": 3
   },
@@ -239,10 +317,11 @@
     "minimum": 1,
     "opacity": 180,
     "videoOpacity": 32,
-    "bg": "#35670e",
+    "bg": "#45570e",
     "color": "#ffe9ad",
     "blendMode": "normal",
     "output": "canvas",
+    "isAutoClosed": false,
     "isScratchCanvas": false,
     "activeLayer": "triangles",
     "dynamics": 0.5,
@@ -260,6 +339,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": true,
+    "doesPinchDraw": true,
     "squeezeRatio": 10,
     "scratchPoints": {
       "dots": [4, 8, 12, 16, 20],
@@ -280,7 +360,7 @@
   "scratch-canvas-mid": {
     "description": "Canvas mode, various shapes, not squeezed",
     "icon": "✋",
-    "radius": 5,
+    "radius": 1.5,
     "minimum": 1,
     "bg": "#e5e5e5",
     "color": "#141516",
@@ -289,38 +369,31 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": true,
+    "doesPinchDraw": true,
     "squeezeRatio": 100,
     "scratchPoints": {
       "dots": [],
-      "lines": [
-        [6, 7],
-        [10, 11],
-        [14, 15],
-        [18, 19]
-      ],
+      "lines": [],
       "curves": [],
       "arcs": [],
       "diamonds": [
-        [7, 8],
-        [11, 12],
-        [15, 16],
-        [19, 20]
       ],
       "rhomboids": [],
       "rectangles": [],
       "triangles": [
+        [7, 8],
+        [11, 12],
+        [15, 16],
+        [19, 20],
         [3, 4],
         [1, 2],
         [0, 1],
         [2, 3]
       ],
-      "squares": [],
-      "circles": [
-        [5, 6],
-        [9, 10],
-        [17, 18],
-        [13, 14]
+      "squares": [
+
       ],
+      "circles": [],
       "ellipses": []
     },
     "dynamics": 0.5,
@@ -338,16 +411,18 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": true,
+    "doesPinchDraw": true,
     "squeezeRatio": 128,
     "scratchPoints": {
-      "dots": [20, 8, 12, 16],
-      "lines": [
-        [8, 12],
-        [12, 16],
-        [16, 20]
-      ],
+      "dots": [20, 8, 12, 16, 4],
+      "lines": [],
       "curves": [],
-      "arcs": [],
+      "arcs": [
+        [12, 16],
+        [16, 20],
+        [12, 8],
+        [8, 4]
+      ],
       "diamonds": [],
       "rhomboids": [],
       "rectangles": [],
@@ -371,7 +446,8 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
-    "isAutoClosed": false,
+    "doesPinchDraw": true,
+    "isAutoClosed": true,
     "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
@@ -436,6 +512,7 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "isAutoClosed": false,
     "activePatternIndex": 11,
     "text": "",
@@ -476,6 +553,56 @@
     "description": "Canvas mode, house pattern",
     "icon": "🏠"
   },
+  "scratch-canvas-castle": {
+    "description": "Canvas mode, various shapes, not squeezed",
+    "icon": "🏰",
+    "radius": 5,
+    "minimum": 1,
+    "bg": "#e5e5e5",
+    "color": "#141516",
+    "opacity": 128,
+    "videoOpacity": 32,
+    "blendMode": "normal",
+    "output": "canvas",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "squeezeRatio": 100,
+    "scratchPoints": {
+      "dots": [],
+      "lines": [
+        [6, 7],
+        [10, 11],
+        [14, 15],
+        [18, 19]
+      ],
+      "curves": [],
+      "arcs": [],
+      "diamonds": [
+        [7, 8],
+        [11, 12],
+        [15, 16],
+        [19, 20]
+      ],
+      "rhomboids": [],
+      "rectangles": [],
+      "triangles": [
+        [3, 4],
+        [1, 2],
+        [0, 1],
+        [2, 3]
+      ],
+      "squares": [],
+      "circles": [
+        [5, 6],
+        [9, 10],
+        [17, 18],
+        [13, 14]
+      ],
+      "ellipses": []
+    },
+    "dynamics": 0.5,
+    "dash": 0
+  },
   "scratch-canvas-plant": {
     "output": "canvas",
     "radius": 5,
@@ -488,6 +615,7 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "isAutoClosed": false,
     "activePatternIndex": 11,
     "text": "",
@@ -535,6 +663,7 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "isAutoClosed": false,
     "text": "",
     "scratchPoints": {
@@ -590,6 +719,7 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "isAutoClosed": false,
     "scratchPoints": {
       "dots": [8, 5, 17, 20],
@@ -633,6 +763,7 @@
     "blendMode": "normal",
     "pathStroke": "beziers",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "isAutoClosed": false,
     "activePatternIndex": 11,
     "text": "",
@@ -695,6 +826,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [[0, 17]],
@@ -736,6 +868,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [4, 2, 7, 19],
       "lines": [
@@ -796,6 +929,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [
@@ -850,6 +984,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [
@@ -897,6 +1032,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [8, 7],
       "lines": [
@@ -955,6 +1091,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [
@@ -1003,6 +1140,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [
@@ -1057,6 +1195,7 @@
     "dynamics": 0.5,
     "composite": "source-over",
     "isScratchCanvas": true,
+    "doesPinchDraw": false,
     "scratchPoints": {
       "dots": [],
       "lines": [
