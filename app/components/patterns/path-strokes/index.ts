@@ -1,6 +1,6 @@
 import { IPoint } from "../../../../types";
 
-type StrokeType = "lines" | "cloud" | "curls" | "beziers" | "cable";
+type StrokeType = "lines" | "cloud" | "flute" | "beziers" | "cable";
 
 interface PathStrokeProps {
   pathStroke: StrokeType;
@@ -21,7 +21,7 @@ const pathStrokes = ({
     } ${(thisPoint.y + nextPoint.y) / 2}`,
     lines: `L${thisPoint.x} ${thisPoint.y} `,
     cloud: `A${radius} ${radius} 0 0 1 ${thisPoint.x} ${thisPoint.y}`,
-    curls: `A1,1 0 0 1 ${thisPoint.x},${thisPoint.y}
+    flute: `A1,1 0 0 1 ${thisPoint.x},${thisPoint.y}
     A4,4 0 0 1 ${nextPoint.x},${nextPoint.y}
     A6,6 0 0 1 ${thisPoint.x},${thisPoint.y}
     A8,8 0 0 1 ${nextPoint.x},${nextPoint.y}
