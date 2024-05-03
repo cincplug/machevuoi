@@ -372,7 +372,7 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
+    "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
       "dots": [],
@@ -437,7 +437,7 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
+    "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
       "dots": [],
@@ -489,7 +489,7 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
+    "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
       "dots": [],
@@ -634,7 +634,7 @@
     "pathStroke": "beziers",
     "isScratchCanvas": true,
     "isAutoClosed": false,
-    "activeScenarioIndex": 11,
+    "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
       "dots": [9, 14],

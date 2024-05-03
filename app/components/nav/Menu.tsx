@@ -1,8 +1,8 @@
 import CONTROLS from "../../data/controls.json";
-import DEFAULT_SCENARIOS from "../../data/scenarios.json";
+import DEFAULT_PATTERNS from "../../data/patterns.json";
 import Controls from "./Controls";
 import Buttons from "./Buttons";
-import Scenarios from "./Scenarios";
+import PatternSelection from "./PatternSelection";
 import ShapeSelection from "./ShapeSelection";
 import Info from "../nav/Info";
 import { ISetup, UpdateSetupType } from "../../../types";
@@ -37,22 +37,22 @@ const Menu: React.FC<IProps> = ({
           )}
         />
         <Buttons {...{ setup, updateSetup, clearPaths }} />
-        <Scenarios
+        <PatternSelection
           {...{
             setup,
             setSetup,
             updateSetup,
-            scenarios: DEFAULT_SCENARIOS,
-            title: "Scenarios"
+            patterns: DEFAULT_PATTERNS,
+            title: "Patterns"
           }}
         />
-        <Scenarios
+        <PatternSelection
           {...{
             setup,
             setSetup,
             updateSetup,
-            scenarios: setup.customScenarios,
-            title: "Custom scenarios"
+            patterns: setup.customPatterns,
+            title: "Custom patterns"
           }}
         />
       </aside>

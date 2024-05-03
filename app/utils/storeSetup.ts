@@ -1,12 +1,12 @@
 import CONTROLS from "../data/controls.json";
-import scenarios from "../data/scenarios.json";
+import patterns from "../data/patterns.json";
 import { ISetup } from "../../types";
 
 interface IControlItem {
   id: string;
   title: string;
   description: string;
-  isOmittedInScenario?: boolean;
+  isOmittedInPattern?: boolean;
   value: string | number | boolean | object | null;
   type: string;
   options?: string[];
@@ -29,7 +29,7 @@ export const getStoredSetup = (): ISetup => {
     CONTROLS.forEach((item: IControlItem) => {
       initialSetup[item.id] = storedSetup
         ? storedSetup[item.id]
-        : (Object.values(scenarios)[0] as {[key: string]: any})[item.id] || item.value;    
+        : (Object.values(patterns)[0] as {[key: string]: any})[item.id] || item.value;    
     });
   }
   return initialSetup;

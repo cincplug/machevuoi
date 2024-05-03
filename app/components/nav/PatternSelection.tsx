@@ -9,67 +9,67 @@ interface IProps {
   setup: ISetup;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
   updateSetup: (event: UpdateSetupType) => void;
-  scenarios: {
+  patterns: {
     [key: string]: ISetup;
   };
   title: string;
 }
 
-const ScenarioSelection: React.FC<IProps> = ({
+const PatternSelection: React.FC<IProps> = ({
   setup,
   setSetup,
   updateSetup,
-  scenarios,
+  patterns,
   title
 }) => {
-  const handleScenarioButtonClick = useCallback(
+  const handlePatternButtonClick = useCallback(
     (
       _event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-      scenarioKey: string,
+      patternKey: string,
       index: number
     ) => {
       setSetup((prevSetup) => {
-        const newScenario =
-          scenarios && scenarioKey in scenarios ? scenarios[scenarioKey] : null;
-        if (!newScenario) {
+        const newPattern =
+          patterns && patternKey in patterns ? patterns[patternKey] : null;
+        if (!newPattern) {
           const initialSetup: ISetup = {};
           CONTROLS.forEach((item) => {
             initialSetup[item.id] = item.value;
           });
           return initialSetup;
         }
-        return { ...prevSetup, ...newScenario };
+        return { ...prevSetup, ...newPattern };
       });
       updateSetup({
-        id: "activeScenarioIndex",
+        id: "activePatternIndex",
         value: index,
         type: "range"
       });
     },
-    [scenarios, setSetup, updateSetup]
+    [patterns, setSetup, updateSetup]
   );
 
-  if (!scenarios) {
+  if (!patterns) {
     return null;
   }
 
   return (
-    <fieldset className="scenarios">
+    <fieldset className="patterns">
       <legend>{title}</legend>
-      {Object.keys(scenarios).map((scenarioKey, index) => {
-        const scenario = scenarios[scenarioKey];
+      {Object.keys(patterns).map((patternKey, index) => {
+        const pattern = patterns[patternKey];
         return (
           <button
             className={`${notoEmoji.className} icon-button ${
-              index === setup.activeScenarioIndex ? "active" : "inactive"
+              index === setup.activePatternIndex ? "active" : "inactive"
             }`}
-            title={scenario?.description}
+            title={pattern?.description}
             key={`scn-${index}`}
             onClick={(event) =>
-              handleScenarioButtonClick(event, scenarioKey, index)
+              handlePatternButtonClick(event, patternKey, index)
             }
           >
-            {scenario?.icon || scenarioKey}
+            {pattern?.icon || patternKey}
           </button>
         );
       })}
@@ -77,4 +77,4 @@ const ScenarioSelection: React.FC<IProps> = ({
   );
 };
 
-export default ScenarioSelection;
+export default PatternSelection;

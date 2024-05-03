@@ -3,7 +3,7 @@
     "id": "theme",
     "title": "Theme",
     "description": "Colors and font",
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "isHidden": true,
     "value": "default",
     "type": "select",
@@ -259,7 +259,7 @@
     "title": "Wag delete 👆",
     "description": "Whether to delete everything by wagging",
     "isHandRelated": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "value": true,
     "type": "checkbox"
   },
@@ -268,7 +268,7 @@
     "title": "Pinch draw 👌",
     "description": "Whether to draw by pinching fingers",
     "isHandRelated": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "value": true,
     "type": "checkbox"
   },
@@ -281,12 +281,12 @@
     "type": "checkbox"
   },
   {
-    "id": "activeScenarioIndex",
-    "title": "Active scenario index",
-    "description": "Index of the active scenario",
+    "id": "activePatternIndex",
+    "title": "Active pattern index",
+    "description": "Index of the active pattern",
     "value": 0,
     "isHidden": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "type": "range",
     "min": 0,
     "max": 255,
@@ -306,7 +306,7 @@
     "title": "Pressed key",
     "description": "Which key on the keyboard is currently pressed, if any",
     "isStoringPrevented": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "isHidden": true,
     "value": "",
     "type": "text"
@@ -316,7 +316,7 @@
     "title": "Caps lock",
     "description": "Is caps lock on",
     "isStoringPrevented": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "isHidden": true,
     "value": false,
     "type": "checkbox"
@@ -344,11 +344,11 @@
     "type": "text"
   },
   {
-    "id": "customScenarios",
-    "title": "Custom scenarios",
-    "description": "Defines custom scenarios to be kept in storage",
+    "id": "customPatterns",
+    "title": "Custom patterns",
+    "description": "Defines custom patterns to be kept in storage",
     "isHidden": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "value": null,
     "type": "text"
   },
@@ -357,7 +357,7 @@
     "title": "Shape",
     "description": "Active shape",
     "isHandRelated": true,
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "isButtons": true,
     "parentOutput": "canvas",
     "value": "dots",
@@ -380,7 +380,7 @@
     "id": "isMenuVisible",
     "title": "Menu",
     "description": "Show or hide menu",
-    "isOmittedInScenario": true,
+    "isOmittedInPattern": true,
     "isHidden": true,
     "value": true,
     "type": "checkbox"

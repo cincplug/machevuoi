@@ -13,20 +13,20 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
     const filteredSetup = Object.fromEntries(
       Object.entries(setup).filter(([key]) => {
         const entry = CONTROLS.find((item) => item.id === key);
-        return entry && !entry.isOmittedInScenario && !entry.isStoringPrevented;
+        return entry && !entry.isOmittedInPattern && !entry.isStoringPrevented;
       })
     );
-    const customScenariosLength = Object.keys(
-      setup.customScenarios || {}
+    const customPatternsLength = Object.keys(
+      setup.customPatterns || {}
     ).length;
-    const newCustomScenarioKey = customScenariosLength + 1;
-    const newCustomScenarios = {
-      ...setup.customScenarios,
-      [newCustomScenarioKey]: filteredSetup
+    const newCustomPatternKey = customPatternsLength + 1;
+    const newCustomPatterns = {
+      ...setup.customPatterns,
+      [newCustomPatternKey]: filteredSetup
     };
     updateSetup({
-      id: "customScenarios",
-      value: newCustomScenarios,
+      id: "customPatterns",
+      value: newCustomPatterns,
       type: "hidden"
     });
   };
