@@ -275,7 +275,7 @@ const App: React.FC = () => {
       ) : (
         <Splash {...{ handlePlayButtonClick }} />
       )}
-      {setup.isMenuVisible && isSetupLoaded && (
+      {setup.isMenuVisible && (
         <Menu
           {...{
             isStarted,

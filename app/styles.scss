@@ -94,6 +94,7 @@ html {
   @include until {
     font-size: 14px;
   }
+  overflow: hidden;
   scrollbar-width: var(--gap-half);
   scrollbar-color: var(--color-skin-mid-dark) var(--color-skin-dark);
 }
