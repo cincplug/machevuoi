@@ -17,6 +17,7 @@
     "pathStroke": "beziers",
     "isAutoClosed": false,
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "text": ""
   },
   "pinch-svg-cloud": {
@@ -37,7 +38,8 @@
     "pathStroke": "cloud",
     "text": "",
     "isAutoClosed": true,
-    "isScratchCanvas": false
+    "isScratchCanvas": false,
+    "doesPinchDraw": true
   },
   "pinch-svg-cable": {
     "description": "Vector mode, old phone cable pattern",
@@ -57,7 +59,8 @@
     "pathStroke": "cable",
     "text": "",
     "isAutoClosed": false,
-    "isScratchCanvas": false
+    "isScratchCanvas": false,
+    "doesPinchDraw": true
   },
   "pinch-svg-flute": {
     "description": "Vector mode, flute pattern",
@@ -76,7 +79,8 @@
     "pathStroke": "flute",
     "text": "",
     "isAutoClosed": false,
-    "isScratchCanvas": false
+    "isScratchCanvas": false,
+    "doesPinchDraw": true
   },
   "pinch-svg-watermelon": {
     "output": "svg",
@@ -96,7 +100,8 @@
     "isScratchCanvas": false,
     "description": "Vector mode, watermelon pattern",
     "icon": "🍉",
-    "imageUrl": ""
+    "imageUrl": "",
+    "doesPinchDraw": true
   },
   "pinch-svg-railway": {
     "description": "Vector mode, text imitating model railway",
@@ -115,7 +120,8 @@
     "pathStroke": "lines",
     "isScratchCanvas": false,
     "text": "🚂🚃🚃🚋🚃🚋🚃🚌🚎🚜🚲🏇🚤🛶🚁🚌🚐🚜🐪🦒🦘🐕🐏🐓🦤🦜🦢🦆🪿",
-    "fontSize": 30
+    "fontSize": 30,
+    "doesPinchDraw": true
   },
   "pinch-canvas-pen": {
     "description": "Canvas mode, thick line",
@@ -133,7 +139,8 @@
     "isScratchCanvas": false,
     "activeLayer": "lines",
     "dynamics": 0.9,
-    "dash": 0
+    "dash": 0,
+    "doesPinchDraw": true
   },
   "pinch-canvas-ballpen": {
     "description": "Canvas mode, medium line",
@@ -152,7 +159,8 @@
     "activeLayer": "curves",
     "isAutoClosed": true,
     "dynamics": 0.8,
-    "dash": 0.5
+    "dash": 0.5,
+    "doesPinchDraw": true
   },
   "pinch-canvas-pencil": {
     "description": "Canvas mode, thin line",
@@ -169,7 +177,8 @@
     "isScratchCanvas": false,
     "activeLayer": "lines",
     "dynamics": 0.5,
-    "dash": 0
+    "dash": 0,
+    "doesPinchDraw": true
   },
   "pinch-canvas-paintbrush": {
     "description": "Canvas mode, very thick line",
@@ -184,6 +193,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "curves",
     "isAutoClosed": true,
     "dynamics": 0.8,
@@ -202,6 +212,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "squares",
     "isAutoClosed": false,
     "dynamics": 0.6,
@@ -221,6 +232,7 @@
     "output": "canvas",
     "isScratchCanvas": false,
     "activeLayer": "diamonds",
+    "doesPinchDraw": true,
     "isAutoClosed": true,
     "dynamics": 0.6,
     "dash": 0
@@ -238,6 +250,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "circles",
     "dynamics": 0.6,
     "dash": 5
@@ -255,6 +268,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "arcs",
     "isAutoClosed": true,
     "dynamics": 0.6,
@@ -272,6 +286,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "isAutoClosed": false,
     "activeLayer": "arcs",
     "dynamics": 0.5,
@@ -290,6 +305,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "lines",
     "dynamics": 0.5,
     "dash": 3
@@ -306,6 +322,7 @@
     "blendMode": "normal",
     "output": "canvas",
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "ellipses",
     "dynamics": 0.3,
     "dash": 0
@@ -323,6 +340,7 @@
     "output": "canvas",
     "isAutoClosed": false,
     "isScratchCanvas": false,
+    "doesPinchDraw": true,
     "activeLayer": "triangles",
     "dynamics": 0.5,
     "dash": 0
