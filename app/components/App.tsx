@@ -42,6 +42,10 @@ const App: React.FC = () => {
     width: 0,
     height: 0
   });
+  const [videoDimensions, setVideoDimensions] = useState({
+    width: 0,
+    height: 0
+  });
   const [message, setMessage] = useState<string>("");
 
   const setupRef = useRef<ISetup>(setup);
@@ -174,6 +178,7 @@ const App: React.FC = () => {
     const video = videoNode.currentTarget;
     if (video.readyState !== 4) return;
     if (isVideoLoaded) return;
+    setVideoDimensions({ width: video.videoWidth, height: video.videoHeight });
     if (shouldRunDetector) {
       const dctx = drawingCanvasRef.current?.getContext("2d") || null;
       const pctx = previewCanvasRef.current?.getContext("2d") || null;
@@ -201,7 +206,7 @@ const App: React.FC = () => {
     clearCanvases();
   };
 
-  const { width, height } = inputResolution;
+  const { width, height } = videoDimensions;
 
   if (!isSetupLoaded) {
     return null;
