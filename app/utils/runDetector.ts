@@ -83,7 +83,11 @@ export const runDetector = async ({
         dctx,
         pctx
       });
-    }    
+    }  
+    
+    if (hands.length === 0) {
+      pctx?.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
+    }
 
     if (shouldContinue) {
       animationFrameId = requestAnimationFrame(detect);
