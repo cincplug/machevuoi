@@ -112,6 +112,12 @@ const App: React.FC = () => {
       if (event.key === "Backspace") {
         clearPaths();
       }
+
+      if (event.key === "m") {
+        setSetup((prevSetup) => {
+          return { ...prevSetup, isMenuVisible: !prevSetup.isMenuVisible };
+        });
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);

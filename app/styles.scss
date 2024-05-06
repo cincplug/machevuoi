@@ -720,7 +720,7 @@ pre {
   right: 0;
   width: var(--menu-width);
   background: var(--color-skin-dark);
-  display: grid;
+  display: none;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: var(--gap);
   padding: var(--gap);
