@@ -758,3 +758,10 @@ pre {
   stroke-dasharray: 60;
   stroke-dashoffset: 120;
 }
+
+.links {
+  a {
+    display: inline-block;
+    margin: 0 var(--gap-double);
+  }
+}
