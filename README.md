@@ -1,3 +1,17 @@
+## What's this for?
+
+It's an illustrator tool based on [TF's hand pose detection](https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection)
+
+The idea is to draw with all five fingers, even with both hands, and even with more than two hands if you're up to "pair drawing" as opposed to "pair programming" :)
+
+I promise to write a more comprehensive manual soon. Meanwhile click on menu items, adjust sliders and see what's there for what.
+
+Apart from drawing, this is an interesting puppetry tool, which you can see on my [live demo](https://youtube.com/watch?v=XA_kYc5ovHI&si=Nofnwf_YO4xs8XDb), which I made in occasion of 200th anniversary of 9th Beethoven's Symphony :)
+
+Below is just a default Next.js introduction.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
