@@ -288,7 +288,8 @@ ol {
   left: 0;
   width: var(--menu-width);
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: var(--gap);
   background: var(--color-skin-dark);
   color: var(--color-silver);
