@@ -55,14 +55,14 @@ const Menu: React.FC<IProps> = ({
             title: "Custom patterns"
           }}
         />
-        <Controls
-          {...{ setup, updateSetup }}
-          controls={CONTROLS.filter(
-            (control) =>
-              !control.isHidden &&
-              control.isSoundRelated
-          )}
-        />
+        {isScratchCanvas && setup.scratchPoints.dots.length > 0 && (
+          <Controls
+            {...{ setup, updateSetup }}
+            controls={CONTROLS.filter(
+              (control) => !control.isHidden && control.isSoundRelated
+            )}
+          />
+        )}
       </aside>
       <aside className={`menu secondary`}>
         <Controls

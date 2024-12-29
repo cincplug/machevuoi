@@ -339,7 +339,7 @@
     "isOmittedInPattern": true,
     "isSoundRelated": true,
     "isHidden": true,
-    "value": false,
+    "value": true,
     "type": "checkbox",
     "isHandRelated": true
   },
