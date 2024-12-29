@@ -215,10 +215,10 @@ export const processHands = ({
         });
       }
       if (ctx && dots.length > 0) {
-        dots.forEach((dot: { x: number; y: number; }, index: number) => {
+        dots.forEach((dot: { x: number; y: number }, index: number) => {
           oscillatorManager.updateOscillator(
-            index, 
-            dot.x, 
+            index,
+            dot.x,
             dot.y,
             ctx.canvas.width,
             ctx.canvas.height

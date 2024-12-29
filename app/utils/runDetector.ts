@@ -1,7 +1,18 @@
-import { MediaPipeHandsMediaPipeModelConfig, HandDetector } from "@tensorflow-models/hand-pose-detection";
+import {
+  MediaPipeHandsMediaPipeModelConfig,
+  HandDetector
+} from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
 import { IPoint, ICursor } from "../../types";
-import { OscillatorManager } from './audio';
+import { OscillatorManager } from "./audio";
+import { getExtendedHandPoints } from "./index";
+
+interface Keypoint {
+  x: number;
+  y: number;
+  name: string;
+  z?: number;
+}
 
 interface RunDetectorProps {
   video: HTMLVideoElement;
@@ -77,8 +88,26 @@ export const runDetector = async ({
     }
 
     if (hands?.length && setupRef.current !== null) {
-      oscillatorManager.updateSetup(setupRef.current);
-      
+      const hand = hands[0];
+      const points = getExtendedHandPoints(hand.keypoints);
+      const thumbTip = points[4];
+      const indexTip = points[7];
+
+      if (thumbTip && indexTip) {
+        const x = (thumbTip.x + indexTip.x) / 2;
+        const y = (thumbTip.y + indexTip.y) / 2;
+
+        if (setupRef.current.hasSound) {
+          oscillatorManager.updateOscillator(
+            0,
+            x,
+            y,
+            video.width,
+            video.height
+          );
+        }
+      }
+
       processHands({
         setup: setupRef.current,
         hands,
@@ -88,8 +117,8 @@ export const runDetector = async ({
         pctx,
         oscillatorManager
       });
-    }  
-    
+    }
+
     if (Array.isArray(hands) && hands.length === 0) {
       pctx?.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
     }
@@ -103,7 +132,9 @@ export const runDetector = async ({
 
   return () => {
     shouldContinue = false;
-    cancelAnimationFrame(animationFrameId);
-    oscillatorManager.cleanup();
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    oscillatorManager?.cleanup();
   };
 };
