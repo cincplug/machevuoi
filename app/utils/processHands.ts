@@ -37,7 +37,8 @@ export const processHands = ({
   setCursor,
   setScribbleNewArea,
   dctx,
-  pctx
+  pctx,
+  oscillatorManager
 }: {
   setup: ISetup;
   hands: Hand[];
@@ -45,6 +46,7 @@ export const processHands = ({
   setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
   dctx: CanvasRenderingContext2D | null;
   pctx: CanvasRenderingContext2D | null;
+  oscillatorManager: any;
 }) => {
   const {
     output,
@@ -210,6 +212,17 @@ export const processHands = ({
           lastY: lastY || y,
           activeLayer,
           isAutoClosed: isAutoClosed as boolean
+        });
+      }
+      if (ctx && dots.length > 0) {
+        dots.forEach((dot: { x: number; y: number; }, index: number) => {
+          oscillatorManager.updateOscillator(
+            index, 
+            dot.x, 
+            dot.y,
+            ctx.canvas.width,
+            ctx.canvas.height
+          );
         });
       }
     } else {

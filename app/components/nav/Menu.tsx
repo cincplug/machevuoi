@@ -55,6 +55,14 @@ const Menu: React.FC<IProps> = ({
             title: "Custom patterns"
           }}
         />
+        <Controls
+          {...{ setup, updateSetup }}
+          controls={CONTROLS.filter(
+            (control) =>
+              !control.isHidden &&
+              control.isSoundRelated
+          )}
+        />
       </aside>
       <aside className={`menu secondary`}>
         <Controls
@@ -65,6 +73,7 @@ const Menu: React.FC<IProps> = ({
               (!control.parentOutput ||
                 control.parentOutput.includes(output)) &&
               control.isHandRelated &&
+              !control.isSoundRelated &&
               (isScratchCanvas || !control.isScratchCanvasRelated)
           )}
         />

@@ -321,6 +321,29 @@
     "type": "checkbox"
   },
   {
+    "id": "hasSound",
+    "title": "Sound (new)",
+    "description": "Is sound on",
+    "isStoringPrevented": false,
+    "isOmittedInPattern": true,
+    "isSoundRelated": true,
+    "value": false,
+    "type": "checkbox",
+    "isHandRelated": true
+  },
+  {
+    "id": "hasToneSnap",
+    "title": "Tone snap",
+    "description": "Is tone snap on",
+    "isStoringPrevented": false,
+    "isOmittedInPattern": true,
+    "isSoundRelated": true,
+    "isHidden": true,
+    "value": false,
+    "type": "checkbox",
+    "isHandRelated": true
+  },
+  {
     "id": "scratchPoints",
     "title": "Scratch points",
     "description": "Defines which hand points are used to draw on scratch canvas",

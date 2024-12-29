@@ -1,6 +1,7 @@
-import { MediaPipeHandsMediaPipeModelConfig } from "@tensorflow-models/hand-pose-detection";
+import { MediaPipeHandsMediaPipeModelConfig, HandDetector } from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
 import { IPoint, ICursor } from "../../types";
+import { OscillatorManager } from './audio';
 
 interface RunDetectorProps {
   video: HTMLVideoElement;
@@ -24,11 +25,10 @@ export const runDetector = async ({
   pctx
 }: RunDetectorProps) => {
   let shouldContinue = true;
-  let handsDetector: any = null;
-
   const handPoseDetectionModule = await import(
     "@tensorflow-models/hand-pose-detection"
   );
+  let handsDetector: HandDetector | null = null;
   const handsModel = handPoseDetectionModule.SupportedModels.MediaPipeHands;
 
   const handsDetectorConfig: MediaPipeHandsMediaPipeModelConfig = {
@@ -54,6 +54,8 @@ export const runDetector = async ({
   const targetFrameTime = 1000 / frameRate;
   let animationFrameId: number;
 
+  const oscillatorManager = new OscillatorManager(setupRef.current);
+
   const detect = async (timeStamp: number = 0) => {
     if (timeStamp - lastTime < targetFrameTime) {
       animationFrameId = requestAnimationFrame(detect);
@@ -75,17 +77,20 @@ export const runDetector = async ({
     }
 
     if (hands?.length && setupRef.current !== null) {
+      oscillatorManager.updateSetup(setupRef.current);
+      
       processHands({
         setup: setupRef.current,
         hands,
         setCursor,
         setScribbleNewArea,
         dctx,
-        pctx
+        pctx,
+        oscillatorManager
       });
     }  
     
-    if (hands.length === 0) {
+    if (Array.isArray(hands) && hands.length === 0) {
       pctx?.clearRect(0, 0, pctx.canvas.width, pctx.canvas.height);
     }
 
@@ -99,5 +104,6 @@ export const runDetector = async ({
   return () => {
     shouldContinue = false;
     cancelAnimationFrame(animationFrameId);
+    oscillatorManager.cleanup();
   };
 };
