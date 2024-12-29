@@ -8,7 +8,18 @@ import {
 } from "./index";
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
-import { IPoint, ICursor, ISetup, IShapes } from "../../types";
+import { IPoint, ICursor, ISetup, IShapes, IShape } from "../../types";
+import { OscillatorManager } from "./audio";
+
+interface ProcessHandsProps {
+  setup: ISetup;
+  hands: Hand[];
+  setCursor: React.Dispatch<React.SetStateAction<ICursor>>;
+  setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
+  dctx: CanvasRenderingContext2D | null;
+  pctx: CanvasRenderingContext2D | null;
+  oscillatorManager: OscillatorManager;
+}
 
 let lastX: number | undefined,
   lastY: number | undefined,
@@ -37,17 +48,8 @@ export const processHands = ({
   setCursor,
   setScribbleNewArea,
   dctx,
-  pctx,
-  oscillatorManager
-}: {
-  setup: ISetup;
-  hands: Hand[];
-  setCursor: React.Dispatch<React.SetStateAction<ICursor>>;
-  setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
-  dctx: CanvasRenderingContext2D | null;
-  pctx: CanvasRenderingContext2D | null;
-  oscillatorManager: any;
-}) => {
+  pctx
+}: ProcessHandsProps) => {
   const {
     output,
     radius,
@@ -97,58 +99,60 @@ export const processHands = ({
     const centeringContext =
       dots.length > 0
         ? dots
-        : fallbackDots.map((point: number) => extendedKeyPoints[point]);
+        : fallbackDots.map((point) => extendedKeyPoints[point]);
     const tips = squeezePoints({
       points: dots,
       squeezeRatio,
       centeringContext
     });
 
-    const shapes = shapeNames.reduce(
-      (result: { [key: string]: any }, shapeName) => {
-        result[shapeName] = scratchPoints[shapeName].map((shape: number[]) => {
-          const points = shape.map((point) => extendedKeyPoints[point]);
-          const squeezedPoints = squeezePoints({
-            points,
-            squeezeRatio,
-            centeringContext
-          });
+    const shapes = shapeNames.reduce<{ [key: string]: IShape[] }>(
+      (result, shapeName) => {
+        interface SqueezedPoints {
+          startPoint: IPoint;
+          endPoint: IPoint;
+          controlPoint?: IPoint;
+        }
 
-          if (squeezedPoints) {
-            if (squeezedPoints[0] && squeezedPoints[1]) {
-              let shapeObject:
-                | { startPoint: IPoint; endPoint: IPoint }
-                | {
-                    startPoint: IPoint;
-                    controlPoint: IPoint;
-                    endPoint: IPoint;
-                  } = {
-                startPoint: squeezedPoints[0],
-                endPoint: squeezedPoints[1]
-              };
+        result[shapeName] = scratchPoints[shapeName]
+          .map((shape: number[]): IShape | undefined => {
+            const points = shape.map(
+              (point: number) => extendedKeyPoints[point]
+            );
+            const squeezedPoints = squeezePoints({
+              points,
+              squeezeRatio,
+              centeringContext
+            });
+
+            if (squeezedPoints?.[0] && squeezedPoints[1]) {
               if (
                 (shapeName === "curves" || shapeName === "ellipses") &&
                 squeezedPoints[2]
               ) {
-                shapeObject = {
+                return {
                   startPoint: squeezedPoints[0],
                   controlPoint: squeezedPoints[1],
                   endPoint: squeezedPoints[2]
                 };
               }
-
-              return shapeObject;
+              return {
+                startPoint: squeezedPoints[0],
+                endPoint: squeezedPoints[1]
+              };
             }
-          }
-        });
+            return undefined;
+          })
+          .filter(
+            (shape: IShape | undefined): shape is IShape => shape !== undefined
+          );
         return result;
       },
       {}
     );
 
-    if (!thumbTip || !indexTip) {
-      return;
-    }
+    if (!thumbTip || !indexTip) return;
+
     const thumbIndexDistance = getDistance(thumbTip, indexTip);
     const isPinched = thumbIndexDistance < pinchThreshold;
     const isDrawing =
@@ -162,29 +166,34 @@ export const processHands = ({
 
     if (output === "canvas") {
       const ctx = isDrawing ? dctx : pctx;
-      if (ctx === null) return null;
+      if (!ctx) return null;
+
       if (!isDrawing && handIndex === 0) {
         dctx?.beginPath();
         dctx?.moveTo(x, y);
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         pctx?.beginPath();
       }
+
       if (isDrawing && dctx) {
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
+
       ctx.strokeStyle = processColor(
         color as string,
         (isDrawing ? opacity : 255) as number
       );
       ctx.setLineDash(dash ? [dash, dash] : []);
       ctx.lineJoin = "round";
+
       if (isWagging) {
         clearCanvases();
         lastX = undefined;
         lastY = undefined;
         lastTips = undefined;
       }
+
       if (isScratchCanvas) {
         scratchCanvas({
           radius,
@@ -193,12 +202,13 @@ export const processHands = ({
           tips: tips as IPoint[],
           lastTips: lastTips || [],
           dynamics,
-          shapes: shapes as IShapes,
-          handIndex: handIndex as number,
-          isAutoClosed: isAutoClosed as boolean
+          shapes: shapes as unknown as IShapes,
+          handIndex,
+          isAutoClosed
         });
         lastTips = tips as IPoint[];
       }
+
       if (!isScratchCanvas) {
         pinchCanvas({
           radius,
@@ -211,18 +221,7 @@ export const processHands = ({
           lastX: lastX || x,
           lastY: lastY || y,
           activeLayer,
-          isAutoClosed: isAutoClosed as boolean
-        });
-      }
-      if (ctx && dots.length > 0) {
-        dots.forEach((dot: { x: number; y: number }, index: number) => {
-          oscillatorManager.updateOscillator(
-            index,
-            dot.x,
-            dot.y,
-            ctx.canvas.width,
-            ctx.canvas.height
-          );
+          isAutoClosed
         });
       }
     } else {
@@ -234,9 +233,11 @@ export const processHands = ({
         isWagging,
         isPinched
       });
+
       if (usesButtonPinch && thumbIndexDistance < pinchThreshold * 4) {
         checkElementPinch({ x, y, isPinched });
       }
+
       if (isDrawing) {
         setScribbleNewArea((prevScribbleNewArea: IPoint[]) => {
           const isNewArea =
@@ -245,6 +246,7 @@ export const processHands = ({
               x,
               y
             }) > straightness;
+
           if (isNewArea) {
             return [...prevScribbleNewArea, { x, y }];
           }
