@@ -7,7 +7,7 @@
     "isHidden": true,
     "value": "default",
     "type": "select",
-    "options": ["default", "cognizant"]
+    "options": ["default"]
   },
   {
     "id": "output",
