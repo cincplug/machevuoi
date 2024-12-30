@@ -1,7 +1,5 @@
-import {
-  snapToNearestZone,
-  getFrequenciesForSelectedNotes
-} from "./audioConstants";
+import audioConstants from "../data/audioConstants.json";
+const { A4, OCTAVE_START, OCTAVE_END, SEMITONES_FROM_A4 } = audioConstants;
 
 interface OscillatorSetup {
   hasToneSnap: boolean;
@@ -98,4 +96,31 @@ export class OscillatorManager {
       }
     }
   }
+}
+
+export function getFrequencyForNote(
+  note: keyof typeof SEMITONES_FROM_A4,
+  octave: number
+): number {
+  const semitones = SEMITONES_FROM_A4[note];
+  const octaveOffset = octave - 4;
+  return A4 * Math.pow(2, octaveOffset + semitones / 12);
+}
+
+export function getFrequenciesForSelectedNotes(
+  selectedNotes: string[]
+): number[] {
+  if (selectedNotes.length === 0) return [];
+
+  const totalOctaves = OCTAVE_END - OCTAVE_START + 1;
+  const notesPerOctave = selectedNotes.length;
+  const totalKeys = notesPerOctave * totalOctaves;
+
+  return Array.from({ length: totalKeys }, (_, index) => {
+    const octave = Math.floor(index / notesPerOctave) + OCTAVE_START;
+    const noteIndex = index % notesPerOctave;
+    const note = selectedNotes[noteIndex];
+    const semitones = SEMITONES_FROM_A4[note as keyof typeof SEMITONES_FROM_A4];
+    return A4 * Math.pow(2, octave - 4 + semitones / 12);
+  });
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { PIANO_KEYS } from "../../utils/audioConstants";
+import audioConstants from "../../data/audioConstants.json";
 
 interface PianoKeyboardProps {
   selectedNotes: string[];
@@ -44,12 +44,12 @@ export const PianoKeyboard: React.FC<PianoKeyboardProps> = ({
   return (
     <svg className="piano" viewBox="0 0 331 260">
       <g className="octave">
-        {PIANO_KEYS.map((keyData, i) => (
+        {audioConstants.PIANO_KEYS.map((keyData, i) => (
           <PianoKey
             key={`${keyData.note}-${i}`}
             note={keyData.note}
             path={keyData.path}
-            fill={keyData.fill}
+            fill={keyData.fill as "white" | "black"}
             isSelected={selectedNotes.includes(keyData.note)}
             onToggle={handleToggle}
           />
