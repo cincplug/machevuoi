@@ -1,10 +1,6 @@
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
-import { Noto_Emoji } from "next/font/google";
 import { ISetup, UpdateSetupType } from "../../../types";
-
-const notoEmoji = Noto_Emoji({ subsets: ["emoji"] });
-
 interface IProps {
   setup: ISetup;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
@@ -60,7 +56,7 @@ const PatternSelection: React.FC<IProps> = ({
         const pattern = patterns[patternKey];
         return (
           <button
-            className={`${notoEmoji.className} icon-button ${
+            className={`icon-button ${
               index === setup.activePatternIndex ? "active" : "inactive"
             }`}
             title={pattern?.description}
@@ -69,7 +65,7 @@ const PatternSelection: React.FC<IProps> = ({
               handlePatternButtonClick(event, patternKey, index)
             }
           >
-            {pattern?.icon || patternKey}
+            {index + 1}
           </button>
         );
       })}

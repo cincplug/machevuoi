@@ -105,7 +105,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-canvas, video {
+canvas,
+video {
   position: absolute;
   left: 0;
   top: 0;
@@ -321,8 +322,7 @@ ol {
 
 .patterns {
   button {
-    font-size: 1.4rem;
-    padding: 0;
+    font-size: 1rem;
   }
 }
 
