@@ -1,6 +1,13 @@
 import React, { useCallback } from "react";
 import CONTROLS from "../../data/controls.json";
 import { ISetup, UpdateSetupType } from "../../../types";
+
+interface PatternEntry {
+  key: string;
+  pattern: ISetup;
+  index: number;
+}
+
 interface IProps {
   setup: ISetup;
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
@@ -25,8 +32,7 @@ const PatternSelection: React.FC<IProps> = ({
       index: number
     ) => {
       setSetup((prevSetup) => {
-        const newPattern =
-          patterns && patternKey in patterns ? patterns[patternKey] : null;
+        const newPattern = patterns?.[patternKey];
         if (!newPattern) {
           const initialSetup: ISetup = {};
           CONTROLS.forEach((item) => {
@@ -45,31 +51,56 @@ const PatternSelection: React.FC<IProps> = ({
     [patterns, setSetup, updateSetup]
   );
 
-  if (!patterns) {
-    return null;
-  }
+  if (!patterns) return null;
 
-  return (
-    <fieldset className="patterns">
-      <legend>{title}</legend>
-      {Object.keys(patterns).map((patternKey, index) => {
-        const pattern = patterns[patternKey];
-        return (
+  const patternEntries = Object.entries(patterns).map(
+    ([key, pattern], index): PatternEntry => ({
+      key,
+      pattern,
+      index
+    })
+  );
+
+  const svgPatterns = patternEntries.filter(
+    ({ pattern }) => pattern.output === "svg"
+  );
+
+  const pinchPatterns = patternEntries.filter(
+    ({ pattern }) => pattern.output === "canvas" && !pattern.isScratchCanvas
+  );
+
+  const scratchPatterns = patternEntries.filter(
+    ({ pattern }) => pattern.output === "canvas" && pattern.isScratchCanvas
+  );
+
+  const renderPatternGroup = (patterns: PatternEntry[], title: string) => {
+    if (patterns.length === 0) return null;
+
+    return (
+      <fieldset className="patterns">
+        <legend>{title}</legend>
+        {patterns.map(({ key, pattern, index }) => (
           <button
             className={`icon-button ${
               index === setup.activePatternIndex ? "active" : "inactive"
             }`}
-            title={pattern?.description}
+            title={pattern?.description as string}
             key={`scn-${index}`}
-            onClick={(event) =>
-              handlePatternButtonClick(event, patternKey, index)
-            }
+            onClick={(event) => handlePatternButtonClick(event, key, index)}
           >
             {index + 1}
           </button>
-        );
-      })}
-    </fieldset>
+        ))}
+      </fieldset>
+    );
+  };
+
+  return (
+    <>
+      {renderPatternGroup(svgPatterns, "SVG patterns")}
+      {renderPatternGroup(pinchPatterns, "Pinch Canvas patterns")}
+      {renderPatternGroup(scratchPatterns, "Scratch Canvas patterns")}
+    </>
   );
 };
 
