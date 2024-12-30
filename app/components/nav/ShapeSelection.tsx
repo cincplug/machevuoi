@@ -184,7 +184,14 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
         </g>
       </svg>
       <p className="scratch-info">
-        Click dots to {isDots ? <>add or remove them</> : <>add <strong>{activeLayer}</strong></>}
+        Click dots to{" "}
+        {isDots ? (
+          <>add or remove them</>
+        ) : (
+          <>
+            add <strong>{activeLayer}</strong>
+          </>
+        )}
       </p>
     </div>
   );

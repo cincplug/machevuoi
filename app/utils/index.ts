@@ -165,7 +165,9 @@ export const arraysHaveSameElements = (a: number[], b: number[]): boolean => {
   return true;
 };
 
-export const arraysAreEqual = (a: number[], b: number[]) => a.length === b.length && a.every((val: number, index: number) => val === b[index]);
+export const arraysAreEqual = (a: number[], b: number[]) =>
+  a.length === b.length &&
+  a.every((val: number, index: number) => val === b[index]);
 
 export const clearCanvases = (): void => {
   const canvasElements = document.querySelectorAll("canvas");
@@ -233,7 +235,9 @@ export const getMidPoint = (
 
 export const getExtendedHandPoints = (handPoints = BASE_HAND_POINTS) => {
   return handPoints.concat(
-    EXTRA_POINT_INDICES.map(([point1, point2]) => getMidPoint(handPoints, point1, point2))
+    EXTRA_POINT_INDICES.map(([point1, point2]) =>
+      getMidPoint(handPoints, point1, point2)
+    )
   );
 };
 

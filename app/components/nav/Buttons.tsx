@@ -16,9 +16,7 @@ const Buttons: React.FC<IProps> = ({ setup, updateSetup, clearPaths }) => {
         return entry && !entry.isOmittedInPattern && !entry.isStoringPrevented;
       })
     );
-    const customPatternsLength = Object.keys(
-      setup.customPatterns || {}
-    ).length;
+    const customPatternsLength = Object.keys(setup.customPatterns || {}).length;
     const newCustomPatternKey = customPatternsLength + 1;
     const newCustomPatterns = {
       ...setup.customPatterns,

@@ -29,21 +29,19 @@ const MiniMenu: React.FC<MiniMenuProps> = ({
   return (
     <aside className="mini-menu">
       <button
-      className={`control button pause-button ${
-        isStarted ? "cancel" : ""
-      }`}
-      onClick={handlePlayButtonClick}
-    >
-      {isStarted ? "Stop camera" : "Start camera"}
-    </button>
-    <button
-      className={`control button menu-button ${
-        isMenuVisible ? "cancel" : ""
-      }`}
-      onClick={handleMenuButtonClick}
-    >
-      {isMenuVisible ? "Hide menu" : "Show menu"}
-    </button>
+        className={`control button pause-button ${isStarted ? "cancel" : ""}`}
+        onClick={handlePlayButtonClick}
+      >
+        {isStarted ? "Stop camera" : "Start camera"}
+      </button>
+      <button
+        className={`control button menu-button ${
+          isMenuVisible ? "cancel" : ""
+        }`}
+        onClick={handleMenuButtonClick}
+      >
+        {isMenuVisible ? "Hide menu" : "Show menu"}
+      </button>
     </aside>
   );
 };

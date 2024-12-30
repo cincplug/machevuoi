@@ -20,16 +20,8 @@ const Drawing: React.FC<IProps> = ({
 }) => {
   const { width, height } = inputResolution;
   const { x, y, lastX, lastY } = cursor;
-  const {
-    radius,
-    color,
-    opacity,
-    pathStroke,
-    speed,
-    text,
-    fontSize,
-    dash
-  } = setup;
+  const { radius, color, opacity, pathStroke, speed, text, fontSize, dash } =
+    setup;
 
   return (
     <svg
@@ -58,7 +50,7 @@ const Drawing: React.FC<IProps> = ({
                   pathStroke: pathStroke,
                   thisPoint: point,
                   nextPoint,
-                  radius,
+                  radius
                 });
               } else {
                 return `${index === 0 ? "M" : "L"} ${point.x},${point.y}`;

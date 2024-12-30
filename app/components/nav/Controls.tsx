@@ -73,10 +73,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
         title={description}
       >
         {type === "select" ? (
-          <select
-            {...{ value, id }}
-            onChange={handleSelectChange}
-          >
+          <select {...{ value, id }} onChange={handleSelectChange}>
             {options.map((option: string, optionIndex: number) => (
               <option key={optionIndex} value={option}>
                 {option}

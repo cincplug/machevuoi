@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "app/utils/*.ts",
-    "types/**/*.ts",
+    "types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

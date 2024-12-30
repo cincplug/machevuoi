@@ -7,12 +7,15 @@ interface OscillatorSetup {
 
 export class OscillatorManager {
   private audioContext: AudioContext;
-  private oscillators: Map<number, {
-    osc: OscillatorNode;
-    gain: GainNode;
-  }>;
+  private oscillators: Map<
+    number,
+    {
+      osc: OscillatorNode;
+      gain: GainNode;
+    }
+  >;
   private setup: OscillatorSetup;
-  
+
   constructor(setup: OscillatorSetup) {
     this.audioContext = new AudioContext();
     this.oscillators = new Map();
@@ -21,7 +24,7 @@ export class OscillatorManager {
 
   updateSetup(newSetup: OscillatorSetup) {
     this.setup = newSetup;
-    
+
     if (!newSetup.hasSound) {
       this.oscillators.forEach(({ gain }) => {
         gain.gain.setValueAtTime(0, this.audioContext.currentTime);
@@ -40,9 +43,9 @@ export class OscillatorManager {
 
     const boundedX = Math.max(0, Math.min(x, width));
     const boundedY = Math.max(0, Math.min(y, height));
-    
+
     let oscillator = this.oscillators.get(index);
-    
+
     if (!this.setup.hasSound) {
       if (oscillator) {
         oscillator.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
@@ -61,16 +64,22 @@ export class OscillatorManager {
     }
 
     try {
-      const freq = this.setup.hasToneSnap 
+      const freq = this.setup.hasToneSnap
         ? snapToNearestZone(boundedX, width)
         : Math.min(2000, Math.max(20, (boundedX / width) * 1900 + 100));
 
-      oscillator.osc.frequency.setValueAtTime(freq, this.audioContext.currentTime);
-      
-      const vol = Math.max(0, Math.min(1, 1 - (boundedY / height)));
-      oscillator.gain.gain.setValueAtTime(vol * 0.1, this.audioContext.currentTime);
+      oscillator.osc.frequency.setValueAtTime(
+        freq,
+        this.audioContext.currentTime
+      );
+
+      const vol = Math.max(0, Math.min(1, 1 - boundedY / height));
+      oscillator.gain.gain.setValueAtTime(
+        vol * 0.1,
+        this.audioContext.currentTime
+      );
     } catch (error) {
-      console.error('Audio parameter error:', error);
+      console.error("Audio parameter error:", error);
       oscillator.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
     }
   }

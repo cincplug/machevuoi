@@ -29,12 +29,12 @@ export const getStoredSetup = (): ISetup => {
     CONTROLS.forEach((item: IControlItem) => {
       initialSetup[item.id] = storedSetup
         ? storedSetup[item.id]
-        : (Object.values(patterns)[0] as {[key: string]: any})[item.id] || item.value;    
+        : (Object.values(patterns)[0] as { [key: string]: any })[item.id] ||
+          item.value;
     });
   }
   return initialSetup;
 };
-
 
 export const storeSetup = (nextSetup: ISetup): void => {
   if (typeof window !== "undefined") {

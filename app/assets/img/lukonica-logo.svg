@@ -1,4 +1,5 @@
-<svg class="logo" width="194" height="193" viewBox="0 0 194 193" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="logo" width="194" height="193" viewBox="0 0 194 193" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
     <path class="frame"
         d="M0.837402 30.2505C0.837402 13.682 14.2689 0.250488 30.8374 0.250488H163.5C180.069 0.250488 193.5 13.6819 193.5 30.2505V162.913C193.5 179.482 180.069 192.913 163.5 192.913H30.8374C14.2689 192.913 0.837402 179.482 0.837402 162.913V30.2505Z"
         fill="black" />
