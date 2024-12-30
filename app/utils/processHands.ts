@@ -9,7 +9,6 @@ import {
 import { pinchCanvas } from "./pinchCanvas";
 import { scratchCanvas } from "./scratchCanvas";
 import { IPoint, ICursor, ISetup, IShapes, IShape } from "../../types";
-import { OscillatorManager } from "./audio";
 
 interface ProcessHandsProps {
   setup: ISetup;
@@ -18,7 +17,6 @@ interface ProcessHandsProps {
   setScribbleNewArea: React.Dispatch<React.SetStateAction<IPoint[]>>;
   dctx: CanvasRenderingContext2D | null;
   pctx: CanvasRenderingContext2D | null;
-  oscillatorManager: OscillatorManager;
 }
 
 let lastX: number | undefined,

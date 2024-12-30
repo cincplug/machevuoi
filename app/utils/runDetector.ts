@@ -108,8 +108,7 @@ export const runDetector = async ({
         setCursor,
         setScribbleNewArea,
         dctx,
-        pctx,
-        oscillatorManager
+        pctx
       });
     }
 
