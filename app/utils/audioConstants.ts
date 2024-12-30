@@ -101,9 +101,19 @@ export const PIANO_KEYS: {
 export function getFrequenciesForSelectedNotes(
   selectedNotes: string[]
 ): number[] {
-  return selectedNotes.map((note) =>
-    getFrequencyForNote(note as keyof typeof SEMITONES_FROM_A4, 4)
-  );
+  if (selectedNotes.length === 0) return [];
+
+  const totalOctaves = OCTAVE_END - OCTAVE_START + 1;
+  const notesPerOctave = selectedNotes.length;
+  const totalKeys = notesPerOctave * totalOctaves;
+
+  return Array.from({ length: totalKeys }, (_, index) => {
+    const octave = Math.floor(index / notesPerOctave) + OCTAVE_START;
+    const noteIndex = index % notesPerOctave;
+    const note = selectedNotes[noteIndex];
+    const semitones = SEMITONES_FROM_A4[note as keyof typeof SEMITONES_FROM_A4];
+    return A4 * Math.pow(2, octave - 4 + semitones / 12);
+  });
 }
 
 export function getPlayableNotes(): Array<keyof typeof SEMITONES_FROM_A4> {
@@ -120,12 +130,9 @@ export function getFrequencyForNote(
 }
 
 export function snapToNearestZone(x: number, width: number): number {
-  const totalNotes = NOTES.length * (OCTAVE_END - OCTAVE_START + 1);
-  const zoneWidth = width / totalNotes;
-  const zoneIndex = Math.floor(x / zoneWidth);
+  const frequencies = getFrequenciesForSelectedNotes(NOTES);
+  if (frequencies.length === 0) return 0;
 
-  const octave = OCTAVE_START + Math.floor(zoneIndex / NOTES.length);
-  const noteIndex = zoneIndex % NOTES.length;
-
-  return getFrequencyForNote(NOTES[noteIndex], octave);
+  const index = Math.floor((x / width) * frequencies.length);
+  return frequencies[Math.min(index, frequencies.length - 1)];
 }
