@@ -761,23 +761,20 @@ pre {
   width: 100%;
 
   .tone {
-    stroke: var(--color-skin-mid-dark);
+    stroke: var(--color-skin-dark);
     stroke-width: 2px;
 
     &.white {
-      fill: var(--color-skin-mid);
+      fill: var(--color-skin-mid-dark);
     }
 
     &.black {
       fill: var(--color-skin-dark);
     }
 
-    &.selected {
-      fill: var(--color-skin-light);
-    }
-
+    &.selected,
     &:hover {
-      fill: var(--color-skin-mid-dark);
+      fill: var(--color-skin-light);
     }
   }
 }
