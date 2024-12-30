@@ -42,7 +42,7 @@ export const PianoKeyboard: React.FC<PianoKeyboardProps> = ({
   };
 
   return (
-    <svg className="piano" viewBox="0 0 331 260">
+    <svg className="piano" viewBox="0 50 331 160">
       <g className="octave">
         {audioConstants.PIANO_KEYS.map((keyData, i) => (
           <PianoKey
