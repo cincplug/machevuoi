@@ -148,11 +148,6 @@ button {
   }
 }
 
-button,
-[role="button"] {
-  cursor: pointer;
-}
-
 input {
   border-radius: var(--radius);
   background: transparent;
@@ -196,7 +191,6 @@ select {
 input,
 select,
 button {
-  cursor: pointer;
   font-family: var(--font-family);
 }
 
@@ -413,7 +407,6 @@ label {
     color: var(--color-skin-light);
   }
   .control:hover & {
-    cursor: pointer;
     color: var(--color-skin-light);
   }
 }
@@ -627,14 +620,12 @@ label {
   .active-dots & {
     &:hover {
       fill: var(--color-red-light);
-      cursor: pointer;
     }
   }
   .active-shapes & {
     &:hover {
       stroke-width: 2px;
       stroke: var(--color-skin-light);
-      cursor: pointer;
     }
   }
 }
@@ -645,7 +636,6 @@ label {
   stroke: var(--color-skin-mid-light);
   &:hover {
     stroke: var(--color-red-light);
-    cursor: pointer;
   }
   &.preview {
     fill: none;
