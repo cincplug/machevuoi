@@ -22,7 +22,7 @@ interface IControlItem {
 const storageSetupItem = "machevuoiSetup";
 
 export const getStoredSetup = (): ISetup => {
-  const initialSetup: ISetup = {};
+  const initialSetup: ISetup = { selectedNotes: [] };
   if (typeof window !== "undefined") {
     const storedSetupRaw = sessionStorage.getItem(storageSetupItem);
     const storedSetup = storedSetupRaw ? JSON.parse(storedSetupRaw) : null;
@@ -43,10 +43,10 @@ export const storeSetup = (nextSetup: ISetup): void => {
     ).map((item: IControlItem) => item.id);
     let filteredNextSetup: ISetup = Object.keys(nextSetup)
       .filter((key: string) => !omittedKeys.includes(key))
-      .reduce((obj: ISetup, key: string) => {
+      .reduce<ISetup>((obj: ISetup, key: string) => {
         obj[key] = nextSetup[key];
         return obj;
-      }, {});
+      }, {} as ISetup);
     sessionStorage.setItem(storageSetupItem, JSON.stringify(filteredNextSetup));
   }
 };
