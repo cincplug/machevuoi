@@ -83,21 +83,40 @@ export const runDetector = async ({
     if (hands?.length && setupRef.current !== null) {
       hands.forEach((hand: any, handIndex: number) => {
         const points = getExtendedHandPoints(hand.keypoints);
-        const thumbTip = points[4];
-        const indexTip = points[7];
 
-        if (thumbTip && indexTip) {
-          const x = (thumbTip.x + indexTip.x) / 2;
-          const y = (thumbTip.y + indexTip.y) / 2;
-
-          if (setupRef.current.hasSound) {
-            oscillatorManager.updateOscillator(
-              handIndex,
-              x,
-              y,
-              video.width,
-              video.height
+        if (setupRef.current.hasSound) {
+          if (
+            setupRef.current.isScratchCanvas &&
+            setupRef.current.scratchPoints?.dots?.length
+          ) {
+            setupRef.current.scratchPoints.dots.forEach(
+              (dotIndex: number, i: number) => {
+                const dot = points[dotIndex];
+                if (dot) {
+                  oscillatorManager.updateOscillator(
+                    handIndex * setupRef.current.scratchPoints.dots.length + i,
+                    dot.x,
+                    dot.y,
+                    video.width,
+                    video.height
+                  );
+                }
+              }
             );
+          } else {
+            const thumbTip = points[4];
+            const indexTip = points[7];
+            if (thumbTip && indexTip) {
+              const x = (thumbTip.x + indexTip.x) / 2;
+              const y = (thumbTip.y + indexTip.y) / 2;
+              oscillatorManager.updateOscillator(
+                handIndex,
+                x,
+                y,
+                video.width,
+                video.height
+              );
+            }
           }
         }
       });
