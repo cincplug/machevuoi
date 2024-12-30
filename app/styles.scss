@@ -588,9 +588,8 @@ label {
 
 .icon-button {
   grid-column: span 2;
-  height: 2rem;
-  padding: 0.3rem 0;
   border-radius: var(--radius);
+  aspect-ratio: 1;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -762,7 +761,7 @@ pre {
 
   .tone {
     stroke: var(--color-skin-dark);
-    stroke-width: 2px;
+    stroke-width: 1px;
 
     &.white {
       fill: var(--color-skin-mid-dark);
@@ -772,7 +771,10 @@ pre {
       fill: var(--color-skin-dark);
     }
 
-    &.selected,
+    &.selected {
+      fill: var(--color-skin-mid-light);
+    }
+
     &:hover {
       fill: var(--color-skin-light);
     }
