@@ -35,7 +35,10 @@ const App: React.FC = () => {
     isPinched: false,
     isWagging: false
   });
-  const [setup, setSetup] = useState<ISetup>(getStoredSetup());
+  const [setup, setSetup] = useState<ISetup>({
+    ...getStoredSetup(),
+    selectedNotes: []
+  });
   const [stopDetector, setStopDetector] = useState<Function | null>(null);
   const [shouldRunDetector, setShouldRunDetector] = useState<boolean>(false);
   const [inputResolution, setInputResolution] = useState<InputResolution>({
@@ -140,16 +143,21 @@ const App: React.FC = () => {
     }
   }, [cursor.isPinched, scribbleNewArea]);
 
-  const updateSetup = ({ id, value, type }: UpdateSetupType) => {
+  const updateSetup = ({ id, value, type, payload }: UpdateSetupType) => {
     setSetup((prevSetup) => {
       const nextSetup = { ...prevSetup };
-      if (type === "checkbox") {
+
+      if (type === "SET_SELECTED_NOTES" && Array.isArray(payload)) {
+        nextSetup.selectedNotes = payload;
+      } else if (type === "checkbox" && typeof id === "string") {
         nextSetup[id] = !nextSetup[id];
-      } else {
-        nextSetup[id] = ["number", "range"].includes(type)
+      } else if (id) {
+        const numValue = ["number", "range"].includes(type)
           ? Number(value)
           : value;
+        nextSetup[id] = numValue;
       }
+
       storeSetup(nextSetup);
       return nextSetup;
     });

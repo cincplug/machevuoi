@@ -34,7 +34,7 @@ const PatternSelection: React.FC<IProps> = ({
       setSetup((prevSetup) => {
         const newPattern = patterns?.[patternKey];
         if (!newPattern) {
-          const initialSetup: ISetup = {};
+          const initialSetup: ISetup = { selectedNotes: [] };
           CONTROLS.forEach((item) => {
             initialSetup[item.id] = item.value;
           });

@@ -1,8 +1,12 @@
-import { snapToNearestZone } from "./audioConstants";
+import {
+  snapToNearestZone,
+  getFrequenciesForSelectedNotes
+} from "./audioConstants";
 
 interface OscillatorSetup {
   hasToneSnap: boolean;
   hasSound: boolean;
+  selectedNotes: string[];
 }
 
 export class OscillatorManager {
@@ -39,20 +43,22 @@ export class OscillatorManager {
     width: number,
     height: number
   ) {
-    if (width <= 0 || height <= 0) return;
+    if (!this.setup.hasSound) return;
 
     const boundedX = Math.max(0, Math.min(x, width));
     const boundedY = Math.max(0, Math.min(y, height));
 
+    const availableFrequencies = getFrequenciesForSelectedNotes(
+      this.setup.selectedNotes
+    );
+    if (availableFrequencies.length === 0) return;
+
+    const freqIndex = Math.floor(
+      (boundedX / width) * availableFrequencies.length
+    );
+    const freq = availableFrequencies[freqIndex] || availableFrequencies[0];
+
     let oscillator = this.oscillators.get(index);
-
-    if (!this.setup.hasSound) {
-      if (oscillator) {
-        oscillator.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-      }
-      return;
-    }
-
     if (!oscillator) {
       const osc = this.audioContext.createOscillator();
       const gain = this.audioContext.createGain();
@@ -63,25 +69,15 @@ export class OscillatorManager {
       this.oscillators.set(index, oscillator);
     }
 
-    try {
-      const freq = this.setup.hasToneSnap
-        ? snapToNearestZone(boundedX, width)
-        : Math.min(2000, Math.max(20, (boundedX / width) * 1900 + 100));
-
-      oscillator.osc.frequency.setValueAtTime(
-        freq,
-        this.audioContext.currentTime
-      );
-
-      const vol = Math.max(0, Math.min(1, 1 - boundedY / height));
-      oscillator.gain.gain.setValueAtTime(
-        vol * 0.1,
-        this.audioContext.currentTime
-      );
-    } catch (error) {
-      console.error("Audio parameter error:", error);
-      oscillator.gain.gain.setValueAtTime(0, this.audioContext.currentTime);
-    }
+    oscillator.osc.frequency.setValueAtTime(
+      freq,
+      this.audioContext.currentTime
+    );
+    const vol = Math.max(0, 1 - boundedY / height);
+    oscillator.gain.gain.setValueAtTime(
+      vol * 0.1,
+      this.audioContext.currentTime
+    );
   }
 
   cleanup() {

@@ -765,3 +765,29 @@ pre {
     margin: 0 var(--gap-double);
   }
 }
+
+.piano {
+  grid-column: span 12;
+  width: 100%;
+
+  .tone {
+    stroke: var(--color-skin-mid-dark);
+    stroke-width: 2px;
+
+    &.white {
+      fill: var(--color-skin-mid);
+    }
+
+    &.black {
+      fill: var(--color-skin-dark);
+    }
+
+    &.selected {
+      fill: var(--color-skin-light);
+    }
+
+    &:hover {
+      fill: var(--color-skin-mid-dark);
+    }
+  }
+}

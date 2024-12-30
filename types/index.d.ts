@@ -1,5 +1,6 @@
 export interface ISetup {
   [key: string]: string | number | boolean | object | array | null;
+  selectedNotes: string[];
 }
 export interface IControl {
   [key: string]: string | number | boolean | object | array | null;
@@ -42,9 +43,10 @@ export interface IShapes {
 export type NullablePoint = IPoint | null;
 
 export type UpdateSetupType = {
-  id: string;
-  value: string | number | boolean | object | null;
+  id?: string;
+  value?: string | number | boolean | object | null;
   type: string;
+  payload?: string[];
 };
 
 export type ShapeComponentProps = {
@@ -70,3 +72,25 @@ export type ShapeComponentsType = {
   curves: React.FC<ShapeComponentWithControlPointProps>;
   ellipses: React.FC<ShapeComponentWithControlPointProps>;
 };
+
+export interface IPianoKeyData {
+  note: string;
+  path: string;
+  fill: "white" | "black";
+  octave: number;
+}
+
+export interface IPianoKeyProps {
+  keyData: IPianoKeyData;
+  isSelected: boolean;
+  onToggle: (note: string) => void;
+}
+
+export interface IPianoKeyboardProps {
+  selectedNotes: string[];
+  onNotesChange: (notes: string[]) => void;
+}
+
+export interface IPatterns {
+  [key: string]: ISetup;
+}

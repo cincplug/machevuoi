@@ -5,7 +5,17 @@ import Buttons from "./Buttons";
 import PatternSelection from "./PatternSelection";
 import ShapeSelection from "./ShapeSelection";
 import Info from "../nav/Info";
-import { ISetup, UpdateSetupType } from "../../../types";
+import { ISetup, IPatterns } from "../../../types";
+import PianoKeyboard from "./PianoKeyboard";
+
+export type UpdateSetupType =
+  | {
+      type: "SET_SELECTED_NOTES";
+      payload: string[];
+    }
+  | {
+      type: string;
+    };
 
 interface IProps {
   setup: ISetup;
@@ -42,7 +52,7 @@ const Menu: React.FC<IProps> = ({
             setup,
             setSetup,
             updateSetup,
-            patterns: DEFAULT_PATTERNS,
+            patterns: DEFAULT_PATTERNS as unknown as IPatterns,
             title: "Patterns"
           }}
         />
@@ -61,6 +71,15 @@ const Menu: React.FC<IProps> = ({
             (control) => !control.isHidden && control.isSoundRelated
           )}
         />
+        {setup.hasSound && (
+          <PianoKeyboard
+            {...{ setup, updateSetup }}
+            selectedNotes={setup.selectedNotes || []}
+            onNotesChange={(notes) =>
+              updateSetup({ type: "SET_SELECTED_NOTES", payload: notes })
+            }
+          />
+        )}
       </aside>
       <aside className={`menu secondary`}>
         <Controls

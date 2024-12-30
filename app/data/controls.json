@@ -400,5 +400,16 @@
     "isHidden": true,
     "value": true,
     "type": "checkbox"
+  },
+  {
+    "id": "selectedNotes",
+    "title": "Selected Notes",
+    "description": "Notes that will be used for sound",
+    "isStoringPrevented": false,
+    "isOmittedInPattern": true,
+    "isSoundRelated": true,
+    "value": [],
+    "isHidden": true,
+    "type": "array"
   }
 ]
