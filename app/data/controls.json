@@ -316,12 +316,23 @@
   },
   {
     "id": "hasSound",
-    "title": "Sound (new)",
+    "title": "Sound",
     "description": "Is sound on",
     "isStoringPrevented": false,
     "isOmittedInPattern": true,
     "isSoundRelated": true,
     "value": false,
+    "type": "checkbox",
+    "isHandRelated": true
+  },
+  {
+    "id": "hasNoteGrid",
+    "title": "Note grid",
+    "description": "Is note grid shown",
+    "isStoringPrevented": false,
+    "isOmittedInPattern": true,
+    "isSoundRelated": true,
+    "value": true,
     "type": "checkbox",
     "isHandRelated": true
   },

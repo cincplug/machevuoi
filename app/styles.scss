@@ -34,6 +34,7 @@
   --color-black-light-semi: #222c;
   --color-skin-dark-semi: #27262580;
   --color-yellow-semi: #fd28;
+  --color-note-grid-bar: #fff4;
 
   --gradient-dark: linear-gradient(
     var(--color-black),
@@ -768,6 +769,32 @@ pre {
 
     &:hover {
       fill: var(--color-skin-light);
+    }
+  }
+}
+
+.note-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  font-family: monospace;
+  display: flex;
+  width: 100%;
+
+  .grid-bar {
+    flex: 1;
+    border-left: 1px solid var(--color-note-grid-bar);
+    height: 100%;
+    position: relative;
+
+    .note-label {
+      position: absolute;
+      top: 1rem;
+      width: 100%;
+      text-align: center;
+      color: var(--color-note-grid-bar);
+      font-size: 0.75rem;
     }
   }
 }

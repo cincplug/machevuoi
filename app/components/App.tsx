@@ -11,6 +11,7 @@ import Splash from "./nav/Splash";
 import Message from "./nav/Message";
 import Drawing from "./Drawing";
 import Loader from "./Loader";
+import NoteGrid from "./NoteGrid";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
 
@@ -289,6 +290,15 @@ const App: React.FC = () => {
                 }}
               />
             </>
+          )}
+          {setup.hasNoteGrid && (
+            <NoteGrid
+              width={width}
+              height={height}
+              selectedNotes={setup.selectedNotes}
+              octaveStart={2}
+              octaveEnd={6}
+            />
           )}
         </>
       ) : (
