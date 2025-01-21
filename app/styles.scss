@@ -308,7 +308,15 @@ ol {
 
 .patterns {
   button {
-    font-size: 1rem;
+    font-size: 1.4rem;
+    background: none;
+    span {
+      filter: grayscale(100%) sepia(0.8) hue-rotate(30deg);
+      transition: filter 0.3s ease;
+    }
+    &:hover:not(.active) {
+      background: var(--color-skin-mid-dark);
+    }
   }
 }
 

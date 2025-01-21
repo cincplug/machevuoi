@@ -88,7 +88,7 @@ const PatternSelection: React.FC<IProps> = ({
             key={`scn-${index}`}
             onClick={(event) => handlePatternButtonClick(event, key, index)}
           >
-            {index + 1}
+            <span>{pattern?.icon}</span>
           </button>
         ))}
       </fieldset>
