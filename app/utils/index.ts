@@ -1,5 +1,5 @@
 import BASE_HAND_POINTS from "../data/baseHandPoints.json";
-import EXTRA_POINT_INDICES from "../data/extraPointIndices.json";
+import MID_POINT_INDICES from "../data/midPointIndices.json";
 import { IPoint, NullablePoint } from "../../types";
 
 export const getDistance = (point1: IPoint, point2: IPoint): number => {
@@ -235,7 +235,7 @@ export const getMidPoint = (
 
 export const getExtendedHandPoints = (handPoints = BASE_HAND_POINTS) => {
   return handPoints.concat(
-    EXTRA_POINT_INDICES.map(([point1, point2]) =>
+    MID_POINT_INDICES.map(([point1, point2]) =>
       getMidPoint(handPoints, point1, point2)
     )
   );
