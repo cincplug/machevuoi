@@ -9,6 +9,7 @@ import Triangle from "./Triangle";
 import Curve from "./Curve";
 import Circle from "./Circle";
 import Ellipse from "./Ellipse";
+import Bitmap from "./Bitmap";
 
 const shapeComponents: ShapeComponentsType = {
   arcs: Arc,
@@ -20,7 +21,8 @@ const shapeComponents: ShapeComponentsType = {
   triangles: Triangle,
   curves: Curve,
   circles: Circle,
-  ellipses: Ellipse
+  ellipses: Ellipse,
+  bitmaps: Bitmap
 };
 
 export default shapeComponents;

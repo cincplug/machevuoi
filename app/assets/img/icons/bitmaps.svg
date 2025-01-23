@@ -1,0 +1,10 @@
+<svg id="bitmaps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+    <image
+        href="/image.png"
+        x="15"
+        y="10"
+        width="30"
+        height="40"
+        preserveAspectRatio="xMidYMid"
+    />
+</svg>

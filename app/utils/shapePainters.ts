@@ -11,6 +11,8 @@ type ShapePainter = (params: {
   isAutoClosed?: boolean;
 }) => void;
 
+let cachedImage: HTMLImageElement | null = null;
+
 export const shapePainters: Record<string, ShapePainter> = {
   lines: ({
     ctx,
@@ -226,5 +228,46 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.lineTo(tpx, tpy);
     ctx.lineTo(epx, epy);
     if (isAutoClosed) ctx.closePath();
+  },
+
+  bitmaps: ({
+    ctx,
+    startPoint,
+    endPoint
+  }: {
+    ctx: CanvasRenderingContext2D;
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): void => {
+    if (!cachedImage) {
+      cachedImage = new Image();
+      cachedImage.src = "/image.png";
+    }
+
+    if (!cachedImage.complete) {
+      cachedImage.onload = () => drawScaledImage();
+      return;
+    }
+
+    function drawScaledImage() {
+      const height = Math.hypot(
+        endPoint.x - startPoint.x,
+        endPoint.y - startPoint.y
+      );
+      const width = (height * cachedImage!.width) / cachedImage!.height;
+
+      ctx.save();
+      ctx.translate(startPoint.x, startPoint.y);
+
+      const angle =
+        Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) -
+        Math.PI / 2;
+
+      ctx.rotate(angle);
+      ctx.drawImage(cachedImage!, -width / 2, 0, width, height);
+      ctx.restore();
+    }
+
+    drawScaledImage();
   }
 };

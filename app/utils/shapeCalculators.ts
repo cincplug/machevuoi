@@ -30,7 +30,7 @@ type ShapeCalculator = ({
   controlPoint?: ControlPoint;
 }) => any;
 
-const shapeCalculators: Record<string, ShapeCalculator> = {
+export const shapeCalculators: Record<string, ShapeCalculator> = {
   lines: ({
     startPoint,
     endPoint
@@ -237,5 +237,14 @@ const shapeCalculators: Record<string, ShapeCalculator> = {
     const tpx = (spx + epx) / 2 - (Math.sqrt(3) * (epy - spy)) / 2;
     const tpy = (spy + epy) / 2 + (Math.sqrt(3) * (epx - spx)) / 2;
     return { spx, spy, epx, epy, tpx, tpy };
+  },
+  bitmaps: ({
+    startPoint,
+    endPoint
+  }: {
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): IPoint[] => {
+    return [startPoint, endPoint];
   }
 };

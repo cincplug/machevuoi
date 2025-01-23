@@ -205,6 +205,7 @@ export const getShape = ({
   handlePathClick,
   shapeType
 }: ShapeProps): ShapeReturn => {
+  if (!selectedShapes) return [];
   return selectedShapes.map((shape) => {
     const startPoint = shape[0];
     const controlPoint = shape.length === 3 ? shape[1] : null;
