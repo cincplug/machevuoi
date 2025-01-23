@@ -266,6 +266,15 @@
     "type": "checkbox"
   },
   {
+    "id": "isFill",
+    "title": "Fill",
+    "description": "Whether shapes are filled or not",
+    "isHandRelated": true,
+    "isScratchCanvasRelated": true,
+    "value": false,
+    "type": "checkbox"
+  },
+  {
     "id": "isScratchCanvas",
     "title": "Scratch canvas",
     "description": "Selected hand points (scratch points) are used for drawing",

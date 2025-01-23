@@ -251,3 +251,16 @@ export const getPoint = (
   const extendedHandPoints = getExtendedHandPoints();
   return extendedHandPoints[point as number];
 };
+
+interface ApplyPaintProps {
+  isFill: boolean;
+  ctx: CanvasRenderingContext2D;
+}
+
+export const applyPaint = ({ isFill, ctx }: ApplyPaintProps): void => {
+  ctx.stroke();
+  if (isFill) {
+    ctx.closePath();
+    ctx.fill();
+  }
+};

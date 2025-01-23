@@ -1,4 +1,4 @@
-import { getAverageDistance, getLineWidth } from ".";
+import { getAverageDistance, getLineWidth, applyPaint } from ".";
 import { shapePainters } from "./shapePainters";
 import { IPoint, IShape, IShapes } from "../../types";
 
@@ -13,6 +13,7 @@ interface ScratchCanvasOptions {
   shapes: IShapes;
   handIndex: number;
   isAutoClosed: boolean;
+  isFill: boolean;
 }
 
 export const scratchCanvas = ({
@@ -24,7 +25,8 @@ export const scratchCanvas = ({
   dynamics,
   shapes,
   handIndex,
-  isAutoClosed
+  isAutoClosed,
+  isFill
 }: ScratchCanvasOptions): void => {
   ctx.beginPath();
   const shapeTipDistance = getAverageDistance(
@@ -53,7 +55,7 @@ export const scratchCanvas = ({
       }
     });
   });
-  ctx.stroke();
+  applyPaint({ isFill, ctx });
   if (tips) {
     ctx.beginPath();
     const tipDistance = getAverageDistance(tips);
@@ -75,6 +77,6 @@ export const scratchCanvas = ({
         ctx.quadraticCurveTo(lastTipX, lastTipY, tipX, tipY);
       }
     });
-    ctx.stroke();
+    applyPaint({ isFill, ctx });
   }
 };

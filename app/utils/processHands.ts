@@ -68,7 +68,8 @@ export const processHands = ({
     isCapsLock,
     activeLayer,
     straightness,
-    isAutoClosed
+    isAutoClosed,
+    isFill
   } = setup;
 
   const shapeNames = [
@@ -178,10 +179,15 @@ export const processHands = ({
         dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
 
-      ctx.strokeStyle = processColor(
+      const styleColor = processColor(
         color as string,
         (isDrawing ? opacity : 255) as number
       );
+
+      if (isFill) {
+        ctx.fillStyle = styleColor;
+      }
+      ctx.strokeStyle = styleColor;
       ctx.setLineDash(dash ? [dash, dash] : []);
       ctx.lineJoin = "round";
 
@@ -202,7 +208,8 @@ export const processHands = ({
           dynamics,
           shapes: shapes as unknown as IShapes,
           handIndex,
-          isAutoClosed
+          isAutoClosed,
+          isFill
         });
         lastTips = tips as IPoint[];
       }
