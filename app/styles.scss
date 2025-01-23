@@ -642,7 +642,9 @@ label {
   }
   &.control-path {
     stroke-width: 2px;
-    stroke-dasharray: 5;
+  }
+  &.bitmap-outline {
+    stroke-dasharray: 4, 1;
   }
 }
 
