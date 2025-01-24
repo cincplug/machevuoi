@@ -376,7 +376,9 @@
       "squares": [],
       "circles": [],
       "ellipses": [],
-      "bitmaps": []
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": []
     },
     "type": "text"
   },
@@ -411,7 +413,9 @@
       "rhomboids",
       "rectangles",
       "triangles",
-      "bitmaps"
+      "bitmap1",
+      "bitmap2",
+      "bitmap3"
     ]
   },
   {

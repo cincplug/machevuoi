@@ -11,7 +11,49 @@ type ShapePainter = (params: {
   isAutoClosed?: boolean;
 }) => void;
 
-let cachedImage: HTMLImageElement | null = null;
+const imageCache: Map<string, HTMLImageElement> = new Map();
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    if (imageCache.has(src)) {
+      resolve(imageCache.get(src)!);
+      return;
+    }
+
+    const img = new Image();
+    img.onload = () => {
+      imageCache.set(src, img);
+      resolve(img);
+    };
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+async function drawBitmap(
+  ctx: CanvasRenderingContext2D,
+  startPoint: IPoint,
+  endPoint: IPoint,
+  bitmapNumber: string
+): Promise<void> {
+  const imagePath = `/brushes/${bitmapNumber}.png`;
+  const img = await loadImage(imagePath);
+
+  const height = Math.hypot(
+    endPoint.x - startPoint.x,
+    endPoint.y - startPoint.y
+  );
+  const width = (height * img.width) / img.height;
+
+  ctx.save();
+  ctx.translate(startPoint.x, startPoint.y);
+  const angle =
+    Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) -
+    Math.PI / 2;
+  ctx.rotate(angle);
+  ctx.drawImage(img, -width / 2, 0, width, height);
+  ctx.restore();
+}
 
 export const shapePainters: Record<string, ShapePainter> = {
   lines: ({
@@ -230,7 +272,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     if (isAutoClosed) ctx.closePath();
   },
 
-  bitmaps: ({
+  bitmap1: async ({
     ctx,
     startPoint,
     endPoint
@@ -238,36 +280,31 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx: CanvasRenderingContext2D;
     startPoint: IPoint;
     endPoint: IPoint;
-  }): void => {
-    if (!cachedImage) {
-      cachedImage = new Image();
-      cachedImage.src = "/image.png";
-    }
+  }): Promise<void> => {
+    await drawBitmap(ctx, startPoint, endPoint, "1");
+  },
 
-    if (!cachedImage.complete) {
-      cachedImage.onload = () => drawScaledImage();
-      return;
-    }
+  bitmap2: async ({
+    ctx,
+    startPoint,
+    endPoint
+  }: {
+    ctx: CanvasRenderingContext2D;
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): Promise<void> => {
+    await drawBitmap(ctx, startPoint, endPoint, "2");
+  },
 
-    function drawScaledImage() {
-      const height = Math.hypot(
-        endPoint.x - startPoint.x,
-        endPoint.y - startPoint.y
-      );
-      const width = (height * cachedImage!.width) / cachedImage!.height;
-
-      ctx.save();
-      ctx.translate(startPoint.x, startPoint.y);
-
-      const angle =
-        Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) -
-        Math.PI / 2;
-
-      ctx.rotate(angle);
-      ctx.drawImage(cachedImage!, -width / 2, 0, width, height);
-      ctx.restore();
-    }
-
-    drawScaledImage();
+  bitmap3: async ({
+    ctx,
+    startPoint,
+    endPoint
+  }: {
+    ctx: CanvasRenderingContext2D;
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): Promise<void> => {
+    await drawBitmap(ctx, startPoint, endPoint, "2");
   }
 };

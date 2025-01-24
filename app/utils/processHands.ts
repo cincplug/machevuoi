@@ -83,7 +83,9 @@ export const processHands = ({
     "curves",
     "arcs",
     "ellipses",
-    "bitmaps"
+    "bitmap1",
+    "bitmap2",
+    "bitmap3"
   ];
 
   hands.forEach((hand, handIndex) => {
@@ -93,7 +95,7 @@ export const processHands = ({
     const indexTip = extendedKeyPoints[7];
     const middleTip = extendedKeyPoints[12];
     const fallbackDots = [4, 8, 12];
-    const dots = scratchPoints?.dots.map(
+    const dots = (scratchPoints?.dots as number[]).map(
       (point: number) => extendedKeyPoints[point]
     );
     const centeringContext =
@@ -114,7 +116,9 @@ export const processHands = ({
           controlPoint?: IPoint;
         }
 
-        result[shapeName] = scratchPoints[shapeName]
+        result[shapeName] = (scratchPoints as { [key: string]: number[][] })[
+          shapeName
+        ]
           .map((shape: number[]): IShape | undefined => {
             const points = shape.map(
               (point: number) => extendedKeyPoints[point]

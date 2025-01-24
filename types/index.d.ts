@@ -2,6 +2,7 @@ export interface ISetup {
   [key: string]: string | number | boolean | object | array | null;
   selectedNotes: string[];
 }
+
 export interface IControl {
   [key: string]: string | number | boolean | object | array | null;
 }
@@ -38,7 +39,9 @@ export interface IShapes {
   rectangles: Shape[];
   triangles: Shape[];
   diamonds: Shape[];
-  bitmaps: Shape[];
+  bitmap1: Shape[];
+  bitmap2: Shape[];
+  bitmap3: Shape[];
 }
 
 export type NullablePoint = IPoint | null;
@@ -55,6 +58,7 @@ export type ShapeComponentProps = {
   title: string;
   onClick: any;
   isPreview?: boolean;
+  activeBitmap?: string;
 };
 
 export type ShapeComponentWithControlPointProps = ShapeComponentProps & {
@@ -70,7 +74,9 @@ export type ShapeComponentsType = {
   rhomboids: React.FC<ShapeComponentProps>;
   triangles: React.FC<ShapeComponentProps>;
   circles: React.FC<ShapeComponentProps>;
-  bitmaps: React.FC<ShapeComponentProps>;
+  bitmap1: React.FC<ShapeComponentProps>;
+  bitmap2: React.FC<ShapeComponentProps>;
+  bitmap3: React.FC<ShapeComponentProps>;
   curves: React.FC<ShapeComponentWithControlPointProps>;
   ellipses: React.FC<ShapeComponentWithControlPointProps>;
 };

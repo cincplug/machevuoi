@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 interface BitmapProps {
   shape: IShape;
   title: string;
+  activeBitmap?: string;
   onClick: () => void;
   isPreview?: boolean;
 }
@@ -12,6 +13,7 @@ interface BitmapProps {
 const Bitmap: React.FC<BitmapProps> = ({
   shape: { startPoint, endPoint },
   title,
+  activeBitmap,
   onClick,
   isPreview = false
 }) => {
@@ -25,18 +27,21 @@ const Bitmap: React.FC<BitmapProps> = ({
 
   const transform = `rotate(${(angle * 180) / Math.PI} ${spx} ${spy})`;
 
+  const bitmapNumber = activeBitmap || title?.match(/bitmap(\d+)/)?.[1];
+  const imagePath = `/brushes/${bitmapNumber}.png`;
+
   useEffect(() => {
     const img = new Image();
     img.onload = () => {
       setImageRatio(img.width / img.height);
     };
-    img.src = "/image.png";
-  }, []);
+    img.src = imagePath;
+  }, [imagePath]);
 
   return (
     <g transform={transform}>
       <image
-        href="/image.png"
+        href={imagePath}
         x={spx - width / 2}
         y={spy}
         width={width}

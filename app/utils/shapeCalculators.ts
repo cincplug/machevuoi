@@ -238,7 +238,25 @@ export const shapeCalculators: Record<string, ShapeCalculator> = {
     const tpy = (spy + epy) / 2 + (Math.sqrt(3) * (epx - spx)) / 2;
     return { spx, spy, epx, epy, tpx, tpy };
   },
-  bitmaps: ({
+  bitmap1: ({
+    startPoint,
+    endPoint
+  }: {
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): IPoint[] => {
+    return [startPoint, endPoint];
+  },
+  bitmap2: ({
+    startPoint,
+    endPoint
+  }: {
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): IPoint[] => {
+    return [startPoint, endPoint];
+  },
+  bitmap3: ({
     startPoint,
     endPoint
   }: {

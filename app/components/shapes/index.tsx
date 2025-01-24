@@ -22,7 +22,9 @@ const shapeComponents: ShapeComponentsType = {
   curves: Curve,
   circles: Circle,
   ellipses: Ellipse,
-  bitmaps: Bitmap
+  bitmap1: Bitmap,
+  bitmap2: Bitmap,
+  bitmap3: Bitmap
 };
 
 export default shapeComponents;

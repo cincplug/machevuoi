@@ -584,6 +584,13 @@ label {
   @include until {
     padding: var(--gap);
   }
+  .zoomed {
+    transform: scale(2);
+    transform-origin: right bottom;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
 }
 
 .icon-button {
@@ -598,7 +605,7 @@ label {
   }
 
   $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
-    rhomboids, squares, triangles, bitmaps;
+    rhomboids, squares, triangles;
 
   @each $shape in $shapes {
     &.#{$shape} {

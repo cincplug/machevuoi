@@ -1,4 +1,5 @@
 import { ISetup, IControl, UpdateSetupType } from "../../../types";
+import Image from "next/image";
 
 interface IProps {
   setup: ISetup;
@@ -47,7 +48,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
       inputProps.checked = checked;
     }
 
-    if (isButtons)
+    if (isButtons) {
       return (
         <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
           {options.map((option: string, optionIndex: number) => (
@@ -61,10 +62,20 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
               id={id}
               value={option}
               onClick={handleOptionButtonClick}
+              style={
+                option.includes("bitmap")
+                  ? {
+                      backgroundImage: `url(/brushes/${
+                        option.match(/bitmap(\d+)/)?.[1]
+                      }.png)`
+                    }
+                  : undefined
+              }
             ></button>
           ))}
         </fieldset>
       );
+    }
 
     return (
       <div

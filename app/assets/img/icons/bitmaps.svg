@@ -1,10 +1,9 @@
 <svg id="bitmaps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
-    <image
-        href="/image.png"
-        x="15"
-        y="10"
-        width="30"
-        height="40"
-        preserveAspectRatio="xMidYMid"
-    />
+    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke-width="2.5"
+        stroke="#2d1f14" />
+    <path d="M20,15 H40 V45 H20 Z" fill="none" stroke-width="2.5"
+        stroke="#2d1f14" />
+    <path d="M20,35 L25,25 L30,35 L35,25 L40,35"
+        fill="none" stroke-width="2.5"
+        stroke="#2d1f14" />
 </svg>

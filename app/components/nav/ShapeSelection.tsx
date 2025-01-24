@@ -28,6 +28,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
   const [mousePoint, setMousePoint] = useState<{ x: number; y: number } | null>(
     null
   );
+  const [activeBitmap, setActiveBitmap] = useState<string | null>(null);
   const { scratchPoints, activeLayer } = setup;
 
   const handleDotClick = (index: number) => {
@@ -61,13 +62,20 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     }
   }, [setup.pressedKey]);
 
+  useEffect(() => {
+    if (setup.activeLayer.includes("bitmap")) {
+      setActiveBitmap(setup.activeLayer.replace("bitmap", ""));
+    }
+  }, [setup.activeLayer]);
+
   const toggleDot = (index: number) => {
     const newScratchPoints = { ...scratchPoints };
-    newScratchPoints[activeLayer] = newScratchPoints[activeLayer].includes(
-      index
-    )
-      ? newScratchPoints[activeLayer].filter((point: number) => point !== index)
-      : [...newScratchPoints[activeLayer], index];
+    if (activeLayer === "dots") {
+      const currentArray = newScratchPoints.dots;
+      newScratchPoints.dots = currentArray.includes(index)
+        ? currentArray.filter((point: number) => point !== index)
+        : [...currentArray, index];
+    }
 
     updateSetup({
       id: "scratchPoints",
@@ -82,24 +90,45 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     endPoint,
     type
   }: IPathClick) => {
-    const newScratchPoints = { ...scratchPoints };
+    const newScratchPoints = { ...scratchPoints } as ISetup["scratchPoints"];
     const path = controlPoint
       ? [startPoint, controlPoint, endPoint]
       : [startPoint, endPoint];
 
-    const existingPathIndex = newScratchPoints[type].findIndex(
-      (existingPath: []) => arraysAreEqual(existingPath, path)
-    );
+    const existingPathIndex = (
+      newScratchPoints[type as keyof typeof newScratchPoints] as number[][]
+    ).findIndex((existingPath: number[]) => arraysAreEqual(existingPath, path));
 
     const addNewPath = () => {
-      newScratchPoints[type] = [...newScratchPoints[type], path];
+      if (type === "dots") {
+        newScratchPoints.dots = [...newScratchPoints.dots, endPoint];
+      } else {
+        const currentPaths = newScratchPoints[
+          type as keyof typeof newScratchPoints
+        ] as number[][];
+        (newScratchPoints[
+          type as keyof typeof newScratchPoints
+        ] as number[][]) = [...currentPaths, path];
+      }
     };
 
     const removePath = () => {
-      newScratchPoints[type] = [
-        ...newScratchPoints[type].slice(0, existingPathIndex),
-        ...newScratchPoints[type].slice(existingPathIndex + 1)
-      ];
+      if (existingPathIndex !== -1) {
+        const paths = newScratchPoints[type as keyof typeof newScratchPoints];
+        if (type === "dots") {
+          newScratchPoints.dots = [
+            ...paths.slice(0, existingPathIndex),
+            ...paths.slice(existingPathIndex + 1)
+          ] as number[];
+        } else {
+          (newScratchPoints[
+            type as keyof typeof newScratchPoints
+          ] as number[][]) = [
+            ...(paths as number[][]).slice(0, existingPathIndex),
+            ...(paths as number[][]).slice(existingPathIndex + 1)
+          ];
+        }
+      }
     };
 
     const isNewPath = existingPathIndex === -1;
@@ -151,13 +180,16 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
               handlePathClick,
               shapeType
             });
+            const activeBitmap = shapeType.includes("bitmap")
+              ? shapeType.replace("bitmap", "")
+              : null;
             return (
               shapes &&
               shapes.map(({ shape, onClick }, index) => (
                 <ShapeComponent
                   title={`Click to remove this ${activeLayerSingular}`}
                   key={`${JSON.stringify(shape)}-${index}`}
-                  {...{ shape, onClick }}
+                  {...{ shape, onClick, activeBitmap }}
                 />
               ))
             );

@@ -369,7 +369,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -409,7 +411,9 @@
         [2, 3]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -445,7 +449,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -509,7 +515,9 @@
         [0, 1],
         [2, 3]
       ],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -563,7 +571,9 @@
         [14, 19]
       ],
       "squares": [[4, 17]],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -612,7 +622,9 @@
         [2, 3]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [
         [5, 6],
         [9, 10],
@@ -663,7 +675,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": [[0, 1, 1]]
     },
@@ -719,7 +733,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -766,7 +782,9 @@
       "rectangles": [],
       "triangles": [[11, 12]],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     },
@@ -819,7 +837,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": [
         [9, 12, 12],
@@ -870,7 +890,9 @@
       "rectangles": [],
       "triangles": [],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     }
@@ -932,7 +954,9 @@
         [3, 4]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     }
@@ -985,7 +1009,9 @@
         [6, 18]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [
         [10, 11],
         [14, 15]
@@ -1037,7 +1063,9 @@
         [10, 14]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     }
@@ -1092,7 +1120,9 @@
         [64, 71]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [
         [56, 59],
         [75, 78],
@@ -1149,7 +1179,9 @@
         [3, 4]
       ],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [],
       "ellipses": []
     }
@@ -1202,7 +1234,9 @@
         [1, 2],
         [0, 1]
       ],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [
         [7, 8],
         [19, 20]
@@ -1260,7 +1294,9 @@
       "rectangles": [],
       "triangles": [[0, 17]],
       "squares": [],
-      "bitmaps": [],
+      "bitmap1": [],
+      "bitmap2": [],
+      "bitmap3": [],
       "circles": [
         [11, 12],
         [15, 16]
