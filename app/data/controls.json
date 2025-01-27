@@ -375,10 +375,7 @@
       "triangles": [],
       "squares": [],
       "circles": [],
-      "ellipses": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": []
+      "ellipses": []
     },
     "type": "text"
   },

@@ -95,9 +95,11 @@ export const processHands = ({
     const indexTip = extendedKeyPoints[7];
     const middleTip = extendedKeyPoints[12];
     const fallbackDots = [4, 8, 12];
-    const dots = (scratchPoints?.dots as number[]).map(
-      (point: number) => extendedKeyPoints[point]
-    );
+    const dots = scratchPoints?.dots
+      ? (scratchPoints.dots as number[]).map(
+          (point: number) => extendedKeyPoints[point]
+        )
+      : [];
     const centeringContext =
       dots.length > 0
         ? dots
@@ -116,9 +118,21 @@ export const processHands = ({
           controlPoint?: IPoint;
         }
 
-        result[shapeName] = (scratchPoints as { [key: string]: number[][] })[
-          shapeName
-        ]
+        // Initialize empty array for each shape type
+        result[shapeName] = [];
+
+        // Skip if no points for this shape
+        if (!scratchPoints?.[shapeName]) {
+          return result;
+        }
+
+        const shapePoints = scratchPoints[shapeName];
+        if (!Array.isArray(shapePoints)) {
+          return result;
+        }
+
+        // Map points based on shape type
+        result[shapeName] = shapePoints
           .map((shape: number[]): IShape | undefined => {
             const points = shape.map(
               (point: number) => extendedKeyPoints[point]
@@ -147,9 +161,8 @@ export const processHands = ({
             }
             return undefined;
           })
-          .filter(
-            (shape: IShape | undefined): shape is IShape => shape !== undefined
-          );
+          .filter((shape): shape is IShape => shape !== undefined);
+
         return result;
       },
       {}

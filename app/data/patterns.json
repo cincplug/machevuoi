@@ -360,20 +360,7 @@
     "doesPinchDraw": true,
     "squeezeRatio": 10,
     "scratchPoints": {
-      "dots": [4, 8, 12, 16, 20],
-      "lines": [],
-      "curves": [],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      "dots": [4, 8, 12, 16, 20]
     },
     "dynamics": 0.5,
     "dash": 0
@@ -393,13 +380,6 @@
     "doesPinchDraw": true,
     "squeezeRatio": 100,
     "scratchPoints": {
-      "dots": [],
-      "lines": [],
-      "curves": [],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [7, 8],
         [11, 12],
@@ -409,13 +389,7 @@
         [1, 2],
         [0, 1],
         [2, 3]
-      ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     },
     "dynamics": 0.5,
     "dash": 0
@@ -436,24 +410,12 @@
     "squeezeRatio": 128,
     "scratchPoints": {
       "dots": [20, 8, 12, 16, 4],
-      "lines": [],
-      "curves": [],
       "arcs": [
         [12, 16],
         [16, 20],
         [12, 8],
         [8, 4]
-      ],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     },
     "dynamics": 0.5,
     "dash": 0
@@ -475,7 +437,6 @@
     "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [7, 8],
         [8, 12],
@@ -495,17 +456,12 @@
         [14, 18],
         [17, 18]
       ],
-      "curves": [],
-      "arcs": [],
       "diamonds": [
         [6, 7],
         [10, 11],
         [14, 15],
         [18, 19]
       ],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
       "squares": [
         [5, 9],
         [9, 13],
@@ -514,12 +470,7 @@
         [1, 2],
         [0, 1],
         [2, 3]
-      ],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     },
     "dash": 0,
     "dynamics": 0.5,
@@ -544,15 +495,12 @@
     "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [14, 16],
         [4, 12],
         [15, 20],
         [19, 20]
       ],
-      "curves": [],
-      "arcs": [],
       "diamonds": [[12, 16]],
       "rhomboids": [[4, 8]],
       "rectangles": [
@@ -570,12 +518,7 @@
         [12, 17],
         [14, 19]
       ],
-      "squares": [[4, 17]],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      "squares": [[4, 17]]
     },
     "dash": 0,
     "dynamics": 0.5,
@@ -598,40 +541,30 @@
     "doesPinchDraw": false,
     "squeezeRatio": 100,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [6, 7],
         [10, 11],
         [14, 15],
         [18, 19]
       ],
-      "curves": [],
-      "arcs": [],
       "diamonds": [
         [7, 8],
         [11, 12],
         [15, 16],
         [19, 20]
       ],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [3, 4],
         [1, 2],
         [0, 1],
         [2, 3]
       ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
       "circles": [
         [5, 6],
         [9, 10],
         [17, 18],
         [13, 14]
-      ],
-      "ellipses": []
+      ]
     },
     "dynamics": 0.5,
     "dash": 0
@@ -653,8 +586,6 @@
     "activePatternIndex": 11,
     "text": "",
     "scratchPoints": {
-      "dots": [],
-      "lines": [],
       "curves": [
         [0, 9, 4],
         [0, 9, 20],
@@ -669,16 +600,6 @@
         [0, 13, 17],
         [0, 9, 16]
       ],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
       "ellipses": [[0, 1, 1]]
     },
     "dash": 0,
@@ -727,17 +648,7 @@
         [14, 12],
         [6, 0],
         [14, 0]
-      ],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     },
     "dash": 0,
     "dynamics": 0.5,
@@ -775,18 +686,7 @@
         [11, 16],
         [13, 16]
       ],
-      "curves": [],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [[11, 12]],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      "triangles": [[11, 12]]
     },
     "dash": 0,
     "dynamics": 0.5,
@@ -830,17 +730,6 @@
         [7, 14],
         [9, 13]
       ],
-      "curves": [],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
       "ellipses": [
         [9, 12, 12],
         [14, 5, 5],
@@ -873,7 +762,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [[0, 17]],
       "curves": [
         [4, 1, 17],
@@ -883,18 +771,7 @@
         [7, 16, 18],
         [18, 19, 20],
         [7, 11, 14]
-      ],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-frog": {
@@ -945,20 +822,11 @@
         [2, 3],
         [1, 2]
       ],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [0, 1],
         [11, 15],
         [3, 4]
-      ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-duck": {
@@ -982,7 +850,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [11, 12],
         [15, 16],
@@ -1000,23 +867,14 @@
         [20, 16, 12],
         [1, 9, 0]
       ],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [10, 14],
         [6, 18]
       ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
       "circles": [
         [10, 11],
         [14, 15]
-      ],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-fox": {
@@ -1040,7 +898,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [7, 8],
         [8, 11],
@@ -1053,21 +910,11 @@
         [9, 1, 17],
         [4, 2, 9]
       ],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [7, 11],
         [15, 19],
         [10, 14]
-      ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-dog": {
@@ -1110,26 +957,17 @@
         [20, 83, 19],
         [6, 25, 18]
       ],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [54, 62],
         [62, 64],
         [64, 71]
       ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
       "circles": [
         [56, 59],
         [75, 78],
         [10, 65],
         [14, 65]
-      ],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-cat": {
@@ -1153,7 +991,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [9, 14],
         [6, 9],
@@ -1168,22 +1005,11 @@
         [0, 3],
         [49, 49]
       ],
-      "curves": [],
-      "arcs": [],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [
         [5, 9],
         [9, 17],
         [3, 4]
-      ],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
-      "circles": [],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-cow": {
@@ -1207,7 +1033,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [5, 6],
         [6, 10],
@@ -1220,28 +1045,19 @@
         [9, 13],
         [13, 17]
       ],
-      "curves": [],
       "arcs": [
         [11, 12],
         [15, 16]
       ],
-      "diamonds": [],
-      "rhomboids": [],
-      "rectangles": [],
-      "triangles": [],
       "squares": [
         [2, 3],
         [1, 2],
         [0, 1]
       ],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
       "circles": [
         [7, 8],
         [19, 20]
-      ],
-      "ellipses": []
+      ]
     }
   },
   "scratch-canvas-monkey": {
@@ -1265,7 +1081,6 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "dots": [],
       "lines": [
         [9, 13],
         [5, 9],
@@ -1285,23 +1100,15 @@
         [6, 9, 18],
         [6, 14, 18]
       ],
-      "arcs": [],
       "diamonds": [
         [19, 20],
         [7, 8]
       ],
-      "rhomboids": [],
-      "rectangles": [],
       "triangles": [[0, 17]],
-      "squares": [],
-      "bitmap1": [],
-      "bitmap2": [],
-      "bitmap3": [],
       "circles": [
         [11, 12],
         [15, 16]
-      ],
-      "ellipses": []
+      ]
     }
   }
 }

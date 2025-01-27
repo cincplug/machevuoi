@@ -90,49 +90,27 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     endPoint,
     type
   }: IPathClick) => {
-    const newScratchPoints = { ...scratchPoints } as ISetup["scratchPoints"];
+    const newScratchPoints = { ...scratchPoints };
     const path = controlPoint
       ? [startPoint, controlPoint, endPoint]
       : [startPoint, endPoint];
 
-    const existingPathIndex = (
-      newScratchPoints[type as keyof typeof newScratchPoints] as number[][]
-    ).findIndex((existingPath: number[]) => arraysAreEqual(existingPath, path));
+    if (!newScratchPoints[type]) {
+      newScratchPoints[type] = [];
+    }
 
-    const addNewPath = () => {
-      if (type === "dots") {
-        newScratchPoints.dots = [...newScratchPoints.dots, endPoint];
-      } else {
-        const currentPaths = newScratchPoints[
-          type as keyof typeof newScratchPoints
-        ] as number[][];
-        (newScratchPoints[
-          type as keyof typeof newScratchPoints
-        ] as number[][]) = [...currentPaths, path];
-      }
-    };
+    const existingPathIndex = newScratchPoints[type].findIndex(
+      (existingPath: number[]) => arraysAreEqual(existingPath, path)
+    );
 
-    const removePath = () => {
-      if (existingPathIndex !== -1) {
-        const paths = newScratchPoints[type as keyof typeof newScratchPoints];
-        if (type === "dots") {
-          newScratchPoints.dots = [
-            ...paths.slice(0, existingPathIndex),
-            ...paths.slice(existingPathIndex + 1)
-          ] as number[];
-        } else {
-          (newScratchPoints[
-            type as keyof typeof newScratchPoints
-          ] as number[][]) = [
-            ...(paths as number[][]).slice(0, existingPathIndex),
-            ...(paths as number[][]).slice(existingPathIndex + 1)
-          ];
-        }
-      }
-    };
-
-    const isNewPath = existingPathIndex === -1;
-    isNewPath ? addNewPath() : removePath();
+    if (existingPathIndex === -1) {
+      newScratchPoints[type] = [...newScratchPoints[type], path];
+    } else {
+      newScratchPoints[type] = [
+        ...newScratchPoints[type].slice(0, existingPathIndex),
+        ...newScratchPoints[type].slice(existingPathIndex + 1)
+      ];
+    }
 
     updateSetup({
       id: "scratchPoints",
@@ -174,15 +152,19 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
         {(Object.keys(shapeComponents) as (keyof ShapeComponentsType)[]).map(
           (shapeType) => {
             const ShapeComponent: AnyComponent = shapeComponents[shapeType];
-            if (scratchPoints[shapeType].length === 0) return null;
-            const shapes = getShape({
-              selectedShapes: scratchPoints[shapeType],
-              handlePathClick,
-              shapeType
-            });
+
+            const shapes = scratchPoints[shapeType]
+              ? getShape({
+                  selectedShapes: scratchPoints[shapeType],
+                  handlePathClick,
+                  shapeType
+                })
+              : null;
+
             const activeBitmap = shapeType.includes("bitmap")
               ? shapeType.replace("bitmap", "")
               : null;
+
             return (
               shapes &&
               shapes.map(({ shape, onClick }, index) => (
