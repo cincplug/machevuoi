@@ -272,31 +272,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     if (isAutoClosed) ctx.closePath();
   },
 
-  bitmap1: async ({
-    ctx,
-    startPoint,
-    endPoint
-  }: {
-    ctx: CanvasRenderingContext2D;
-    startPoint: IPoint;
-    endPoint: IPoint;
-  }): Promise<void> => {
-    await drawBitmap(ctx, startPoint, endPoint, "1");
-  },
-
-  bitmap2: async ({
-    ctx,
-    startPoint,
-    endPoint
-  }: {
-    ctx: CanvasRenderingContext2D;
-    startPoint: IPoint;
-    endPoint: IPoint;
-  }): Promise<void> => {
-    await drawBitmap(ctx, startPoint, endPoint, "2");
-  },
-
-  bitmap3: async ({
+  bitmaps: async ({
     ctx,
     startPoint,
     endPoint

@@ -1,20 +1,20 @@
+import { IPoint } from "../../../types";
 import { getPoint } from "../../utils";
-import { IPoint, ShapeComponentsType } from "../../../types";
+import { getShapeComponent, isKnownShape } from "../shapes";
+import Bitmap from "./Bitmap";
 
 interface PreviewProps {
   startPoint: IPoint;
   controlPoint: IPoint | null;
   mousePoint: IPoint | null;
   activeLayer: string;
-  shapeComponents: ShapeComponentsType;
 }
 
 const Preview: React.FC<PreviewProps> = ({
   startPoint,
   controlPoint,
   mousePoint,
-  activeLayer,
-  shapeComponents
+  activeLayer
 }) => {
   const { x: spx, y: spy } = getPoint(startPoint, true);
   if (mousePoint === null) {
@@ -23,10 +23,24 @@ const Preview: React.FC<PreviewProps> = ({
   const epx = mousePoint.x;
   const epy = mousePoint.y;
 
-  const ShapeComponent =
-    shapeComponents[activeLayer as keyof ShapeComponentsType];
+  const ShapeComponent = getShapeComponent(activeLayer);
 
   if (controlPoint === null) {
+    if (!isKnownShape(activeLayer)) {
+      return (
+        <Bitmap
+          shape={{
+            startPoint: { x: spx, y: spy },
+            endPoint: { x: epx, y: epy }
+          }}
+          isPreview={true}
+          title=""
+          onClick={() => {}}
+          url={activeLayer} // Pass actual bitmap URL
+        />
+      );
+    }
+
     return ["lines", "curves", "ellipses"].includes(activeLayer) ? (
       <line
         x1={spx}
@@ -37,10 +51,13 @@ const Preview: React.FC<PreviewProps> = ({
       />
     ) : (
       <ShapeComponent
-        shape={{ startPoint, controlPoint: startPoint, endPoint: mousePoint }}
+        shape={{
+          startPoint: { x: spx, y: spy },
+          endPoint: { x: epx, y: epy }
+        }}
+        isPreview={true}
+        title=""
         onClick={() => {}}
-        title={activeLayer}
-        isPreview
       />
     );
   }

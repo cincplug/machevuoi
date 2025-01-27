@@ -1,10 +1,16 @@
+import { ISetup, UpdateSetupType, ShapeComponentsType } from "../../../types";
 import React, { useState, useEffect } from "react";
+import { getShapeComponent, isKnownShape } from "../shapes";
+import shapeComponents from "../shapes";
+import {
+  arraysAreEqual,
+  getExtendedHandPoints,
+  isBitmapSource
+} from "../../utils";
+import { getShape } from "../../utils";
 import Dots from "../shapes/Dots";
 import Preview from "../shapes/Preview";
-import shapeComponents from "../shapes";
-import { arraysAreEqual, getExtendedHandPoints } from "../../utils";
-import { getShape } from "../../utils";
-import { ISetup, UpdateSetupType, ShapeComponentsType } from "../../../types";
+import NewBitmap from "./NewBitmap";
 
 interface IProps {
   setup: ISetup;
@@ -18,8 +24,6 @@ interface IPathClick {
   type: string;
 }
 
-type AnyComponent = React.FC<any>;
-
 const extendedHandPoints = getExtendedHandPoints();
 
 const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
@@ -28,12 +32,11 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
   const [mousePoint, setMousePoint] = useState<{ x: number; y: number } | null>(
     null
   );
-  const [activeBitmap, setActiveBitmap] = useState<string | null>(null);
   const { scratchPoints, activeLayer } = setup;
 
   const handleDotClick = (index: number) => {
     if (activeLayer === "dots") {
-      toggleDot(index);
+      toggleDot(index as unknown as number);
     } else {
       if (startPoint === null) {
         setStartPoint(index);
@@ -62,17 +65,11 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     }
   }, [setup.pressedKey]);
 
-  useEffect(() => {
-    if (setup.activeLayer.includes("bitmap")) {
-      setActiveBitmap(setup.activeLayer.replace("bitmap", ""));
-    }
-  }, [setup.activeLayer]);
-
   const toggleDot = (index: number) => {
     const newScratchPoints = { ...scratchPoints };
     if (activeLayer === "dots") {
       const currentArray = newScratchPoints.dots;
-      newScratchPoints.dots = currentArray.includes(index)
+      newScratchPoints.dots = currentArray?.includes(index)
         ? currentArray.filter((point: number) => point !== index)
         : [...currentArray, index];
     }
@@ -134,66 +131,64 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
   };
 
   const isDots = activeLayer === "dots";
-  const activeLayerSingular = activeLayer.slice(0, -1);
   const dotTooltip = !isDots
     ? `Click to set the ${
         !startPoint ? "start" : "next"
-      } point of the new ${activeLayerSingular}`
+      } point of the new ${activeLayer}`
     : "";
 
   return (
     <div className={`scratch-wrap active-${isDots ? "dots" : "shapes"}`}>
+      <NewBitmap {...{ scratchPoints, updateSetup }} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 460 500"
         className="scratch-svg"
         onMouseMove={handleMouseMove}
       >
-        {(Object.keys(shapeComponents) as (keyof ShapeComponentsType)[]).map(
-          (shapeType) => {
-            const ShapeComponent: AnyComponent = shapeComponents[shapeType];
+        {[
+          ...Object.keys(shapeComponents),
+          ...Object.keys(scratchPoints).filter(isBitmapSource)
+        ].map((shapeType) => {
+          const ShapeComponent = getShapeComponent(shapeType);
 
-            const shapes = scratchPoints[shapeType]
-              ? getShape({
-                  selectedShapes: scratchPoints[shapeType],
-                  handlePathClick,
-                  shapeType
-                })
-              : null;
+          const shapes = scratchPoints[shapeType]
+            ? getShape({
+                selectedShapes: scratchPoints[shapeType],
+                handlePathClick,
+                shapeType
+              })
+            : null;
 
-            const activeBitmap = shapeType.includes("bitmap")
-              ? shapeType.replace("bitmap", "")
-              : null;
-
-            return (
-              shapes &&
-              shapes.map(({ shape, onClick }, index) => (
-                <ShapeComponent
-                  title={`Click to remove this ${activeLayerSingular}`}
-                  key={`${JSON.stringify(shape)}-${index}`}
-                  {...{ shape, onClick, activeBitmap }}
-                />
-              ))
-            );
-          }
-        )}
+          return shapes?.map(({ shape, onClick }, index) => (
+            <ShapeComponent
+              key={`${shapeType}-${index}`}
+              title={`Click to remove this ${
+                isKnownShape(shapeType) ? shapeType : "bitmap"
+              }`}
+              shape={shape}
+              onClick={onClick}
+              url={isBitmapSource(shapeType) ? shapeType : undefined}
+            />
+          ));
+        })}
         {startPoint !== null && (
           <Preview
-            {...{
-              startPoint: extendedHandPoints[startPoint],
-              controlPoint:
-                controlPoint !== null ? extendedHandPoints[controlPoint] : null,
-              activeLayer,
-              mousePoint,
-              shapeComponents
-            }}
+            startPoint={extendedHandPoints[startPoint]}
+            controlPoint={
+              controlPoint !== null ? extendedHandPoints[controlPoint] : null
+            }
+            activeLayer={activeLayer}
+            mousePoint={mousePoint}
+            shapeComponents={shapeComponents as ShapeComponentsType}
+            activeBitmap={activeLayer}
           />
         )}
-        <g className={`scratch-layer dots`}>
+        <g className="scratch-layer dots">
           <Dots
             selectedDots={scratchPoints.dots}
             handleDotClick={handleDotClick}
-            {...{ dotTooltip }}
+            dotTooltip={dotTooltip}
           />
         </g>
       </svg>

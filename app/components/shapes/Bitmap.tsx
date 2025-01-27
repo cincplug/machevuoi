@@ -5,17 +5,17 @@ import { useState, useEffect } from "react";
 interface BitmapProps {
   shape: IShape;
   title: string;
-  activeBitmap?: string;
   onClick: () => void;
   isPreview?: boolean;
+  url: string;
 }
 
 const Bitmap: React.FC<BitmapProps> = ({
   shape: { startPoint, endPoint },
   title,
-  activeBitmap,
   onClick,
-  isPreview = false
+  isPreview = false,
+  url
 }) => {
   const [imageRatio, setImageRatio] = useState(1);
   const { x: spx, y: spy } = getPoint(startPoint, isPreview);
@@ -24,24 +24,22 @@ const Bitmap: React.FC<BitmapProps> = ({
   const height = Math.hypot(epx - spx, epy - spy);
   const width = height * imageRatio;
   const angle = Math.atan2(epy - spy, epx - spx) - Math.PI / 2;
-
   const transform = `rotate(${(angle * 180) / Math.PI} ${spx} ${spy})`;
 
-  const bitmapNumber = activeBitmap || title?.match(/bitmap(\d+)/)?.[1];
-  const imagePath = `/brushes/${bitmapNumber}.png`;
-
   useEffect(() => {
+    if (!url) return;
+
     const img = new Image();
     img.onload = () => {
       setImageRatio(img.width / img.height);
     };
-    img.src = imagePath;
-  }, [imagePath]);
+    img.src = url;
+  }, [url]);
 
   return (
     <g transform={transform}>
       <image
-        href={imagePath}
+        href={url}
         x={spx - width / 2}
         y={spy}
         width={width}

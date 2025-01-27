@@ -1,4 +1,3 @@
-import { ShapeComponentsType } from "../../../types";
 import Arc from "./Arc";
 import Line from "./Line";
 import Square from "./Square";
@@ -11,7 +10,7 @@ import Circle from "./Circle";
 import Ellipse from "./Ellipse";
 import Bitmap from "./Bitmap";
 
-const shapeComponents: ShapeComponentsType = {
+const shapeComponents = {
   arcs: Arc,
   lines: Line,
   squares: Square,
@@ -21,10 +20,20 @@ const shapeComponents: ShapeComponentsType = {
   triangles: Triangle,
   curves: Curve,
   circles: Circle,
-  ellipses: Ellipse,
-  bitmap1: Bitmap,
-  bitmap2: Bitmap,
-  bitmap3: Bitmap
+  ellipses: Ellipse
+} as const;
+
+export const isKnownShape = (
+  type: string
+): type is keyof typeof shapeComponents => {
+  return type in shapeComponents;
+};
+
+export const getShapeComponent = (type: string) => {
+  if (isKnownShape(type)) {
+    return shapeComponents[type];
+  }
+  return Bitmap;
 };
 
 export default shapeComponents;

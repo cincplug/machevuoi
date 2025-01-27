@@ -265,3 +265,7 @@ export const applyPaint = ({ isFill, ctx }: ApplyPaintProps): void => {
     ctx.fill();
   }
 };
+
+export const isBitmapSource = (source: string): boolean => {
+  return source.startsWith("/") || source.includes("://");
+};

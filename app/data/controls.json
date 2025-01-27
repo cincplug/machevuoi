@@ -410,9 +410,8 @@
       "rhomboids",
       "rectangles",
       "triangles",
-      "bitmap1",
-      "bitmap2",
-      "bitmap3"
+      "/brushes/1.png",
+      "/brushes/2.png"
     ]
   },
   {

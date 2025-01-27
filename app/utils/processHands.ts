@@ -83,9 +83,7 @@ export const processHands = ({
     "curves",
     "arcs",
     "ellipses",
-    "bitmap1",
-    "bitmap2",
-    "bitmap3"
+    "bitmaps"
   ];
 
   hands.forEach((hand, handIndex) => {

@@ -117,7 +117,7 @@ const App: React.FC = () => {
         clearPaths();
       }
 
-      if (event.key === "m") {
+      if (event.key === "`") {
         setSetup((prevSetup) => {
           return { ...prevSetup, isMenuVisible: !prevSetup.isMenuVisible };
         });
