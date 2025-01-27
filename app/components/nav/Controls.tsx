@@ -1,5 +1,6 @@
 import { ISetup, IControl, UpdateSetupType } from "../../../types";
 import { isBitmapSource } from "../../utils";
+import NewBitmap from "./NewBitmap";
 
 interface IProps {
   setup: ISetup;
@@ -54,6 +55,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
         isBitmapSource
       );
       const allOptions = [...new Set([...shapeOptions, ...bitmapOptions])];
+      const { scratchPoints } = setup;
 
       return (
         <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
@@ -75,6 +77,7 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
               }
             />
           ))}
+          <NewBitmap {...{ scratchPoints, updateSetup }} />
         </fieldset>
       );
     }

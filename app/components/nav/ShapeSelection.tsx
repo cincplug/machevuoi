@@ -10,7 +10,6 @@ import {
 import { getShape } from "../../utils";
 import Dots from "../shapes/Dots";
 import Preview from "../shapes/Preview";
-import NewBitmap from "./NewBitmap";
 
 interface IProps {
   setup: ISetup;
@@ -139,7 +138,6 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
 
   return (
     <div className={`scratch-wrap active-${isDots ? "dots" : "shapes"}`}>
-      <NewBitmap {...{ scratchPoints, updateSetup }} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 460 500"
@@ -166,9 +164,9 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
               title={`Click to remove this ${
                 isKnownShape(shapeType) ? shapeType : "bitmap"
               }`}
-              shape={shape}
+              shape={shape as any}
               onClick={onClick}
-              url={isBitmapSource(shapeType) ? shapeType : undefined}
+              url={isBitmapSource(shapeType) ? shapeType : ""}
             />
           ));
         })}
@@ -180,8 +178,6 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
             }
             activeLayer={activeLayer}
             mousePoint={mousePoint}
-            shapeComponents={shapeComponents as ShapeComponentsType}
-            activeBitmap={activeLayer}
           />
         )}
         <g className="scratch-layer dots">
