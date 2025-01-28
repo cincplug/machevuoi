@@ -2,7 +2,6 @@ import Arc from "./Arc";
 import Line from "./Line";
 import Square from "./Square";
 import Diamond from "./Diamond";
-import Rhomboid from "./Rhomboid";
 import Rectangle from "./Rectangle";
 import Triangle from "./Triangle";
 import Curve from "./Curve";
@@ -16,7 +15,6 @@ const shapeComponents = {
   squares: Square,
   diamonds: Diamond,
   rectangles: Rectangle,
-  rhomboids: Rhomboid,
   triangles: Triangle,
   curves: Curve,
   circles: Circle,

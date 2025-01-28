@@ -76,7 +76,6 @@ export const processHands = ({
     "lines",
     "squares",
     "rectangles",
-    "rhomboids",
     "triangles",
     "diamonds",
     "circles",

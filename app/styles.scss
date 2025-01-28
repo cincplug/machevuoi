@@ -605,7 +605,7 @@ label {
   }
 
   $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
-    rhomboids, squares, triangles;
+    squares, triangles;
 
   @each $shape in $shapes {
     &.#{$shape} {

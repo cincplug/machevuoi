@@ -35,7 +35,6 @@ export interface IShapes {
   ellipses: Shape[];
   circles: Shape[];
   squares: Shape[];
-  rhomboids: Shape[];
   rectangles: Shape[];
   triangles: Shape[];
   diamonds: Shape[];
@@ -69,7 +68,6 @@ export type ShapeComponentsType = {
   squares: React.FC<ShapeComponentProps>;
   diamonds: React.FC<ShapeComponentProps>;
   rectangles: React.FC<ShapeComponentProps>;
-  rhomboids: React.FC<ShapeComponentProps>;
   triangles: React.FC<ShapeComponentProps>;
   circles: React.FC<ShapeComponentProps>;
   bitmaps: React.FC<ShapeComponentProps>;

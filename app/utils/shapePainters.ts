@@ -186,29 +186,6 @@ export const shapePainters: Record<string, ShapePainter> = {
     if (isAutoClosed) ctx.closePath();
   },
 
-  rhomboids: ({
-    ctx,
-    startPoint,
-    endPoint,
-    isAutoClosed
-  }: {
-    ctx: CanvasContext;
-    startPoint: IPoint;
-    endPoint: IPoint;
-    isAutoClosed?: boolean;
-  }): void => {
-    const { spx, spy, epx, epy, cpx, cpy, dpx, dpy } = getShapePoints({
-      shape: "rhomboids",
-      startPoint,
-      endPoint
-    });
-    ctx.moveTo(spx, spy);
-    ctx.lineTo(cpx, cpy);
-    ctx.lineTo(epx, epy);
-    ctx.lineTo(dpx, dpy);
-    if (isAutoClosed) ctx.closePath();
-  },
-
   circles: ({
     ctx,
     startPoint,
