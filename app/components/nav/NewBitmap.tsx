@@ -52,26 +52,23 @@ const NewBitmap: React.FC<NewBitmapProps> = ({
   };
 
   return (
-    <div className="bitmap-controls">
-      <button
-        className="add-bitmap"
-        onClick={() => setShowUrlInput(true)}
-        title="Add new bitmap"
-      >
-        +
-      </button>
-      {showUrlInput && (
+    <>
+      {showUrlInput ? (
         <form onSubmit={handleUrlSubmit} className="url-input-form">
           <input
+            className="url-input"
             type="text"
             value={newBitmapUrl}
             onChange={(e) => setNewBitmapUrl(e.target.value)}
             placeholder="Enter image URL"
             autoFocus
           />
-          <button type="submit">✓</button>
+          <button type="submit" className="icon-button">
+            ✓
+          </button>
           <button
             type="button"
+            className="icon-button"
             onClick={() => {
               setShowUrlInput(false);
               setNewBitmapUrl("");
@@ -80,8 +77,16 @@ const NewBitmap: React.FC<NewBitmapProps> = ({
             ✕
           </button>
         </form>
+      ) : (
+        <button
+          className="icon-button url-input-toggle"
+          onClick={() => setShowUrlInput(true)}
+          title="Add new bitmap"
+        >
+          +
+        </button>
       )}
-    </div>
+    </>
   );
 };
 

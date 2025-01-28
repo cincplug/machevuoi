@@ -815,3 +815,20 @@ pre {
     }
   }
 }
+
+.url-input-toggle {
+  grid-column: 1 / span 2;
+  grid-row: auto;
+}
+
+.url-input-form {
+  grid-column: 1 / -1;
+  display: contents;
+  grid-template-columns: inherit;
+  grid-auto-rows: max-content;
+
+  .url-input {
+    grid-column: 1 / span 8;
+    height: var(--input-height);
+  }
+}
