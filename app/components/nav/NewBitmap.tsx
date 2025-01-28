@@ -79,11 +79,11 @@ const NewBitmap: React.FC<NewBitmapProps> = ({
         </form>
       ) : (
         <button
-          className="icon-button url-input-toggle"
+          className="url-input-toggle control button"
           onClick={() => setShowUrlInput(true)}
           title="Add new bitmap"
         >
-          +
+          Add bitmap
         </button>
       )}
     </>
