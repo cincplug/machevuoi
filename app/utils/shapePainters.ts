@@ -9,6 +9,7 @@ type ShapePainter = (params: {
   endPoint: IPoint;
   controlPoint?: IPoint;
   isAutoClosed?: boolean;
+  url?: string;
 }) => void;
 
 const imageCache: Map<string, HTMLImageElement> = new Map();
@@ -19,7 +20,6 @@ function loadImage(src: string): Promise<HTMLImageElement> {
       resolve(imageCache.get(src)!);
       return;
     }
-
     const img = new Image();
     img.onload = () => {
       imageCache.set(src, img);
@@ -34,10 +34,9 @@ async function drawBitmap(
   ctx: CanvasRenderingContext2D,
   startPoint: IPoint,
   endPoint: IPoint,
-  bitmapNumber: string
+  url: string
 ): Promise<void> {
-  const imagePath = `/brushes/${bitmapNumber}.png`;
-  const img = await loadImage(imagePath);
+  const img = await loadImage(url);
 
   const height = Math.hypot(
     endPoint.x - startPoint.x,
@@ -252,12 +251,14 @@ export const shapePainters: Record<string, ShapePainter> = {
   bitmaps: async ({
     ctx,
     startPoint,
-    endPoint
+    endPoint,
+    url
   }: {
     ctx: CanvasRenderingContext2D;
     startPoint: IPoint;
     endPoint: IPoint;
+    url?: string;
   }): Promise<void> => {
-    await drawBitmap(ctx, startPoint, endPoint, "2");
+    await drawBitmap(ctx, startPoint, endPoint, url as string);
   }
 };

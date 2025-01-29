@@ -36,7 +36,7 @@ const Preview: React.FC<PreviewProps> = ({
           isPreview={true}
           title=""
           onClick={() => {}}
-          url={activeLayer} // Pass actual bitmap URL
+          url={activeLayer}
         />
       );
     }
@@ -53,6 +53,7 @@ const Preview: React.FC<PreviewProps> = ({
       <ShapeComponent
         shape={{
           startPoint: { x: spx, y: spy },
+          controlPoint: controlPoint || startPoint,
           endPoint: { x: epx, y: epy }
         }}
         isPreview={true}

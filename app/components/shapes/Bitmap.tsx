@@ -7,7 +7,7 @@ interface BitmapProps {
   title: string;
   onClick: () => void;
   isPreview?: boolean;
-  url: string;
+  url?: string;
 }
 
 const Bitmap: React.FC<BitmapProps> = ({

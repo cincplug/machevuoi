@@ -161,7 +161,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           return shapes?.map(({ shape, onClick }, index) => (
             <ShapeComponent
               key={`${shapeType}-${index}`}
-              title={`Click to remove this ${
+              title={`Click to remove from ${
                 isKnownShape(shapeType) ? shapeType : "bitmap"
               }`}
               shape={shape as any}
@@ -194,7 +194,10 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           <>add or remove them</>
         ) : (
           <>
-            add <strong>{activeLayer}</strong>
+            add{" "}
+            <strong>
+              {isKnownShape(activeLayer) ? activeLayer : "bitmaps"}
+            </strong>
           </>
         )}
       </p>
