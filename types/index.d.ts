@@ -35,13 +35,10 @@ export interface IShapes {
   ellipses: Shape[];
   circles: Shape[];
   squares: Shape[];
-  rhomboids: Shape[];
   rectangles: Shape[];
   triangles: Shape[];
   diamonds: Shape[];
-  bitmap1: Shape[];
-  bitmap2: Shape[];
-  bitmap3: Shape[];
+  bitmaps: Shape[];
 }
 
 export type NullablePoint = IPoint | null;
@@ -71,12 +68,9 @@ export type ShapeComponentsType = {
   squares: React.FC<ShapeComponentProps>;
   diamonds: React.FC<ShapeComponentProps>;
   rectangles: React.FC<ShapeComponentProps>;
-  rhomboids: React.FC<ShapeComponentProps>;
   triangles: React.FC<ShapeComponentProps>;
   circles: React.FC<ShapeComponentProps>;
-  bitmap1: React.FC<ShapeComponentProps>;
-  bitmap2: React.FC<ShapeComponentProps>;
-  bitmap3: React.FC<ShapeComponentProps>;
+  bitmaps: React.FC<ShapeComponentProps>;
   curves: React.FC<ShapeComponentWithControlPointProps>;
   ellipses: React.FC<ShapeComponentWithControlPointProps>;
 };

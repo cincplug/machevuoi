@@ -370,7 +370,6 @@
       "curves": [],
       "arcs": [],
       "diamonds": [],
-      "rhomboids": [],
       "rectangles": [],
       "triangles": [],
       "squares": [],
@@ -407,12 +406,8 @@
       "ellipses",
       "squares",
       "diamonds",
-      "rhomboids",
       "rectangles",
-      "triangles",
-      "bitmap1",
-      "bitmap2",
-      "bitmap3"
+      "triangles"
     ]
   },
   {

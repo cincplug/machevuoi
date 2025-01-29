@@ -1,5 +1,6 @@
 import { ISetup, IControl, UpdateSetupType } from "../../../types";
-import Image from "next/image";
+import { isBitmapSource } from "../../utils";
+import NewBitmap from "./NewBitmap";
 
 interface IProps {
   setup: ISetup;
@@ -49,9 +50,16 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
     }
 
     if (isButtons) {
+      const shapeOptions = options;
+      const bitmapOptions = Object.keys(setup.scratchPoints).filter(
+        isBitmapSource
+      );
+      const allOptions = [...new Set([...shapeOptions, ...bitmapOptions])];
+      const { scratchPoints } = setup;
+
       return (
         <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
-          {options.map((option: string, optionIndex: number) => (
+          {allOptions.map((option: string, optionIndex: number) => (
             <button
               className={`icon-button ${option} ${
                 value === option ? "active" : ""
@@ -63,16 +71,13 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
               value={option}
               onClick={handleOptionButtonClick}
               style={
-                option.includes("bitmap")
-                  ? {
-                      backgroundImage: `url(/brushes/${
-                        option.match(/bitmap(\d+)/)?.[1]
-                      }.png)`
-                    }
+                isBitmapSource(option)
+                  ? { backgroundImage: `url(${option})` }
                   : undefined
               }
-            ></button>
+            />
           ))}
+          <NewBitmap {...{ scratchPoints, updateSetup }} />
         </fieldset>
       );
     }

@@ -605,7 +605,7 @@ label {
   }
 
   $shapes: arcs, circles, curves, diamonds, dots, ellipses, lines, rectangles,
-    rhomboids, squares, triangles;
+    squares, triangles;
 
   @each $shape in $shapes {
     &.#{$shape} {
@@ -813,5 +813,22 @@ pre {
       color: var(--color-note-grid-bar);
       font-size: 0.75rem;
     }
+  }
+}
+
+.url-input-toggle {
+  grid-row: auto;
+  grid-column: 1 / span 6;
+}
+
+.url-input-form {
+  grid-column: 1 / -1;
+  display: contents;
+  grid-template-columns: inherit;
+  grid-auto-rows: max-content;
+
+  .url-input {
+    grid-column: 1 / span 8;
+    height: var(--input-height);
   }
 }

@@ -1,4 +1,9 @@
-import { getAverageDistance, getLineWidth, applyPaint } from ".";
+import {
+  getAverageDistance,
+  getLineWidth,
+  applyPaint,
+  isBitmapSource
+} from ".";
 import { shapePainters } from "./shapePainters";
 import { IPoint, IShape, IShapes } from "../../types";
 
@@ -43,19 +48,23 @@ export const scratchCanvas = ({
   Object.keys(shapes).forEach((shapeName) => {
     const shapeList = shapes[shapeName as keyof IShapes];
     shapeList.forEach((shape: IShape) => {
-      const shapePainter = shapePainters[shapeName];
+      const shapePainter = shapePainters[shapeName] || shapePainters.bitmaps;
+      const url = isBitmapSource(shapeName) ? shapeName : undefined;
       if (shapePainter) {
         shapePainter({
           ctx,
           startPoint: shape.startPoint,
           endPoint: shape.endPoint,
           controlPoint: shape.controlPoint,
-          isAutoClosed
+          isAutoClosed,
+          url
         });
       }
     });
   });
+
   applyPaint({ isFill, ctx });
+
   if (tips) {
     ctx.beginPath();
     const tipDistance = getAverageDistance(tips);

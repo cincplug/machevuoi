@@ -146,40 +146,6 @@ export const shapeCalculators: Record<string, ShapeCalculator> = {
     const dpy = epy + (epx - spx);
     return { spx, spy, epx, epy, cpx, cpy, dpx, dpy };
   },
-  rhomboids: ({
-    startPoint,
-    endPoint
-  }: {
-    startPoint: IPoint;
-    endPoint: IPoint;
-  }): any => {
-    const spx = startPoint.x;
-    const spy = startPoint.y;
-    const epx = endPoint.x;
-    const epy = endPoint.y;
-    const mpx = (spx + epx) / 2;
-    const mpy = (spy + epy) / 2;
-
-    const halfDiagonal =
-      spx < epx
-        ? Math.sqrt((mpx - spx) ** 2 + (mpy - spy) ** 2)
-        : Math.sqrt((mpx - epx) ** 2 + (mpy - epy) ** 2);
-
-    let cpx, cpy, dpx, dpy;
-    if (spx < epx) {
-      cpx = mpx - halfDiagonal;
-      cpy = mpy + halfDiagonal;
-      dpx = mpx + halfDiagonal;
-      dpy = mpy - halfDiagonal;
-    } else {
-      cpx = mpx + halfDiagonal;
-      cpy = mpy + halfDiagonal;
-      dpx = mpx - halfDiagonal;
-      dpy = mpy - halfDiagonal;
-    }
-
-    return { spx, spy, epx, epy, cpx, cpy, dpx, dpy };
-  },
   circles: ({
     startPoint,
     endPoint
@@ -238,25 +204,7 @@ export const shapeCalculators: Record<string, ShapeCalculator> = {
     const tpy = (spy + epy) / 2 + (Math.sqrt(3) * (epx - spx)) / 2;
     return { spx, spy, epx, epy, tpx, tpy };
   },
-  bitmap1: ({
-    startPoint,
-    endPoint
-  }: {
-    startPoint: IPoint;
-    endPoint: IPoint;
-  }): IPoint[] => {
-    return [startPoint, endPoint];
-  },
-  bitmap2: ({
-    startPoint,
-    endPoint
-  }: {
-    startPoint: IPoint;
-    endPoint: IPoint;
-  }): IPoint[] => {
-    return [startPoint, endPoint];
-  },
-  bitmap3: ({
+  bitmaps: ({
     startPoint,
     endPoint
   }: {

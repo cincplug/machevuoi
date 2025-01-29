@@ -72,21 +72,7 @@ export const processHands = ({
     isFill
   } = setup;
 
-  const shapeNames = [
-    "lines",
-    "squares",
-    "rectangles",
-    "rhomboids",
-    "triangles",
-    "diamonds",
-    "circles",
-    "curves",
-    "arcs",
-    "ellipses",
-    "bitmap1",
-    "bitmap2",
-    "bitmap3"
-  ];
+  const shapeNames = Object.keys(scratchPoints);
 
   hands.forEach((hand, handIndex) => {
     const extendedKeyPoints = getExtendedHandPoints(hand.keypoints);
@@ -110,63 +96,57 @@ export const processHands = ({
       centeringContext
     });
 
-    const shapes = shapeNames.reduce<{ [key: string]: IShape[] }>(
-      (result, shapeName) => {
-        interface SqueezedPoints {
-          startPoint: IPoint;
-          endPoint: IPoint;
-          controlPoint?: IPoint;
-        }
+    const shapes = shapeNames.reduce<{
+      [key: string]: IShape[];
+    }>((result, shapeName) => {
+      interface SqueezedPoints {
+        startPoint: IPoint;
+        endPoint: IPoint;
+        controlPoint?: IPoint;
+      }
 
-        // Initialize empty array for each shape type
-        result[shapeName] = [];
+      result[shapeName] = [];
 
-        // Skip if no points for this shape
-        if (!scratchPoints?.[shapeName]) {
-          return result;
-        }
+      if (!scratchPoints?.[shapeName]) {
+        return result;
+      }
 
-        const shapePoints = scratchPoints[shapeName];
-        if (!Array.isArray(shapePoints)) {
-          return result;
-        }
+      const shapePoints = scratchPoints[shapeName];
+      if (!Array.isArray(shapePoints)) {
+        return result;
+      }
 
-        // Map points based on shape type
-        result[shapeName] = shapePoints
-          .map((shape: number[]): IShape | undefined => {
-            const points = shape.map(
-              (point: number) => extendedKeyPoints[point]
-            );
-            const squeezedPoints = squeezePoints({
-              points,
-              squeezeRatio,
-              centeringContext
-            });
+      result[shapeName] = shapePoints
+        .map((shape: number[]): IShape | undefined => {
+          const points = shape.map((point: number) => extendedKeyPoints[point]);
+          const squeezedPoints = squeezePoints({
+            points,
+            squeezeRatio,
+            centeringContext
+          });
 
-            if (squeezedPoints?.[0] && squeezedPoints[1]) {
-              if (
-                (shapeName === "curves" || shapeName === "ellipses") &&
-                squeezedPoints[2]
-              ) {
-                return {
-                  startPoint: squeezedPoints[0],
-                  controlPoint: squeezedPoints[1],
-                  endPoint: squeezedPoints[2]
-                };
-              }
+          if (squeezedPoints?.[0] && squeezedPoints[1]) {
+            if (
+              (shapeName === "curves" || shapeName === "ellipses") &&
+              squeezedPoints[2]
+            ) {
               return {
                 startPoint: squeezedPoints[0],
-                endPoint: squeezedPoints[1]
+                controlPoint: squeezedPoints[1],
+                endPoint: squeezedPoints[2]
               };
             }
-            return undefined;
-          })
-          .filter((shape): shape is IShape => shape !== undefined);
+            return {
+              startPoint: squeezedPoints[0],
+              endPoint: squeezedPoints[1]
+            };
+          }
+          return undefined;
+        })
+        .filter((shape): shape is IShape => shape !== undefined);
 
-        return result;
-      },
-      {}
-    );
+      return result;
+    }, {});
 
     if (!thumbTip || !indexTip) return;
 
