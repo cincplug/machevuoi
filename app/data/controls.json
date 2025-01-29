@@ -407,7 +407,18 @@
       "squares",
       "diamonds",
       "rectangles",
-      "triangles"
+      "triangles",
+      "/brushes/d1.png",
+      "/brushes/d2.png",
+      "/brushes/d3.png",
+      "/brushes/d4.png",
+      "/brushes/d5.png",
+      "/brushes/d6.png",
+      "/brushes/d7.png",
+      "/brushes/d8.png",
+      "/brushes/d9.png",
+      "/brushes/d10.png",
+      "/brushes/d11.png"
     ]
   },
   {

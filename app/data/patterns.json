@@ -1059,16 +1059,16 @@
       ]
     }
   },
-  "scratch-canvas-monkey": {
-    "icon": "🐵",
-    "description": "Canvas mode, monkey pattern",
+  "scratch-canvas-neushoorn": {
+    "icon": "🦏",
+    "description": "Canvas mode, neushoorn pattern",
     "output": "canvas",
     "radius": 5,
     "minimum": 1,
     "squeezeRatio": 100,
     "opacity": 128,
     "videoOpacity": 32,
-    "bg": "#e5e5e5",
+    "bg": "#ddd0bc",
     "color": "#141516",
     "blendMode": "normal",
     "pathStroke": "beziers",
@@ -1080,34 +1080,16 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "lines": [
-        [9, 13],
-        [5, 9],
-        [13, 17],
-        [1, 2],
-        [0, 1],
-        [2, 4],
-        [2, 5],
-        [4, 5],
-        [10, 11],
-        [10, 14],
-        [14, 15]
-      ],
-      "curves": [
-        [9, 1, 17],
-        [5, 1, 13],
-        [6, 9, 18],
-        [6, 14, 18]
-      ],
-      "diamonds": [
-        [19, 20],
-        [7, 8]
-      ],
-      "triangles": [[0, 17]],
-      "circles": [
-        [11, 12],
-        [15, 16]
-      ]
+      "/brushes/d1.png": [[0, 51]],
+      "/brushes/d2.png": [[1, 0]],
+      "/brushes/d3.png": [[5, 9]],
+      "/brushes/d4.png": [[0, 25]],
+      "/brushes/d5.png": [[21, 33]],
+      "/brushes/d6.png": [[17, 42]],
+      "/brushes/d7.png": [[17, 20]],
+      "/brushes/d8.png": [[17, 16]],
+      "/brushes/d10.png": [[45, 12]],
+      "/brushes/d11.png": [[24, 8]]
     }
   }
 }
