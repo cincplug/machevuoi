@@ -1080,16 +1080,18 @@
     "isScratchCanvas": true,
     "doesPinchDraw": false,
     "scratchPoints": {
-      "/brushes/d1.png": [[0, 51]],
-      "/brushes/d2.png": [[1, 0]],
-      "/brushes/d3.png": [[5, 9]],
-      "/brushes/d4.png": [[0, 25]],
-      "/brushes/d5.png": [[21, 33]],
-      "/brushes/d6.png": [[17, 42]],
-      "/brushes/d7.png": [[17, 20]],
-      "/brushes/d8.png": [[17, 16]],
-      "/brushes/d10.png": [[45, 12]],
-      "/brushes/d11.png": [[24, 8]]
+      "/brushes/d1.png": [[35, 4]],
+      "/brushes/d3.png": [[21, 40]],
+      "/brushes/d4.png": [[23, 21]],
+      "/brushes/d5.png": [[31, 18]],
+      "/brushes/d7.png": [[81, 20]],
+      "/brushes/d8.png": [
+        [71, 16],
+        [31, 71]
+      ],
+      "/brushes/d10.png": [[23, 8]],
+      "/brushes/d11.png": [[62, 12]],
+      "/brushes/d9.png": [[25, 14]]
     }
   }
 }
