@@ -1085,13 +1085,70 @@
       "/brushes/d4.png": [[21, 23]],
       "/brushes/d5.png": [[31, 18]],
       "/brushes/d7.png": [[81, 20]],
-      "/brushes/d8.png": [
-        [71, 16],
-        [31, 71]
-      ],
+      "/brushes/d8.png": [[31, 71]],
       "/brushes/d10.png": [[23, 8]],
       "/brushes/d11.png": [[62, 12]],
       "/brushes/d9.png": [[25, 14]]
+    }
+  },
+  "scratch-canvas-dragon": {
+    "icon": "🐉",
+    "description": "Canvas mode, dragon pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/d3.png": [[12, 14]],
+      "/brushes/d4.png": [[8, 55]],
+      "/brushes/d5.png": [[8, 3]],
+      "/brushes/d7.png": [[2, 1]],
+      "/brushes/d8.png": [[52, 36]],
+      "/brushes/d9.png": [[59, 43]],
+      "/brushes/d6.png": [[4, 22]],
+      "/brushes/d11.png": [[10, 17]],
+      "/brushes/d10.png": [[63, 31]],
+      "/brushes/d1.png": [[16, 18]]
+    }
+  },
+  "scratch-canvas-hog": {
+    "icon": "🐗",
+    "description": "Canvas mode, hog-head pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/d1.png": [[12, 17]],
+      "/brushes/d3.png": [],
+      "/brushes/d10.png": [[8, 35]],
+      "/brushes/d2.png": [[61, 27]]
     }
   }
 }
