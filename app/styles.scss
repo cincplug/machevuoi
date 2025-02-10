@@ -816,6 +816,15 @@ pre {
   }
 }
 
+.icon-buttons-wrap {
+  height: 150px;
+  overflow-y: auto;
+  display: inherit;
+  grid: inherit;
+  grid-gap: var(--gap-half);
+  grid-column: 1 / span 12;
+}
+
 .url-input-toggle {
   grid-row: auto;
   grid-column: 1 / span 6;
