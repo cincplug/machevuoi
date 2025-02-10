@@ -1146,9 +1146,128 @@
     "doesPinchDraw": false,
     "scratchPoints": {
       "/brushes/d1.png": [[12, 17]],
-      "/brushes/d3.png": [],
       "/brushes/d10.png": [[8, 35]],
       "/brushes/d2.png": [[61, 27]]
+    }
+  },
+  "scratch-canvas-sunflower": {
+    "icon": "🌻",
+    "description": "Canvas mode, sunflower pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/v2.png": [[16, 30]],
+      "/brushes/v3.png": [[19, 32]],
+      "/brushes/v4.png": [[6, 70]],
+      "/brushes/v5.png": [[53, 51]]
+    }
+  },
+  "scratch-canvas-sunflower2": {
+    "icon": "🌻",
+    "description": "Canvas mode, sunflower pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/v2.png": [[8, 25]],
+      "/brushes/v4.png": [[20, 64]]
+    }
+  },
+  "scratch-canvas-sunflower3": {
+    "icon": "🌻",
+    "description": "Canvas mode, sunflower pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/v3.png": [
+        [5, 8],
+        [9, 16],
+        [38, 20],
+        [23, 12],
+        [23, 8],
+        [36, 12],
+        [22, 61],
+        [31, 4],
+        [26, 16]
+      ]
+    }
+  },
+  "scratch-canvas-abstraction": {
+    "icon": "🎨",
+    "description": "Canvas mode, sunflower pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/v3.png": [[78, 31]],
+      "/brushes/d1.png": [
+        [16, 81],
+        [12, 5],
+        [70, 71]
+      ],
+      "/brushes/v4.png": [
+        [80, 20],
+        [61, 7]
+      ],
+      "/brushes/d8.png": [[52, 2]]
     }
   }
 }
