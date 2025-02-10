@@ -1,3 +1,4 @@
+import { initializeTensorFlow } from "./loadTensorFlow";
 import {
   MediaPipeHandsMediaPipeModelConfig,
   HandDetector
@@ -29,27 +30,13 @@ export const runDetector = async ({
   pctx
 }: RunDetectorProps) => {
   let shouldContinue = true;
-  const handPoseDetectionModule = await import(
-    "@tensorflow-models/hand-pose-detection"
-  );
-  let handsDetector: HandDetector | null = null;
-  const handsModel = handPoseDetectionModule.SupportedModels.MediaPipeHands;
-
-  const handsDetectorConfig: MediaPipeHandsMediaPipeModelConfig = {
-    runtime: "mediapipe",
-    solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands"
-  };
+  let handsDetector = null;
 
   try {
-    handsDetector = await handPoseDetectionModule.createDetector(
-      handsModel,
-      handsDetectorConfig
-    );
+    handsDetector = await initializeTensorFlow();
   } catch (error) {
-    console.error("Error creating detector", error);
-    setMessage(
-      "Something's wrong with fetching data. It's not us, it's them 🥸"
-    );
+    console.error("Error initializing detector", error);
+    setMessage("Failed to initialize hand detection. Please try again 🤚");
     return;
   }
 

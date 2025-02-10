@@ -40,6 +40,10 @@ interface Hand {
   keypoints3D: Keypoint3D[];
 }
 
+interface IShapePoints {
+  [key: string]: number[][] | undefined;
+}
+
 export const processHands = ({
   setup,
   hands,
@@ -99,24 +103,15 @@ export const processHands = ({
     const shapes = shapeNames.reduce<{
       [key: string]: IShape[];
     }>((result, shapeName) => {
-      interface SqueezedPoints {
-        startPoint: IPoint;
-        endPoint: IPoint;
-        controlPoint?: IPoint;
-      }
-
       result[shapeName] = [];
 
-      if (!scratchPoints?.[shapeName]) {
-        return result;
-      }
-
-      const shapePoints = scratchPoints[shapeName];
-      if (!Array.isArray(shapePoints)) {
+      const shapePoints = scratchPoints?.[shapeName] as number[][] | undefined;
+      if (!shapePoints || !Array.isArray(shapePoints)) {
         return result;
       }
 
       result[shapeName] = shapePoints
+        .filter(Array.isArray) // Ensure we only process arrays
         .map((shape: number[]): IShape | undefined => {
           const points = shape.map((point: number) => extendedKeyPoints[point]);
           const squeezedPoints = squeezePoints({

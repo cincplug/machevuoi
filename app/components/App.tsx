@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import "@tensorflow/tfjs-backend-webgl";
 import Webcam from "react-webcam";
 import { clearCanvases } from "../utils";
 import { runDetector } from "../utils/runDetector";
@@ -14,7 +13,7 @@ import Loader from "./Loader";
 import NoteGrid from "./NoteGrid";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
-
+import { initializeTensorFlow } from "../utils/loadTensorFlow";
 interface InputResolution {
   width: number;
   height: number;
@@ -69,6 +68,12 @@ const App: React.FC<Props> = ({ initialControls, initialPatterns }) => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      initializeTensorFlow().catch(console.error);
+    }
+  }, [isClient]);
 
   useEffect(() => {
     if (inputResolution.width <= 767) {
