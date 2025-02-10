@@ -20,7 +20,12 @@ interface InputResolution {
   height: number;
 }
 
-const App: React.FC = () => {
+interface Props {
+  initialControls: typeof import("../data/controls.json");
+  initialPatterns: typeof import("../data/patterns.json");
+}
+
+const App: React.FC<Props> = ({ initialControls, initialPatterns }) => {
   const [isClient, setIsClient] = useState(false);
   const [isStarted, setIsStarted] = useState<boolean>(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
@@ -311,7 +316,9 @@ const App: React.FC = () => {
             setup,
             setSetup,
             updateSetup,
-            clearPaths
+            clearPaths,
+            controls: initialControls,
+            patterns: initialPatterns
           }}
         />
       )}

@@ -174,8 +174,8 @@ export const processHands = ({
 
       if (isDrawing && dctx) {
         pctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        dctx.globalCompositeOperation = composite as GlobalCompositeOperation;
       }
+      ctx.globalCompositeOperation = composite as GlobalCompositeOperation;
 
       const styleColor = processColor(
         color as string,

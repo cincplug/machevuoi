@@ -1,5 +1,3 @@
-import CONTROLS from "../../data/controls.json";
-import DEFAULT_PATTERNS from "../../data/patterns.json";
 import Controls from "./Controls";
 import Buttons from "./Buttons";
 import PatternSelection from "./PatternSelection";
@@ -23,6 +21,8 @@ interface IProps {
   setSetup: React.Dispatch<React.SetStateAction<ISetup>>;
   updateSetup: (event: UpdateSetupType) => void;
   clearPaths: () => void;
+  controls: typeof import("../../data/controls.json");
+  patterns: typeof import("../../data/patterns.json");
 }
 
 const Menu: React.FC<IProps> = ({
@@ -30,7 +30,9 @@ const Menu: React.FC<IProps> = ({
   isStarted,
   setSetup,
   updateSetup,
-  clearPaths
+  clearPaths,
+  controls,
+  patterns
 }) => {
   const { output, isScratchCanvas } = setup;
   return (
@@ -38,7 +40,7 @@ const Menu: React.FC<IProps> = ({
       <aside className={`menu primary`}>
         <Controls
           {...{ setup, updateSetup }}
-          controls={CONTROLS.filter(
+          controls={controls.filter(
             (control) =>
               !control.isHidden &&
               (!control.parentOutput ||
@@ -52,7 +54,7 @@ const Menu: React.FC<IProps> = ({
             setup,
             setSetup,
             updateSetup,
-            patterns: DEFAULT_PATTERNS as unknown as IPatterns,
+            patterns: patterns as unknown as IPatterns,
             title: "Patterns"
           }}
         />
@@ -67,7 +69,7 @@ const Menu: React.FC<IProps> = ({
         />
         <Controls
           {...{ setup, updateSetup }}
-          controls={CONTROLS.filter(
+          controls={controls.filter(
             (control) => !control.isHidden && control.isSoundRelated
           )}
         />
@@ -84,7 +86,7 @@ const Menu: React.FC<IProps> = ({
       <aside className={`menu secondary`}>
         <Controls
           {...{ setup, updateSetup }}
-          controls={CONTROLS.filter(
+          controls={controls.filter(
             (control) =>
               !control.isHidden &&
               (!control.parentOutput ||
