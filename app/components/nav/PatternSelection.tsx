@@ -84,12 +84,10 @@ const PatternSelection: React.FC<IProps> = ({
             className={`icon-button ${
               index === setup.activePatternIndex ? "active" : "inactive"
             }`}
-            title={pattern?.description as string}
             key={`scn-${index}`}
             onClick={(event) => handlePatternButtonClick(event, key, index)}
-          >
-            <span>{pattern?.icon}</span>
-          </button>
+            data-icon={pattern?.icon}
+          ></button>
         ))}
       </fieldset>
     );

@@ -310,12 +310,29 @@ ol {
   button {
     font-size: 1.4rem;
     background: none;
-    span {
-      filter: grayscale(100%) sepia(0.8) hue-rotate(30deg);
-      transition: filter 0.3s ease;
+    position: relative;
+    &:before,
+    &:after {
+      content: attr(data-icon);
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
-    &:hover:not(.active) {
-      background: var(--color-skin-mid-dark);
+    &::before {
+      filter: grayscale(100%) brightness(3);
+      transform: scale(1.1);
+      transform-origin: center;
+      z-index: -1;
+    }
+    &::after {
+      filter: grayscale(100%) brightness(0.2) sepia(0.8) hue-rotate(30deg);
+    }
+    &:hover:after,
+    &.active:after {
+      filter: none;
     }
   }
 }
