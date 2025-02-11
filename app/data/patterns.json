@@ -1178,7 +1178,7 @@
     }
   },
   "scratch-canvas-sunflower2": {
-    "icon": "🌻",
+    "icon": "🌸",
     "description": "Canvas mode, sunflower pattern",
     "output": "canvas",
     "radius": 5,
@@ -1203,7 +1203,7 @@
     }
   },
   "scratch-canvas-sunflower3": {
-    "icon": "🌻",
+    "icon": "🌼",
     "description": "Canvas mode, sunflower pattern",
     "output": "canvas",
     "radius": 5,
@@ -1237,7 +1237,7 @@
     }
   },
   "scratch-canvas-abstraction": {
-    "icon": "🎨",
+    "icon": "🌺",
     "description": "Canvas mode, sunflower pattern",
     "output": "canvas",
     "radius": 5,
@@ -1268,6 +1268,173 @@
         [61, 7]
       ],
       "/brushes/d8.png": [[52, 2]]
+    }
+  },
+  "scratch-canvas-finger": {
+    "icon": "👈",
+    "description": "Canvas mode, arm pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/v2.png": [],
+      "/brushes/v3.png": [],
+      "/brushes/v4.png": [],
+      "/brushes/v5.png": [],
+      "/brushes/a1.png": [
+        [8, 7],
+        [12, 11],
+        [16, 15],
+        [20, 19],
+        [4, 3]
+      ],
+      "/brushes/a2.png": [
+        [7, 6],
+        [11, 10],
+        [15, 14],
+        [19, 18],
+        [3, 2]
+      ],
+      "/brushes/a3.png": [
+        [6, 5],
+        [10, 9],
+        [14, 13],
+        [18, 17],
+        [2, 36]
+      ]
+    }
+  },
+  "scratch-canvas-finger2": {
+    "icon": "👉",
+    "description": "Canvas mode, arm pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/a1.png": [
+        [4, 36],
+        [8, 26],
+        [12, 38],
+        [80, 28],
+        [20, 31]
+      ]
+    }
+  },
+  "scratch-canvas-finger3": {
+    "icon": "✌️",
+    "description": "Canvas mode, arm pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/a1.png": [
+        [5, 8],
+        [5, 17],
+        [20, 34],
+        [16, 59],
+        [4, 32]
+      ]
+    }
+  },
+  "scratch-canvas-finger4": {
+    "icon": "🤞",
+    "description": "Canvas mode, mixed pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/a1.png": [[4, 0]],
+      "/brushes/v3.png": [
+        [3, 12],
+        [4, 80],
+        [46, 18]
+      ]
+    }
+  },
+  "scratch-canvas-finger5": {
+    "icon": "🤛",
+    "description": "Canvas mode, mixed pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "/brushes/a1.png": [[4, 25]],
+      "/brushes/v4.png": [
+        [7, 5],
+        [9, 75],
+        [5, 13]
+      ],
+      "/brushes/d1.png": [[12, 31]]
     }
   }
 }

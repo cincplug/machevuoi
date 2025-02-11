@@ -1,8 +1,4 @@
 import { initializeTensorFlow } from "./loadTensorFlow";
-import {
-  MediaPipeHandsMediaPipeModelConfig,
-  HandDetector
-} from "@tensorflow-models/hand-pose-detection";
 import { processHands } from "./processHands";
 import { IPoint, ICursor } from "../../types";
 import { OscillatorManager } from "./audio";
@@ -63,7 +59,7 @@ export const runDetector = async ({
       setIsDetectorRunning(true);
     } catch (error) {
       console.error("Error estimating hands", error);
-      setMessage("Something's not working 🥸");
+      setMessage("Something didn't work 🥸. Try refreshing the browser");
       return;
     }
 
