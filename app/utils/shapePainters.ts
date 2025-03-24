@@ -10,6 +10,7 @@ type ShapePainter = (params: {
   controlPoint?: IPoint;
   isAutoClosed?: boolean;
   url?: string;
+  opacity?: number;
 }) => void;
 
 const imageCache: Map<string, HTMLImageElement> = new Map();
@@ -34,17 +35,20 @@ async function drawBitmap(
   ctx: CanvasRenderingContext2D,
   startPoint: IPoint,
   endPoint: IPoint,
-  url: string
+  url: string,
+  opacity: number
 ): Promise<void> {
   const img = await loadImage(url);
-
   const height = Math.hypot(
     endPoint.x - startPoint.x,
     endPoint.y - startPoint.y
   );
   const width = (height * img.width) / img.height;
 
+  const originalAlpha = ctx.globalAlpha;
   ctx.save();
+  // Set opacity (0-1 range)
+  ctx.globalAlpha = opacity / 255;
   ctx.translate(startPoint.x, startPoint.y);
   const angle =
     Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) -
@@ -52,6 +56,7 @@ async function drawBitmap(
   ctx.rotate(angle);
   ctx.drawImage(img, -width / 2, 0, width, height);
   ctx.restore();
+  ctx.globalAlpha = originalAlpha;
 }
 
 export const shapePainters: Record<string, ShapePainter> = {
@@ -252,13 +257,15 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx,
     startPoint,
     endPoint,
-    url
+    url,
+    opacity = 255
   }: {
     ctx: CanvasRenderingContext2D;
     startPoint: IPoint;
     endPoint: IPoint;
     url?: string;
+    opacity?: number;
   }): Promise<void> => {
-    await drawBitmap(ctx, startPoint, endPoint, url as string);
+    await drawBitmap(ctx, startPoint, endPoint, url as string, opacity);
   }
 };

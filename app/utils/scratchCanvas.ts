@@ -19,6 +19,7 @@ interface ScratchCanvasOptions {
   handIndex: number;
   isAutoClosed: boolean;
   isFill: boolean;
+  opacity: number;
 }
 
 export const scratchCanvas = ({
@@ -31,7 +32,8 @@ export const scratchCanvas = ({
   shapes,
   handIndex,
   isAutoClosed,
-  isFill
+  isFill,
+  opacity
 }: ScratchCanvasOptions): void => {
   ctx.beginPath();
   const shapeTipDistance = getAverageDistance(
@@ -57,7 +59,8 @@ export const scratchCanvas = ({
           endPoint: shape.endPoint,
           controlPoint: shape.controlPoint,
           isAutoClosed,
-          url
+          url,
+          opacity
         });
       }
     });

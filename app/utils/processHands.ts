@@ -202,7 +202,8 @@ export const processHands = ({
           shapes: shapes as unknown as IShapes,
           handIndex,
           isAutoClosed,
-          isFill
+          isFill,
+          opacity: opacity as number
         });
         lastTips = tips as IPoint[];
       }
