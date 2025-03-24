@@ -1436,5 +1436,29 @@
       ],
       "/brushes/d1.png": [[12, 31]]
     }
+  },
+  "scratch-canvas-rainbow": {
+    "icon": "🌈",
+    "description": "Canvas mode, rainbow pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 90,
+    "videoOpacity": 32,
+    "bg": "#000000",
+    "color": "#44aadd",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": true,
+    "scratchPoints": {
+      "/brushes/g1.png": [[4, 8]]
+    }
   }
 }
