@@ -67,6 +67,7 @@ const Menu: React.FC<IProps> = ({
             title: "Custom patterns"
           }}
         />
+        <div className="reset-grid"></div>
         <Controls
           {...{ setup, updateSetup }}
           controls={controls.filter(

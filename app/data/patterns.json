@@ -1059,6 +1059,44 @@
       ]
     }
   },
+  "scratch-canvas-badger": {
+    "icon": "🦡",
+    "description": "Canvas mode, badger pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 128,
+    "videoOpacity": 32,
+    "bg": "#ddd0bc",
+    "color": "#141516",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": false,
+    "scratchPoints": {
+      "dots": [],
+      "curves": [
+        [4, 21, 17],
+        [17, 20, 16],
+        [16, 8, 4],
+        [77, 74, 65],
+        [65, 71, 77],
+        [47, 5, 52],
+        [52, 48, 47],
+        [13, 26, 37],
+        [37, 38, 13],
+        [49, 55, 6],
+        [67, 15, 78],
+        [54, 9, 62]
+      ]
+    }
+  },
   "scratch-canvas-neushoorn": {
     "icon": "🦏",
     "description": "Canvas mode, neushoorn pattern",
@@ -1459,6 +1497,35 @@
     "doesPinchDraw": true,
     "scratchPoints": {
       "/brushes/g1.png": [[4, 8]]
+    }
+  },
+  "scratch-canvas-planets": {
+    "icon": "🪐",
+    "description": "Canvas mode, planet pattern",
+    "output": "canvas",
+    "radius": 5,
+    "minimum": 1,
+    "squeezeRatio": 100,
+    "opacity": 90,
+    "videoOpacity": 32,
+    "bg": "#000000",
+    "color": "#44aadd",
+    "blendMode": "normal",
+    "pathStroke": "beziers",
+    "dash": 0,
+    "isAutoClosed": false,
+    "text": "",
+    "dynamics": 0.5,
+    "composite": "source-over",
+    "isScratchCanvas": true,
+    "doesPinchDraw": true,
+    "scratchPoints": {
+      "dots": [],
+      "/brushes/g2.png": [
+        [8, 10],
+        [10, 0],
+        [16, 18]
+      ]
     }
   }
 }

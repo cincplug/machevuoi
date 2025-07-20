@@ -306,7 +306,7 @@ ol {
   }
 }
 
-.patterns {
+.icon-patterns {
   button {
     font-size: 1.4rem;
     background: none;
@@ -850,4 +850,8 @@ pre {
     grid-column: 1 / span 8;
     height: var(--input-height);
   }
+}
+
+.reset-grid {
+  grid-column: 1 / -1;
 }
