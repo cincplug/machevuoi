@@ -138,6 +138,19 @@
     ]
   },
   {
+    "id": "canvasPan",
+    "title": "Canvas pan",
+    "description": "If selected, canvas will pan to the left / right while you draw",
+    "value": 0,
+    "isHandRelated": true,
+    "parentOutput": "canvas",
+    "isScratchCanvasRelated": true,
+    "type": "range",
+    "min": -10,
+    "max": 10,
+    "step": 0.1
+  },
+  {
     "id": "pathStroke",
     "title": "Path stroke",
     "description": "What kind of paths is being used",

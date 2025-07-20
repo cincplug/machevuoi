@@ -73,7 +73,8 @@ export const processHands = ({
     activeLayer,
     straightness,
     isAutoClosed,
-    isFill
+    isFill,
+    canvasPan
   } = setup;
 
   const shapeNames = Object.keys(scratchPoints);
@@ -111,7 +112,7 @@ export const processHands = ({
       }
 
       result[shapeName] = shapePoints
-        .filter(Array.isArray) // Ensure we only process arrays
+        .filter(Array.isArray)
         .map((shape: number[]): IShape | undefined => {
           const points = shape.map((point: number) => extendedKeyPoints[point]);
           const squeezedPoints = squeezePoints({
@@ -159,6 +160,20 @@ export const processHands = ({
     if (output === "canvas") {
       const ctx = isDrawing ? dctx : pctx;
       if (!ctx) return null;
+
+      // Handle panning on every frame, but only for drawing canvas
+      if (handIndex === 0 && dctx && canvasPan !== 0) {
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        if (tempCtx) {
+          tempCanvas.width = dctx.canvas.width;
+          tempCanvas.height = dctx.canvas.height;
+          
+          tempCtx.drawImage(dctx.canvas, 0, 0);
+          dctx.clearRect(0, 0, dctx.canvas.width, dctx.canvas.height);
+          dctx.drawImage(tempCanvas, canvasPan, 0);
+        }
+      }
 
       if (!isDrawing && handIndex === 0) {
         dctx?.beginPath();
