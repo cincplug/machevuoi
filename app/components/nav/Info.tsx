@@ -23,6 +23,7 @@ const Info: React.FC<IProps> = ({ setup }) => {
           <p>You can add text</p>
         </>
       )}
+      <p>Hold Shift to draw</p>
     </div>
   );
 };
