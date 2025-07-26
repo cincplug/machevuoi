@@ -1,5 +1,6 @@
 import { getShapePoints } from "./shapeCalculators";
 import { IPoint } from "../../types";
+import { stripTextPrefix } from "./index";
 
 interface CanvasContext extends CanvasRenderingContext2D {}
 
@@ -314,7 +315,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
-    ctx.fillText(text, 0, 0);
+    ctx.fillText(stripTextPrefix(text), 0, 0);
 
     ctx.restore();
     ctx.globalAlpha = originalAlpha;

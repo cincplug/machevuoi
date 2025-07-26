@@ -277,3 +277,9 @@ export const isTextSource = (src: string): boolean => {
 export const isSpecialShape = (src: string): boolean => {
   return isBitmapSource(src) || isTextSource(src);
 };
+
+export function stripTextPrefix(str: string): string {
+  const prefix = "text:";
+  const idx = str.indexOf(prefix);
+  return idx === 0 ? str.slice(prefix.length) : str;
+}

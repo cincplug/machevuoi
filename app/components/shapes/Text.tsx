@@ -1,6 +1,6 @@
 import React from 'react';
 import { IShape } from '../../../types';
-import { getPoint } from '../../utils';
+import { getPoint, stripTextPrefix } from '../../utils';
 
 interface IProps {
   shape: IShape;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const Text: React.FC<IProps> = ({ shape, onClick, title, url, isPreview }) => {
-  const text = url.startsWith('text:') ? url.substring(5) : url;
+  const text = stripTextPrefix(url);
   const { x: spx, y: spy } = getPoint(shape.startPoint, isPreview ?? false);
   const { x: epx, y: epy } = getPoint(shape.endPoint, isPreview ?? false);
   
