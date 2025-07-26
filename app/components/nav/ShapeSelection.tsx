@@ -80,6 +80,14 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     });
   };
 
+  const clearScratchPoints = () => {
+    updateSetup({
+      id: "scratchPoints",
+      value: {},
+      type: "hidden"
+    });
+  }
+
   const handlePathClick = ({
     startPoint,
     controlPoint,
@@ -201,6 +209,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           </>
         )}
       </p>
+      <button className="control button icon-button clear-scratch" onClick={clearScratchPoints}>Clear</button>
     </div>
   );
 };

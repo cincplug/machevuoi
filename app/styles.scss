@@ -584,6 +584,7 @@ label {
   display: grid;
   grid-template-columns: inherit;
   grid-gap: inherit;
+  position: relative;
   background: color-mix(
     in lch,
     var(--color-skin-mid) 20%,
@@ -600,6 +601,17 @@ label {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
+  }
+  .clear-scratch {
+    position: absolute;
+    top: 0;
+    right: var(--gap);
+    padding: 0;
+    background: 0;
+    color: var(--color-skin-mid-light);
+    &:hover {
+      color: var(--color-skin-light);
+    }
   }
 }
 
