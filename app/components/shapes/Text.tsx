@@ -11,11 +11,9 @@ interface IProps {
 }
 
 const Text: React.FC<IProps> = ({ shape, onClick, title, url, isPreview }) => {
-  if (!shape?.startPoint || !shape?.endPoint) return null;
-
   const text = url.startsWith('text:') ? url.substring(5) : url;
-  const { x: spx, y: spy } = getPoint(shape.startPoint, isPreview);
-  const { x: epx, y: epy } = getPoint(shape.endPoint, isPreview);
+  const { x: spx, y: spy } = getPoint(shape.startPoint, isPreview ?? false);
+  const { x: epx, y: epy } = getPoint(shape.endPoint, isPreview ?? false);
   
   // Height is the distance between points
   const height = Math.hypot(epx - spx, epy - spy);
@@ -32,9 +30,9 @@ const Text: React.FC<IProps> = ({ shape, onClick, title, url, isPreview }) => {
       dominantBaseline="hanging"
       transform={`rotate(${angle}, ${spx}, ${spy})`}
       onClick={onClick}
-      title={title}
       className={`scratch-path ${isPreview ? 'preview' : ''}`}
     >
+      {title && <title>{title}</title>}
       {text}
     </text>
   );
