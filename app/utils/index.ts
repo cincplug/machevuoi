@@ -266,6 +266,14 @@ export const applyPaint = ({ isFill, ctx }: ApplyPaintProps): void => {
   }
 };
 
-export const isBitmapSource = (source: string): boolean => {
-  return source.startsWith("/") || source.includes("://");
+export const isBitmapSource = (src: string): boolean => {
+  return src.startsWith('/brushes/');
+};
+
+export const isTextSource = (src: string): boolean => {
+  return src.startsWith('text:');
+};
+
+export const isSpecialShape = (src: string): boolean => {
+  return isBitmapSource(src) || isTextSource(src);
 };

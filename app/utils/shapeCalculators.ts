@@ -212,5 +212,14 @@ export const shapeCalculators: Record<string, ShapeCalculator> = {
     endPoint: IPoint;
   }): IPoint[] => {
     return [startPoint, endPoint];
+  },
+  text: ({
+    startPoint,
+    endPoint
+  }: {
+    startPoint: IPoint;
+    endPoint: IPoint;
+  }): IPoint[] => {
+    return [startPoint, endPoint];
   }
 };

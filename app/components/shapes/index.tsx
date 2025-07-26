@@ -8,6 +8,8 @@ import Curve from "./Curve";
 import Circle from "./Circle";
 import Ellipse from "./Ellipse";
 import Bitmap from "./Bitmap";
+import Text from "./Text";
+import { isTextSource } from "../../utils";
 
 const shapeComponents = {
   arcs: Arc,
@@ -18,7 +20,7 @@ const shapeComponents = {
   triangles: Triangle,
   curves: Curve,
   circles: Circle,
-  ellipses: Ellipse
+  ellipses: Ellipse,
 } as const;
 
 export const isKnownShape = (
@@ -28,6 +30,9 @@ export const isKnownShape = (
 };
 
 export const getShapeComponent = (type: string) => {
+  if (isTextSource(type)) {
+    return Text;
+  }
   if (isKnownShape(type)) {
     return shapeComponents[type];
   }

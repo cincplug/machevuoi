@@ -49,19 +49,25 @@ export const scratchCanvas = ({
   );
   Object.keys(shapes).forEach((shapeName) => {
     const shapeList = shapes[shapeName as keyof IShapes];
+    // Extract base type and text content if present
+    const [baseType, textContent] = shapeName.split(":");
     shapeList.forEach((shape: IShape) => {
-      const shapePainter = shapePainters[shapeName] || shapePainters.bitmaps;
-      const url = isBitmapSource(shapeName) ? shapeName : undefined;
+      const shapePainter = shapePainters[baseType] || shapePainters.bitmaps;
+      const painterParams: any = {
+        ctx,
+        startPoint: shape.startPoint,
+        endPoint: shape.endPoint,
+        controlPoint: shape.controlPoint,
+        isAutoClosed,
+        opacity
+      };
+      if (baseType === "text") {
+        painterParams.text = textContent || (shape as any).text;
+      } else if (baseType === "bitmaps") {
+        painterParams.url = (shape as any).url;
+      }
       if (shapePainter) {
-        shapePainter({
-          ctx,
-          startPoint: shape.startPoint,
-          endPoint: shape.endPoint,
-          controlPoint: shape.controlPoint,
-          isAutoClosed,
-          url,
-          opacity
-        });
+        shapePainter(painterParams);
       }
     });
   });

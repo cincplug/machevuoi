@@ -5,7 +5,8 @@ import shapeComponents from "../shapes";
 import {
   arraysAreEqual,
   getExtendedHandPoints,
-  isBitmapSource
+  isBitmapSource,
+  isSpecialShape
 } from "../../utils";
 import { getShape } from "../../utils";
 import Dots from "../shapes/Dots";
@@ -137,6 +138,13 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
     }
   };
 
+  const getLabelForShape = (shapeType: string) => {
+    if (shapeType.startsWith('text:')) {
+      return shapeType.substring(5); // Remove 'text:' prefix
+    }
+    return isKnownShape(shapeType) ? shapeType : "bitmap";
+  };
+
   const isDots = activeLayer === "dots";
   const dotTooltip = !isDots
     ? `Click to set the ${
@@ -154,7 +162,7 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
       >
         {[
           ...Object.keys(shapeComponents),
-          ...Object.keys(scratchPoints).filter(isBitmapSource)
+          ...Object.keys(scratchPoints).filter(isSpecialShape)
         ].map((shapeType) => {
           const ShapeComponent = getShapeComponent(shapeType);
 
@@ -169,12 +177,10 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           return shapes?.map(({ shape, onClick }, index) => (
             <ShapeComponent
               key={`${shapeType}-${index}`}
-              title={`Click to remove from ${
-                isKnownShape(shapeType) ? shapeType : "bitmap"
-              }`}
+              title={`Click to remove from ${getLabelForShape(shapeType)}`}
               shape={shape as any}
               onClick={onClick}
-              url={isBitmapSource(shapeType) ? shapeType : ""}
+              url={isSpecialShape(shapeType) ? shapeType : ""}
             />
           ));
         })}
@@ -204,7 +210,11 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
           <>
             add{" "}
             <strong>
-              {isKnownShape(activeLayer) ? activeLayer : "bitmaps"}
+              {activeLayer.startsWith('text:') 
+                ? `text "${activeLayer.substring(5)}"` 
+                : isKnownShape(activeLayer) 
+                  ? activeLayer 
+                  : "bitmaps"}
             </strong>
           </>
         )}

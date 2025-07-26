@@ -22,6 +22,8 @@ export interface IShape {
   startPoint: IPoint;
   endPoint: IPoint;
   controlPoint?: IPoint;
+  url?: string; // for bitmaps
+  text?: string; // for text shapes
 }
 
 export interface IShapeWithControl extends IShape {

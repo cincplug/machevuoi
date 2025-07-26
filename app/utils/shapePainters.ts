@@ -10,6 +10,7 @@ type ShapePainter = (params: {
   controlPoint?: IPoint;
   isAutoClosed?: boolean;
   url?: string;
+  text?: string;
   opacity?: number;
 }) => void;
 
@@ -47,7 +48,6 @@ async function drawBitmap(
 
   const originalAlpha = ctx.globalAlpha;
   ctx.save();
-  // Set opacity (0-1 range)
   ctx.globalAlpha = opacity / 255;
   ctx.translate(startPoint.x, startPoint.y);
   const angle =
@@ -55,6 +55,39 @@ async function drawBitmap(
     Math.PI / 2;
   ctx.rotate(angle);
   ctx.drawImage(img, -width / 2, 0, width, height);
+  ctx.restore();
+  ctx.globalAlpha = originalAlpha;
+}
+
+function isTextSource(src: string): boolean {
+  return src.startsWith('text:');
+}
+
+function drawText(
+  ctx: CanvasRenderingContext2D,
+  startPoint: IPoint,
+  endPoint: IPoint,
+  text: string,
+  opacity: number
+): void {
+  const height = Math.hypot(
+    endPoint.x - startPoint.x,
+    endPoint.y - startPoint.y
+  );
+  
+  const originalAlpha = ctx.globalAlpha;
+  ctx.save();
+  ctx.globalAlpha = opacity / 255;
+  ctx.translate(startPoint.x, startPoint.y);
+  const angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) - Math.PI/2;
+  ctx.rotate(angle);
+  
+  ctx.font = `${height}px Arial`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  
+  ctx.fillText(text.substring(5), 0, 0);
+  
   ctx.restore();
   ctx.globalAlpha = originalAlpha;
 }
@@ -253,6 +286,40 @@ export const shapePainters: Record<string, ShapePainter> = {
     if (isAutoClosed) ctx.closePath();
   },
 
+  text: ({
+    ctx,
+    startPoint,
+    endPoint,
+    text = "",
+    opacity = 255
+  }: {
+    ctx: CanvasRenderingContext2D;
+    startPoint: IPoint;
+    endPoint: IPoint;
+    text?: string;
+    opacity?: number;
+  }): void => {
+    if (!text) return;
+    const height = Math.hypot(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+
+    const originalAlpha = ctx.globalAlpha;
+    ctx.save();
+    ctx.globalAlpha = opacity / 255;
+    ctx.translate(startPoint.x, startPoint.y);
+
+    let angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x);
+    ctx.rotate(angle - Math.PI / 2);
+
+    ctx.font = `${height}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    ctx.fillText(text, 0, 0);
+
+    ctx.restore();
+    ctx.globalAlpha = originalAlpha;
+  },
+
   bitmaps: async ({
     ctx,
     startPoint,
@@ -266,6 +333,12 @@ export const shapePainters: Record<string, ShapePainter> = {
     url?: string;
     opacity?: number;
   }): Promise<void> => {
-    await drawBitmap(ctx, startPoint, endPoint, url as string, opacity);
+    if (!url) return;
+    
+    if (isTextSource(url)) {
+      drawText(ctx, startPoint, endPoint, url, opacity);
+    } else {
+      await drawBitmap(ctx, startPoint, endPoint, url, opacity);
+    }
   }
 };

@@ -16,10 +16,24 @@ const Preview: React.FC<PreviewProps> = ({
   mousePoint,
   activeLayer
 }) => {
-  const { x: spx, y: spy } = getPoint(startPoint, true);
-  if (mousePoint === null) {
-    return null;
+  if (!mousePoint) return null;
+
+  // Handle text preview
+  if (activeLayer.startsWith('text:')) {
+    const ShapeComponent = getShapeComponent(activeLayer);
+    return (
+      <ShapeComponent
+        shape={{
+          startPoint,
+          endPoint: mousePoint
+        }}
+        url={activeLayer}
+        isPreview={true}
+      />
+    );
   }
+
+  const { x: spx, y: spy } = getPoint(startPoint, true);
   const epx = mousePoint.x;
   const epy = mousePoint.y;
 
