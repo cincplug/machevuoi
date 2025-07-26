@@ -267,11 +267,13 @@ export const applyPaint = ({ isFill, ctx }: ApplyPaintProps): void => {
 };
 
 export const isBitmapSource = (src: string): boolean => {
-  return src.startsWith('/brushes/');
+  return src.startsWith("/brushes/");
 };
 
+export const textPrefix = "text:";
+
 export const isTextSource = (src: string): boolean => {
-  return src.startsWith('text:');
+  return src.startsWith(textPrefix);
 };
 
 export const isSpecialShape = (src: string): boolean => {
@@ -279,7 +281,5 @@ export const isSpecialShape = (src: string): boolean => {
 };
 
 export function stripTextPrefix(str: string): string {
-  if(isTextSource(str)) {
-    return str.split(":")[1];
-  }
+  return str.replace(textPrefix, "");
 }

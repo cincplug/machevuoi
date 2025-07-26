@@ -1,6 +1,6 @@
 import { getShapePoints } from "./shapeCalculators";
 import { IPoint } from "../../types";
-import { stripTextPrefix } from "./index";
+import { isTextSource, stripTextPrefix } from "./index";
 
 interface CanvasContext extends CanvasRenderingContext2D {}
 
@@ -60,10 +60,6 @@ async function drawBitmap(
   ctx.globalAlpha = originalAlpha;
 }
 
-function isTextSource(src: string): boolean {
-  return src.startsWith('text:');
-}
-
 function drawText(
   ctx: CanvasRenderingContext2D,
   startPoint: IPoint,
@@ -86,8 +82,6 @@ function drawText(
   ctx.font = `${height}px Arial`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  
-  ctx.fillText(text.substring(5), 0, 0);
   
   ctx.restore();
   ctx.globalAlpha = originalAlpha;
