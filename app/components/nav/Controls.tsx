@@ -1,5 +1,5 @@
 import { ISetup, IControl, UpdateSetupType } from "../../../types";
-import { isBitmapSource } from "../../utils";
+import { isBitmapSource, isTextSource, stripTextPrefix } from "../../utils";
 import NewBitmap from "./NewBitmap";
 
 interface IProps {
@@ -59,24 +59,31 @@ const Controls: React.FC<IProps> = ({ controls, setup, updateSetup }) => {
 
       return (
         <fieldset className="icon-buttons-wrap" key={`${id}-${index}`}>
-          {allOptions.map((option: string, optionIndex: number) => (
-            <button
-              className={`icon-button ${option} ${
-                value === option ? "active" : ""
-              }`}
-              title={`Add ${option}`}
-              aria-label={option}
-              key={optionIndex}
-              id={id}
-              value={option}
-              onClick={handleOptionButtonClick}
-              style={
-                isBitmapSource(option)
-                  ? { backgroundImage: `url(${option})` }
-                  : undefined
-              }
-            />
-          ))}
+          {allOptions.map((option: string, optionIndex: number) => {
+            const conditionalText = isTextSource(option)
+              ? stripTextPrefix(option)
+              : "";
+            return (
+              <button
+                className={`icon-button ${option} ${
+                  value === option ? "active" : ""
+                }`}
+                title={`Add ${option}`}
+                aria-label={option}
+                key={optionIndex}
+                id={id}
+                value={option}
+                onClick={handleOptionButtonClick}
+                style={
+                  isBitmapSource(option)
+                    ? { backgroundImage: `url(${option})` }
+                    : undefined
+                }
+              >
+                {conditionalText}
+              </button>
+            );
+          })}
           <NewBitmap {...{ scratchPoints, updateSetup }} />
         </fieldset>
       );

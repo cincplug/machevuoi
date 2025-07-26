@@ -279,7 +279,7 @@ export const isSpecialShape = (src: string): boolean => {
 };
 
 export function stripTextPrefix(str: string): string {
-  const prefix = "text:";
-  const idx = str.indexOf(prefix);
-  return idx === 0 ? str.slice(prefix.length) : str;
+  if(isTextSource(str)) {
+    return str.split(":")[1];
+  }
 }
