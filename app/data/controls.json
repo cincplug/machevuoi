@@ -343,6 +343,7 @@
     "isStoringPrevented": false,
     "isOmittedInPattern": true,
     "isSoundRelated": true,
+    "isHidden": true,
     "value": false,
     "type": "checkbox",
     "isHandRelated": true
@@ -354,6 +355,7 @@
     "isStoringPrevented": false,
     "isOmittedInPattern": true,
     "isSoundRelated": true,
+    "isHidden": true,
     "value": true,
     "type": "checkbox",
     "isHandRelated": true
