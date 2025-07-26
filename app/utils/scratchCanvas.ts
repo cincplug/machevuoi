@@ -2,6 +2,7 @@ import {
   getAverageDistance,
   getLineWidth,
   applyPaint,
+  isBitmapSource
 } from ".";
 import { shapePainters } from "./shapePainters";
 import { IPoint, IShape, IShapes } from "../../types";
@@ -51,8 +52,8 @@ export const scratchCanvas = ({
     // Extract base type and text content if present
     const [baseType, textContent] = shapeName.split(":");
     shapeList.forEach((shape: IShape) => {
-      const shapePainter = shapePainters[baseType] || shapePainters.bitmaps;
-      const painterParams: any = {
+      let shapePainter;
+      let painterParams: any = {
         ctx,
         startPoint: shape.startPoint,
         endPoint: shape.endPoint,
@@ -61,11 +62,17 @@ export const scratchCanvas = ({
         opacity,
         isFill
       };
+      
       if (baseType === "text") {
+        shapePainter = shapePainters.text;
         painterParams.text = textContent || (shape as any).text;
-      } else if (baseType === "bitmaps") {
-        painterParams.url = (shape as any).url;
+      } else if (isBitmapSource(shapeName)) {
+        shapePainter = shapePainters.bitmaps;
+        painterParams.url = shapeName;
+      } else {
+        shapePainter = shapePainters[baseType] || shapePainters.bitmaps;
       }
+      
       if (shapePainter) {
         shapePainter(painterParams);
       }

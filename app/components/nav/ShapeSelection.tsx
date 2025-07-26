@@ -6,7 +6,8 @@ import {
   arraysAreEqual,
   getExtendedHandPoints,
   isBitmapSource,
-  isSpecialShape
+  isSpecialShape,
+  stripTextPrefix
 } from "../../utils";
 import { getShape } from "../../utils";
 import Dots from "../shapes/Dots";
@@ -180,7 +181,12 @@ const ShapeSelection: React.FC<IProps> = ({ setup, updateSetup }) => {
               title={`Click to remove from ${getLabelForShape(shapeType)}`}
               shape={shape as any}
               onClick={onClick}
-              url={isSpecialShape(shapeType) ? shapeType : ""}
+              {...(shapeType.startsWith('text:') 
+                ? { text: stripTextPrefix(shapeType) }
+                : isBitmapSource(shapeType) 
+                  ? { url: shapeType }
+                  : {}
+              )}
             />
           ));
         })}

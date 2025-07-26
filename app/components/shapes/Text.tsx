@@ -1,17 +1,16 @@
 import React from 'react';
 import { IShape } from '../../../types';
-import { getPoint, stripTextPrefix } from '../../utils';
+import { getPoint } from '../../utils';
 
 interface IProps {
   shape: IShape;
   onClick?: () => void;
   title?: string;
-  url: string;
+  text?: string;
   isPreview?: boolean;
 }
 
-const Text: React.FC<IProps> = ({ shape, onClick, title, url, isPreview }) => {
-  const text = stripTextPrefix(url);
+const Text: React.FC<IProps> = ({ shape, onClick, title, text = "", isPreview }) => {
   const { x: spx, y: spy } = getPoint(shape.startPoint, isPreview ?? false);
   const { x: epx, y: epy } = getPoint(shape.endPoint, isPreview ?? false);
   

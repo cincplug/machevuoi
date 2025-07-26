@@ -1,5 +1,5 @@
 import { IPoint } from "../../../types";
-import { getPoint } from "../../utils";
+import { getPoint, stripTextPrefix } from "../../utils";
 import { getShapeComponent, isKnownShape } from "../shapes";
 import Bitmap from "./Bitmap";
 
@@ -25,9 +25,12 @@ const Preview: React.FC<PreviewProps> = ({
       <ShapeComponent
         shape={{
           startPoint,
-          endPoint: mousePoint
+          endPoint: mousePoint,
+          controlPoint: startPoint
         }}
-        url={activeLayer}
+        text={stripTextPrefix(activeLayer)}
+        title=""
+        onClick={() => {}}
         isPreview={true}
       />
     );
