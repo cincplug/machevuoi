@@ -2,7 +2,6 @@ import {
   getAverageDistance,
   getLineWidth,
   applyPaint,
-  isBitmapSource
 } from ".";
 import { shapePainters } from "./shapePainters";
 import { IPoint, IShape, IShapes } from "../../types";
@@ -59,7 +58,8 @@ export const scratchCanvas = ({
         endPoint: shape.endPoint,
         controlPoint: shape.controlPoint,
         isAutoClosed,
-        opacity
+        opacity,
+        isFill
       };
       if (baseType === "text") {
         painterParams.text = textContent || (shape as any).text;
