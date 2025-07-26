@@ -71,18 +71,20 @@ function drawText(
     endPoint.x - startPoint.x,
     endPoint.y - startPoint.y
   );
-  
+
   const originalAlpha = ctx.globalAlpha;
   ctx.save();
   ctx.globalAlpha = opacity / 255;
   ctx.translate(startPoint.x, startPoint.y);
-  const angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) - Math.PI/2;
+  const angle =
+    Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) -
+    Math.PI / 2;
   ctx.rotate(angle);
-  
+
   ctx.font = `${height}px Arial`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
-  
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+
   ctx.restore();
   ctx.globalAlpha = originalAlpha;
 }
@@ -286,33 +288,39 @@ export const shapePainters: Record<string, ShapePainter> = {
     startPoint,
     endPoint,
     text = "",
-    opacity = 255
+    opacity = 255,
+    isFill = false
   }: {
     ctx: CanvasRenderingContext2D;
     startPoint: IPoint;
     endPoint: IPoint;
     text?: string;
     opacity?: number;
+    isFill?: boolean;
   }): void => {
     if (!text) return;
-    const height = Math.hypot(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+    const height = Math.hypot(
+      endPoint.x - startPoint.x,
+      endPoint.y - startPoint.y
+    );
 
-    const originalAlpha = ctx.globalAlpha;
     ctx.save();
     ctx.globalAlpha = opacity / 255;
     ctx.translate(startPoint.x, startPoint.y);
 
-    let angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x);
+    let angle = Math.atan2(
+      endPoint.y - startPoint.y,
+      endPoint.x - startPoint.x
+    );
     ctx.rotate(angle - Math.PI / 2);
 
     ctx.font = `${height}px Arial`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
 
-    ctx.fillText(stripTextPrefix(text), 0, 0);
+    ctx[isFill ? "fillText" : "strokeText"](stripTextPrefix(text), 0, 0);
 
     ctx.restore();
-    ctx.globalAlpha = originalAlpha;
   },
 
   bitmaps: async ({
@@ -329,7 +337,7 @@ export const shapePainters: Record<string, ShapePainter> = {
     opacity?: number;
   }): Promise<void> => {
     if (!url) return;
-    
+
     if (isTextSource(url)) {
       drawText(ctx, startPoint, endPoint, url, opacity);
     } else {
