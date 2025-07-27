@@ -2,8 +2,6 @@
 
 [Ma che vuoi](https://machevuoi.vercel.app/) is my free-hand drawing app. It's named after a well known Italian hand gesture, looking like this 🤌, meaning "What do you want?" but in a specifically Italian way. 
 
-It's based on [TF's hand pose detection](https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection)
-
 The idea is to draw with all five fingers, even with both hands, and even with more than two hands if you're up to "pair drawing" as opposed to "pair programming" :)
 
 I should write a more comprehensive manual, but meanwhile click around and you won't be bored, that much I can promise.

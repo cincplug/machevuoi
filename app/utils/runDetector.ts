@@ -1,4 +1,4 @@
-import { initializeTensorFlow } from "./loadTensorFlow";
+import { initializeDetector } from "./loadDetector";
 import { processHands } from "./processHands";
 import { IPoint, ICursor } from "../../types";
 import { OscillatorManager } from "./audio";
@@ -29,7 +29,7 @@ export const runDetector = async ({
   let handsDetector = null;
 
   try {
-    handsDetector = await initializeTensorFlow();
+    handsDetector = await initializeDetector();
   } catch (error) {
     console.error("Error initializing detector", error);
     setMessage("Failed to initialize hand detection. Please try again 🤚");
@@ -50,11 +50,10 @@ export const runDetector = async ({
     }
     lastTime = timeStamp;
 
-    const estimationConfig = { flipHorizontal: true, staticImageMode: false };
     let hands: any = null;
     try {
       if (handsDetector) {
-        hands = await handsDetector.estimateHands(video, estimationConfig);
+        hands = await handsDetector.estimateHands(video, {});
       }
       setIsDetectorRunning(true);
     } catch (error) {

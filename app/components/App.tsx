@@ -13,7 +13,7 @@ import Loader from "./Loader";
 import NoteGrid from "./NoteGrid";
 import "../styles.scss";
 import { ISetup, ICursor, UpdateSetupType } from "../../types";
-import { initializeTensorFlow } from "../utils/loadTensorFlow";
+import { initializeDetector } from "../utils/loadDetector";
 interface InputResolution {
   width: number;
   height: number;
@@ -71,7 +71,7 @@ const App: React.FC<Props> = ({ initialControls, initialPatterns }) => {
 
   useEffect(() => {
     if (isClient) {
-      initializeTensorFlow().catch(console.error);
+      initializeDetector().catch(console.error);
     }
   }, [isClient]);
 
