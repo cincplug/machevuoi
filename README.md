@@ -6,7 +6,9 @@ The idea is to draw with all five fingers, even with both hands, and even with m
 
 I should write a more comprehensive manual, but meanwhile click around and you won't be bored, that much I can promise.
 
-Apart from drawing, this is an interesting puppetry tool, which you can see on my [live demo](https://youtube.com/watch?v=XA_kYc5ovHI&si=Nofnwf_YO4xs8XDb), which I made in occasion of 200th anniversary of 9th Beethoven's Symphony :)
+Apart from drawing, this is an interesting puppetry tool, which you can see on my [live demo](https://youtube.com/watch?v=XA_kYc5ovHI&si=Nofnwf_YO4xs8XDb), which I made in occasion of 200th anniversary of 9th Beethoven's Symphony.
+
+Ma che vuoi uses [MediaPipe hand landmark detection](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker). In the past it used Tensorflow wrapper with mediapipe runtime, but this is more up to date, performs better and it's better for the milieu 🐿🦔🦆
 
 Below is just a default Next.js introduction.
 
